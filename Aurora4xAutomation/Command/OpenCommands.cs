@@ -28,6 +28,7 @@ namespace Aurora4xAutomation.Command
 
             _production.MakeActive();
             _production.SelectResearchTab();
+            output += "Available Labs: " + _production.AvailableLabs.Text + "\n\n";
             if (category == "all")
             {
                 _production.SelectBiology();

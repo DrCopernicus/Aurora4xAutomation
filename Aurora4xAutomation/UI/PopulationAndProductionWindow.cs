@@ -9,10 +9,10 @@ namespace Aurora4xAutomation.UI
         public PopulationAndProductionWindow() 
             : base("Population and Production")
         {
-            
             ResearchTable = new Datagrid(this) { Columns = new[] { 406, 687, 754 }, Top = 406, Bottom = 613, LineHeight = 16, TopOfCharactersOffset = 3, Settings = PrintSettings.NewResearchTable };
             AvailableScientistsTable = new Datagrid(this) { Columns = new[] { 790, 909, 1056 }, Top = 406, Bottom = 613, LineHeight = 16, TopOfCharactersOffset = 3, Settings = PrintSettings.AvailableScientistTable };
-
+            AllocatedLabs = new Textbox(this) { Left = 885, Right = 929, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new []{ new byte[]{ 0, 0, 0 } } };
+            AvailableLabs = new Textbox(this) { Left = 1037, Right = 1073, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new []{ new byte[]{ 109, 109, 109 } } };
         }
 
         private bool IsSummaryTabRowOnTop()
@@ -24,6 +24,8 @@ namespace Aurora4xAutomation.UI
     
         public Datagrid ResearchTable { get; set; }
         public Datagrid AvailableScientistsTable { get; set; }
+        public Textbox AllocatedLabs { get; set; }
+        public Textbox AvailableLabs { get; set; }
 
         #endregion
 

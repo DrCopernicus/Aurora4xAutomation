@@ -81,6 +81,7 @@
     <Compile Include="UI\ConsoleWindow.cs" />
     <Compile Include="UI\Controls\Control.cs" />
     <Compile Include="UI\Controls\Datagrid.cs" />
+    <Compile Include="UI\Controls\Textbox.cs" />
     <Compile Include="UI\PaintNetWindow.cs" />
     <Compile Include="UI\CommandersWindow.cs" />
     <Compile Include="UI\TaskGroupsWindow.cs" />

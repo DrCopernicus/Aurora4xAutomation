@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace Aurora4xAutomation.Common
@@ -26,7 +27,7 @@ namespace Aurora4xAutomation.Common
             return color;
         }
 
-        public static byte[,] GetPixelsOfColor(Bitmap screen, int x, int y, int width, int height)
+        public static byte[,] GetPixelsOfColor(Bitmap screen, int x, int y, int width, int height, byte[][] colors)
         {
             var pixels = new byte[height, width];
 
@@ -35,7 +36,7 @@ namespace Aurora4xAutomation.Common
                 for (int yi = 0; yi < height; yi++)
                 {
                     var pix = screen.GetPixel(x + xi, y + yi);
-                    if (pix.EqualsColor(0, 0, 0) || pix.EqualsColor(255, 0, 0))
+                    if (colors.Any(color => pix.EqualsColor(color[0], color[1], color[2])))
                     {
                         pixels[yi, xi] = 1;
                     }
