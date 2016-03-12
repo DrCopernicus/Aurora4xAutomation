@@ -1,0 +1,10 @@
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Release\Aurora4xAutomation.exe.config
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Release\Aurora4xAutomation.exe
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Release\Aurora4xAutomation.pdb
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Release\Castle.Core.dll
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Release\TestStack.White.dll
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Release\Castle.Core.xml
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Release\TestStack.White.pdb
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Release\TestStack.White.xml
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\obj\Release\Aurora4xAutomation.exe
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\obj\Release\Aurora4xAutomation.pdb
