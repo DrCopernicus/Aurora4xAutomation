@@ -17,7 +17,7 @@ namespace Aurora4xAutomation.UI.Controls
             
         }
 
-        protected List<string[]> ReadDataTable(int[] columns, int top, int bottom, int lineHeight, int topOfCharactersOffset)
+        private List<string[]> ReadDataTable(int[] columns, int top, int bottom, int lineHeight, int topOfCharactersOffset)
         {
             var screen = new Bitmap(Pranas.ScreenshotCapture.TakeScreenshot());
             var table = new List<string[]>();
@@ -49,6 +49,11 @@ namespace Aurora4xAutomation.UI.Controls
         public string GetText()
         {
             return ReadDataTable(Columns, Top, Bottom, LineHeight, TopOfCharactersOffset).Print(Settings);
+        }
+
+        public void ClickRow(int row)
+        {
+            Click((Right - Left) / 2, row * LineHeight + LineHeight/2);
         }
     }
 }

@@ -86,7 +86,8 @@ namespace Aurora4xAutomation
             }
             Console.ResetColor();
             Console.WriteLine();
-            Console.WriteLine(_currentMessage+(_extraMessage == "" ? "" : "\n\n"+_extraMessage));
+            Console.WriteLine(_currentMessage + (_extraMessage == "" ? "" : "\n\n" + _extraMessage));
+            _console.MakeActive();
         }
 
         private string IsStopEvent()
@@ -103,25 +104,25 @@ namespace Aurora4xAutomation
             {
                 var choice = Console.ReadLine().ToLower();
 
-                if (choice.Matches("^o r$"))
+                if (choice.Matches("^o(pen)? r$"))
                     _commands.OpenCommands.OpenResearch();
 
-                else if (choice.Matches("^o ship$"))
+                else if (choice.Matches("^o(pen)? ship$"))
                     _commands.OpenCommands.OpenShipyard();
 
-                else if (choice.Matches("^o tg$"))
+                else if (choice.Matches("^o(pen)? tg$"))
                     _commands.OpenCommands.OpenTaskGroup();
 
-                else if (choice.Matches("^o r [a-zA-Z]+$"))
+                else if (choice.Matches("^o(pen)? r [a-zA-Z]+$"))
                     _extraMessage = _commands.OpenCommands.OpenResearch(choice.Split(' ')[2]);
 
-                else if (choice.Matches("^r [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
+                else if (choice.Matches("^r(esearch)? [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
                     _commands.ResearchCommands.ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), choice.Split(' ')[4]);
 
-                else if (choice.Matches("^adv [0-9]*[a-z]+"))
+                else if (choice.Matches("^adv(ance)? [0-9]*[a-z]+"))
                     _incrementLength = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
 
-                else if (choice.Matches("^b ship [0-9]+ [0-9]+$"))
+                else if (choice.Matches("^b(uild)? ship [0-9]+ [0-9]+$"))
                 {
                     var shipyardNumber = int.Parse(choice.Split(' ')[2]);
                     var shipsNumber = int.Parse(choice.Split(' ')[3]);
@@ -132,18 +133,38 @@ namespace Aurora4xAutomation
                         _production.AddShipyardTask();
                 }
 
+                else if (choice.Matches("^b(uild)? inst(allation)? [a-z]+ [0-9]*$"))
+                {
+                    var installationName = choice.Split(' ')[2];
+                    var installationNumber = choice.Split(' ')[3];
+                    _production.MakeActive();
+                    _production.SelectIndustry();
+                    switch (installationName)
+                    {
+                        case "automine":
+                            _production.ConstructionOptions.ClickRow(0);
+                            break;
+                        case "csc":
+                            _production.ConstructionOptions.ClickRow(1);
+                            break;
+                        case "nsc":
+                            _production.ConstructionOptions.ClickRow(14);
+                            break;
+                    }
+                    _production.NumberOfIndustrialProject.Text = installationNumber;
+                    _production.CreateIndustrialProject.Click();
+                }
+
                 else if (choice.Matches("^lead(er)? auto=(true|yes|1|on)$"))
                 {
                     _commanders.MakeActive();
                     _commanders.SetAutomatedAssignments(true);
-                    _console.MakeActive();
                 }
 
                 else if (choice.Matches("^lead(er)? auto=(false|no|0|off)$"))
                 {
                     _commanders.MakeActive();
                     _commanders.SetAutomatedAssignments(false);
-                    _console.MakeActive();
                 }
 
                 else if (choice.Matches("^clear$"))

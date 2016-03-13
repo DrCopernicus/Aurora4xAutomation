@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.OCR;
+using Pranas;
 
 namespace Aurora4xAutomation.UI.Controls
 {
@@ -19,12 +19,21 @@ namespace Aurora4xAutomation.UI.Controls
 
         public string Text
         {
-            get { return ReadBox(); }
+            get
+            {
+                return ReadBox();
+            }
+            set
+            {
+                Click();
+                Click();
+                Input.Keyboard.TextEntry(value);
+            }
         }
 
         protected string ReadBox()
         {
-            var screen = new Bitmap(Pranas.ScreenshotCapture.TakeScreenshot());
+            var screen = new Bitmap(ScreenshotCapture.TakeScreenshot());
 
             return OCRReader.ReadTableRow(
                     PixelGetter.GetPixelsOfColor(

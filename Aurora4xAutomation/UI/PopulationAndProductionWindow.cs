@@ -11,8 +11,11 @@ namespace Aurora4xAutomation.UI
         {
             ResearchTable = new Datagrid(this) { Columns = new[] { 406, 687, 754 }, Top = 406, Bottom = 613, LineHeight = 16, TopOfCharactersOffset = 3, Settings = PrintSettings.NewResearchTable };
             AvailableScientistsTable = new Datagrid(this) { Columns = new[] { 790, 909, 1056 }, Top = 406, Bottom = 613, LineHeight = 16, TopOfCharactersOffset = 3, Settings = PrintSettings.AvailableScientistTable };
-            AllocatedLabs = new Textbox(this) { Left = 885, Right = 929, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new []{ new byte[]{ 0, 0, 0 } } };
-            AvailableLabs = new Textbox(this) { Left = 1037, Right = 1073, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new []{ new byte[]{ 109, 109, 109 } } };
+            ConstructionOptions = new Datagrid(this) { Columns = new []{ 398, 599 }, Left = 398, Right = 599, Top = 245, Bottom = 669, LineHeight = 16, TopOfCharactersOffset = 3 };
+            AllocatedLabs = new Textbox(this) { Left = 885, Right = 929, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
+            AvailableLabs = new Textbox(this) { Left = 1037, Right = 1073, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 109, 109, 109 } } };
+            NumberOfIndustrialProject = new Textbox(this) { Left = 725, Right = 769, Top = 696, Bottom = 710, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
+            CreateIndustrialProject = new Button(this) { Left = 635, Right = 707, Top = 730, Bottom = 754 };
         }
 
         private bool IsSummaryTabRowOnTop()
@@ -21,11 +24,14 @@ namespace Aurora4xAutomation.UI
         }
 
         #region Controls
-    
+
         public Datagrid ResearchTable { get; set; }
         public Datagrid AvailableScientistsTable { get; set; }
+        public Datagrid ConstructionOptions { get; set; }
         public Textbox AllocatedLabs { get; set; }
         public Textbox AvailableLabs { get; set; }
+        public Textbox NumberOfIndustrialProject { get; set; }
+        public Button CreateIndustrialProject { get; set; }
 
         #endregion
 
@@ -164,6 +170,18 @@ namespace Aurora4xAutomation.UI
         public void AddShipyardTask()
         {
             Click(442, 821);
+        }
+
+        #endregion
+
+        #region Industry
+
+        public void SelectIndustry()
+        {
+            if (IsSummaryTabRowOnTop())
+                Click(597, 101);
+            else
+                Click(589, 122);
         }
 
         #endregion

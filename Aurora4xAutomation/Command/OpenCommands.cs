@@ -53,7 +53,6 @@ namespace Aurora4xAutomation.Command
                 _production.SelectResearchByCategory(category);
                 output += ReadResearchTables();
             }
-            _console.MakeActive();
             return output;
         }
 
