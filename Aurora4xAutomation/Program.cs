@@ -154,14 +154,14 @@ namespace Aurora4xAutomation
                     _production.NumberOfIndustrialProject.Text = installationNumber;
                     _production.CreateIndustrialProject.Click();
                 }
-
-                else if (choice.Matches("^lead(er)? auto=(true|yes|1|on)$"))
+                    
+                else if (choice.Matches("^auto assign(ment(s)?)? (true|yes|1|on)$"))
                 {
                     _commanders.MakeActive();
                     _commanders.SetAutomatedAssignments(true);
                 }
 
-                else if (choice.Matches("^lead(er)? auto=(false|no|0|off)$"))
+                else if (choice.Matches("^auto assign(ment(s)?)? (false|no|0|off)$"))
                 {
                     _commanders.MakeActive();
                     _commanders.SetAutomatedAssignments(false);
