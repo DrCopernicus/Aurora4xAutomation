@@ -1,6 +1,9 @@
-﻿using WindowsInput.Native;
+﻿using System.Threading;
+using System.Windows.Forms;
+using WindowsInput.Native;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.UI.Controls;
+using Button = Aurora4xAutomation.UI.Controls.Button;
 
 namespace Aurora4xAutomation.UI
 {
@@ -185,5 +188,12 @@ namespace Aurora4xAutomation.UI
         }
 
         #endregion
+
+        protected override void OpenIfNotFound()
+        {
+            new AuroraWrapperWindow().OpenBase();
+            Thread.Sleep(1000);
+            SendKeys.SendWait("{F2}");
+        }
     }
 }

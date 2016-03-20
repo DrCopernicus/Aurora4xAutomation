@@ -10,7 +10,7 @@ using WindowsInput;
 
 namespace Aurora4xAutomation.UI
 {
-    public class Window
+    public abstract class Window
     {
         protected static readonly InputSimulator Input = new InputSimulator();
 
@@ -111,13 +111,29 @@ namespace Aurora4xAutomation.UI
 
         public Window(string title)
         {
-            var handle = GetOpenWindows().First(x => x.Value.StartsWith(title)).Key;
+            var window = GetOpenWindows().FirstOrDefault(x => x.Value.StartsWith(title));
+
+            if (window.Value == null)
+            {
+                OpenIfNotFound();
+                Thread.Sleep(500);
+            }
+
+            window = GetOpenWindows().FirstOrDefault(x => x.Value.StartsWith(title));
+
+            if (window.Value == null)
+                throw new Exception(string.Format("{0} window not found!", title));
+
+            var handle = window.Key;
+
             RECT dimensions;
             GetWindowRect(handle, out dimensions);
 
             Handle = handle;
             Dimensions = dimensions;
         }
+
+        protected abstract void OpenIfNotFound();
 
         protected void Click(int x, int y)
         {

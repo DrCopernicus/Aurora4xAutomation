@@ -1,4 +1,6 @@
-﻿namespace Aurora4xAutomation.UI
+﻿using System;
+
+namespace Aurora4xAutomation.UI
 {
     public class ConsoleWindow : Window
     {
@@ -6,6 +8,11 @@
             base(@"file:///")
         {
             
+        }
+
+        protected override void OpenIfNotFound()
+        {
+            throw new Exception("Console window not found!");
         }
     }
 }

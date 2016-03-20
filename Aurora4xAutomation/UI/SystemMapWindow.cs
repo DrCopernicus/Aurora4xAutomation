@@ -1,4 +1,7 @@
-﻿namespace Aurora4xAutomation.UI
+﻿using System.Threading;
+using System.Windows.Forms;
+
+namespace Aurora4xAutomation.UI
 {
     public class SystemMapWindow : Window
     {
@@ -66,6 +69,13 @@
         public string GetTime()
         {
             return GetWindowText().Substring(10).Trim();
+        }
+
+        protected override void OpenIfNotFound()
+        {
+            new AuroraWrapperWindow().OpenBase();
+            Thread.Sleep(1000);
+            SendKeys.SendWait("{F3}");
         }
     }
 }

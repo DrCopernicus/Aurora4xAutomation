@@ -1,4 +1,6 @@
-﻿using Aurora4xAutomation.Common;
+﻿using System.Threading;
+using System.Windows.Forms;
+using Aurora4xAutomation.Common;
 
 namespace Aurora4xAutomation.UI
 {
@@ -17,6 +19,13 @@ namespace Aurora4xAutomation.UI
             {
                 Click(100, 88);
             }
+        }
+
+        protected override void OpenIfNotFound()
+        {
+            new AuroraWrapperWindow().OpenBase();
+            Thread.Sleep(1000);
+            SendKeys.SendWait("{F4}");
         }
     }
 }

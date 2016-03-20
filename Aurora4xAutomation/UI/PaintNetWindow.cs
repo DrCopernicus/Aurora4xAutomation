@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Aurora4xAutomation.UI
 {
@@ -17,6 +13,11 @@ namespace Aurora4xAutomation.UI
         public void Paint(int x, int y)
         {
             Click(x, y);
+        }
+
+        protected override void OpenIfNotFound()
+        {
+            throw new Exception("Paint.Net not found!");
         }
     }
 }
