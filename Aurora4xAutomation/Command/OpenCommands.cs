@@ -1,35 +1,37 @@
+using System;
 using System.Threading;
+using Aurora4xAutomation.Events;
 using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation.Command
 {
     public class OpenCommands
     {
-        public void OpenResearch()
+        public void OpenResearch(object sender, EventArgs e)
         {
             _production.MakeActive();
             _production.SelectResearchTab();
         }
 
-        public void OpenShipyard()
+        public void OpenShipyard(object sender, EventArgs e)
         {
             _production.MakeActive();
             _production.SelectManageShipyards();
         }
 
-        public void OpenTaskGroup()
+        public void OpenTaskGroup(object sender, EventArgs e)
         {
             _taskGroups.MakeActive();
         }
 
-        public string OpenResearch(string category)
+        public void OpenResearchCategory(object sender, EventArgs e)
         {
             var output = "";
 
             _production.MakeActive();
             _production.SelectResearchTab();
             output += "Available Labs: " + _production.AvailableLabs.Text + "\n\n";
-            if (category == "all")
+            if (((MessageEventArgs) e).Message == "all")
             {
                 _production.SelectBiology();
                 output += ReadResearchTables();
@@ -50,10 +52,11 @@ namespace Aurora4xAutomation.Command
             }
             else
             {
-                _production.SelectResearchByCategory(category);
+                _production.SelectResearchByCategory(((MessageEventArgs)e).Message);
                 output += ReadResearchTables();
             }
-            return output;
+
+            Timeline.AddEvent(MessageCommands.PrintFeedback, output);
         }
 
         private string ReadResearchTables()
@@ -66,7 +69,6 @@ namespace Aurora4xAutomation.Command
             return output;
         }
 
-        private readonly ConsoleWindow _console = new ConsoleWindow();
         private readonly TaskGroupsWindow _taskGroups = new TaskGroupsWindow();
         private readonly PopulationAndProductionWindow _production = new PopulationAndProductionWindow();
     }

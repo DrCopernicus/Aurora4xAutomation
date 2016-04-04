@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="Clicker.cs" />
     <Compile Include="Command\Commands.cs" />
+    <Compile Include="Command\SettingsCommands.cs" />
+    <Compile Include="Command\MessageCommands.cs" />
     <Compile Include="Command\InfrastructureCommands.cs" />
     <Compile Include="Command\OpenCommands.cs" />
     <Compile Include="Command\ResearchCommands.cs" />
@@ -75,10 +77,15 @@
     <Compile Include="Common\TableExtensions.cs" />
     <Compile Include="EventParser.cs" />
     <Compile Include="EventReader.cs" />
+    <Compile Include="Events\AuroraEvent.cs" />
+    <Compile Include="Events\MessageEventArgs.cs" />
+    <Compile Include="Events\Time.cs" />
+    <Compile Include="Events\Timeline.cs" />
     <Compile Include="OCR\OCRReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\OCRTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />
     <Compile Include="UI\AuroraWrapperWindow.cs" />
@@ -95,6 +102,7 @@
     <Compile Include="UI\SystemMapWindow.cs" />
     <Compile Include="UI\EventWindow.cs" />
     <Compile Include="UI\PopulationAndProductionWindow.cs" />
+    <Compile Include="UI\UIMap.cs" />
     <Compile Include="UI\Window.cs" />
   </ItemGroup>
   <ItemGroup>

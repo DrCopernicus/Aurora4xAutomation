@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Events;
 using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation.Command
@@ -84,6 +85,8 @@ namespace Aurora4xAutomation.Command
 
                 if (!SelectScience(research, scientists))
                 {
+                    Timeline.AddEvent(SettingsCommands.Stop);
+                    Timeline.AddEvent(MessageCommands.PrintError, "[AutoResearch] Failed to assign a new research project.");
                     break;
                 }
 
@@ -111,6 +114,7 @@ namespace Aurora4xAutomation.Command
                             if (res[i][0] == searchAgainst[0])
                             {
                                 ResearchTechCommand(searchFor.Value, i, 0, -1);
+                                Timeline.AddEvent(MessageCommands.PrintFeedback, string.Format("[AutoResearch] Successfully selected research {0}.", searchFor.Key));
                                 return true;
                             }
                         }

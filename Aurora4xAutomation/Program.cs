@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Events;
 using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation
@@ -15,27 +14,26 @@ namespace Aurora4xAutomation
             var p = new Program();
         }
 
-        public event EventHandler ResearchEventHappened;
-
         public Program()
         {
             Settings.Research = Settings.ResearchFocuses["beamfocus"];
 
-            ResearchEventHappened += _commands.ResearchCommands.AutoResearch;
-
             while (true)
             {
+                Settings.Stopped = false;
                 Thread.Sleep(2000);
 
-                var events = GetEvents();
+                Settings.ErrorMessage = "";
+                Settings.FeedbackMessage = "";
 
-                if (events.Any(ev => ev.Type == EventParser.AuroraEventType.Research))
-                    ResearchEventHappened(this, EventArgs.Empty);
+                ParseEvents();
 
-                _extraMessage = "";
-                _currentMessage = GetStopEventMessage(events);
+                if (!Settings.AutoTurnsOn)
+                    Timeline.AddEvent(SettingsCommands.Stop);
 
-                if (_currentMessage != "" || !Settings.AutoTurnsOn)
+                ActOnActiveTimelineEntries();
+
+                if (Settings.Stopped)
                 {
                     _console.MakeActive();
                     WriteWaitingForInputInfoBar();
@@ -99,21 +97,20 @@ namespace Aurora4xAutomation
             }
             Console.ResetColor();
             Console.WriteLine();
-            Console.WriteLine(_currentMessage + (_extraMessage == "" ? "" : "\n\n" + _extraMessage));
+            Console.WriteLine(Settings.FeedbackMessage);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(Settings.ErrorMessage == "" ? "" : "\n\n" + Settings.ErrorMessage);
+            Console.ForegroundColor = ConsoleColor.White;
+            
             _console.MakeActive();
         }
 
-        private List<EventParser.AuroraEvent> GetEvents()
+        private void ParseEvents()
         {
             _events.MakeActive();
             _events.ClickTextFileButton();
             Thread.Sleep(1500);
-            return EventParser.GetAllEvents(_systemMap.GetTime());
-        }
-
-        private string GetStopEventMessage(List<EventParser.AuroraEvent> events)
-        {
-            return events.Aggregate("", (s, x) => x.Type != EventParser.AuroraEventType.NonStopping ? s + x.Text + "\n" : s);
+            EventParser.AnyStopEvents(_systemMap.GetTime());
         }
 
         private void MakeChoices()
@@ -123,16 +120,16 @@ namespace Aurora4xAutomation
                 var choice = Console.ReadLine().ToLower();
 
                 if (choice.Matches("^o(pen)? r$"))
-                    _commands.OpenCommands.OpenResearch();
+                    Timeline.AddEvent(_commands.OpenCommands.OpenResearch);
 
                 else if (choice.Matches("^o(pen)? ship$"))
-                    _commands.OpenCommands.OpenShipyard();
+                    Timeline.AddEvent(_commands.OpenCommands.OpenShipyard);
 
                 else if (choice.Matches("^o(pen)? tg$"))
-                    _commands.OpenCommands.OpenTaskGroup();
+                    Timeline.AddEvent(_commands.OpenCommands.OpenTaskGroup);
 
                 else if (choice.Matches("^o(pen)? r [a-zA-Z]+$"))
-                    _extraMessage = _commands.OpenCommands.OpenResearch(choice.Split(' ')[2]);
+                    Timeline.AddEvent(_commands.OpenCommands.OpenResearchCategory, choice.Split(' ')[2]);
 
                 else if (choice.Matches("^r(esearch)? [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
                     _commands.ResearchCommands.ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
@@ -211,8 +208,8 @@ namespace Aurora4xAutomation
                     
                 else if (choice.Matches("^clear$"))
                 {
-                    _currentMessage = "";
-                    _extraMessage = "";
+                    Settings.FeedbackMessage = "";
+                    Settings.ErrorMessage = "";
                 }
 
                 else if (choice == "")
@@ -220,8 +217,16 @@ namespace Aurora4xAutomation
                     break;
                 }
 
+                ActOnActiveTimelineEntries();
                 WriteWaitingForInputInfoBar();
             }
+        }
+
+        private void ActOnActiveTimelineEntries()
+        {
+            AuroraEvent ev;
+            while ((ev = Timeline.NextActiveEvent) != null)
+                ev.Invoke();
         }
 
         private IncrementLength GetIncrementFromAbbreviation(string s)
@@ -311,8 +316,6 @@ namespace Aurora4xAutomation
         }
 
         private IncrementLength _incrementLength = IncrementLength.FiveDay;
-        private string _currentMessage = "";
-        private string _extraMessage = "";
 
         private readonly Commands _commands = new Commands();
         private readonly EventWindow _events = new EventWindow();

@@ -1,35 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Aurora4xAutomation.Command;
+using Aurora4xAutomation.Events;
 
 namespace Aurora4xAutomation
 {
     public class EventParser
     {
-        public enum AuroraEventType
-        {
-            NonStopping,
-            Research,
-            MineralsLocated,
-            Unspecified
-        }
-
-        public struct AuroraEvent
-        {
-            public AuroraEventType Type;
-            public string Text;
-            public string Args;
-        }
-
-        public static List<AuroraEvent> GetAllEvents(string time)
+        public static bool AnyStopEvents(string time)
         {
             var file = @"D:\prog\Aurora\Aurora_latest\Aurora\FederationEventLog.txt";
             var allEvents = File.ReadAllLines(file);
             if (!GetLatestTime(allEvents).StartsWith(time))
-                return new List<AuroraEvent>();
-            return GetLatestEvents(allEvents).Select(GetEvent).ToList();
+                return false;
+            var list = GetLatestEvents(allEvents).Select(x => IsStopEvent(new Time(time), x)).ToList();
+            return list.Any(x => x);
         }
 
         private static List<string> GetLatestEvents(string[] strs)
@@ -58,10 +45,8 @@ namespace Aurora4xAutomation
             return strs.Last().Split(',').First();
         }
 
-        private static AuroraEvent GetEvent(string str)
+        private static bool IsStopEvent(Time time, string str)
         {
-            var ev = new AuroraEvent { Type = AuroraEventType.NonStopping, Text = str, Args = "" };
-
             if (IsMiningColonyUpgrade(str)
                 || IsExperienceGain(str)
                 || IsTrainingGain(str)
@@ -85,25 +70,27 @@ namespace Aurora4xAutomation
                 || IsNewJumpPoint(str)
                 || IsCrewMoraleFalling(str)
                 || IsDeathNoAssignment(str)
+                || IsMineralsLocated(str)
                 || IsMineralsLocated(str))
-                return ev;
+                return false;
 
-            if (IsResearchCompleted(str))
+            if (IsResearchCompleted(str)
+                || IsInactiveLab(str))
             {
-                ev.Type = AuroraEventType.Research;
-            }
-            else if (IsMineralsLocated(str))
-            {
-                ev.Type = AuroraEventType.MineralsLocated;
-                var workingStr = str.Replace("Minerals Discovered on ", "");
-                ev.Args = workingStr.Remove(workingStr.IndexOf(": ", StringComparison.InvariantCulture));
-            }
-            else
-            {
-                ev.Type = AuroraEventType.Unspecified;
+                Timeline.AddEvent(new ResearchCommands().AutoResearch);
+                return true;
             }
 
-            return ev;
+            Timeline.AddEvent(SettingsCommands.Stop);
+            Timeline.AddEvent(MessageCommands.PrintFeedback, string.Format("Stopped because: {0}", str));
+
+            return true;
+        }
+
+        private static bool IsInactiveLab(string str)
+        {
+            var regex = new Regex(@"^[0-9]+ inactive Research Labs on ");
+            return regex.IsMatch(str);
         }
 
         private static bool IsResearchCompleted(string str)

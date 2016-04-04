@@ -3,4 +3,28 @@ ew		Meson Focusing Technology 1
 ew		12cm Meson Focal Size
 ew		Meson Focusing Technology 2
 sf		Beam Fire Control Range 32,000 km
+sf		Beam Fire Control Range 40,000 km
+sf		Active Grav Sensor Strength 28
 bg		Genome Sequence Research
+bg		Terraforming Rate 0.0012 atm
+bg		Terraforming Rate 0.0015 atm
+bg		Terraforming Rate 0.002 atm
+bg		Terraforming Rate 0.0025 atm
+bg		Terraforming Rate 0.003 atm
+bg		Terraforming Rate 0.0035 atm
+bg		Terraforming Rate 0.004 atm
+bg		Terraforming Rate 0.0045 atm
+bg		Terraforming Rate 0.005 atm
+bg		Terraforming Rate 0.006 atm
+bg		Terraforming Rate 0.007 atm
+bg		Terraforming Rate 0.008 atm
+bg		Genome Sequence: Base Gravity -15%
+bg		Genome Sequence: Base Gravity +15%
+bg		Genome Sequence: Base Gravity -30%
+bg		Genome Sequence: Base Gravity +30%
+bg		Genome Sequence: Base Gravity -45%
+bg		Genome Sequence: Base Gravity +45%
+bg		Genome Sequence: Base Gravity -60%
+bg		Genome Sequence: Base Gravity +60%
+bg		Genome Sequence: Base Gravity -75%
+bg		Genome Sequence: Base Gravity +75%

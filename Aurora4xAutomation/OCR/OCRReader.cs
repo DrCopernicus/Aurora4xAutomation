@@ -22,6 +22,17 @@ namespace Aurora4xAutomation.OCR
                            "x\n" +
                            " \n" +
                            " ")},
+            {".", MakeChar(" \n" +
+                           " \n" +
+                           " \n" +
+                           " \n" +
+                           " \n" +
+                           " \n" +
+                           " \n" +
+                           " \n" +
+                           "x\n" +
+                           " \n" +
+                           " ")},
             {"-", MakeChar("  \n" +
                            "  \n" +
                            "  \n" +
@@ -123,6 +134,17 @@ namespace Aurora4xAutomation.OCR
                            " xxx \n" +
                            "     \n" +
                            "     ")},
+            {"f", MakeChar(" x\n" +
+                           "x \n" +
+                           "x \n" +
+                           "xx\n" +
+                           "x \n" +
+                           "x \n" +
+                           "x \n" +
+                           "x \n" +
+                           "x \n" +
+                           "  \n" +
+                           "  ")},
             {"g", MakeChar("     \n" +
                            "     \n" +
                            "     \n" +
@@ -321,28 +343,39 @@ namespace Aurora4xAutomation.OCR
                            " x  \n" +
                            " x  \n" +
                            "x   ")},
-            {"vy", MakeChar("         \n" +
-                           "          \n" +
-                           "          \n" +
-                           "x   x x  x\n" +
-                           "x   x x  x\n" +
-                           " x x  x  x\n" +
-                           " x x  x  x\n" +
-                           "  x    xx \n" +
-                           "  x    x  \n" +
-                           "       x  \n" +
-                           "     xx   ")},
-            {"xy", MakeChar("        \n" +
-                           "         \n" +
-                           "         \n" +
-                           "x  x x  x\n" +
-                           "x  x x  x\n" +
-                           " xx  x  x\n" +
-                           " xx  x  x\n" +
-                           "x  x  xx \n" +
-                           "x  x  x  \n" +
-                           "      x  \n" +
-                           "    xx   ")},
+            {"ty", MakeChar("       \n" +
+                            "x      \n" +
+                            "x      \n" +
+                            "xx x  x\n" +
+                            "x  x  x\n" +
+                            "x  x  x\n" +
+                            "x  x  x\n" +
+                            "x   xx \n" +
+                            " x  x  \n" +
+                            "    x  \n" +
+                            "  xx   ")},
+            {"vy", MakeChar("          \n" +
+                            "          \n" +
+                            "          \n" +
+                            "x   x x  x\n" +
+                            "x   x x  x\n" +
+                            " x x  x  x\n" +
+                            " x x  x  x\n" +
+                            "  x    xx \n" +
+                            "  x    x  \n" +
+                            "       x  \n" +
+                            "     xx   ")},
+            {"xy", MakeChar("         \n" +
+                            "         \n" +
+                            "         \n" +
+                            "x  x x  x\n" +
+                            "x  x x  x\n" +
+                            " xx  x  x\n" +
+                            " xx  x  x\n" +
+                            "x  x  xx \n" +
+                            "x  x  x  \n" +
+                            "      x  \n" +
+                            "    xx   ")},
             {"z", MakeChar("    \n" +
                            "    \n" +
                            "    \n" +

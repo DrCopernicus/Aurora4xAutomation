@@ -3,7 +3,7 @@ using Aurora4xAutomation.Common;
 
 namespace Aurora4xAutomation
 {
-    public class Settings
+    public static class Settings
     {
         public static Dictionary<string, Dictionary<string, string>> ResearchFocuses
         {
@@ -48,5 +48,9 @@ namespace Aurora4xAutomation
 
         public static bool AutoResearchOn = false;
         public static bool AutoTurnsOn = false;
+        public static bool Stopped = true;
+
+        public static string ErrorMessage = "";
+        public static string FeedbackMessage = "";
     }
 }
