@@ -10,6 +10,9 @@ namespace Aurora4xAutomation.Command
 
         public OpenCommands OpenCommands { get { return _openCommands; } }
         private readonly OpenCommands _openCommands = new OpenCommands();
+
+        public InfrastructureCommands InfrastructureCommands { get { return _infrastructureCommands; } }
+        private readonly InfrastructureCommands _infrastructureCommands = new InfrastructureCommands();
     }
 
 }

@@ -1,0 +1,6 @@
+﻿ew		10cm Meson Focal Size
+ew		Meson Focusing Technology 1
+ew		12cm Meson Focal Size
+ew		Meson Focusing Technology 2
+sf		Beam Fire Control Range 32,000 km
+bg		Genome Sequence Research

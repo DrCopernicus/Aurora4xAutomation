@@ -33,6 +33,17 @@ namespace Aurora4xAutomation.OCR
                            "  \n" +
                            "  \n" +
                            "  ")},
+            {",", MakeChar("  \n" +
+                           "  \n" +
+                           "  \n" +
+                           "  \n" +
+                           "  \n" +
+                           "  \n" +
+                           "  \n" +
+                           "  \n" +
+                           " x\n" +
+                           "x \n" +
+                           "  ")},
             {"+", MakeChar("     \n" +
                            "     \n" +
                            "     \n" +
@@ -112,6 +123,28 @@ namespace Aurora4xAutomation.OCR
                            " xxx \n" +
                            "     \n" +
                            "     ")},
+            {"g", MakeChar("     \n" +
+                           "     \n" +
+                           "     \n" +
+                           " xxxx\n" +
+                           "x   x\n" +
+                           "x   x\n" +
+                           "x   x\n" +
+                           "x   x\n" +
+                           " xxxx\n" +
+                           "    x\n" +
+                           "xxxx ")},
+            {"gy", MakeChar("         \n" +
+                           "          \n" +
+                           "          \n" +
+                           " xxxx x  x\n" +
+                           "x   x x  x\n" +
+                           "x   x x  x\n" +
+                           "x   x x  x\n" +
+                           "x   x  xx \n" +
+                           " xxxx  x  \n" +
+                           "    x  x  \n" +
+                           "xxxx xx   ")},
             {"h", MakeChar("x    \n" +
                            "x    \n" +
                            "x    \n" +
@@ -288,17 +321,6 @@ namespace Aurora4xAutomation.OCR
                            " x  \n" +
                            " x  \n" +
                            "x   ")},
-            {"gy", MakeChar("         \n" +
-                           "          \n" +
-                           "          \n" +
-                           " xxxx x  x\n" +
-                           "x   x x  x\n" +
-                           "x   x x  x\n" +
-                           "x   x x  x\n" +
-                           "x   x  xx \n" +
-                           " xxxx  x  \n" +
-                           "    x  x  \n" +
-                           "xxxx xx   ")},
             {"vy", MakeChar("         \n" +
                            "          \n" +
                            "          \n" +

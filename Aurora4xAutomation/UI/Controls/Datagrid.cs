@@ -51,6 +51,11 @@ namespace Aurora4xAutomation.UI.Controls
             return ReadDataTable(Columns, Top, Bottom, LineHeight, TopOfCharactersOffset).Print(Settings);
         }
 
+        public List<string[]> GetTable()
+        {
+            return ReadDataTable(Columns, Top, Bottom, LineHeight, TopOfCharactersOffset);
+        }
+
         public void ClickRow(int row)
         {
             Click((Right - Left) / 2, row * LineHeight + LineHeight/2);

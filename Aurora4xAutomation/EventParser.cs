@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -7,11 +8,28 @@ namespace Aurora4xAutomation
 {
     public class EventParser
     {
-        public static string CanContinue(string time)
+        public enum AuroraEventType
+        {
+            NonStopping,
+            Research,
+            MineralsLocated,
+            Unspecified
+        }
+
+        public struct AuroraEvent
+        {
+            public AuroraEventType Type;
+            public string Text;
+            public string Args;
+        }
+
+        public static List<AuroraEvent> GetAllEvents(string time)
         {
             var file = @"D:\prog\Aurora\Aurora_latest\Aurora\FederationEventLog.txt";
             var allEvents = File.ReadAllLines(file);
-            return !GetLatestTime(allEvents).StartsWith(time) ? "" : AllSkippable(allEvents);
+            if (!GetLatestTime(allEvents).StartsWith(time))
+                return new List<AuroraEvent>();
+            return GetLatestEvents(allEvents).Select(GetEvent).ToList();
         }
 
         private static List<string> GetLatestEvents(string[] strs)
@@ -40,14 +58,11 @@ namespace Aurora4xAutomation
             return strs.Last().Split(',').First();
         }
 
-        private static string AllSkippable(string[] strs)
+        private static AuroraEvent GetEvent(string str)
         {
-            return GetLatestEvents(strs).Aggregate("", (current, str) => current + CanSkip(str));
-        }
+            var ev = new AuroraEvent { Type = AuroraEventType.NonStopping, Text = str, Args = "" };
 
-        private static string CanSkip(string str)
-        {
-            var skip = IsMiningColonyUpgrade(str)
+            if (IsMiningColonyUpgrade(str)
                 || IsExperienceGain(str)
                 || IsTrainingGain(str)
                 || IsNewCivilianShip(str)
@@ -69,11 +84,38 @@ namespace Aurora4xAutomation
                 || IsDeemedSurplus(str)
                 || IsNewJumpPoint(str)
                 || IsCrewMoraleFalling(str)
-                || IsDeathNoAssignment(str);
+                || IsDeathNoAssignment(str)
+                || IsMineralsLocated(str))
+                return ev;
 
-            if (!skip)
-                return "Will not continue because: " + str + "\n\n";
-            return "";
+            if (IsResearchCompleted(str))
+            {
+                ev.Type = AuroraEventType.Research;
+            }
+            else if (IsMineralsLocated(str))
+            {
+                ev.Type = AuroraEventType.MineralsLocated;
+                var workingStr = str.Replace("Minerals Discovered on ", "");
+                ev.Args = workingStr.Remove(workingStr.IndexOf(": ", StringComparison.InvariantCulture));
+            }
+            else
+            {
+                ev.Type = AuroraEventType.Unspecified;
+            }
+
+            return ev;
+        }
+
+        private static bool IsResearchCompleted(string str)
+        {
+            var regex = new Regex(@"^A team on [a-zA-Z0-9\- ]* led by [a-zA-Z0-9\- ]* has completed research into ");
+            return regex.IsMatch(str);
+        }
+
+        private static bool IsMineralsLocated(string str)
+        {
+            var regex = new Regex(@"^Minerals Discovered on [a-zA-Z0-9\- ]+");
+            return regex.IsMatch(str);
         }
 
         private static bool IsNewCivilianShip(string str)

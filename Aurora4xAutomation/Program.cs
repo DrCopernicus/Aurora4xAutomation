@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
@@ -13,16 +15,27 @@ namespace Aurora4xAutomation
             var p = new Program();
         }
 
+        public event EventHandler ResearchEventHappened;
+
         public Program()
         {
+            Settings.Research = Settings.ResearchFocuses["beamfocus"];
+
+            ResearchEventHappened += _commands.ResearchCommands.AutoResearch;
+
             while (true)
             {
                 Thread.Sleep(2000);
 
-                _extraMessage = "";
-                _currentMessage = IsStopEvent();
+                var events = GetEvents();
 
-                if (_currentMessage != "" || !_autoturns)
+                if (events.Any(ev => ev.Type == EventParser.AuroraEventType.Research))
+                    ResearchEventHappened(this, EventArgs.Empty);
+
+                _extraMessage = "";
+                _currentMessage = GetStopEventMessage(events);
+
+                if (_currentMessage != "" || !Settings.AutoTurnsOn)
                 {
                     _console.MakeActive();
                     WriteWaitingForInputInfoBar();
@@ -74,7 +87,7 @@ namespace Aurora4xAutomation
             Console.Clear();
             Console.Write("[{0,20}]", IncrementString);
             Console.ForegroundColor = ConsoleColor.Black;
-            if (_autoturns)
+            if (Settings.AutoTurnsOn)
             {
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
                 Console.Write("[{0}]", "AUTOTURNS  ENABLED");
@@ -90,12 +103,17 @@ namespace Aurora4xAutomation
             _console.MakeActive();
         }
 
-        private string IsStopEvent()
+        private List<EventParser.AuroraEvent> GetEvents()
         {
             _events.MakeActive();
             _events.ClickTextFileButton();
             Thread.Sleep(1500);
-            return EventParser.CanContinue(_systemMap.GetTime());
+            return EventParser.GetAllEvents(_systemMap.GetTime());
+        }
+
+        private string GetStopEventMessage(List<EventParser.AuroraEvent> events)
+        {
+            return events.Aggregate("", (s, x) => x.Type != EventParser.AuroraEventType.NonStopping ? s + x.Text + "\n" : s);
         }
 
         private void MakeChoices()
@@ -117,7 +135,7 @@ namespace Aurora4xAutomation
                     _extraMessage = _commands.OpenCommands.OpenResearch(choice.Split(' ')[2]);
 
                 else if (choice.Matches("^r(esearch)? [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
-                    _commands.ResearchCommands.ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), choice.Split(' ')[4]);
+                    _commands.ResearchCommands.ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
 
                 else if (choice.Matches("^adv(ance)? [0-9]*[a-z]+"))
                     _incrementLength = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
@@ -147,6 +165,9 @@ namespace Aurora4xAutomation
                         case "csc":
                             _production.ConstructionOptions.ClickRow(1);
                             break;
+                        case "massdriver":
+                            _production.ConstructionOptions.ClickRow(11);
+                            break;
                         case "nsc":
                             _production.ConstructionOptions.ClickRow(14);
                             break;
@@ -154,19 +175,40 @@ namespace Aurora4xAutomation
                     _production.NumberOfIndustrialProject.Text = installationNumber;
                     _production.CreateIndustrialProject.Click();
                 }
-                    
-                else if (choice.Matches("^auto assign(ment(s)?)? (true|yes|1|on)$"))
+
+                else if (choice.Matches("^auto assign(ment(s)?)? on$"))
                 {
                     _commanders.MakeActive();
                     _commanders.SetAutomatedAssignments(true);
                 }
 
-                else if (choice.Matches("^auto assign(ment(s)?)? (false|no|0|off)$"))
+                else if (choice.Matches("^auto assign(ment(s)?)? off$"))
                 {
                     _commanders.MakeActive();
                     _commanders.SetAutomatedAssignments(false);
                 }
 
+                else if (choice.Matches("^auto research focus [a-z]+$"))
+                    _commands.ResearchCommands.FocusResearch(choice.Split(' ')[3]);
+
+                else if (choice.Matches("^auto research ban [a-z]+$"))
+                    _commands.ResearchCommands.BanResearch(choice.Split(' ')[3]);
+
+                else if (choice.Matches("^auto research on$"))
+                    Settings.AutoResearchOn = true;
+
+                else if (choice.Matches("^auto research off$"))
+                    Settings.AutoResearchOn = false;
+
+                else if (choice.Matches("^c(ontract)? [a-z]+ [0-9]+ (s|d)"))
+                {
+                    if (choice.Split(' ')[3] != "s" && choice.Split(' ')[3] != "d")
+                        throw new Exception("e");
+                    _commands.InfrastructureCommands.TransferInfrastructure(choice.Split(' ')[1],
+                                                                            int.Parse(choice.Split(' ')[2]),
+                                                                            choice.Split(' ')[3] == "s");
+                }
+                    
                 else if (choice.Matches("^clear$"))
                 {
                     _currentMessage = "";
@@ -187,10 +229,10 @@ namespace Aurora4xAutomation
             switch (s)
             {
                 case "off":
-                    _autoturns = false;
+                    Settings.AutoTurnsOn = false;
                     return _incrementLength;
                 case "on":
-                    _autoturns = true;
+                    Settings.AutoTurnsOn = true;
                     return _incrementLength;
                 case "5s":
                     return IncrementLength.FiveSecond;
@@ -269,7 +311,6 @@ namespace Aurora4xAutomation
         }
 
         private IncrementLength _incrementLength = IncrementLength.FiveDay;
-        private bool _autoturns = false;
         private string _currentMessage = "";
         private string _extraMessage = "";
 

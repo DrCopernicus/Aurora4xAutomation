@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Aurora4xAutomation.Common
 {
@@ -18,6 +13,14 @@ namespace Aurora4xAutomation.Common
         public static string MaxWidth(this string str, int width)
         {
             return str.Substring(0, Math.Min(str.Length, width));
+        }
+
+        public static bool SimilarTo(this string str, string other)
+        {
+            string a = str.Replace(" ", "").Replace("I", "l").ToLower().Trim();
+            string b = other.Replace(" ", "").Replace("I", "l").ToLower().Trim();
+
+            return a == b;
         }
     }
 }

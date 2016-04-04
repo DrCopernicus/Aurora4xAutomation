@@ -4,6 +4,7 @@ using WindowsInput.Native;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.UI.Controls;
 using Button = Aurora4xAutomation.UI.Controls.Button;
+using RadioButton = Aurora4xAutomation.UI.Controls.RadioButton;
 
 namespace Aurora4xAutomation.UI
 {
@@ -19,6 +20,11 @@ namespace Aurora4xAutomation.UI
             AvailableLabs = new Textbox(this) { Left = 1037, Right = 1073, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 109, 109, 109 } } };
             NumberOfIndustrialProject = new Textbox(this) { Left = 725, Right = 769, Top = 696, Bottom = 710, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
             CreateIndustrialProject = new Button(this) { Left = 635, Right = 707, Top = 730, Bottom = 754 };
+            InstallationType = new Combobox(this) { Left = 501, Right = 801, Top = 180, Bottom = 196, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
+            ContractAmount = new Textbox(this) { Left = 501, Right = 553, Top = 220, Bottom = 234, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
+            CivilianContractSupply = new RadioButton(this) { Left = 696, Right = 707, Top = 220, Bottom = 231 };
+            CivilianContractDemand = new RadioButton(this) { Left = 784, Right = 795, Top = 221, Bottom = 232 };
+            AddCivilianContract = new Button(this) { Left = 411, Right = 491, Top = 514, Bottom = 538 };
         }
 
         private bool IsSummaryTabRowOnTop()
@@ -35,6 +41,11 @@ namespace Aurora4xAutomation.UI
         public Textbox AvailableLabs { get; set; }
         public Textbox NumberOfIndustrialProject { get; set; }
         public Button CreateIndustrialProject { get; set; }
+        public Combobox InstallationType { get; set; }
+        public Textbox ContractAmount { get; set; }
+        public RadioButton CivilianContractSupply { get; set; }
+        public RadioButton CivilianContractDemand { get; set; }
+        public Button AddCivilianContract { get; set; }
 
         #endregion
 
@@ -185,6 +196,18 @@ namespace Aurora4xAutomation.UI
                 Click(597, 101);
             else
                 Click(589, 122);
+        }
+
+        #endregion
+
+        #region Civilians / Ind Status
+
+        public void SelectCivilianTab()
+        {
+            if (IsSummaryTabRowOnTop())
+                Click(730, 120);
+            else
+                Click(740, 100);
         }
 
         #endregion
