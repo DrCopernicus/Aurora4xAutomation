@@ -113,5 +113,10 @@ namespace Aurora4xAutomation.UI.Controls
                 return text;
             }
         }
+
+        public void Dirty()
+        {
+            _children = null;
+        }
     }
 }

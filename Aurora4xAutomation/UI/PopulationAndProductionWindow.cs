@@ -55,6 +55,11 @@ namespace Aurora4xAutomation.UI
 
         #endregion
 
+        public void Dirty()
+        {
+            Populations.Dirty();
+        }
+
         #region Research
 
         public void SelectResearchTab()
