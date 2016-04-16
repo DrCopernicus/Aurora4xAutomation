@@ -18,3 +18,5 @@ D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Debug\Fluen
 D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Debug\FluentAssertions.Core.pdb
 D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Debug\FluentAssertions.Core.xml
 D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Debug\Settings\beamfocus.txt
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Debug\MoreLinq.dll
+D:\proj\Aurora4xAutomation\Aurora4xAutomation\Aurora4xAutomation\bin\Debug\MoreLinq.xml
