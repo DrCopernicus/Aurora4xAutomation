@@ -115,11 +115,12 @@ namespace Aurora4xAutomation
                         UIMap.PopulationAndProductionWindow.AddShipyardTask();
                 }
 
-                else if (choice.Matches("^b(uild)? inst(allation)? [a-z]+ [0-9]*$"))
+                else if (choice.Matches("^b(uild)? inst(allation)? [a-z0-9\\-]+ [a-z]+ [0-9]+$"))
                 {
-                    var installationName = choice.Split(' ')[2];
-                    var installationNumber = choice.Split(' ')[3];
-                    UIMap.PopulationAndProductionWindow.MakeActive();
+                    var population = choice.Split(' ')[2];
+                    var installationName = choice.Split(' ')[3];
+                    var installationNumber = choice.Split(' ')[4];
+                    new OpenCommands().SelectColony(population);
                     UIMap.PopulationAndProductionWindow.SelectIndustry();
                     switch (installationName)
                     {
@@ -139,6 +140,9 @@ namespace Aurora4xAutomation
                             break;
                         case "nsc":
                             UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(14);
+                            break;
+                        case "terra":
+                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(19);
                             break;
                     }
                     UIMap.PopulationAndProductionWindow.NumberOfIndustrialProject.Text = installationNumber;
@@ -169,13 +173,14 @@ namespace Aurora4xAutomation
                 else if (choice.Matches("^auto research off$"))
                     Settings.AutoResearchOn = false;
 
-                else if (choice.Matches("^c(ontract)? [a-z]+ [0-9]+ (s|d)"))
+                else if (choice.Matches("^mv [0-9a-z\\-]+ [a-z]+ [0-9]+ (s|d)"))
                 {
-                    if (choice.Split(' ')[3] != "s" && choice.Split(' ')[3] != "d")
+                    if (choice.Split(' ')[4] != "s" && choice.Split(' ')[4] != "d")
                         throw new Exception("e");
-                    InfrastructureCommands.TransferInfrastructure(choice.Split(' ')[1],
-                                                                  int.Parse(choice.Split(' ')[2]),
-                                                                  choice.Split(' ')[3] == "s");
+                    InfrastructureCommands.MakeCivilianContract(choice.Split(' ')[1],
+                                                                  choice.Split(' ')[2],
+                                                                  int.Parse(choice.Split(' ')[3]),
+                                                                  choice.Split(' ')[4] == "s");
                 }
                     
                 else if (choice.Matches("^clear$"))

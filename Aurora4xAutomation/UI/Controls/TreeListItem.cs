@@ -149,5 +149,10 @@ namespace Aurora4xAutomation.UI.Controls
         }
 
         private bool _collapsable;
+
+        public void Select()
+        {
+            Click((Level + 2) * 17, (Bottom - Top) / 2);
+        }
     }
 }

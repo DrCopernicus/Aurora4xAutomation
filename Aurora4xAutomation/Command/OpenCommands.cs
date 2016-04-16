@@ -59,10 +59,15 @@ namespace Aurora4xAutomation.Command
             Timeline.AddEvent(MessageCommands.PrintFeedback, output);
         }
 
-        public void SelectColony(object sender, EventArgs e)
+        public void SelectColony(string colony)
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
-            UIMap.PopulationAndProductionWindow.Populations.Select(((MessageEventArgs)e).Message);
+            UIMap.PopulationAndProductionWindow.Populations.Select(colony);
+        }
+
+        public void SelectColony(object sender, EventArgs e)
+        {
+            SelectColony(((MessageEventArgs) e).Message);
         }
 
         public void ReadPopulations(object sender, EventArgs e)

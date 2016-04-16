@@ -76,7 +76,8 @@ namespace Aurora4xAutomation
                 || IsResearchCompleted(str)
                 || IsInactiveLab(str)
                 || IsCivilianMiningColony(str)
-                || IsNewShippingLine(str))
+                || IsNewShippingLine(str)
+                || IsColonelAgeRetirement(str))
                 return false;
 
             Timeline.AddEvent(SettingsCommands.Stop);
@@ -232,6 +233,12 @@ namespace Aurora4xAutomation
         private static bool IsColonelSevereMedicalProblemRetirement(string str)
         {
             var regex = new Regex(@"^Colonel [a-zA-Z0-9\- ]* has developed a severe medical problem that has forced (him|her) to retire. Assignment prior to retirement:");
+            return regex.IsMatch(str);
+        }
+
+        private static bool IsColonelAgeRetirement(string str)
+        {
+            var regex = new Regex(@"^Colonel [a-zA-Z0-9\- ]* has retired from the service at the age of [0-9]+ Current Assignment:");
             return regex.IsMatch(str);
         }
 

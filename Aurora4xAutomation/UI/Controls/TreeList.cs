@@ -33,7 +33,7 @@ namespace Aurora4xAutomation.UI.Controls
             {
                 foreach (var parent in trail)
                     parent.Collapsed = false;
-                trail.Last().Click();
+                trail.Last().Select();
                 trail.Reverse();
                 foreach (var parent in trail)
                     parent.Collapsed = true;

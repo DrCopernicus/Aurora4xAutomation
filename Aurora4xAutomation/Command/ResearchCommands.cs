@@ -94,6 +94,28 @@ namespace Aurora4xAutomation.Command
 
         private bool SelectScience(List<string[]> research, List<string[]> scientists)
         {
+            return SelectCheapScience(research, scientists, 2000)
+                || SelectTargetedScience(research, scientists)
+                || SelectCheapestScience(research, scientists);
+        }
+
+        private bool SelectCheapScience(List<string[]> research, List<string[]> scientists, int maxCost)
+        {
+            foreach (var res in research.Where(x => x[0] != "" && int.Parse(x[1]) <= maxCost).OrderBy(x => int.Parse(x[1])))
+            {
+                var firstScientist = scientists.FirstOrDefault(x => x[0] != "" && x[1] == res[2]);
+                if (firstScientist == null)
+                    continue;
+
+                ResearchTechCommand(res[2], int.Parse(res[3]), 0, -1);
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool SelectTargetedScience(List<string[]> research, List<string[]> scientists)
+        {
             var totalScientists = scientists.Count(x => x[0] != "");
             foreach (var searchFor in Settings.Research)
             {
@@ -125,8 +147,7 @@ namespace Aurora4xAutomation.Command
                     }
                 }
             }
-
-            return SelectCheapestScience(research, scientists);
+            return false;
         }
 
         private bool SelectCheapestScience(List<string[]> research, List<string[]> scientists)

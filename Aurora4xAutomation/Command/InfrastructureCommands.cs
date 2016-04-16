@@ -6,8 +6,9 @@ namespace Aurora4xAutomation.Command
 {
     public static class InfrastructureCommands
     {
-        public static void TransferInfrastructure(string installation, int amount, bool supply)
+        public static void MakeCivilianContract(string population, string installation, int amount, bool supply)
         {
+            new OpenCommands().SelectColony(population);
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectCivilianTab();
             UIMap.PopulationAndProductionWindow.InstallationType.Text = installation;
