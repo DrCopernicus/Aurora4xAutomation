@@ -22,10 +22,11 @@ namespace Aurora4xAutomation.UI.Controls
 
         protected static readonly InputSimulator Input = new InputSimulator();
 
-        public void Click(int x, int y)
+        public void Click(int x, int y, int wait = 250)
         {
             Cursor.Position = new Point(Parent.Dimensions.Left + Left + x, Parent.Dimensions.Top + Top + y);
-            Thread.Sleep(250);
+            if (wait != 0)
+                Thread.Sleep(wait);
             Input.Mouse.LeftButtonClick();
         }
 

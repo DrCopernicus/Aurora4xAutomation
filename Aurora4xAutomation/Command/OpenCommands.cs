@@ -59,6 +59,18 @@ namespace Aurora4xAutomation.Command
             Timeline.AddEvent(MessageCommands.PrintFeedback, output);
         }
 
+        public void SelectColony(object sender, EventArgs e)
+        {
+            _production.MakeActive();
+            _production.Populations.Select(((MessageEventArgs)e).Message);
+        }
+
+        public void ReadPopulations(object sender, EventArgs e)
+        {
+            _production.MakeActive();
+            Timeline.AddEvent(MessageCommands.PrintFeedback, _production.Populations.Text);
+        }
+
         private string ReadResearchTables()
         {
             var output = "";

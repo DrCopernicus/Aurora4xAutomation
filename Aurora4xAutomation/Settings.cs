@@ -51,6 +51,7 @@ namespace Aurora4xAutomation
         public static bool Stopped = true;
 
         public static string ErrorMessage = "";
+        public static string InterruptMessage = "";
         public static string FeedbackMessage = "";
     }
 }

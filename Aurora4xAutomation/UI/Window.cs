@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using WindowsInput;
+using Aurora4xAutomation.UI.Screen;
 
 namespace Aurora4xAutomation.UI
 {
@@ -148,7 +149,10 @@ namespace Aurora4xAutomation.UI
             {
                 SetForegroundWindow(Handle);
                 if (WaitActive())
+                {
+                    Screenshot.Dirty();
                     return;
+                }
             }
             throw new Exception("Window never opened!");
         }

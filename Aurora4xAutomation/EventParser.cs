@@ -71,32 +71,53 @@ namespace Aurora4xAutomation
                 || IsCrewMoraleFalling(str)
                 || IsDeathNoAssignment(str)
                 || IsMineralsLocated(str)
-                || IsMineralsLocated(str))
+                || IsNewScientist(str)
+                || IsColonelSevereMedicalProblemRetirement(str)
+                || IsResearchCompleted(str)
+                || IsInactiveLab(str)
+                || IsCivilianMiningColony(str))
                 return false;
 
-            if (IsResearchCompleted(str)
-                || IsInactiveLab(str))
-            {
-                Timeline.AddEvent(new ResearchCommands().AutoResearch);
-                return true;
-            }
-
             Timeline.AddEvent(SettingsCommands.Stop);
-            Timeline.AddEvent(MessageCommands.PrintFeedback, string.Format("Stopped because: {0}", str));
+            Timeline.AddEvent(MessageCommands.PrintInterrupt, string.Format("Stopped because: {0}", str));
 
+            return true;
+        }
+
+        private static bool IsCivilianMiningColony(string str)
+        {
+            var regex = new Regex(@"^A civilian mining colony has been established on ([a-zA-Z0-9\- ]*)");
+
+            if (!regex.IsMatch(str)) 
+                return false;
+
+            Timeline.AddEvent(new OpenCommands().SelectColony, regex.Match(str).Groups[1].Value);
+            Timeline.AddEvent(InfrastructureCommands.PurchaseMineralOutput, "Earth");
             return true;
         }
 
         private static bool IsInactiveLab(string str)
         {
-            var regex = new Regex(@"^[0-9]+ inactive Research Labs on ");
-            return regex.IsMatch(str);
+            var regex = new Regex(@"^[0-9]+ inactive Research Labs on ([a-zA-Z0-9\- ]*)");
+
+            if (!regex.IsMatch(str)) 
+                return false;
+
+            Timeline.AddEvent(new OpenCommands().SelectColony, regex.Match(str).Groups[1].Value);
+            Timeline.AddEvent(new ResearchCommands().AutoResearch);
+            return true;
         }
 
         private static bool IsResearchCompleted(string str)
         {
-            var regex = new Regex(@"^A team on [a-zA-Z0-9\- ]* led by [a-zA-Z0-9\- ]* has completed research into ");
-            return regex.IsMatch(str);
+            var regex = new Regex(@"^A team on ([a-zA-Z0-9\- ]*) led by [a-zA-Z0-9\- ]* has completed research into ");
+
+            if (!regex.IsMatch(str))
+                return false;
+
+            Timeline.AddEvent(new OpenCommands().SelectColony, regex.Match(str).Groups[1].Value);
+            Timeline.AddEvent(new ResearchCommands().AutoResearch);
+            return true;
         }
 
         private static bool IsMineralsLocated(string str)
@@ -201,6 +222,12 @@ namespace Aurora4xAutomation
             return regex.IsMatch(str);
         }
 
+        private static bool IsColonelSevereMedicalProblemRetirement(string str)
+        {
+            var regex = new Regex(@"^Colonel [a-zA-Z0-9\- ]* has developed a severe medical problem that has forced (him|her) to retire. Assignment prior to retirement:");
+            return regex.IsMatch(str);
+        }
+
         private static bool IsDeathNoAssignment(string str)
         {
             var regex = new Regex(@"^[a-zA-Z0-9\- ]* has died of natural causes. Assignment prior to death: (None|Unassigned)");
@@ -240,6 +267,12 @@ namespace Aurora4xAutomation
         private static bool IsCrewMoraleFalling(string str)
         {
             var regex = new Regex(@"^Crew morale on board [a-zA-Z0-9\- ]* has fallen to ");
+            return regex.IsMatch(str);
+        }
+
+        private static bool IsNewScientist(string str)
+        {
+            var regex = new Regex(@"^[a-zA-Z0-9\- ]* has joined your scientific establishment.");
             return regex.IsMatch(str);
         }
     }

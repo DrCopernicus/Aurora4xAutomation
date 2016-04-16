@@ -1,10 +1,22 @@
-﻿ew		10cm Meson Focal Size
+﻿cp		Asteroid Mining Module
+cp		Research Rate 240 RP
+cp		Mining Production 12 tons
+cp		Construction Rate 12 BP
+cp		Shipbuilding Rate 560 BP
+cp		Expand Civilian Economy by 20%
+cp		Underground Excavation
+ew		10cm Meson Focal Size
 ew		Meson Focusing Technology 1
 ew		12cm Meson Focal Size
 ew		Meson Focusing Technology 2
 sf		Beam Fire Control Range 32,000 km
 sf		Beam Fire Control Range 40,000 km
+sf		Beam Fire Control Range 48,000 km
 sf		Active Grav Sensor Strength 28
+sf		EM Sensor Sensitivity 18
+sf		Planetary Sensor Strength 300
+sf		Improved Geological Sensors
+sf		Improved Gravitational Sensors
 bg		Genome Sequence Research
 bg		Terraforming Rate 0.0012 atm
 bg		Terraforming Rate 0.0015 atm

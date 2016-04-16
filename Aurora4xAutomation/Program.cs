@@ -21,9 +21,10 @@ namespace Aurora4xAutomation
             while (true)
             {
                 Settings.Stopped = false;
-                Thread.Sleep(2000);
+                Sleeper.Sleep(2000);
 
                 Settings.ErrorMessage = "";
+                Settings.InterruptMessage = "";
                 Settings.FeedbackMessage = "";
 
                 ParseEvents();
@@ -98,6 +99,8 @@ namespace Aurora4xAutomation
             Console.ResetColor();
             Console.WriteLine();
             Console.WriteLine(Settings.FeedbackMessage);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(Settings.InterruptMessage);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(Settings.ErrorMessage == "" ? "" : "\n\n" + Settings.ErrorMessage);
             Console.ForegroundColor = ConsoleColor.White;
@@ -162,6 +165,11 @@ namespace Aurora4xAutomation
                         case "csc":
                             _production.ConstructionOptions.ClickRow(1);
                             break;
+                        case "inf":
+                        case "infra":
+                        case "infrastructure":
+                            _production.ConstructionOptions.ClickRow(10);
+                            break;
                         case "massdriver":
                             _production.ConstructionOptions.ClickRow(11);
                             break;
@@ -201,14 +209,15 @@ namespace Aurora4xAutomation
                 {
                     if (choice.Split(' ')[3] != "s" && choice.Split(' ')[3] != "d")
                         throw new Exception("e");
-                    _commands.InfrastructureCommands.TransferInfrastructure(choice.Split(' ')[1],
-                                                                            int.Parse(choice.Split(' ')[2]),
-                                                                            choice.Split(' ')[3] == "s");
+                    InfrastructureCommands.TransferInfrastructure(choice.Split(' ')[1],
+                                                                  int.Parse(choice.Split(' ')[2]),
+                                                                  choice.Split(' ')[3] == "s");
                 }
                     
                 else if (choice.Matches("^clear$"))
                 {
                     Settings.FeedbackMessage = "";
+                    Settings.InterruptMessage = "";
                     Settings.ErrorMessage = "";
                 }
 

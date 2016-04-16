@@ -22,5 +22,13 @@ namespace Aurora4xAutomation.Common
 
             return a == b;
         }
+
+        public static bool SimilarContains(this string str, string other)
+        {
+            string a = str.Replace(" ", "").Replace("I", "l").ToLower().Trim();
+            string b = other.Replace(" ", "").Replace("I", "l").ToLower().Trim();
+
+            return a.Contains(b);
+        }
     }
 }

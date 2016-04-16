@@ -25,6 +25,9 @@ namespace Aurora4xAutomation.UI
             CivilianContractSupply = new RadioButton(this) { Left = 696, Right = 707, Top = 220, Bottom = 231 };
             CivilianContractDemand = new RadioButton(this) { Left = 784, Right = 795, Top = 221, Bottom = 232 };
             AddCivilianContract = new Button(this) { Left = 411, Right = 491, Top = 514, Bottom = 538 };
+            Populations = new TreeList(this, 21, 361, 100, 807);
+            PurchaseMineralOutput = new RadioButton(this) { Left = 536, Right = 547, Top = 804, Bottom = 815 };
+            MassDriverDestination = new Combobox(this) { Left = 1005, Right = 1184, Top = 156, Bottom = 172, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
         }
 
         private bool IsSummaryTabRowOnTop()
@@ -45,7 +48,10 @@ namespace Aurora4xAutomation.UI
         public Textbox ContractAmount { get; set; }
         public RadioButton CivilianContractSupply { get; set; }
         public RadioButton CivilianContractDemand { get; set; }
+        public RadioButton PurchaseMineralOutput { get; set; }
         public Button AddCivilianContract { get; set; }
+        public TreeList Populations { get; set; }
+        public Combobox MassDriverDestination { get; set; }
 
         #endregion
 
@@ -188,7 +194,7 @@ namespace Aurora4xAutomation.UI
 
         #endregion
 
-        #region Industry
+        #region Tabs
 
         public void SelectIndustry()
         {
@@ -198,16 +204,20 @@ namespace Aurora4xAutomation.UI
                 Click(589, 122);
         }
 
-        #endregion
-
-        #region Civilians / Ind Status
-
         public void SelectCivilianTab()
         {
             if (IsSummaryTabRowOnTop())
                 Click(730, 120);
             else
                 Click(740, 100);
+        }
+
+        public void SelectMiningTab()
+        {
+            if (IsSummaryTabRowOnTop())
+                Click(740, 100);
+            else
+                Click(730, 120);
         }
 
         #endregion

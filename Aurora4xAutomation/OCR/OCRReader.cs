@@ -433,6 +433,17 @@ namespace Aurora4xAutomation.OCR
                            "xxxx  \n" +
                            "      \n" +
                            "      ")},
+            {"E", MakeChar("xxxxx\n" +
+                           "x    \n" +
+                           "x    \n" +
+                           "x    \n" +
+                           "xxxx \n" +
+                           "x    \n" +
+                           "x    \n" +
+                           "x    \n" +
+                           "xxxxx\n" +
+                           "     \n" +
+                           "     ")},
             {"F", MakeChar("xxxxx\n" +
                            "x    \n" +
                            "x    \n" +
