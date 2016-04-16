@@ -75,13 +75,20 @@ namespace Aurora4xAutomation
                 || IsColonelSevereMedicalProblemRetirement(str)
                 || IsResearchCompleted(str)
                 || IsInactiveLab(str)
-                || IsCivilianMiningColony(str))
+                || IsCivilianMiningColony(str)
+                || IsNewShippingLine(str))
                 return false;
 
             Timeline.AddEvent(SettingsCommands.Stop);
             Timeline.AddEvent(MessageCommands.PrintInterrupt, string.Format("Stopped because: {0}", str));
 
             return true;
+        }
+
+        private static bool IsNewShippingLine(string str)
+        {
+            var regex = new Regex(@"^New Shipping Line created:");
+            return regex.IsMatch(str);
         }
 
         private static bool IsCivilianMiningColony(string str)
