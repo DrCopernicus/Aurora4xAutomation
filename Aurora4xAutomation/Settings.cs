@@ -5,6 +5,21 @@ namespace Aurora4xAutomation
 {
     public static class Settings
     {
+        public enum IncrementLength
+        {
+            FiveSecond,
+            ThirtySecond,
+            TwoMinute,
+            FiveMinute,
+            TwentyMinute,
+            OneHour,
+            ThreeHour,
+            EightHour,
+            OneDay,
+            FiveDay,
+            ThirtyDay
+        }
+
         public static Dictionary<string, Dictionary<string, string>> ResearchFocuses
         {
             get
@@ -45,6 +60,8 @@ namespace Aurora4xAutomation
         }
 
         private static Dictionary<string, string> _research;
+
+        public static IncrementLength Increment = IncrementLength.FiveDay;
 
         public static bool AutoResearchOn = false;
         public static bool AutoTurnsOn = false;

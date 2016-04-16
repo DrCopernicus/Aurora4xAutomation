@@ -133,6 +133,7 @@ namespace Aurora4xAutomation.UI.Controls
                     {
                         Click(Level * 17 + 9, 7, 0);
                         Screenshot.Dirty();
+                        Sleeper.Sleep(250);
                     }
                 }
                 else
@@ -141,6 +142,7 @@ namespace Aurora4xAutomation.UI.Controls
                     {
                         Click(Level * 17 + 9, 7, 0);
                         Screenshot.Dirty();
+                        Sleeper.Sleep(250);
                     }
                 }
             }

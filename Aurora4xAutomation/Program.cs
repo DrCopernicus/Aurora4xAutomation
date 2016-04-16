@@ -41,43 +41,7 @@ namespace Aurora4xAutomation
                     MakeChoices();
                 }
 
-                _systemMap.MakeActive();
-                switch (_incrementLength)
-                {
-                    case IncrementLength.FiveSecond:
-                        _systemMap.ClickIncrement5SecondsButton();
-                        break;
-                    case IncrementLength.ThirtySecond:
-                        _systemMap.ClickIncrement30SecondsButton();
-                        break;
-                    case IncrementLength.TwoMinute:
-                        _systemMap.ClickIncrement2MinutesButton();
-                        break;
-                    case IncrementLength.FiveMinute:
-                        _systemMap.ClickIncrement5MinutesButton();
-                        break;
-                    case IncrementLength.TwentyMinute:
-                        _systemMap.ClickIncrement20MinutesButton();
-                        break;
-                    case IncrementLength.OneHour:
-                        _systemMap.ClickIncrement1HoursButton();
-                        break;
-                    case IncrementLength.ThreeHour:
-                        _systemMap.ClickIncrement3HoursButton();
-                        break;
-                    case IncrementLength.EightHour:
-                        _systemMap.ClickIncrement8HoursButton();
-                        break;
-                    case IncrementLength.OneDay:
-                        _systemMap.ClickIncrement1DayButton();
-                        break;
-                    case IncrementLength.FiveDay:
-                        _systemMap.ClickIncrement5DaysButton();
-                        break;
-                    case IncrementLength.ThirtyDay:
-                        _systemMap.ClickIncrement30DaysButton();
-                        break;
-                }
+                TurnCommands.AdvanceTurn(this, EventArgs.Empty);
             }
         }
 
@@ -138,7 +102,7 @@ namespace Aurora4xAutomation
                     _commands.ResearchCommands.ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
 
                 else if (choice.Matches("^adv(ance)? [0-9]*[a-z]+"))
-                    _incrementLength = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
+                    Settings.Increment = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
 
                 else if (choice.Matches("^b(uild)? ship [0-9]+ [0-9]+$"))
                 {
@@ -238,93 +202,76 @@ namespace Aurora4xAutomation
                 ev.Invoke();
         }
 
-        private IncrementLength GetIncrementFromAbbreviation(string s)
+        private Settings.IncrementLength GetIncrementFromAbbreviation(string s)
         {
             switch (s)
             {
                 case "off":
                     Settings.AutoTurnsOn = false;
-                    return _incrementLength;
+                    return Settings.Increment;
                 case "on":
                     Settings.AutoTurnsOn = true;
-                    return _incrementLength;
+                    return Settings.Increment;
                 case "5s":
-                    return IncrementLength.FiveSecond;
+                    return Settings.IncrementLength.FiveSecond;
                 case "30s":
-                    return IncrementLength.ThirtySecond;
+                    return Settings.IncrementLength.ThirtySecond;
                 case "2m":
-                    return IncrementLength.TwoMinute;
+                    return Settings.IncrementLength.TwoMinute;
                 case "5m":
-                    return IncrementLength.FiveMinute;
+                    return Settings.IncrementLength.FiveMinute;
                 case "20m":
-                    return IncrementLength.TwentyMinute;
+                    return Settings.IncrementLength.TwentyMinute;
                 case "1h":
-                    return IncrementLength.OneHour;
+                    return Settings.IncrementLength.OneHour;
                 case "3h":
-                    return IncrementLength.ThreeHour;
+                    return Settings.IncrementLength.ThreeHour;
                 case "8h":
-                    return IncrementLength.EightHour;
+                    return Settings.IncrementLength.EightHour;
                 case "1d":
-                    return IncrementLength.OneDay;
+                    return Settings.IncrementLength.OneDay;
                 case "5d":
-                    return IncrementLength.FiveDay;
+                    return Settings.IncrementLength.FiveDay;
                 case "30d":
-                    return IncrementLength.ThirtyDay;
+                    return Settings.IncrementLength.ThirtyDay;
                 default:
-                    return IncrementLength.FiveDay;
+                    return Settings.IncrementLength.FiveDay;
             }
-        }
-
-        private enum IncrementLength
-        {
-            FiveSecond,
-            ThirtySecond,
-            TwoMinute,
-            FiveMinute,
-            TwentyMinute,
-            OneHour,
-            ThreeHour,
-            EightHour,
-            OneDay,
-            FiveDay,
-            ThirtyDay
         }
 
         private string IncrementString
         {
             get
             {
-                switch (_incrementLength)
+                switch (Settings.Increment)
                 {
-                    case IncrementLength.FiveSecond:
+                    case Settings.IncrementLength.FiveSecond:
                         return "5 Seconds";
-                    case IncrementLength.ThirtySecond:
+                    case Settings.IncrementLength.ThirtySecond:
                         return "30 Seconds";
-                    case IncrementLength.TwoMinute:
+                    case Settings.IncrementLength.TwoMinute:
                         return "2 Minutes";
-                    case IncrementLength.FiveMinute:
+                    case Settings.IncrementLength.FiveMinute:
                         return "5 Minutes";
-                    case IncrementLength.TwentyMinute:
+                    case Settings.IncrementLength.TwentyMinute:
                         return "20 Minutes";
-                    case IncrementLength.OneHour:
+                    case Settings.IncrementLength.OneHour:
                         return "1 Hour";
-                    case IncrementLength.ThreeHour:
+                    case Settings.IncrementLength.ThreeHour:
                         return "3 Hours";
-                    case IncrementLength.EightHour:
+                    case Settings.IncrementLength.EightHour:
                         return "8 Hours";
-                    case IncrementLength.OneDay:
+                    case Settings.IncrementLength.OneDay:
                         return "1 Day";
-                    case IncrementLength.FiveDay:
+                    case Settings.IncrementLength.FiveDay:
                         return "5 Days";
-                    case IncrementLength.ThirtyDay:
+                    case Settings.IncrementLength.ThirtyDay:
                         return "30 Days";
                     default:
                         return "INCORRECT INCREMENT LENGTH";
                 }
             }
         }
-
-        private IncrementLength _incrementLength = IncrementLength.FiveDay;
 
         private readonly Commands _commands = new Commands();
         private readonly EventWindow _events = new EventWindow();
