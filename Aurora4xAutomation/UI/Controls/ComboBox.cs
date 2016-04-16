@@ -47,5 +47,11 @@ namespace Aurora4xAutomation.UI.Controls
                         Colors),
                     OCRReader.Alphabet);
         }
+
+        public void SelectOption(int i)
+        {
+            Click();
+            Click((Right - Left) / 2, (Bottom - Top) / 2 + i * (Bottom - Top));
+        }
     }
 }

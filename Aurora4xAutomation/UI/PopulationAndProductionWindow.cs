@@ -26,8 +26,14 @@ namespace Aurora4xAutomation.UI
             CivilianContractDemand = new RadioButton(this) { Left = 784, Right = 795, Top = 221, Bottom = 232 };
             AddCivilianContract = new Button(this) { Left = 411, Right = 491, Top = 514, Bottom = 538 };
             Populations = new TreeList(this, 21, 361, 100, 807);
+            Populations.Refresh += (sender, args) =>
+            {
+                UIMap.PopulationAndProductionWindow.MakeActive();
+                UIMap.PopulationAndProductionWindow.Empire.SelectOption(1);
+            };
             PurchaseMineralOutput = new RadioButton(this) { Left = 536, Right = 547, Top = 804, Bottom = 815 };
             MassDriverDestination = new Combobox(this) { Left = 1005, Right = 1184, Top = 156, Bottom = 172, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
+            Empire = new Combobox(this) { Left = 21, Right = 344, Top = 48, Bottom = 64, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
         }
 
         private bool IsSummaryTabRowOnTop()
@@ -52,6 +58,7 @@ namespace Aurora4xAutomation.UI
         public Button AddCivilianContract { get; set; }
         public TreeList Populations { get; set; }
         public Combobox MassDriverDestination { get; set; }
+        public Combobox Empire { get; set; }
 
         #endregion
 

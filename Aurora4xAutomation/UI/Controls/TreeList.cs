@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
@@ -11,6 +12,7 @@ namespace Aurora4xAutomation.UI.Controls
         public int CharacterOffset;
         public int CharacterHeight;
         public byte[][] Colors;
+        public event EventHandler Refresh;
 
         public TreeList(Window parent, int left, int right, int top, int bottom)
             : base(parent)
@@ -60,6 +62,9 @@ namespace Aurora4xAutomation.UI.Controls
             {
                 if (_children == null)
                 {
+                    if (Refresh != null)
+                        Refresh(this, EventArgs.Empty);
+
                     _children = new List<TreeListItem>();
                     var parents = new List<TreeListItem>();
 
@@ -118,5 +123,6 @@ namespace Aurora4xAutomation.UI.Controls
         {
             _children = null;
         }
+
     }
 }
