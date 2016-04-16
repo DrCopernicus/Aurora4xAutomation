@@ -8,26 +8,24 @@ namespace Aurora4xAutomation.Command
     {
         public static void TransferInfrastructure(string installation, int amount, bool supply)
         {
-            _production.MakeActive();
-            _production.SelectCivilianTab();
-            _production.InstallationType.Text = installation;
-            _production.ContractAmount.Text = amount + "";
+            UIMap.PopulationAndProductionWindow.MakeActive();
+            UIMap.PopulationAndProductionWindow.SelectCivilianTab();
+            UIMap.PopulationAndProductionWindow.InstallationType.Text = installation;
+            UIMap.PopulationAndProductionWindow.ContractAmount.Text = amount + "";
             if (supply)
-                _production.CivilianContractSupply.Selected = true;
+                UIMap.PopulationAndProductionWindow.CivilianContractSupply.Selected = true;
             else
-                _production.CivilianContractDemand.Selected = true;
-            _production.AddCivilianContract.Click();
+                UIMap.PopulationAndProductionWindow.CivilianContractDemand.Selected = true;
+            UIMap.PopulationAndProductionWindow.AddCivilianContract.Click();
         }
 
         public static void PurchaseMineralOutput(object sender, EventArgs e)
         {
-            _production.MakeActive();
-            _production.SelectCivilianTab();
-            _production.PurchaseMineralOutput.Selected = true;
-            _production.SelectMiningTab();
-            _production.MassDriverDestination.Text = ((MessageEventArgs) e).Message;
+            UIMap.PopulationAndProductionWindow.MakeActive();
+            UIMap.PopulationAndProductionWindow.SelectCivilianTab();
+            UIMap.PopulationAndProductionWindow.PurchaseMineralOutput.Selected = true;
+            UIMap.PopulationAndProductionWindow.SelectMiningTab();
+            UIMap.PopulationAndProductionWindow.MassDriverDestination.Text = ((MessageEventArgs)e).Message;
         }
-
-        private static readonly PopulationAndProductionWindow _production = new PopulationAndProductionWindow();
     }
 }

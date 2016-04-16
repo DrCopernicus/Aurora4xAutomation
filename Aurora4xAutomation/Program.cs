@@ -144,41 +144,41 @@ namespace Aurora4xAutomation
                 {
                     var shipyardNumber = int.Parse(choice.Split(' ')[2]);
                     var shipsNumber = int.Parse(choice.Split(' ')[3]);
-                    _production.MakeActive();
-                    _production.SelectManageShipyards();
-                    _production.SelectNthShipyard(shipyardNumber);
+                    UIMap.PopulationAndProductionWindow.MakeActive();
+                    UIMap.PopulationAndProductionWindow.SelectManageShipyards();
+                    UIMap.PopulationAndProductionWindow.SelectNthShipyard(shipyardNumber);
                     for (int i = 0; i < shipsNumber; i++)
-                        _production.AddShipyardTask();
+                        UIMap.PopulationAndProductionWindow.AddShipyardTask();
                 }
 
                 else if (choice.Matches("^b(uild)? inst(allation)? [a-z]+ [0-9]*$"))
                 {
                     var installationName = choice.Split(' ')[2];
                     var installationNumber = choice.Split(' ')[3];
-                    _production.MakeActive();
-                    _production.SelectIndustry();
+                    UIMap.PopulationAndProductionWindow.MakeActive();
+                    UIMap.PopulationAndProductionWindow.SelectIndustry();
                     switch (installationName)
                     {
                         case "automine":
-                            _production.ConstructionOptions.ClickRow(0);
+                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(0);
                             break;
                         case "csc":
-                            _production.ConstructionOptions.ClickRow(1);
+                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(1);
                             break;
                         case "inf":
                         case "infra":
                         case "infrastructure":
-                            _production.ConstructionOptions.ClickRow(10);
+                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(10);
                             break;
                         case "massdriver":
-                            _production.ConstructionOptions.ClickRow(11);
+                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(11);
                             break;
                         case "nsc":
-                            _production.ConstructionOptions.ClickRow(14);
+                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(14);
                             break;
                     }
-                    _production.NumberOfIndustrialProject.Text = installationNumber;
-                    _production.CreateIndustrialProject.Click();
+                    UIMap.PopulationAndProductionWindow.NumberOfIndustrialProject.Text = installationNumber;
+                    UIMap.PopulationAndProductionWindow.CreateIndustrialProject.Click();
                 }
 
                 else if (choice.Matches("^auto assign(ment(s)?)? on$"))
@@ -331,6 +331,5 @@ namespace Aurora4xAutomation
         private readonly ConsoleWindow _console = new ConsoleWindow();
         private readonly SystemMapWindow _systemMap = new SystemMapWindow();
         private readonly CommandersWindow _commanders = new CommandersWindow();
-        private readonly PopulationAndProductionWindow _production = new PopulationAndProductionWindow();
     }
 }

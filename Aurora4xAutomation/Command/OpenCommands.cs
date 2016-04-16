@@ -9,14 +9,14 @@ namespace Aurora4xAutomation.Command
     {
         public void OpenResearch(object sender, EventArgs e)
         {
-            _production.MakeActive();
-            _production.SelectResearchTab();
+            UIMap.PopulationAndProductionWindow.MakeActive();
+            UIMap.PopulationAndProductionWindow.SelectResearchTab();
         }
 
         public void OpenShipyard(object sender, EventArgs e)
         {
-            _production.MakeActive();
-            _production.SelectManageShipyards();
+            UIMap.PopulationAndProductionWindow.MakeActive();
+            UIMap.PopulationAndProductionWindow.SelectManageShipyards();
         }
 
         public void OpenTaskGroup(object sender, EventArgs e)
@@ -28,31 +28,31 @@ namespace Aurora4xAutomation.Command
         {
             var output = "";
 
-            _production.MakeActive();
-            _production.SelectResearchTab();
-            output += "Available Labs: " + _production.AvailableLabs.Text + "\n\n";
+            UIMap.PopulationAndProductionWindow.MakeActive();
+            UIMap.PopulationAndProductionWindow.SelectResearchTab();
+            output += "Available Labs: " + UIMap.PopulationAndProductionWindow.AvailableLabs.Text + "\n\n";
             if (((MessageEventArgs) e).Message == "all")
             {
-                _production.SelectBiology();
+                UIMap.PopulationAndProductionWindow.SelectBiology();
                 output += ReadResearchTables();
-                _production.SelectConstruction();
+                UIMap.PopulationAndProductionWindow.SelectConstruction();
                 output += ReadResearchTables();
-                _production.SelectDefensive();
+                UIMap.PopulationAndProductionWindow.SelectDefensive();
                 output += ReadResearchTables();
-                _production.SelectEnergy();
+                UIMap.PopulationAndProductionWindow.SelectEnergy();
                 output += ReadResearchTables();
-                _production.SelectLogistics();
+                UIMap.PopulationAndProductionWindow.SelectLogistics();
                 output += ReadResearchTables();
-                _production.SelectMissiles();
+                UIMap.PopulationAndProductionWindow.SelectMissiles();
                 output += ReadResearchTables();
-                _production.SelectPower();
+                UIMap.PopulationAndProductionWindow.SelectPower();
                 output += ReadResearchTables();
-                _production.SelectSensors();
+                UIMap.PopulationAndProductionWindow.SelectSensors();
                 output += ReadResearchTables();
             }
             else
             {
-                _production.SelectResearchByCategory(((MessageEventArgs)e).Message);
+                UIMap.PopulationAndProductionWindow.SelectResearchByCategory(((MessageEventArgs)e).Message);
                 output += ReadResearchTables();
             }
 
@@ -61,27 +61,26 @@ namespace Aurora4xAutomation.Command
 
         public void SelectColony(object sender, EventArgs e)
         {
-            _production.MakeActive();
-            _production.Populations.Select(((MessageEventArgs)e).Message);
+            UIMap.PopulationAndProductionWindow.MakeActive();
+            UIMap.PopulationAndProductionWindow.Populations.Select(((MessageEventArgs)e).Message);
         }
 
         public void ReadPopulations(object sender, EventArgs e)
         {
-            _production.MakeActive();
-            Timeline.AddEvent(MessageCommands.PrintFeedback, _production.Populations.Text);
+            UIMap.PopulationAndProductionWindow.MakeActive();
+            Timeline.AddEvent(MessageCommands.PrintFeedback, UIMap.PopulationAndProductionWindow.Populations.Text);
         }
 
         private string ReadResearchTables()
         {
             var output = "";
-            _production.SetShowMatchingScientistsOnly(true);
+            UIMap.PopulationAndProductionWindow.SetShowMatchingScientistsOnly(true);
             Thread.Sleep(250);
-            output += _production.ResearchTable.GetText();
-            output += _production.AvailableScientistsTable.GetText();
+            output += UIMap.PopulationAndProductionWindow.ResearchTable.GetText();
+            output += UIMap.PopulationAndProductionWindow.AvailableScientistsTable.GetText();
             return output;
         }
 
         private readonly TaskGroupsWindow _taskGroups = new TaskGroupsWindow();
-        private readonly PopulationAndProductionWindow _production = new PopulationAndProductionWindow();
     }
 }
