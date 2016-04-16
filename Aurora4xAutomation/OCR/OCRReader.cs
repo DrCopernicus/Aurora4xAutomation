@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Aurora4xAutomation.OCR
 {
@@ -77,6 +75,17 @@ namespace Aurora4xAutomation.OCR
                            "    xx \n" +
                            "       \n" +
                            "       ")},
+            {"/", MakeChar("   x\n" +
+                           "   x\n" +
+                           "   x\n" +
+                           "  x \n" +
+                           "  x \n" +
+                           " x  \n" +
+                           " x  \n" +
+                           "x   \n" +
+                           "x   \n" +
+                           "    \n" +
+                           "    ")},
             #endregion
             #region Lowercase
             {"a", MakeChar("     \n" +
@@ -156,17 +165,17 @@ namespace Aurora4xAutomation.OCR
                            " xxxx\n" +
                            "    x\n" +
                            "xxxx ")},
-            {"gy", MakeChar("         \n" +
-                           "          \n" +
-                           "          \n" +
-                           " xxxx x  x\n" +
-                           "x   x x  x\n" +
-                           "x   x x  x\n" +
-                           "x   x x  x\n" +
-                           "x   x  xx \n" +
-                           " xxxx  x  \n" +
-                           "    x  x  \n" +
-                           "xxxx xx   ")},
+            {"gy", MakeChar("          \n" +
+                            "          \n" +
+                            "          \n" +
+                            " xxxx x  x\n" +
+                            "x   x x  x\n" +
+                            "x   x x  x\n" +
+                            "x   x x  x\n" +
+                            "x   x  xx \n" +
+                            " xxxx  x  \n" +
+                            "    x  x  \n" +
+                            "xxxx xx   ")},
             {"h", MakeChar("x    \n" +
                            "x    \n" +
                            "x    \n" +
@@ -321,6 +330,17 @@ namespace Aurora4xAutomation.OCR
                            "  x  \n" +
                            "     \n" +
                            "     ")},
+            {"w", MakeChar("       \n" +
+                           "       \n" +
+                           "       \n" +
+                           "x  x  x\n" +
+                           "x  x  x\n" +
+                           "x x x x\n" +
+                           "x x x x\n" +
+                           " x   x \n" +
+                           " x   x \n" +
+                           "       \n" +
+                           "       ")},
             {"x", MakeChar("    \n" +
                            "    \n" +
                            "    \n" +
@@ -673,6 +693,17 @@ namespace Aurora4xAutomation.OCR
                            " xxx \n" +
                            "x   x\n" +
                            "x   x\n" +
+                           "x   x\n" +
+                           " xxx \n" +
+                           "     \n" +
+                           "     ")},
+            {"9", MakeChar(" xxx \n" +
+                           "x   x\n" +
+                           "x   x\n" +
+                           "x   x\n" +
+                           " xxxx\n" +
+                           "    x\n" +
+                           "    x\n" +
                            "x   x\n" +
                            " xxx \n" +
                            "     \n" +
