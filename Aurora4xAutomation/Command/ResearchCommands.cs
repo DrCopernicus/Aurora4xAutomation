@@ -198,7 +198,23 @@ namespace Aurora4xAutomation.Command
 
         public void CheckNumberOfLabs(object sender, EventArgs e)
         {
-            
+            UIMap.Leaders.MakeActive();
+            UIMap.Leaders.LeaderType.Text = "l";
+            if (!UIMap.Leaders.Officiers.Children[0].Text.Contains("Scientist"))
+            {
+                Timeline.AddEvent(MessageCommands.PrintError, "[CheckNumberOfLabs] Could not find the Scientist row!");
+            }
+            else
+            {
+                var numScientists = int.Parse(UIMap.Leaders.Officiers.Children[0].Text.Split('(')[1].Split(')')[0]);
+                UIMap.PopulationAndProductionWindow.MakeActive();
+                UIMap.PopulationAndProductionWindow.Populations.Select("Earth");
+                UIMap.PopulationAndProductionWindow.SelectResearchTab();
+                var numLabs = int.Parse(UIMap.PopulationAndProductionWindow.NumberOfLabs.Text);
+                if (numScientists*Settings.MinLabsPerScientist >= numLabs)
+                    InfrastructureCommands.BuildInstallation("Earth", "lab", "1");
+            }
+            Timeline.AddEvent(CheckNumberOfLabs, "", new Time(UIMap.SystemMap.GetTime()) + new Time(0, 0, Settings.DaysPerLabsCheck, 0, 0, 0));
         }
     }
 }

@@ -98,6 +98,7 @@
     <Compile Include="UI\AuroraDatabase.cs" />
     <Compile Include="UI\AuroraWrapperWindow.cs" />
     <Compile Include="UI\ConsoleWindow.cs" />
+    <Compile Include="UI\Controls\Label.cs" />
     <Compile Include="UI\Controls\TreeListItem.cs" />
     <Compile Include="UI\Controls\TreeList.cs" />
     <Compile Include="UI\Controls\RadioButton.cs" />

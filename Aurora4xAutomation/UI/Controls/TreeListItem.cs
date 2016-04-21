@@ -29,20 +29,39 @@ namespace Aurora4xAutomation.UI.Controls
 
         public void Initialize()
         {
-            Text = OCRReader.ReadTableRow(
-                        PixelGetter.GetPixelsOfColor(
-                            Parent.Dimensions.Left + Left + Level * 17,
-                            Parent.Dimensions.Top + Top + CharacterOffset,
-                            Right - Left,
-                            CharacterHeight,
-                            Colors),
-                        OCRReader.Alphabet);
+            if (PixelGetter.HasPixelsOfColor(
+                Parent.Dimensions.Left + Left + Level * 17,
+                Parent.Dimensions.Top + Top,
+                10,
+                10,
+                new[] { new byte[] {51, 153, 255} }))
+            {
+                Text = OCRReader.ReadTableRow(
+                            PixelGetter.GetPixelsOfColor(
+                                Parent.Dimensions.Left + Left + Level * 17,
+                                Parent.Dimensions.Top + Top + CharacterOffset,
+                                Right - Left,
+                                CharacterHeight,
+                                new [] { new byte[] {255, 255, 255} }),
+                            OCRReader.Alphabet);
+            }
+            else
+            {
+                Text = OCRReader.ReadTableRow(
+                            PixelGetter.GetPixelsOfColor(
+                                Parent.Dimensions.Left + Left + Level * 17,
+                                Parent.Dimensions.Top + Top + CharacterOffset,
+                                Right - Left,
+                                CharacterHeight,
+                                Colors),
+                            OCRReader.Alphabet);
+            }
             _collapsable = PixelGetter.HasPixelsOfColor(
                                 Parent.Dimensions.Left + Left + Level * 17,
                                 Parent.Dimensions.Top + Top,
                                 17,
                                 16,
-                                new[] {new byte[] {0, 0, 0}});
+                                new[] { new byte[] {0, 0, 0} });
         }
 
         public string LevelledText

@@ -4,6 +4,7 @@ using WindowsInput.Native;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.UI.Controls;
 using Button = Aurora4xAutomation.UI.Controls.Button;
+using Label = Aurora4xAutomation.UI.Controls.Label;
 using RadioButton = Aurora4xAutomation.UI.Controls.RadioButton;
 
 namespace Aurora4xAutomation.UI
@@ -37,6 +38,7 @@ namespace Aurora4xAutomation.UI
             CurrentResearchProject = new Datagrid(this) { Columns = new[] { 399, 632, 799, 859, 929, 999, 1132, 1158 }, Left = 399, Right = 1158, Top = 193, Bottom = 289, LineHeight = 16, TopOfCharactersOffset = 3 };
             RemoveRL = new Button(this) { Left = 683, Right = 763, Top = 299, Bottom = 323 };
             AddRL = new Button(this) { Left = 587, Right = 667, Top = 299, Bottom = 323 };
+            NumberOfLabs = new Label(this, 515, 541, 140, 148);
         }
 
         private bool IsSummaryTabRowOnTop()
@@ -65,6 +67,7 @@ namespace Aurora4xAutomation.UI
         public Datagrid CurrentResearchProject { get; set; }
         public Button RemoveRL { get; set; }
         public Button AddRL { get; set; }
+        public Label NumberOfLabs { get; set; }
 
         #endregion
 

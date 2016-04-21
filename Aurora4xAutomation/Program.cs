@@ -20,6 +20,8 @@ namespace Aurora4xAutomation
 
             Settings.Research = Settings.ResearchFocuses["beamfocus"];
 
+            Timeline.AddEvent(new ResearchCommands().CheckNumberOfLabs);
+
             while (true)
             {
                 Settings.Stopped = false;
@@ -120,36 +122,7 @@ namespace Aurora4xAutomation
 
                 else if (choice.Matches("^b(uild)? inst(allation)? [a-z0-9\\-]+ [a-z]+ [0-9]+$"))
                 {
-                    var population = choice.Split(' ')[2];
-                    var installationName = choice.Split(' ')[3];
-                    var installationNumber = choice.Split(' ')[4];
-                    new OpenCommands().SelectColony(population);
-                    UIMap.PopulationAndProductionWindow.SelectIndustry();
-                    switch (installationName)
-                    {
-                        case "automine":
-                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(0);
-                            break;
-                        case "csc":
-                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(1);
-                            break;
-                        case "inf":
-                        case "infra":
-                        case "infrastructure":
-                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(10);
-                            break;
-                        case "massdriver":
-                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(11);
-                            break;
-                        case "nsc":
-                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(14);
-                            break;
-                        case "terra":
-                            UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(19);
-                            break;
-                    }
-                    UIMap.PopulationAndProductionWindow.NumberOfIndustrialProject.Text = installationNumber;
-                    UIMap.PopulationAndProductionWindow.CreateIndustrialProject.Click();
+                    InfrastructureCommands.BuildInstallation(choice.Split(' ')[2], choice.Split(' ')[3], choice.Split(' ')[4]);
                 }
 
                 else if (choice.Matches("^auto assign(ment(s)?)? on$"))

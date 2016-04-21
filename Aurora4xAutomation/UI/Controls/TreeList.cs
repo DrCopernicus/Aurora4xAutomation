@@ -9,8 +9,9 @@ namespace Aurora4xAutomation.UI.Controls
 {
     public class TreeList : Control
     {
-        public int CharacterOffset;
         public int CharacterHeight;
+        public int CharacterOffset;
+        public int BottomOffset;
         public byte[][] Colors;
         public event EventHandler Refresh;
 
@@ -23,6 +24,7 @@ namespace Aurora4xAutomation.UI.Controls
             Bottom = bottom;
             CharacterHeight = 9;
             CharacterOffset = 3;
+            BottomOffset = 4;
             Colors = new [] { new byte[] { 0, 0, 0 } };
         }
 
@@ -71,7 +73,7 @@ namespace Aurora4xAutomation.UI.Controls
                     var index = 0;
                     while (true)
                     {
-                        var item = new TreeListItem(Parent, parents.LastOrDefault(), Left, Right, Top + index * 16, CharacterOffset, CharacterHeight);
+                        var item = new TreeListItem(Parent, parents.LastOrDefault(), Left, Right, Top + index * (BottomOffset + CharacterOffset + CharacterHeight), CharacterOffset, CharacterHeight);
                         if (item.Level != 6)
                         {
                             for (int i = 0; i < parents.Count - item.Level; i++)

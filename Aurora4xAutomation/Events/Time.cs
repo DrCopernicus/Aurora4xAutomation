@@ -16,6 +16,17 @@ namespace Aurora4xAutomation.Events
             Second = 0;
         }
 
+        public Time(int year, int month, int day, int hour, int minute, int second)
+        {
+            Unparsed = "";
+            Year = year;
+            Month = month;
+            Day = day;
+            Hour = hour;
+            Minute = minute;
+            Second = second;
+        }
+
         public Time(string unparsed)
         {
             Unparsed = unparsed;
@@ -154,6 +165,23 @@ namespace Aurora4xAutomation.Events
         public static bool operator <=(Time left, Time right)
         {
             return left < right || left == right;
+        }
+
+        public static Time operator +(Time left, Time right)
+        {
+            var seconds = left.Second + right.Second;
+            var minutes = left.Minute + right.Minute + seconds/60;
+            seconds -= (seconds / 60)*60;
+            var hours = left.Hour + right.Hour + minutes / 60;
+            minutes -= (minutes / 60) * 60;
+            var days = left.Day + right.Day + hours / 24;
+            hours -= (hours / 24)*24;
+            var months = left.Month + right.Month + (days - 1) / 30;
+            days -= ((days-1)/30)*30;
+            var years = left.Year + right.Year + (months - 1) / 12;
+            months -= ((months - 1)/12)*12;
+
+            return new Time(years, months, days, hours, minutes, seconds);
         }
     }
 }

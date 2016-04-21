@@ -46,6 +46,7 @@ namespace Aurora4xAutomation.Tests
             Assert.AreEqual(10, time1.Minute);
             Assert.AreEqual(0, time1.Second);
         }
+
         [Test]
         public void TestTimeComparison()
         {
@@ -71,6 +72,22 @@ namespace Aurora4xAutomation.Tests
             Assert.IsTrue(time5 > time4);
             Assert.IsTrue(time5 == time5);
             Assert.IsTrue(time5 > time6);
+        }
+
+        [Test]
+        public void TestTimeAddition()
+        {
+            var time1 = new Time("29th August 2035 05:10");
+            var time2 = new Time("30th August 2035 05:10");
+            var time3 = new Time(0, 0, 1, 0, 0, 0);
+            var time4 = time3 + time1;
+            var time5 = new Time(0, 0, 180, 0, 0, 0);
+            var time6 = new Time("30th February 2036 05:10");
+            var time7 = time5 + time2;
+
+            Assert.IsTrue(time1 != time2);
+            Assert.IsTrue(time4 == time2);
+            Assert.IsTrue(time7 == time6);
         }
     }
 }
