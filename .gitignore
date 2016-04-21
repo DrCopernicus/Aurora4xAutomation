@@ -252,4 +252,4 @@ paket-files/
 *.sln.iml
 
 # sensitive files (passwords, etc.)
-Aurora4xAutomation/Settings.password.txt
+Aurora4xAutomation/Settings/password.txt
