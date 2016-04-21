@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
@@ -16,6 +15,9 @@ namespace Aurora4xAutomation
 
         public Program()
         {
+            if (FileReader.SettingsFileExists("password.txt"))
+                Settings.DatabasePassword = FileReader.ReadSettingsFile("password.txt")["DatabasePassword"];
+
             Settings.Research = Settings.ResearchFocuses["beamfocus"];
 
             while (true)
@@ -27,6 +29,7 @@ namespace Aurora4xAutomation
                 Settings.InterruptMessage = "";
                 Settings.FeedbackMessage = "";
 
+                UIMap.EventWindow.MakeActive();
                 ParseEvents();
 
                 if (!Settings.AutoTurnsOn)
@@ -74,10 +77,10 @@ namespace Aurora4xAutomation
 
         private void ParseEvents()
         {
-            _events.MakeActive();
-            _events.ClickTextFileButton();
-            Thread.Sleep(1500);
-            EventParser.AnyStopEvents(_systemMap.GetTime());
+            if (Settings.DatabasePassword == null)
+                EventParser.ParseUsingEventWindow(UIMap.SystemMap.GetTime());
+            else
+                EventParser.ParseUsingDatabase();
         }
 
         private void MakeChoices()
@@ -279,9 +282,7 @@ namespace Aurora4xAutomation
         }
 
         private readonly Commands _commands = new Commands();
-        private readonly EventWindow _events = new EventWindow();
         private readonly ConsoleWindow _console = new ConsoleWindow();
-        private readonly SystemMapWindow _systemMap = new SystemMapWindow();
         private readonly CommandersWindow _commanders = new CommandersWindow();
     }
 }

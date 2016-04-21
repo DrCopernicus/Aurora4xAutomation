@@ -77,12 +77,14 @@
     <Compile Include="Common\FileReader.cs" />
     <Compile Include="Common\PixelGetter.cs" />
     <Compile Include="Common\PrintSettings.cs" />
+    <Compile Include="Common\QueryExecutor.cs" />
     <Compile Include="Common\Sleeper.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\TableExtensions.cs" />
     <Compile Include="EventParser.cs" />
     <Compile Include="EventReader.cs" />
     <Compile Include="Events\AuroraEvent.cs" />
+    <Compile Include="Events\AuroraEventEntry.cs" />
     <Compile Include="Events\MessageEventArgs.cs" />
     <Compile Include="Events\Time.cs" />
     <Compile Include="Events\Timeline.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\OCRTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />
+    <Compile Include="UI\AuroraDatabase.cs" />
     <Compile Include="UI\AuroraWrapperWindow.cs" />
     <Compile Include="UI\ConsoleWindow.cs" />
     <Compile Include="UI\Controls\TreeListItem.cs" />
@@ -114,6 +117,9 @@
     <Compile Include="UI\Window.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Settings\password.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="App.config" />
     <None Include="packages.config" />
     <Content Include="Settings\beamfocus.txt">

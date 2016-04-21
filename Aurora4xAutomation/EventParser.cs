@@ -3,19 +3,35 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Aurora4xAutomation.Command;
+using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
+using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation
 {
     public class EventParser
     {
-        public static bool AnyStopEvents(string time)
+        public static void ParseUsingDatabase()
         {
+            var connection = QueryExecutor.GetConnection();
+            connection.Open();
+            var time = AuroraDatabase.GetTime(connection);
+            var recentEvents = AuroraDatabase.GetRecentEvents(time, connection);
+            foreach (var ev in recentEvents)
+                IsStopEvent(ev.Text);
+            connection.Close();
+        }
+
+        public static bool ParseUsingEventWindow(string time)
+        {
+            UIMap.EventWindow.MakeActive();
+            UIMap.EventWindow.ClickTextFileButton();
+            Sleeper.Sleep(1500);
             var file = @"D:\prog\Aurora\Aurora_latest\Aurora\FederationEventLog.txt";
             var allEvents = File.ReadAllLines(file);
             if (!GetLatestTime(allEvents).StartsWith(time))
                 return false;
-            var list = GetLatestEvents(allEvents).Select(x => IsStopEvent(new Time(time), x)).ToList();
+            var list = GetLatestEvents(allEvents).Select(IsStopEvent).ToList();
             return list.Any(x => x);
         }
 
@@ -45,7 +61,7 @@ namespace Aurora4xAutomation
             return strs.Last().Split(',').First();
         }
 
-        private static bool IsStopEvent(Time time, string str)
+        private static bool IsStopEvent(string str)
         {
             if (IsMiningColonyUpgrade(str)
                 || IsExperienceGain(str)

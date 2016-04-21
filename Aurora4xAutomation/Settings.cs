@@ -70,5 +70,13 @@ namespace Aurora4xAutomation
         public static string ErrorMessage = "";
         public static string InterruptMessage = "";
         public static string FeedbackMessage = "";
+
+        public static int GameId = 18;
+        public static int RaceId = 133;
+
+        public static int MinLabsPerScientist = 2;
+        public static int DaysPerLabsCheck = 60;
+
+        public static string DatabasePassword = null;
     }
 }

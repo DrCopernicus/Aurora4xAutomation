@@ -36,6 +36,7 @@ namespace Aurora4xAutomation.UI
             Empire = new Combobox(this) { Left = 21, Right = 344, Top = 48, Bottom = 64, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
             CurrentResearchProject = new Datagrid(this) { Columns = new[] { 399, 632, 799, 859, 929, 999, 1132, 1158 }, Left = 399, Right = 1158, Top = 193, Bottom = 289, LineHeight = 16, TopOfCharactersOffset = 3 };
             RemoveRL = new Button(this) { Left = 683, Right = 763, Top = 299, Bottom = 323 };
+            AddRL = new Button(this) { Left = 587, Right = 667, Top = 299, Bottom = 323 };
         }
 
         private bool IsSummaryTabRowOnTop()
@@ -63,6 +64,7 @@ namespace Aurora4xAutomation.UI
         public Combobox Empire { get; set; }
         public Datagrid CurrentResearchProject { get; set; }
         public Button RemoveRL { get; set; }
+        public Button AddRL { get; set; }
 
         #endregion
 

@@ -22,5 +22,11 @@ namespace Aurora4xAutomation.Common
 
             return dict;
         }
+
+        public static bool SettingsFileExists(string path)
+        {
+            string cd = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            return File.Exists(Path.Combine(cd, path));
+        }
     }
 }

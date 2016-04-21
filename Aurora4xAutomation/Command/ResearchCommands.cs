@@ -5,6 +5,7 @@ using System.Threading;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.UI;
+using Aurora4xAutomation.UI.Screen;
 using MoreLinq;
 
 namespace Aurora4xAutomation.Command
@@ -96,12 +97,13 @@ namespace Aurora4xAutomation.Command
         {
             return SelectCheapScience(research, scientists, 2000)
                 || SelectTargetedScience(research, scientists)
-                || SelectCheapestScience(research, scientists);
+                || SelectCheapestScience(research, scientists)
+                || AssignLabsToTop();
         }
 
         private bool SelectCheapScience(List<string[]> research, List<string[]> scientists, int maxCost)
         {
-            foreach (var res in research.Where(x => x[0] != "" && int.Parse(x[1]) <= maxCost).OrderBy(x => int.Parse(x[1])))
+            foreach (var res in research.Where(x => x[0] != "" && int.Parse(x[1].Split('/')[0]) <= maxCost).OrderBy(x => int.Parse(x[1])))
             {
                 var firstScientist = scientists.FirstOrDefault(x => x[0] != "" && x[1] == res[2]);
                 if (firstScientist == null)
@@ -160,10 +162,21 @@ namespace Aurora4xAutomation.Command
             if (!researchInCategory.Any())
                 return false;
 
-            var cheapestResearch = researchInCategory.MinBy(x => int.Parse(x[1]));
+            var cheapestResearch = researchInCategory.MinBy(x => int.Parse(x[1].Split('/')[0]));
 
             ResearchTechCommand(cheapestResearch[2], int.Parse(cheapestResearch[3]), 0, -1);
 
+            return true;
+        }
+
+        private bool AssignLabsToTop()
+        {
+            while (int.Parse(UIMap.PopulationAndProductionWindow.AvailableLabs.Text) >= 0)
+            {
+                UIMap.PopulationAndProductionWindow.CurrentResearchProject.ClickRow(0);
+                UIMap.PopulationAndProductionWindow.AddRL.Click();
+                Screenshot.Dirty();
+            }
             return true;
         }
 
@@ -181,6 +194,11 @@ namespace Aurora4xAutomation.Command
                 }
                 Timeline.AddEvent(AutoResearch);
             }
+        }
+
+        public void CheckNumberOfLabs(object sender, EventArgs e)
+        {
+            
         }
     }
 }
