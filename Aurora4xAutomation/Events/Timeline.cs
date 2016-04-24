@@ -26,7 +26,13 @@ namespace Aurora4xAutomation.Events
 
         public static void AddEvent(EventHandler action, string args = "", Time time = null)
         {
-            var ev = new AuroraEvent(time ?? new Time(), action) {Args = args};
+            var ev = new AuroraEvent(time ?? new Time(), action) { Args = args };
+            Events.Add(ev);
+        }
+
+        public static void AddEvent(Action action, string args = "", Time time = null)
+        {
+            var ev = new AuroraEvent(time ?? new Time(), (sender, eventArgs) => action()) { Args = args };
             Events.Add(ev);
         }
     }

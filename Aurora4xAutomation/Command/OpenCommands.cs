@@ -7,19 +7,19 @@ namespace Aurora4xAutomation.Command
 {
     public class OpenCommands
     {
-        public static void OpenResearch(object sender, EventArgs e)
+        public static void OpenResearch()
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectResearchTab();
         }
 
-        public static void OpenShipyard(object sender, EventArgs e)
+        public static void OpenShipyard()
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectManageShipyards();
         }
 
-        public static void OpenTaskGroup(object sender, EventArgs e)
+        public static void OpenTaskGroup()
         {
             UIMap.TaskGroups.MakeActive();
         }

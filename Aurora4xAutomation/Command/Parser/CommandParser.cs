@@ -9,19 +9,32 @@ namespace Aurora4xAutomation.Command.Parser
     {
         public static void Parse(string choice)
         {
-            if (choice.Matches("^o(pen)? r$"))
-                Timeline.AddEvent(OpenCommands.OpenResearch);
+            try
+            {
+                var command = CommandLexer.Lex(choice);
+                command.Execute();
+            }
+            catch (Exception e)
+            {
+                Timeline.AddEvent(MessageCommands.PrintError, e.Message);
+            }
+        }
 
-            else if (choice.Matches("^o(pen)? ship$"))
-                Timeline.AddEvent(OpenCommands.OpenShipyard);
+        public static void Parse2(string choice)
+        {
+//            if (choice.Matches("^o(pen)? r$"))
+//                Timeline.AddEvent(OpenCommands.OpenResearch);
+//
+//            else if (choice.Matches("^o(pen)? ship$"))
+//                Timeline.AddEvent(OpenCommands.OpenShipyard);
+//
+//            else if (choice.Matches("^o(pen)? tg$"))
+//                Timeline.AddEvent(OpenCommands.OpenTaskGroup);
+//
+//            else if (choice.Matches("^o(pen)? r [a-zA-Z]+$"))
+//                Timeline.AddEvent(OpenCommands.OpenResearchCategory, choice.Split(' ')[2]);
 
-            else if (choice.Matches("^o(pen)? tg$"))
-                Timeline.AddEvent(OpenCommands.OpenTaskGroup);
-
-            else if (choice.Matches("^o(pen)? r [a-zA-Z]+$"))
-                Timeline.AddEvent(OpenCommands.OpenResearchCategory, choice.Split(' ')[2]);
-
-            else if (choice.Matches("^r(esearch)? [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
+            if (choice.Matches("^r(esearch)? [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
                 ResearchCommands.ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
 
             else if (choice.Matches("^adv(ance)? [0-9]*[a-z]+"))
