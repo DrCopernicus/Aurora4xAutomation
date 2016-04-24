@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Clicker.cs" />
     <Compile Include="Command\Commands.cs" />
+    <Compile Include="Command\Parser\CommandParser.cs" />
     <Compile Include="Command\TurnCommands.cs" />
     <Compile Include="Command\SettingsCommands.cs" />
     <Compile Include="Command\MessageCommands.cs" />

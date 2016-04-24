@@ -7,24 +7,24 @@ namespace Aurora4xAutomation.Command
 {
     public class OpenCommands
     {
-        public void OpenResearch(object sender, EventArgs e)
+        public static void OpenResearch(object sender, EventArgs e)
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectResearchTab();
         }
 
-        public void OpenShipyard(object sender, EventArgs e)
+        public static void OpenShipyard(object sender, EventArgs e)
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectManageShipyards();
         }
 
-        public void OpenTaskGroup(object sender, EventArgs e)
+        public static void OpenTaskGroup(object sender, EventArgs e)
         {
-            _taskGroups.MakeActive();
+            UIMap.TaskGroups.MakeActive();
         }
 
-        public void OpenResearchCategory(object sender, EventArgs e)
+        public static void OpenResearchCategory(object sender, EventArgs e)
         {
             var output = "";
 
@@ -76,7 +76,7 @@ namespace Aurora4xAutomation.Command
             Timeline.AddEvent(MessageCommands.PrintFeedback, UIMap.PopulationAndProductionWindow.Populations.Text);
         }
 
-        private string ReadResearchTables()
+        private static string ReadResearchTables()
         {
             var output = "";
             UIMap.PopulationAndProductionWindow.SetShowMatchingScientistsOnly(true);
@@ -85,7 +85,5 @@ namespace Aurora4xAutomation.Command
             output += UIMap.PopulationAndProductionWindow.AvailableScientistsTable.GetText();
             return output;
         }
-
-        private readonly TaskGroupsWindow _taskGroups = new TaskGroupsWindow();
     }
 }

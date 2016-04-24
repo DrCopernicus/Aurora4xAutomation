@@ -12,7 +12,7 @@ namespace Aurora4xAutomation.Command
 {
     public class ResearchCommands
     {
-        public void ResearchTechCommand(string category, int researchNum, int scientistNum, int labsNum)
+        public static void ResearchTechCommand(string category, int researchNum, int scientistNum, int labsNum)
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectResearchTab();
@@ -27,14 +27,14 @@ namespace Aurora4xAutomation.Command
             UIMap.PopulationAndProductionWindow.CreateResearch();
         }
 
-        public void FocusResearch(string category)
+        public static void FocusResearch(string category)
         {
             Settings.Research.Clear();
             foreach (var ban in Settings.ResearchFocuses[category])
                 Settings.Research.Add(ban.Key, ban.Value);
         }
 
-        public void BanResearch(string topic)
+        public static void BanResearch(string topic)
         {
             throw new NotImplementedException();
         }
