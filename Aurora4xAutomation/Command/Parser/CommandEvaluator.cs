@@ -6,10 +6,11 @@ namespace Aurora4xAutomation.Command.Parser
     {
         Action,
         Parameter,
-        Timer
+        Timer,
+        Help
     }
 
-    public class CommandEvaluator
+    public abstract class CommandEvaluator
     {
         public CommandEvaluator(string text, CommandEvaluatorType type)
         {
@@ -24,10 +25,16 @@ namespace Aurora4xAutomation.Command.Parser
         public CommandEvaluator Body { get; set; }
         public CommandEvaluator Next { get; set; }
 
-        public virtual void Execute()
+        public abstract void Evaluate();
+
+        public void Execute()
         {
-            
+            Evaluate();
+            if (Next != null)
+                Next.Execute();
         }
+
+        public abstract string Help { get; }
 
         private List<string> _parameters;
 

@@ -22,9 +22,9 @@ namespace Aurora4xAutomation.UI.Controls
             Right = right;
             Top = top;
             Bottom = bottom;
-            CharacterHeight = 9;
+            CharacterHeight = 11;
             CharacterOffset = 3;
-            BottomOffset = 4;
+            BottomOffset = 2;
             Colors = new [] { new byte[] { 0, 0, 0 } };
         }
 

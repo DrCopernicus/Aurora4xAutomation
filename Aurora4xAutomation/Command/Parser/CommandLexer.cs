@@ -145,9 +145,23 @@ namespace Aurora4xAutomation.Command.Parser
                 throw new Exception("Failed to parse Action token correctly: Expected Text");
 
             var eval = TextToCommand(token.Text, CommandEvaluatorType.Action);
-            eval.Body = Parameters(ref command);
+            if (eval.Type == CommandEvaluatorType.Help)
+                eval.Body = HelpParameter(ref command);
+            else
+                eval.Body = Parameters(ref command);
 
             return eval;
+        }
+
+        private static CommandEvaluator HelpParameter(ref string command)
+        {
+            var token = GetNext(ref command);
+            if (token.Type != CommandTokenType.Text)
+            {
+                UngetToken(ref command, token);
+                return null;
+            }
+            return TextToCommand(token.Text, CommandEvaluatorType.Action);
         }
 
         private static CommandEvaluator Parameters(ref string command)
@@ -158,7 +172,7 @@ namespace Aurora4xAutomation.Command.Parser
                 UngetToken(ref command, token);
                 return null;
             }
-            var eval = new CommandEvaluator(token.Text, CommandEvaluatorType.Parameter);
+            var eval = new ParameterCommand(token.Text, CommandEvaluatorType.Parameter);
             eval.Next = Parameters(ref command);
 
             return eval;
@@ -168,13 +182,29 @@ namespace Aurora4xAutomation.Command.Parser
         {
             switch (text)
             {
+                case "adv":
+                    return new AdvanceCommand(text, type);
+                case "build-installation":
+                    return new BuildInstallationCommand(text, type);
+                case "contract":
+                    return new ContractCommand(text, type);
+                case "help":
+                    return new HelpCommand(text, CommandEvaluatorType.Help);
+                case "move":
+                    return new MoveCommand(text, type);
                 case "open":
                     return new OpenWindowCommand(text, type);
+                case "print":
+                    return new PrintCommand(text, type);
                 case "read":
                     return new ReadDataCommand(text, type);
+                case "set-pop":
+                    return new SetPopulationCommand(text, type);
+                case "stop":
+                    return new StopCommand(text, type);
+                default:
+                    throw new Exception(string.Format("Did not recognize command {0}.", text));
             }
-
-            throw new Exception(string.Format("Did not recognize command {0}.", text));
         }
     }
 }

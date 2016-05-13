@@ -10,13 +10,18 @@ namespace Aurora4xAutomation.Command.Parser
         {
         }
 
-        public override void Execute()
+        public override void Evaluate()
         {
             if (Parameters.Count != 2)
                 throw new CommandExecutionException(2, Parameters.Count, Text);
 
             if (Parameters[0] == "research")
                 Timeline.AddEvent(OpenCommands.OpenResearchCategory, Parameters[1]);
+        }
+
+        public override string Help
+        {
+            get { throw new System.NotImplementedException(); }
         }
     }
 }

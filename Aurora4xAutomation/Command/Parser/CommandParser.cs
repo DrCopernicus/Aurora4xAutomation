@@ -80,15 +80,15 @@ namespace Aurora4xAutomation.Command.Parser
             else if (choice.Matches("^auto research off$"))
                 Settings.AutoResearchOn = false;
 
-            else if (choice.Matches("^mv [0-9a-z\\-]+ [a-z]+ [0-9]+ (s|d)"))
-            {
-                if (choice.Split(' ')[4] != "s" && choice.Split(' ')[4] != "d")
-                    throw new Exception("e");
-                InfrastructureCommands.MakeCivilianContract(choice.Split(' ')[1],
-                                                              choice.Split(' ')[2],
-                                                              int.Parse(choice.Split(' ')[3]),
-                                                              choice.Split(' ')[4] == "s");
-            }
+//            else if (choice.Matches("^mv [0-9a-z\\-]+ [a-z]+ [0-9]+ (s|d)"))
+//            {
+//                if (choice.Split(' ')[4] != "s" && choice.Split(' ')[4] != "d")
+//                    throw new Exception("e");
+//                InfrastructureCommands.MakeCivilianContract(choice.Split(' ')[1],
+//                                                              choice.Split(' ')[2],
+//                                                              int.Parse(choice.Split(' ')[3]),
+//                                                              choice.Split(' ')[4] == "s");
+//            }
 
             else if (choice.Matches("^clear$"))
             {

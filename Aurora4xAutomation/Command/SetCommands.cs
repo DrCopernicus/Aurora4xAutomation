@@ -47,10 +47,10 @@ namespace Aurora4xAutomation.Command
                     UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(10);
                     break;
                 case "massdriver":
-                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(12);
+                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(11);
                     break;
                 case "nsc":
-                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(15);
+                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(14);
                     break;
                 case "lab":
                     UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(17);

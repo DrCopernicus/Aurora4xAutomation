@@ -21,7 +21,7 @@ namespace Aurora4xAutomation
 
             Settings.Research = Settings.ResearchFocuses["beamfocus"];
 
-            Timeline.AddEvent(new ResearchCommands().CheckNumberOfLabs);
+            //Timeline.AddEvent(new ResearchCommands().CheckNumberOfLabs);
 
             while (true)
             {

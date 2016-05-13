@@ -167,3 +167,15 @@ pp		Internal Confinement Fusion Drive Technology
 pp		Magnetic Confinement Fusion Reactor Technology
 pp		Magnetic Confinement Fusion Drive Technology
 pp		Inertial Confinement Fusion Reactor Technology
+mk		Ordnance Production 12 BP
+mk		Missile Agility 48 per MSP
+mk		12cm Railgun
+mk		Fusion-boosted Fission Warhead: Strength: 5 x MSP
+mk		Gauss Cannon Rate of Fire 3
+mk		Gauss Cannon Launch Velocity 2
+lg		Assault Infantry Battalion
+lg		Brigade Headquarters
+lg		Ground Unit Strength 16
+lg		Orbital Habitat Module
+lg		Fuel Storage - Very Large
+lg		Construction Brigade

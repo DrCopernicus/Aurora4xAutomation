@@ -10,7 +10,7 @@ namespace Aurora4xAutomation.Command.Parser
         {
         }
 
-        public override void Execute()
+        public override void Evaluate()
         {
             if (Parameters.Count != 1)
                 throw new CommandExecutionException(1, Parameters.Count, Text);
@@ -23,6 +23,11 @@ namespace Aurora4xAutomation.Command.Parser
 
             else if (Parameters[0] == "tg")
                 Timeline.AddEvent(OpenCommands.OpenTaskGroup);
+        }
+
+        public override string Help
+        {
+            get { throw new System.NotImplementedException(); }
         }
     }
 }

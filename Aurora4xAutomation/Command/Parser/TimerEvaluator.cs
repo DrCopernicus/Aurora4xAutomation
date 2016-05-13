@@ -11,13 +11,18 @@ namespace Aurora4xAutomation.Command.Parser
         {
         }
 
-        public override void Execute()
+        public override void Evaluate()
         {
             foreach (var statement in StatementList)
             {
                 var time = new Time(UIMap.SystemMap.GetTime()) + TimeFromText;
                 Timeline.AddEvent(statement.Execute, "", time);
             }
+        }
+
+        public override string Help
+        {
+            get { throw new System.NotImplementedException(); }
         }
 
         private Time TimeFromText
