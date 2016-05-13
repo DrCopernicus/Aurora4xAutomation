@@ -65,15 +65,7 @@ namespace Aurora4xAutomation.UI
         private static extern IntPtr GetForegroundWindow();
         [DllImport("user32.dll", EntryPoint = "PostMessage", CallingConvention = CallingConvention.Winapi)]
         public static extern bool PostMessage(IntPtr hWnd, int msg, uint wParam, uint lParam);
-
-        [DllImport("user32.dll")]
-        private static extern bool ScreenToClient(IntPtr hWnd, ref Point lpPoint);
-
-        private uint MakeDWORD(ushort hiWord, ushort loWord)
-        {
-            return ((((uint)hiWord) << 16) | loWord);
-        }
-
+        
         private static IDictionary<IntPtr, string> GetOpenWindows()
         {
             var shellWindow = GetShellWindow();
