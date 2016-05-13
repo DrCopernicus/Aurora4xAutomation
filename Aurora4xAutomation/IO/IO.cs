@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using WindowsInput;
 using WindowsInput.Native;
 using Aurora4xAutomation.UI;
+using Control = Aurora4xAutomation.UI.Controls.Control;
 
 namespace Aurora4xAutomation.IO
 {
@@ -29,10 +30,35 @@ namespace Aurora4xAutomation.IO
             Input.Mouse.LeftButtonClick();
         }
 
+        public static void Click(this Control control, int x, int y, int wait = 250)
+        {
+            Cursor.Position = new Point(control.Parent.Dimensions.Left + control.Left + x, control.Parent.Dimensions.Top + control.Top + y);
+            if (wait != 0)
+                Thread.Sleep(wait);
+            Input.Mouse.LeftButtonClick();
+        }
+
+        public static void Click(this Control control)
+        {
+            control.Click((control.Right - control.Left) / 2, (control.Bottom - control.Top) / 2);
+        }
+
         public static Color GetPixel(this Window window, int x, int y)
         {
             IntPtr hdc = GetDC(IntPtr.Zero);
             uint pixel = GetPixel(hdc, window.Dimensions.Left + x, window.Dimensions.Top + y);
+            ReleaseDC(IntPtr.Zero, hdc);
+            Color color = Color.FromArgb((int)(pixel & 0x000000FF),
+                         (int)(pixel & 0x0000FF00) >> 8,
+                         (int)(pixel & 0x00FF0000) >> 16);
+            return color;
+        }
+
+
+        public static Color GetPixel(this Control control, int x, int y)
+        {
+            IntPtr hdc = GetDC(IntPtr.Zero);
+            uint pixel = GetPixel(hdc, control.Parent.Dimensions.Left + x, control.Parent.Dimensions.Top + y);
             ReleaseDC(IntPtr.Zero, hdc);
             Color color = Color.FromArgb((int)(pixel & 0x000000FF),
                          (int)(pixel & 0x0000FF00) >> 8,
@@ -45,7 +71,17 @@ namespace Aurora4xAutomation.IO
             Input.Keyboard.TextEntry(text);
         }
 
+        public static void SendKeys(this Control control, string text)
+        {
+            Input.Keyboard.TextEntry(text);
+        }
+
         public static void PressKey(this Window window, VirtualKeyCode key)
+        {
+            Input.Keyboard.KeyPress(key);
+        }
+
+        public static void PressKey(this Control control, VirtualKeyCode key)
         {
             Input.Keyboard.KeyPress(key);
         }

@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using WindowsInput.Native;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.OCR;
 using Pranas;
 
@@ -26,10 +27,10 @@ namespace Aurora4xAutomation.UI.Controls
             }
             set
             {
-                Click();
-                Click();
-                Input.Keyboard.KeyPress(VirtualKeyCode.HOME);
-                Input.Keyboard.TextEntry(value);
+                this.Click();
+                this.Click();
+                this.PressKey(VirtualKeyCode.HOME);
+                this.SendKeys(value);
             }
         }
 
@@ -50,8 +51,8 @@ namespace Aurora4xAutomation.UI.Controls
 
         public void SelectOption(int i)
         {
-            Click();
-            Click((Right - Left) / 2, (Bottom - Top) / 2 + i * (Bottom - Top));
+            this.Click();
+            this.Click((Right - Left) / 2, (Bottom - Top) / 2 + i * (Bottom - Top));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.OCR;
 using Aurora4xAutomation.UI.Screen;
 
@@ -150,7 +151,7 @@ namespace Aurora4xAutomation.UI.Controls
                 {
                     if (!Collapsed)
                     {
-                        Click(Level * 17 + 9, 7, 0);
+                        this.Click(Level * 17 + 9, 7, 0);
                         Screenshot.Dirty();
                         Sleeper.Sleep(250);
                     }
@@ -159,7 +160,7 @@ namespace Aurora4xAutomation.UI.Controls
                 {
                     if (Collapsed)
                     {
-                        Click(Level * 17 + 9, 7, 0);
+                        this.Click(Level * 17 + 9, 7, 0);
                         Screenshot.Dirty();
                         Sleeper.Sleep(250);
                     }
@@ -171,7 +172,7 @@ namespace Aurora4xAutomation.UI.Controls
 
         public void Select()
         {
-            Click((Level + 2) * 17, (Bottom - Top) / 2);
+            this.Click((Level + 2) * 17, (Bottom - Top) / 2);
         }
     }
 }

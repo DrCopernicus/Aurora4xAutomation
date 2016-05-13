@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.OCR;
 
 namespace Aurora4xAutomation.UI.Controls
@@ -58,7 +59,7 @@ namespace Aurora4xAutomation.UI.Controls
 
         public void ClickRow(int row)
         {
-            Click((Right - Left) / 2, row * LineHeight + LineHeight/2);
+            this.Click((Right - Left) / 2, row * LineHeight + LineHeight/2);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.OCR;
 using Pranas;
 
@@ -25,9 +26,9 @@ namespace Aurora4xAutomation.UI.Controls
             }
             set
             {
-                Click();
-                Click();
-                Input.Keyboard.TextEntry(value);
+                this.Click();
+                this.Click();
+                this.SendKeys(value);
             }
         }
 
