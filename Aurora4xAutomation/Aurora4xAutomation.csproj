@@ -128,7 +128,7 @@
     <Compile Include="UI\Controls\Textbox.cs" />
     <Compile Include="UI\PaintNetWindow.cs" />
     <Compile Include="UI\CommandersWindow.cs" />
-    <Compile Include="UI\Screen\Screenshot.cs" />
+    <Compile Include="IO\Screenshot.cs" />
     <Compile Include="UI\TaskGroupsWindow.cs" />
     <Compile Include="UI\SystemMapWindow.cs" />
     <Compile Include="UI\EventWindow.cs" />
