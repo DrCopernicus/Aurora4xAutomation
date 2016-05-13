@@ -18,7 +18,7 @@ namespace Aurora4xAutomation.Tests
         public void MyTest()
         {
 
-
+            Assert.IsTrue(true);
         }
     }
 }

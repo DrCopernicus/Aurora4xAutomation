@@ -21,12 +21,12 @@ namespace Aurora4xAutomation.UI
             AllocatedLabs = new Textbox(this) { Left = 885, Right = 929, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
             AvailableLabs = new Textbox(this) { Left = 1037, Right = 1073, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 109, 109, 109 } } };
             NumberOfIndustrialProject = new Textbox(this) { Left = 725, Right = 769, Top = 696, Bottom = 710, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
-            CreateIndustrialProject = new Button(this) { Left = 635, Right = 707, Top = 730, Bottom = 754 };
+            CreateIndustrialProject = new Button(this, left: 635, right: 707, top: 730, bottom: 754);
             InstallationType = new Combobox(this) { Left = 501, Right = 801, Top = 180, Bottom = 196, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
             ContractAmount = new Textbox(this) { Left = 501, Right = 553, Top = 220, Bottom = 234, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
             CivilianContractSupply = new RadioButton(this) { Left = 696, Right = 707, Top = 220, Bottom = 231 };
             CivilianContractDemand = new RadioButton(this) { Left = 784, Right = 795, Top = 221, Bottom = 232 };
-            AddCivilianContract = new Button(this) { Left = 411, Right = 491, Top = 514, Bottom = 538 };
+            AddCivilianContract = new Button(this, left: 411, right: 491, top: 514, bottom: 538);
             Populations = new TreeList(this, 21, 361, 100, 807);
             Populations.Refresh += (sender, args) =>
             {
@@ -37,8 +37,8 @@ namespace Aurora4xAutomation.UI
             MassDriverDestination = new Combobox(this) { Left = 1005, Right = 1184, Top = 156, Bottom = 172, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
             Empire = new Combobox(this) { Left = 21, Right = 344, Top = 48, Bottom = 64, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
             CurrentResearchProject = new Datagrid(this) { Columns = new[] { 399, 632, 799, 859, 929, 999, 1132, 1158 }, Left = 399, Right = 1158, Top = 193, Bottom = 289, LineHeight = 16, TopOfCharactersOffset = 3 };
-            RemoveRL = new Button(this) { Left = 683, Right = 763, Top = 299, Bottom = 323 };
-            AddRL = new Button(this) { Left = 587, Right = 667, Top = 299, Bottom = 323 };
+            RemoveRL = new Button(this, left: 683, right: 763, top: 299, bottom: 323);
+            AddRL = new Button(this, left: 587, right: 667, top: 299, bottom: 323);
             NumberOfLabs = new Label(this, 515, 541, 140, 148);
         }
 

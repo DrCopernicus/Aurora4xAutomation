@@ -114,8 +114,8 @@
     <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\OCRTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />
+    <Compile Include="Tests\UITests.cs" />
     <Compile Include="UI\AuroraDatabase.cs" />
-    <Compile Include="UI\AuroraUIControl.cs" />
     <Compile Include="UI\AuroraWrapperWindow.cs" />
     <Compile Include="UI\ConsoleWindow.cs" />
     <Compile Include="UI\Controls\Label.cs" />
@@ -127,6 +127,8 @@
     <Compile Include="UI\Controls\Button.cs" />
     <Compile Include="UI\Controls\Combobox.cs" />
     <Compile Include="UI\Controls\Textbox.cs" />
+    <Compile Include="UI\IControl.cs" />
+    <Compile Include="UI\IWindow.cs" />
     <Compile Include="UI\PaintNetWindow.cs" />
     <Compile Include="UI\CommandersWindow.cs" />
     <Compile Include="IO\Screenshot.cs" />

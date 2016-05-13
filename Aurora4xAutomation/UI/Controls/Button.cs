@@ -1,14 +1,9 @@
-﻿using System.Drawing;
-using Aurora4xAutomation.Common;
-using Aurora4xAutomation.OCR;
-using Pranas;
-
-namespace Aurora4xAutomation.UI.Controls
+﻿namespace Aurora4xAutomation.UI.Controls
 {
     public class Button : Control
     {
-        public Button(Window parent)
-            : base(parent)
+        public Button(IWindow parent, int top, int bottom, int left, int right)
+            : base(parent, top, bottom, left, right)
         {
             
         }

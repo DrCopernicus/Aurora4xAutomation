@@ -12,7 +12,7 @@ namespace Aurora4xAutomation.UI.Controls
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public TreeListItem(Window parent, TreeListItem parentItem, int left, int right, int top, int offset, int height)
+        public TreeListItem(IWindow parent, TreeListItem parentItem, int left, int right, int top, int offset, int height)
             : base(parent)
         {
             ParentItem = parentItem;

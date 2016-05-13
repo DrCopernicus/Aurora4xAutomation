@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-using System.Windows.Forms;
-using WindowsInput;
 using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.UI
 {
-    public abstract class Window
+    public abstract class Window : IWindow
     {
         public IntPtr Handle { get; private set; }
         public RECT Dimensions { get; private set; }
+
+        public int Top { get; private set; }
+        public int Bottom { get; private set; }
+        public int Left { get; private set; }
+        public int Right { get; private set; }
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
@@ -63,6 +65,7 @@ namespace Aurora4xAutomation.UI
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         private static extern IntPtr GetForegroundWindow();
+
         [DllImport("user32.dll", EntryPoint = "PostMessage", CallingConvention = CallingConvention.Winapi)]
         public static extern bool PostMessage(IntPtr hWnd, int msg, uint wParam, uint lParam);
         
