@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using WindowsInput;
-using Aurora4xAutomation.UI.Screen;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.UI
 {

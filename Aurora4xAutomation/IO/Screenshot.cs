@@ -2,7 +2,7 @@
 using Aurora4xAutomation.Common;
 using Pranas;
 
-namespace Aurora4xAutomation.UI.Screen
+namespace Aurora4xAutomation.IO
 {
     public static class Screenshot
     {

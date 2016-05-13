@@ -2,7 +2,6 @@
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.OCR;
-using Aurora4xAutomation.UI.Screen;
 
 namespace Aurora4xAutomation.UI.Controls
 {

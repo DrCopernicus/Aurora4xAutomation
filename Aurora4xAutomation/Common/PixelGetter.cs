@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using Aurora4xAutomation.UI.Screen;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Common
 {

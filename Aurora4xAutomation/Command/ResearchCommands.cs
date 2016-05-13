@@ -6,7 +6,6 @@ using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.UI;
-using Aurora4xAutomation.UI.Screen;
 using MoreLinq;
 
 namespace Aurora4xAutomation.Command

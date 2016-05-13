@@ -115,6 +115,7 @@
     <Compile Include="Tests\OCRTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />
     <Compile Include="UI\AuroraDatabase.cs" />
+    <Compile Include="UI\AuroraUIControl.cs" />
     <Compile Include="UI\AuroraWrapperWindow.cs" />
     <Compile Include="UI\ConsoleWindow.cs" />
     <Compile Include="UI\Controls\Label.cs" />
