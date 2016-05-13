@@ -106,6 +106,7 @@
     <Compile Include="Events\MessageEventArgs.cs" />
     <Compile Include="Events\Time.cs" />
     <Compile Include="Events\Timeline.cs" />
+    <Compile Include="IO\IO.cs" />
     <Compile Include="OCR\OCRReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

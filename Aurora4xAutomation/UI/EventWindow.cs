@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.UI
 {
@@ -13,7 +14,7 @@ namespace Aurora4xAutomation.UI
 
         public void ClickTextFileButton()
         {
-            Click(152, 880);
+            this.Click(152, 880);
         }
 
         protected override void OpenIfNotFound()

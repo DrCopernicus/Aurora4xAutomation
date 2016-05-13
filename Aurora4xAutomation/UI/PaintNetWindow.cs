@@ -1,4 +1,5 @@
 ﻿using System;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.UI
 {
@@ -12,7 +13,7 @@ namespace Aurora4xAutomation.UI
 
         public void Paint(int x, int y)
         {
-            Click(x, y);
+            this.Click(x, y);
         }
 
         protected override void OpenIfNotFound()

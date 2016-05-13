@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.UI
 {
@@ -13,57 +14,57 @@ namespace Aurora4xAutomation.UI
 
         public void ClickIncrement5SecondsButton()
         {
-            Click(329, 110);
+            this.Click(329, 110);
         }
 
         public void ClickIncrement30SecondsButton()
         {
-            Click(409, 110);
+            this.Click(409, 110);
         }
 
         public void ClickIncrement2MinutesButton()
         {
-            Click(488, 110);
+            this.Click(488, 110);
         }
 
         public void ClickIncrement5MinutesButton()
         {
-            Click(568, 110);
+            this.Click(568, 110);
         }
 
         public void ClickIncrement20MinutesButton()
         {
-            Click(647, 110);
+            this.Click(647, 110);
         }
 
         public void ClickIncrement1HoursButton()
         {
-            Click(730, 110);
+            this.Click(730, 110);
         }
 
         public void ClickIncrement3HoursButton()
         {
-            Click(808, 110);
+            this.Click(808, 110);
         }
 
         public void ClickIncrement8HoursButton()
         {
-            Click(889, 110);
+            this.Click(889, 110);
         }
 
         public void ClickIncrement1DayButton()
         {
-            Click(969, 110);
+            this.Click(969, 110);
         }
 
         public void ClickIncrement5DaysButton()
         {
-            Click(1052, 110);
+            this.Click(1052, 110);
         }
 
         public void ClickIncrement30DaysButton()
         {
-            Click(1130, 110);
+            this.Click(1130, 110);
         }
 
         public string GetTime()

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using WindowsInput.Native;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.UI.Controls;
 using Button = Aurora4xAutomation.UI.Controls.Button;
 using Label = Aurora4xAutomation.UI.Controls.Label;
@@ -43,7 +44,7 @@ namespace Aurora4xAutomation.UI
 
         private bool IsSummaryTabRowOnTop()
         {
-            return GetPixel(405, 120).EqualsColor(0, 0, 0);
+            return this.GetPixel(405, 120).EqualsColor(0, 0, 0);
         }
 
         #region Controls
@@ -81,14 +82,14 @@ namespace Aurora4xAutomation.UI
         public void SelectResearchTab()
         {
             if (IsSummaryTabRowOnTop())
-                Click(1165, 101);
+                this.Click(1165, 101);
             else
-                Click(1152, 122);
+                this.Click(1152, 122);
         }
 
         private void DropDownNewResearchProject()
         {
-            Click(617, 365);
+            this.Click(617, 365);
         }
 
         public void SelectResearchByCategory(string name)
@@ -114,81 +115,81 @@ namespace Aurora4xAutomation.UI
         public void SelectBiology()
         {
             DropDownNewResearchProject();
-            Click(524, 383);
+            this.Click(524, 383);
         }
 
         public void SelectConstruction()
         {
             DropDownNewResearchProject();
-            Click(524, 397);
+            this.Click(524, 397);
         }
 
         public void SelectDefensive()
         {
             DropDownNewResearchProject();
-            Click(524, 411);
+            this.Click(524, 411);
         }
 
         public void SelectEnergy()
         {
             DropDownNewResearchProject();
-            Click(524, 423);
+            this.Click(524, 423);
         }
 
         public void SelectLogistics()
         {
             DropDownNewResearchProject();
-            Click(524, 435);
+            this.Click(524, 435);
         }
 
         public void SelectMissiles()
         {
             DropDownNewResearchProject();
-            Click(524, 447);
+            this.Click(524, 447);
         }
 
         public void SelectPower()
         {
             DropDownNewResearchProject();
-            Click(524, 461);
+            this.Click(524, 461);
         }
 
         public void SelectSensors()
         {
             DropDownNewResearchProject();
-            Click(524, 475);
+            this.Click(524, 475);
         }
 
         public void SetShowMatchingScientistsOnly(bool toggle)
         {
-            if ((GetPixel(744, 368).EqualsColor(0, 0, 0) && !toggle)
-                || GetPixel(744, 368).EqualsColor(255, 255, 255) && toggle)
+            if ((this.GetPixel(744, 368).EqualsColor(0, 0, 0) && !toggle)
+                || this.GetPixel(744, 368).EqualsColor(255, 255, 255) && toggle)
             {
-                Click(744, 368);
+                this.Click(744, 368);
             }
         }
 
         public void SelectNthResearch(int number)
         {
-            Click(467, 413 + number * 16);
+            this.Click(467, 413 + number * 16);
         }
 
         public void SelectNthScientist(int number)
         {
-            Click(986, 413 + number * 16);
+            this.Click(986, 413 + number * 16);
         }
 
         public void SetAllocatedLabs(string labsNum)
         {
-            Click(907, 364);
-            Click(907, 364);
-            Input.Keyboard.TextEntry(labsNum);
+            this.Click(907, 364);
+            this.Click(907, 364);
+            this.SendKeys(labsNum);
         }
 
         public void CreateResearch()
         {
-            Click(440, 635);
-            Input.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+            this.Click(440, 635);
+            this.PressKey(VirtualKeyCode.RETURN);
         }
 
         #endregion
@@ -198,19 +199,19 @@ namespace Aurora4xAutomation.UI
         public void SelectManageShipyards()
         {
             if (IsSummaryTabRowOnTop())
-                Click(879, 101);
+                this.Click(879, 101);
             else
-                Click(869, 122);
+                this.Click(869, 122);
         }
 
         public void SelectNthShipyard(int shipyardNumber)
         {
-            Click(504, 196 + (shipyardNumber - 1)*16);
+            this.Click(504, 196 + (shipyardNumber - 1) * 16);
         }
 
         public void AddShipyardTask()
         {
-            Click(442, 821);
+            this.Click(442, 821);
         }
 
         #endregion
@@ -220,25 +221,25 @@ namespace Aurora4xAutomation.UI
         public void SelectIndustry()
         {
             if (IsSummaryTabRowOnTop())
-                Click(597, 101);
+                this.Click(597, 101);
             else
-                Click(589, 122);
+                this.Click(589, 122);
         }
 
         public void SelectCivilianTab()
         {
             if (IsSummaryTabRowOnTop())
-                Click(730, 120);
+                this.Click(730, 120);
             else
-                Click(740, 100);
+                this.Click(740, 100);
         }
 
         public void SelectMiningTab()
         {
             if (IsSummaryTabRowOnTop())
-                Click(740, 100);
+                this.Click(740, 100);
             else
-                Click(730, 120);
+                this.Click(730, 120);
         }
 
         #endregion

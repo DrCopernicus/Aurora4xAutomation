@@ -1,4 +1,5 @@
 ﻿using System;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.UI
 {
@@ -13,7 +14,7 @@ namespace Aurora4xAutomation.UI
         public void OpenBase()
         {
             MakeActive();
-            Click((Dimensions.Left+Dimensions.Right)/2, (Dimensions.Top+Dimensions.Bottom)/2);
+            this.Click((Dimensions.Left + Dimensions.Right) / 2, (Dimensions.Top + Dimensions.Bottom) / 2);
         }
 
         protected override void OpenIfNotFound()

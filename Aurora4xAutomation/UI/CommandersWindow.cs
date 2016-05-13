@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.UI.Controls;
 
 namespace Aurora4xAutomation.UI
@@ -24,10 +25,10 @@ namespace Aurora4xAutomation.UI
 
         public void SetAutomatedAssignments(bool toggle)
         {
-            if ((GetPixel(100, 88).EqualsColor(0, 0, 0) && !toggle)
-                || GetPixel(100, 88).EqualsColor(255, 255, 255) && toggle)
+            if ((this.GetPixel(100, 88).EqualsColor(0, 0, 0) && !toggle)
+                || this.GetPixel(100, 88).EqualsColor(255, 255, 255) && toggle)
             {
-                Click(100, 88);
+                this.Click(100, 88);
             }
         }
 

@@ -13,8 +13,6 @@ namespace Aurora4xAutomation.UI
 {
     public abstract class Window
     {
-        protected static readonly InputSimulator Input = new InputSimulator();
-
         public IntPtr Handle { get; private set; }
         public RECT Dimensions { get; private set; }
 
@@ -65,16 +63,6 @@ namespace Aurora4xAutomation.UI
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         private static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll")]
-        static extern IntPtr GetDC(IntPtr hwnd);
-
-        [DllImport("user32.dll")]
-        static extern Int32 ReleaseDC(IntPtr hwnd, IntPtr hdc);
-
-        [DllImport("gdi32.dll")]
-        static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
-
         [DllImport("user32.dll", EntryPoint = "PostMessage", CallingConvention = CallingConvention.Winapi)]
         public static extern bool PostMessage(IntPtr hWnd, int msg, uint wParam, uint lParam);
 
@@ -135,14 +123,7 @@ namespace Aurora4xAutomation.UI
         }
 
         protected abstract void OpenIfNotFound();
-
-        protected void Click(int x, int y)
-        {
-            Cursor.Position = new Point(Dimensions.Left + x, Dimensions.Top + y);
-            Thread.Sleep(250);
-            Input.Mouse.LeftButtonClick();
-        }
-
+        
         public void MakeActive()
         {
             for (int i = 0; i < 12; i++)
@@ -155,17 +136,6 @@ namespace Aurora4xAutomation.UI
                 }
             }
             throw new Exception("Window never opened!");
-        }
-
-        public Color GetPixel(int x, int y)
-        {
-            IntPtr hdc = GetDC(IntPtr.Zero);
-            uint pixel = GetPixel(hdc, Dimensions.Left + x, Dimensions.Top + y);
-            ReleaseDC(IntPtr.Zero, hdc);
-            Color color = Color.FromArgb((int)(pixel & 0x000000FF),
-                         (int)(pixel & 0x0000FF00) >> 8,
-                         (int)(pixel & 0x00FF0000) >> 16);
-            return color;
         }
 
         private bool WaitActive(int ms = 500, int times = 20)
