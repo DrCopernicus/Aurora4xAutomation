@@ -1,5 +1,4 @@
-﻿using System;
-using Aurora4xAutomation.Common;
+﻿using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.OCR;
 
@@ -12,7 +11,7 @@ namespace Aurora4xAutomation.UI.Controls
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public TreeListItem(IWindow parent, TreeListItem parentItem, int left, int right, int top, int offset, int height)
+        public TreeListItem(IControl parent, TreeListItem parentItem, int left, int right, int top, int offset, int height)
             : base(parent, top, top + 16, left, right)
         {
             ParentItem = parentItem;
@@ -26,16 +25,16 @@ namespace Aurora4xAutomation.UI.Controls
         public void Initialize()
         {
             if (PixelGetter.HasPixelsOfColor(
-                Parent.Dimensions.Left + Left + Level * 17,
-                Parent.Dimensions.Top + Top,
+                Left + Level * 17,
+                Top,
                 10,
                 10,
                 new[] { new byte[] {51, 153, 255} }))
             {
                 Text = OCRReader.ReadTableRow(
                             PixelGetter.GetPixelsOfColor(
-                                Parent.Dimensions.Left + Left + Level * 17,
-                                Parent.Dimensions.Top + Top + CharacterOffset,
+                                Left + Level * 17,
+                                Top + CharacterOffset,
                                 Right - Left,
                                 CharacterHeight,
                                 new [] { new byte[] {255, 255, 255} }),
@@ -45,16 +44,16 @@ namespace Aurora4xAutomation.UI.Controls
             {
                 Text = OCRReader.ReadTableRow(
                             PixelGetter.GetPixelsOfColor(
-                                Parent.Dimensions.Left + Left + Level * 17,
-                                Parent.Dimensions.Top + Top + CharacterOffset,
+                                Left + Level * 17,
+                                Top + CharacterOffset,
                                 Right - Left,
                                 CharacterHeight,
                                 Colors),
                             OCRReader.Alphabet);
             }
             _collapsable = PixelGetter.HasPixelsOfColor(
-                                Parent.Dimensions.Left + Left + Level * 17,
-                                Parent.Dimensions.Top + Top,
+                                Left + Level * 17,
+                                Top,
                                 17,
                                 16,
                                 new[] { new byte[] {0, 0, 0} });
@@ -68,7 +67,7 @@ namespace Aurora4xAutomation.UI.Controls
                 for (int i = 0; i < Level; i++)
                     text += " ";
                 text += Collapsed ? "+" : "-";
-                text += Text + "text";
+                text += Text;
                 return text;
             }
         }
@@ -82,8 +81,8 @@ namespace Aurora4xAutomation.UI.Controls
                     for (int i = 0; i < 5; i++)
                     {
                         if (!PixelGetter.OnlyHasPixelsOfColor(
-                            Parent.Dimensions.Left + Left + i * 17,
-                            Parent.Dimensions.Top + Top,
+                            Left + i * 17,
+                            Top,
                             17,
                             16,
                             new[] {new byte[] {255, 255, 255}}))
@@ -106,8 +105,8 @@ namespace Aurora4xAutomation.UI.Controls
             get
             {
                 return PixelGetter.OnlyHasPixelsOfColor(
-                    Parent.Dimensions.Left + Left,
-                    Parent.Dimensions.Top + Top,
+                    Left,
+                    Top,
                     Right - Left,
                     16,
                     new[] { new byte[] { 255, 255, 255 } });
@@ -119,15 +118,15 @@ namespace Aurora4xAutomation.UI.Controls
             get
             {
                 if (PixelGetter.GetPixel(
-                    Parent.Dimensions.Left + Left + Level * 17 + 8,
-                    Parent.Dimensions.Top + Top + 7).EqualsColor(0, 0, 0))
+                    Left + Level * 17 + 8,
+                    Top + 7).EqualsColor(0, 0, 0))
                 {
                     return true;
                 }
 
                 if (!PixelGetter.HasPixelsOfColor(
-                            Parent.Dimensions.Left + Left + Level * 17,
-                            Parent.Dimensions.Top + Top,
+                            Left + Level * 17,
+                            Top,
                             17,
                             16,
                             new[] { new byte[] { 0, 0, 0 } }))

@@ -200,6 +200,8 @@ namespace Aurora4xAutomation.Command.Parser
                     return new ReadDataCommand(text, type);
                 case "set-pop":
                     return new SetPopulationCommand(text, type);
+                case "open-pop":
+                    return new OpenPopulationCommand(text, type);
                 case "stop":
                     return new StopCommand(text, type);
                 default:

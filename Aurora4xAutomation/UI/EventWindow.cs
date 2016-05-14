@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
-using Aurora4xAutomation.IO;
+using Button = Aurora4xAutomation.UI.Controls.Button;
 
 namespace Aurora4xAutomation.UI
 {
@@ -9,13 +9,10 @@ namespace Aurora4xAutomation.UI
         public EventWindow() : 
             base("Event Updates")
         {
-            
+            TextFileButton = new Button(this, left: 107, right: 187, top: 866, bottom: 890);
         }
 
-        public void ClickTextFileButton()
-        {
-            this.Click(152, 880);
-        }
+        public Button TextFileButton { get; set; }
 
         protected override void OpenIfNotFound()
         {

@@ -39,7 +39,7 @@ namespace Aurora4xAutomation.UI.Controls
                 return;
             }
 
-            Timeline.AddEvent(MessageCommands.PrintError, string.Format("Couldn't find {0} in a tree list.", name));
+            Timeline.AddEvent(MessageCommands.PrintError, string.Format("Couldn't find {0} in a tree list. Tree list text: \n{1}", name, Text));
         }
 
         private List<TreeListItem> GetParents(TreeListItem item)
@@ -69,7 +69,7 @@ namespace Aurora4xAutomation.UI.Controls
                     var index = 0;
                     while (true)
                     {
-                        var item = new TreeListItem(Parent, parents.LastOrDefault(), Left, Right, Top + index * (BottomOffset + CharacterOffset + CharacterHeight), CharacterOffset, CharacterHeight);
+                        var item = new TreeListItem(this, parents.LastOrDefault(), 0, Right, index * (BottomOffset + CharacterOffset + CharacterHeight), CharacterOffset, CharacterHeight);
                         if (item.Level != 6)
                         {
                             for (int i = 0; i < parents.Count - item.Level; i++)

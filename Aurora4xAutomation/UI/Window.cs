@@ -115,6 +115,10 @@ namespace Aurora4xAutomation.UI
 
             Handle = handle;
             Dimensions = dimensions;
+            Left = dimensions.Left;
+            Right = dimensions.Right;
+            Top = dimensions.Top;
+            Bottom = dimensions.Bottom;
         }
 
         protected abstract void OpenIfNotFound();

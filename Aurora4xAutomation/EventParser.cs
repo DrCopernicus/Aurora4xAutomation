@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation
@@ -25,7 +26,7 @@ namespace Aurora4xAutomation
         public static bool ParseUsingEventWindow(string time)
         {
             UIMap.EventWindow.MakeActive();
-            UIMap.EventWindow.ClickTextFileButton();
+            UIMap.EventWindow.TextFileButton.Click();
             Sleeper.Sleep(1500);
             var file = @"D:\prog\Aurora\Aurora_latest\Aurora\FederationEventLog.txt";
             var allEvents = File.ReadAllLines(file);

@@ -74,9 +74,10 @@
     <Compile Include="Command\Parser\BuildInstallationCommand.cs" />
     <Compile Include="Command\Parser\HelpCommand.cs" />
     <Compile Include="Command\Parser\AdvanceCommand.cs" />
+    <Compile Include="Command\Parser\SetPopulationCommand.cs" />
     <Compile Include="Command\Parser\StopCommand.cs" />
     <Compile Include="Command\Parser\PrintCommand.cs" />
-    <Compile Include="Command\Parser\SetPopulationCommand.cs" />
+    <Compile Include="Command\Parser\OpenPopulationCommand.cs" />
     <Compile Include="Command\Parser\ParameterCommand.cs" />
     <Compile Include="Command\Parser\ContractCommand.cs" />
     <Compile Include="Command\Parser\MoveCommand.cs" />

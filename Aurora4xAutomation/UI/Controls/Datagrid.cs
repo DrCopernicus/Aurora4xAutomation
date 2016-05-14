@@ -32,8 +32,8 @@ namespace Aurora4xAutomation.UI.Controls
                     data[i] = OCRReader.ReadTableRow(
                         PixelGetter.GetPixelsOfColor(
                             screen,
-                            Parent.Dimensions.Left + columns[i],
-                            Parent.Dimensions.Top + currentRowY + topOfCharactersOffset,
+                            columns[i],
+                            currentRowY + topOfCharactersOffset,
                             columns[i + 1] - columns[i],
                             lineHeight - topOfCharactersOffset - 1,
                             new[] { new byte[] { 0, 0, 0 }, new byte[] { 255, 0, 0 } }),

@@ -2,7 +2,7 @@
 {
     public class Control : IControl
     {
-        public Control(IWindow parent, int top, int bottom, int left, int right)
+        public Control(IControl parent, int top, int bottom, int left, int right)
         {
             Parent = parent;
             Top = Parent.Top + top;
@@ -11,7 +11,7 @@
             Right = Parent.Left + right;
         }
 
-        public IWindow Parent { get; protected set; }
+        public IControl Parent { get; protected set; }
         public int Top { get; protected set; }
         public int Bottom { get; protected set; }
         public int Left { get; protected set; }

@@ -69,7 +69,7 @@ namespace Aurora4xAutomation.UI
             CivilianContractSupply = new RadioButton(this, left: 696, right: 707, top: 220, bottom: 231);
             CivilianContractDemand = new RadioButton(this, left: 784, right: 795, top: 221, bottom: 232);
             AddCivilianContract = new Button(this, left: 411, right: 491, top: 514, bottom: 538);
-            Populations = new TreeList(this, 21, 361, 100, 807);
+            Populations = new TreeList(this, left: 21, right: 361, top: 100, bottom: 807);
             Populations.Refresh += (sender, args) =>
             {
                 UIMap.PopulationAndProductionWindow.MakeActive();

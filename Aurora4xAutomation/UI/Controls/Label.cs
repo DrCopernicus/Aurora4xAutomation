@@ -31,8 +31,8 @@ namespace Aurora4xAutomation.UI.Controls
             return OCRReader.ReadTableRow(
                     PixelGetter.GetPixelsOfColor(
                         Screenshot.Latest,
-                        Parent.Dimensions.Left + Left,
-                        Parent.Dimensions.Top + Top + CharacterOffset,
+                        Left,
+                        Top + CharacterOffset,
                         Right - Left,
                         CharacterHeight,
                         Colors),

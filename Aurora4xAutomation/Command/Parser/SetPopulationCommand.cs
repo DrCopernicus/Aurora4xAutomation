@@ -13,7 +13,7 @@ namespace Aurora4xAutomation.Command.Parser
         public override void Evaluate()
         {
             if (Parameters.Count != 3)
-                throw new Exception(string.Format("Expected 2 parameters, got {0} in function name {1}.",
+                throw new Exception(string.Format("Expected 3 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
             new OpenCommands().SelectColony(Parameters[0]);
