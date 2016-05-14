@@ -12,8 +12,8 @@ namespace Aurora4xAutomation.UI.Controls
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public Textbox(Window parent)
-            : base(parent)
+        public Textbox(IWindow parent, int top, int bottom, int left, int right)
+            : base(parent, top, bottom, left, right)
         {
             
         }

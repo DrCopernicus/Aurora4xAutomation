@@ -47,12 +47,84 @@ namespace Aurora4xAutomation.Tests
         public void TestButtonCorrectLocation()
         {
             var window = new WindowDouble(10, 110, 10, 110);
-            var button = new Button(window, 20, 40, 20, 60);
+            var control = new Button(window, 20, 40, 20, 60);
 
-            Assert.AreEqual(30, button.Top);
-            Assert.AreEqual(50, button.Bottom);
-            Assert.AreEqual(30, button.Left);
-            Assert.AreEqual(70, button.Right);
+            Assert.AreEqual(30, control.Top);
+            Assert.AreEqual(50, control.Bottom);
+            Assert.AreEqual(30, control.Left);
+            Assert.AreEqual(70, control.Right);
+        }
+
+        [Test]
+        public void TestComboboxCorrectLocation()
+        {
+            var window = new WindowDouble(10, 110, 10, 110);
+            var control = new Combobox(window, 20, 40, 20, 60);
+
+            Assert.AreEqual(30, control.Top);
+            Assert.AreEqual(50, control.Bottom);
+            Assert.AreEqual(30, control.Left);
+            Assert.AreEqual(70, control.Right);
+        }
+
+        [Test]
+        public void TestDataGridCorrectLocation()
+        {
+            var window = new WindowDouble(10, 110, 10, 110);
+            var control = new Datagrid(window, 20, 40, 20, 60);
+
+            Assert.AreEqual(30, control.Top);
+            Assert.AreEqual(50, control.Bottom);
+            Assert.AreEqual(30, control.Left);
+            Assert.AreEqual(70, control.Right);
+        }
+
+        [Test]
+        public void TestLabelCorrectLocation()
+        {
+            var window = new WindowDouble(10, 110, 10, 110);
+            var control = new Label(window, 20, 40, 20, 60);
+
+            Assert.AreEqual(30, control.Top);
+            Assert.AreEqual(50, control.Bottom);
+            Assert.AreEqual(30, control.Left);
+            Assert.AreEqual(70, control.Right);
+        }
+
+        [Test]
+        public void TestRadioButtonCorrectLocation()
+        {
+            var window = new WindowDouble(10, 110, 10, 110);
+            var control = new RadioButton(window, 20, 40, 20, 60);
+
+            Assert.AreEqual(30, control.Top);
+            Assert.AreEqual(50, control.Bottom);
+            Assert.AreEqual(30, control.Left);
+            Assert.AreEqual(70, control.Right);
+        }
+
+        [Test]
+        public void TestTextboxCorrectLocation()
+        {
+            var window = new WindowDouble(10, 110, 10, 110);
+            var control = new Textbox(window, 20, 40, 20, 60);
+
+            Assert.AreEqual(30, control.Top);
+            Assert.AreEqual(50, control.Bottom);
+            Assert.AreEqual(30, control.Left);
+            Assert.AreEqual(70, control.Right);
+        }
+
+        [Test]
+        public void TestTreeListCorrectLocation()
+        {
+            var window = new WindowDouble(10, 110, 10, 110);
+            var control = new TreeList(window, 20, 40, 20, 60);
+
+            Assert.AreEqual(30, control.Top);
+            Assert.AreEqual(50, control.Bottom);
+            Assert.AreEqual(30, control.Left);
+            Assert.AreEqual(70, control.Right);
         }
     }
 }

@@ -15,13 +15,9 @@ namespace Aurora4xAutomation.UI.Controls
         public byte[][] Colors;
         public event EventHandler Refresh;
 
-        public TreeList(Window parent, int left, int right, int top, int bottom)
-            : base(parent)
+        public TreeList(IWindow parent, int top, int bottom, int left, int right)
+            : base(parent, top, bottom, left, right)
         {
-            Left = left;
-            Right = right;
-            Top = top;
-            Bottom = bottom;
             CharacterHeight = 11;
             CharacterOffset = 3;
             BottomOffset = 2;

@@ -2,13 +2,6 @@
 {
     public class Control : IControl
     {
-        public IWindow Parent { get; set; }
-
-        public Control(IWindow parent)
-        {
-            Parent = parent;
-        }
-
         public Control(IWindow parent, int top, int bottom, int left, int right)
         {
             Parent = parent;
@@ -18,9 +11,10 @@
             Right = Parent.Left + right;
         }
 
-        public int Top { get; set; }
-        public int Bottom { get; set; }
-        public int Left { get; set; }
-        public int Right { get; set; }
+        public IWindow Parent { get; protected set; }
+        public int Top { get; protected set; }
+        public int Bottom { get; protected set; }
+        public int Left { get; protected set; }
+        public int Right { get; protected set; }
     }
 }

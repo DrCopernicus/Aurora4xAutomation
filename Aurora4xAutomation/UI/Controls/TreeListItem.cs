@@ -13,13 +13,9 @@ namespace Aurora4xAutomation.UI.Controls
         public byte[][] Colors;
 
         public TreeListItem(IWindow parent, TreeListItem parentItem, int left, int right, int top, int offset, int height)
-            : base(parent)
+            : base(parent, top, top + 16, left, right)
         {
             ParentItem = parentItem;
-            Left = left;
-            Right = right;
-            Top = top;
-            Bottom = top + 16;
             CharacterOffset = offset;
             CharacterHeight = height;
             Colors = new[] { new byte[] { 0, 0, 0 } };

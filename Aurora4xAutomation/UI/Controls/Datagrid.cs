@@ -13,7 +13,7 @@ namespace Aurora4xAutomation.UI.Controls
         public int TopOfCharactersOffset { get; set; }
         public PrintSettings Settings;
 
-        public Datagrid(Window parent) : base(parent)
+        public Datagrid(IWindow parent, int top, int bottom, int left, int right) : base(parent, top, bottom, left, right)
         {
             
         }

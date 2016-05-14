@@ -10,13 +10,9 @@ namespace Aurora4xAutomation.UI.Controls
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public Label(Window parent, int left, int right, int top, int bottom)
-            : base(parent)
+        public Label(IWindow parent, int top, int bottom, int left, int right)
+            : base(parent, top, bottom, left, right)
         {
-            Left = left;
-            Right = right;
-            Top = top;
-            Bottom = bottom;
             CharacterHeight = 9;
             CharacterOffset = 0;
             Colors = new[] {new byte[] {0, 0, 0}};

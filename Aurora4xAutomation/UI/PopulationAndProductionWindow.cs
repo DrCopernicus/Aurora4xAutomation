@@ -15,17 +15,59 @@ namespace Aurora4xAutomation.UI
         public PopulationAndProductionWindow() 
             : base("Population and Production")
         {
-            ResearchTable = new Datagrid(this) { Columns = new[] { 406, 687, 754 }, Top = 406, Bottom = 613, LineHeight = 16, TopOfCharactersOffset = 3, Settings = PrintSettings.NewResearchTable };
-            AvailableScientistsTable = new Datagrid(this) { Columns = new[] { 790, 909, 1056 }, Top = 406, Bottom = 613, LineHeight = 16, TopOfCharactersOffset = 3, Settings = PrintSettings.AvailableScientistTable };
-            ConstructionOptions = new Datagrid(this) { Columns = new []{ 398, 599 }, Left = 398, Right = 599, Top = 245, Bottom = 669, LineHeight = 16, TopOfCharactersOffset = 3 };
-            AllocatedLabs = new Textbox(this) { Left = 885, Right = 929, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
-            AvailableLabs = new Textbox(this) { Left = 1037, Right = 1073, Top = 357, Bottom = 371, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 109, 109, 109 } } };
-            NumberOfIndustrialProject = new Textbox(this) { Left = 725, Right = 769, Top = 696, Bottom = 710, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
+            ResearchTable = new Datagrid(this, left: 406, right: 776, top: 406, bottom: 613)
+            {
+                Columns = new[] {406, 687, 754},
+                LineHeight = 16,
+                TopOfCharactersOffset = 3,
+                Settings = PrintSettings.NewResearchTable
+            };
+            AvailableScientistsTable = new Datagrid(this, left: 790, right: 1184, top: 406, bottom: 613)
+            {
+                Columns = new[] {790, 909, 1056},
+                LineHeight = 16,
+                TopOfCharactersOffset = 3,
+                Settings = PrintSettings.AvailableScientistTable
+            };
+            ConstructionOptions = new Datagrid(this, left: 398, right: 599, top: 245, bottom: 669)
+            {
+                Columns = new[] {398, 599},
+                LineHeight = 16,
+                TopOfCharactersOffset = 3
+            };
+            AllocatedLabs = new Textbox(this, left: 885, right: 929, top: 357, bottom: 371)
+            {
+                CharacterOffset = 3,
+                CharacterHeight = 9,
+                Colors = new[] {new byte[] {0, 0, 0}}
+            };
+            AvailableLabs = new Textbox(this, left: 1037, right: 1073, top: 357, bottom: 371)
+            {
+                CharacterOffset = 3,
+                CharacterHeight = 9,
+                Colors = new[] {new byte[] {109, 109, 109}}
+            };
+            NumberOfIndustrialProject = new Textbox(this, left: 725, right: 769, top: 696, bottom: 710)
+            {
+                CharacterOffset = 3,
+                CharacterHeight = 9,
+                Colors = new[] {new byte[] {0, 0, 0}}
+            };
             CreateIndustrialProject = new Button(this, left: 635, right: 707, top: 730, bottom: 754);
-            InstallationType = new Combobox(this) { Left = 501, Right = 801, Top = 180, Bottom = 196, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
-            ContractAmount = new Textbox(this) { Left = 501, Right = 553, Top = 220, Bottom = 234, CharacterOffset = 3, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
-            CivilianContractSupply = new RadioButton(this) { Left = 696, Right = 707, Top = 220, Bottom = 231 };
-            CivilianContractDemand = new RadioButton(this) { Left = 784, Right = 795, Top = 221, Bottom = 232 };
+            InstallationType = new Combobox(this, left: 501, right: 801, top: 180, bottom: 196)
+            {
+                CharacterOffset = 4,
+                CharacterHeight = 9,
+                Colors = new[] {new byte[] {0, 0, 0}}
+            };
+            ContractAmount = new Textbox(this, left: 501, right: 553, top: 220, bottom: 234)
+            {
+                CharacterOffset = 3,
+                CharacterHeight = 9,
+                Colors = new[] {new byte[] {0, 0, 0}}
+            };
+            CivilianContractSupply = new RadioButton(this, left: 696, right: 707, top: 220, bottom: 231);
+            CivilianContractDemand = new RadioButton(this, left: 784, right: 795, top: 221, bottom: 232);
             AddCivilianContract = new Button(this, left: 411, right: 491, top: 514, bottom: 538);
             Populations = new TreeList(this, 21, 361, 100, 807);
             Populations.Refresh += (sender, args) =>
@@ -33,13 +75,28 @@ namespace Aurora4xAutomation.UI
                 UIMap.PopulationAndProductionWindow.MakeActive();
                 UIMap.PopulationAndProductionWindow.Empire.SelectOption(1);
             };
-            PurchaseMineralOutput = new RadioButton(this) { Left = 536, Right = 547, Top = 804, Bottom = 815 };
-            MassDriverDestination = new Combobox(this) { Left = 1005, Right = 1184, Top = 156, Bottom = 172, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
-            Empire = new Combobox(this) { Left = 21, Right = 344, Top = 48, Bottom = 64, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
-            CurrentResearchProject = new Datagrid(this) { Columns = new[] { 399, 632, 799, 859, 929, 999, 1132, 1158 }, Left = 399, Right = 1158, Top = 193, Bottom = 289, LineHeight = 16, TopOfCharactersOffset = 3 };
+            PurchaseMineralOutput = new RadioButton(this, left: 536, right: 547, top: 804, bottom: 815);
+            MassDriverDestination = new Combobox(this, left: 1005, right: 1184, top: 156, bottom: 172)
+            {
+                CharacterOffset = 4,
+                CharacterHeight = 9,
+                Colors = new[] {new byte[] {0, 0, 0}}
+            };
+            Empire = new Combobox(this, left: 21, right: 344, top: 48, bottom: 64)
+            {
+                CharacterOffset = 4,
+                CharacterHeight = 9,
+                Colors = new[] {new byte[] {0, 0, 0}}
+            };
+            CurrentResearchProject = new Datagrid(this, left: 399, right: 1158, top: 193, bottom: 289)
+            {
+                Columns = new[] {399, 632, 799, 859, 929, 999, 1132, 1158},
+                LineHeight = 16,
+                TopOfCharactersOffset = 3
+            };
             RemoveRL = new Button(this, left: 683, right: 763, top: 299, bottom: 323);
             AddRL = new Button(this, left: 587, right: 667, top: 299, bottom: 323);
-            NumberOfLabs = new Label(this, 515, 541, 140, 148);
+            NumberOfLabs = new Label(this, left: 515, right: 541, top: 140, bottom: 148);
         }
 
         private bool IsSummaryTabRowOnTop()

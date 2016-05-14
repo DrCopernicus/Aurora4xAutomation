@@ -11,8 +11,14 @@ namespace Aurora4xAutomation.UI
         public CommandersWindow() 
             : base("Commanders")
         {
-            LeaderType = new Combobox(this) { Left = 101, Right = 272, Top = 140, Bottom = 156, CharacterOffset = 4, CharacterHeight = 9, Colors = new[] { new byte[] { 0, 0, 0 } } };
-            Officiers = new TreeList(this, 29, 289, 176, 292)
+            LeaderType = new Combobox(this, left: 101, right: 272, top: 140, bottom: 156)
+            {
+                CharacterOffset = 4,
+                CharacterHeight = 9,
+                Colors = new[] {new byte[] {0, 0, 0}}
+            };
+
+            Officiers = new TreeList(this, left: 29, right: 289, top: 176, bottom: 292)
             {
                 CharacterOffset = 2,
                 BottomOffset = 2,
