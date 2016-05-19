@@ -1,10 +1,12 @@
 ﻿using System;
+using Aurora4xAutomation.Command.Parser;
+using Aurora4xAutomation.Events;
 
-namespace Aurora4xAutomation.Command.Parser
+namespace Aurora4xAutomation.Command.Evaluators
 {
-    public class OpenPopulationCommand : CommandEvaluator
+    public class PrintEvaluator : Evaluator
     {
-        public OpenPopulationCommand(string text, CommandEvaluatorType type)
+        public PrintEvaluator(string text, CommandEvaluatorType type)
             : base(text, type)
         {
         }
@@ -15,7 +17,7 @@ namespace Aurora4xAutomation.Command.Parser
                 throw new Exception(string.Format("Expected 1 parameter, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            new OpenCommands().SelectColony(Parameters[0]);
+            Timeline.AddEvent(MessageCommands.PrintFeedback, Parameters[0]);
         }
 
         public override string Help

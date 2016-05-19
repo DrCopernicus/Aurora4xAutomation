@@ -1,10 +1,11 @@
 ﻿using System;
+using Aurora4xAutomation.Command.Parser;
 
-namespace Aurora4xAutomation.Command.Parser
+namespace Aurora4xAutomation.Command.Evaluators
 {
-    public class MoveCommand : CommandEvaluator
+    public class MoveEvaluator : Evaluator
     {
-        public MoveCommand(string text, CommandEvaluatorType type)
+        public MoveEvaluator(string text, CommandEvaluatorType type)
             : base(text, type)
         {
         }

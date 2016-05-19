@@ -1,10 +1,11 @@
 ﻿using System;
+using Aurora4xAutomation.Command.Parser;
 
-namespace Aurora4xAutomation.Command.Parser
+namespace Aurora4xAutomation.Command.Evaluators
 {
-    public class BuildInstallationCommand : CommandEvaluator
+    public class BuildInstallationEvaluator : Evaluator
     {
-        public BuildInstallationCommand(string text, CommandEvaluatorType type)
+        public BuildInstallationEvaluator(string text, CommandEvaluatorType type)
             : base(text, type)
         {
         }

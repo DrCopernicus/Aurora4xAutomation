@@ -10,9 +10,9 @@ namespace Aurora4xAutomation.Command.Parser
         Help
     }
 
-    public abstract class CommandEvaluator
+    public abstract class Evaluator
     {
-        public CommandEvaluator(string text, CommandEvaluatorType type)
+        public Evaluator(string text, CommandEvaluatorType type)
         {
             Text = text;
             Type = type;
@@ -22,8 +22,8 @@ namespace Aurora4xAutomation.Command.Parser
 
         public string Text { get; private set; }
         public CommandEvaluatorType Type { get; private set; }
-        public CommandEvaluator Body { get; set; }
-        public CommandEvaluator Next { get; set; }
+        public Evaluator Body { get; set; }
+        public Evaluator Next { get; set; }
 
         public abstract void Evaluate();
 
@@ -57,15 +57,15 @@ namespace Aurora4xAutomation.Command.Parser
             }
         }
 
-        private List<CommandEvaluator> _statementList;
+        private List<Evaluator> _statementList;
 
-        protected List<CommandEvaluator> StatementList
+        protected List<Evaluator> StatementList
         {
             get
             {
                 if (_statementList == null)
                 {
-                    _statementList = new List<CommandEvaluator>();
+                    _statementList = new List<Evaluator>();
                     if (Body == null)
                         return _statementList;
 

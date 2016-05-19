@@ -4,7 +4,7 @@ using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation.Command.Parser
 {
-    public class TimerEvaluator : CommandEvaluator
+    public class TimerEvaluator : Evaluator
     {
         public TimerEvaluator(string text, CommandEvaluatorType type)
             : base(text, type)

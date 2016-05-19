@@ -1,4 +1,5 @@
 ﻿using System;
+using Aurora4xAutomation.Command.Evaluators;
 
 namespace Aurora4xAutomation.Command.Parser
 {
@@ -64,7 +65,7 @@ namespace Aurora4xAutomation.Command.Parser
             command = token.Text + " " + command;
         }
 
-        public static CommandEvaluator Lex(string command)
+        public static Evaluator Lex(string command)
         {
             var statement = Statement(ref command);
             if (statement == null)
@@ -72,10 +73,10 @@ namespace Aurora4xAutomation.Command.Parser
             return statement;
         }
 
-        private static CommandEvaluator Statement(ref string command)
+        private static Evaluator Statement(ref string command)
         {
             var token = GetNext(ref command);
-            CommandEvaluator eval;
+            Evaluator eval;
 
             if (token.Type == CommandTokenType.LeftParenthesis)
             {
@@ -105,7 +106,7 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private static CommandEvaluator Timer(ref string command)
+        private static Evaluator Timer(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.LeftParenthesis)
@@ -138,7 +139,7 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private static CommandEvaluator Action(ref string command)
+        private static Evaluator Action(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.Text)
@@ -153,7 +154,7 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private static CommandEvaluator HelpParameter(ref string command)
+        private static Evaluator HelpParameter(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.Text)
@@ -164,7 +165,7 @@ namespace Aurora4xAutomation.Command.Parser
             return TextToCommand(token.Text, CommandEvaluatorType.Action);
         }
 
-        private static CommandEvaluator Parameters(ref string command)
+        private static Evaluator Parameters(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.Text)
@@ -172,38 +173,38 @@ namespace Aurora4xAutomation.Command.Parser
                 UngetToken(ref command, token);
                 return null;
             }
-            var eval = new ParameterCommand(token.Text, CommandEvaluatorType.Parameter);
+            var eval = new ParameterEvaluator(token.Text, CommandEvaluatorType.Parameter);
             eval.Next = Parameters(ref command);
 
             return eval;
         }
 
-        private static CommandEvaluator TextToCommand(string text, CommandEvaluatorType type)
+        private static Evaluator TextToCommand(string text, CommandEvaluatorType type)
         {
             switch (text)
             {
                 case "adv":
-                    return new AdvanceCommand(text, type);
+                    return new AdvanceEvaluator(text, type);
                 case "build-installation":
-                    return new BuildInstallationCommand(text, type);
+                    return new BuildInstallationEvaluator(text, type);
                 case "contract":
-                    return new ContractCommand(text, type);
+                    return new ContractEvaluator(text, type);
                 case "help":
-                    return new HelpCommand(text, CommandEvaluatorType.Help);
+                    return new HelpEvaluator(text, CommandEvaluatorType.Help);
                 case "move":
-                    return new MoveCommand(text, type);
+                    return new MoveEvaluator(text, type);
                 case "open":
-                    return new OpenWindowCommand(text, type);
+                    return new OpenWindowEvaluator(text, type);
                 case "print":
-                    return new PrintCommand(text, type);
+                    return new PrintEvaluator(text, type);
                 case "read":
-                    return new ReadDataCommand(text, type);
+                    return new ReadDataEvaluator(text, type);
                 case "set-pop":
-                    return new SetPopulationCommand(text, type);
+                    return new SetPopulationEvaluator(text, type);
                 case "open-pop":
-                    return new OpenPopulationCommand(text, type);
+                    return new OpenPopulationEvaluator(text, type);
                 case "stop":
-                    return new StopCommand(text, type);
+                    return new StopEvaluator(text, type);
                 default:
                     throw new Exception(string.Format("Did not recognize command {0}.", text));
             }

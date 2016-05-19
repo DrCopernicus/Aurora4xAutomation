@@ -1,11 +1,12 @@
 ﻿using System;
+using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.Events;
 
-namespace Aurora4xAutomation.Command.Parser
+namespace Aurora4xAutomation.Command.Evaluators
 {
-    public class StopCommand : CommandEvaluator
+    public class StopEvaluator : Evaluator
     {
-        public StopCommand(string text, CommandEvaluatorType type)
+        public StopEvaluator(string text, CommandEvaluatorType type)
             : base(text, type)
         {
         }

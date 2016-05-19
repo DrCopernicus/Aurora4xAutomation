@@ -1,11 +1,12 @@
 ﻿using System;
+using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.UI;
 
-namespace Aurora4xAutomation.Command.Parser
+namespace Aurora4xAutomation.Command.Evaluators
 {
-    public class SetPopulationCommand : CommandEvaluator
+    public class SetPopulationEvaluator : Evaluator
     {
-        public SetPopulationCommand(string text, CommandEvaluatorType type)
+        public SetPopulationEvaluator(string text, CommandEvaluatorType type)
             : base(text, type)
         {
         }

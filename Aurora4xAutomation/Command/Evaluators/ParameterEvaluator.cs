@@ -1,8 +1,10 @@
-﻿namespace Aurora4xAutomation.Command.Parser
+﻿using Aurora4xAutomation.Command.Parser;
+
+namespace Aurora4xAutomation.Command.Evaluators
 {
-    public class ParameterCommand : CommandEvaluator
+    public class ParameterEvaluator : Evaluator
     {
-        public ParameterCommand(string text, CommandEvaluatorType type)
+        public ParameterEvaluator(string text, CommandEvaluatorType type)
             : base(text, type)
         {
         }

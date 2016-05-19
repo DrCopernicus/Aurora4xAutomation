@@ -1,11 +1,12 @@
 ﻿using System;
+using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.Common;
 
-namespace Aurora4xAutomation.Command.Parser
+namespace Aurora4xAutomation.Command.Evaluators
 {
-    public class ContractCommand : CommandEvaluator
+    public class ContractEvaluator : Evaluator
     {
-        public ContractCommand(string text, CommandEvaluatorType type)
+        public ContractEvaluator(string text, CommandEvaluatorType type)
             : base(text, type)
         {
         }

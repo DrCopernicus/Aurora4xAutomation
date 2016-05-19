@@ -1,11 +1,12 @@
-﻿using Aurora4xAutomation.Common;
+﻿using Aurora4xAutomation.Command.Parser;
+using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
 
-namespace Aurora4xAutomation.Command.Parser
+namespace Aurora4xAutomation.Command.Evaluators
 {
-    public class OpenWindowCommand : CommandEvaluator
+    public class OpenWindowEvaluator : Evaluator
     {
-        public OpenWindowCommand(string text, CommandEvaluatorType type)
+        public OpenWindowEvaluator(string text, CommandEvaluatorType type)
             : base(text, type)
         {
         }

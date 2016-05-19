@@ -1,11 +1,12 @@
 ﻿using System;
+using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.Events;
 
-namespace Aurora4xAutomation.Command.Parser
+namespace Aurora4xAutomation.Command.Evaluators
 {
-    public class HelpCommand : CommandEvaluator
+    public class HelpEvaluator : Evaluator
     {
-        public HelpCommand(string text, CommandEvaluatorType type)
+        public HelpEvaluator(string text, CommandEvaluatorType type)
             : base(text, type)
         {
         }
