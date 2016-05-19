@@ -2,7 +2,7 @@
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.UI;
 
-namespace Aurora4xAutomation.Command.Parser
+namespace Aurora4xAutomation.Command.Evaluators
 {
     public class TimerEvaluator : Evaluator
     {

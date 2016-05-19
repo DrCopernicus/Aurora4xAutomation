@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aurora4xAutomation.Command.Parser
+namespace Aurora4xAutomation.Command.Evaluators
 {
     public enum CommandEvaluatorType
     {
