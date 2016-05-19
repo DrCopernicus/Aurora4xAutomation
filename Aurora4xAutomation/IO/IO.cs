@@ -25,7 +25,7 @@ namespace Aurora4xAutomation.IO
         
         public static void Click(this Window window, int x, int y)
         {
-            Cursor.Position = new Point(window.Dimensions.Left + x, window.Dimensions.Top + y);
+            Cursor.Position = new Point(window.Left + x, window.Top + y);
             Thread.Sleep(250);
             Input.Mouse.LeftButtonClick();
         }
@@ -46,7 +46,7 @@ namespace Aurora4xAutomation.IO
         public static Color GetPixel(this Window window, int x, int y)
         {
             IntPtr hdc = GetDC(IntPtr.Zero);
-            uint pixel = GetPixel(hdc, window.Dimensions.Left + x, window.Dimensions.Top + y);
+            uint pixel = GetPixel(hdc, window.Left + x, window.Top + y);
             ReleaseDC(IntPtr.Zero, hdc);
             Color color = Color.FromArgb((int)(pixel & 0x000000FF),
                          (int)(pixel & 0x0000FF00) >> 8,

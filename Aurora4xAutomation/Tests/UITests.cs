@@ -15,7 +15,6 @@ namespace Aurora4xAutomation.Tests
             public int Left { get; private set; }
             public int Right { get; private set; }
             public IntPtr Handle { get; private set; }
-            public Window.RECT Dimensions { get; private set; }
 
             public void MakeActive()
             {

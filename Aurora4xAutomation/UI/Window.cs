@@ -11,7 +11,6 @@ namespace Aurora4xAutomation.UI
     public abstract class Window : IWindow
     {
         public IntPtr Handle { get; private set; }
-        public RECT Dimensions { get; private set; }
 
         public int Top { get; private set; }
         public int Bottom { get; private set; }
@@ -23,7 +22,7 @@ namespace Aurora4xAutomation.UI
         static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
+        private struct RECT
         {
             public int Left;        // x position of upper-left corner
             public int Top;         // y position of upper-left corner
@@ -114,7 +113,6 @@ namespace Aurora4xAutomation.UI
             GetWindowRect(handle, out dimensions);
 
             Handle = handle;
-            Dimensions = dimensions;
             Left = dimensions.Left;
             Right = dimensions.Right;
             Top = dimensions.Top;

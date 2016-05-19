@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -117,8 +118,8 @@
     <Compile Include="Tests\Sandbox.cs" />
     <Compile Include="Tests\UITests.cs" />
     <Compile Include="UI\AuroraDatabase.cs" />
-    <Compile Include="UI\AuroraWrapperWindow.cs" />
-    <Compile Include="UI\ConsoleWindow.cs" />
+    <Compile Include="UI\Windows\AuroraWrapperWindow.cs" />
+    <Compile Include="UI\Windows\ConsoleWindow.cs" />
     <Compile Include="UI\Controls\Label.cs" />
     <Compile Include="UI\Controls\TreeListItem.cs" />
     <Compile Include="UI\Controls\TreeList.cs" />
@@ -130,13 +131,13 @@
     <Compile Include="UI\Controls\Textbox.cs" />
     <Compile Include="UI\IControl.cs" />
     <Compile Include="UI\IWindow.cs" />
-    <Compile Include="UI\PaintNetWindow.cs" />
-    <Compile Include="UI\CommandersWindow.cs" />
+    <Compile Include="UI\Windows\PaintNetWindow.cs" />
+    <Compile Include="UI\Windows\CommandersWindow.cs" />
     <Compile Include="IO\Screenshot.cs" />
-    <Compile Include="UI\TaskGroupsWindow.cs" />
-    <Compile Include="UI\SystemMapWindow.cs" />
-    <Compile Include="UI\EventWindow.cs" />
-    <Compile Include="UI\PopulationAndProductionWindow.cs" />
+    <Compile Include="UI\Windows\TaskGroupsWindow.cs" />
+    <Compile Include="UI\Windows\SystemMapWindow.cs" />
+    <Compile Include="UI\Windows\EventWindow.cs" />
+    <Compile Include="UI\Windows\PopulationAndProductionWindow.cs" />
     <Compile Include="UI\UIMap.cs" />
     <Compile Include="UI\Window.cs" />
   </ItemGroup>

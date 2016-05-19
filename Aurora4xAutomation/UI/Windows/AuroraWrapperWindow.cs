@@ -14,7 +14,7 @@ namespace Aurora4xAutomation.UI
         public void OpenBase()
         {
             MakeActive();
-            this.Click((Dimensions.Left + Dimensions.Right) / 2, (Dimensions.Top + Dimensions.Bottom) / 2);
+            this.Click((Left + Right) / 2, (Top + Bottom) / 2);
         }
 
         protected override void OpenIfNotFound()
