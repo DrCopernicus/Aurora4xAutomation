@@ -27,12 +27,18 @@ namespace Aurora4xAutomation.Command.Evaluators
             Body = new ParameterEvaluator(parameters[0], CommandEvaluatorType.Parameter, parameters.Subset(1));
         }
 
+        protected Evaluator(params string[] parameters)
+            : this("default", CommandEvaluatorType.Action, parameters)
+        {
+
+        }
+
         public string Text { get; private set; }
         public CommandEvaluatorType Type { get; private set; }
         public Evaluator Body { get; set; }
         public Evaluator Next { get; set; }
 
-        public abstract void Evaluate();
+        protected abstract void Evaluate();
 
         public void Execute()
         {

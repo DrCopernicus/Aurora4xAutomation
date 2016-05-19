@@ -20,7 +20,7 @@ namespace Aurora4xAutomation.Command.Evaluators
             Body = new ParameterEvaluator(parameters[0], CommandEvaluatorType.Parameter, parameters.Subset(1));
         }
 
-        public override void Evaluate()
+        protected override void Evaluate()
         {
 
         }

@@ -10,7 +10,13 @@ namespace Aurora4xAutomation.Command.Evaluators
         {
         }
 
-        public override void Evaluate()
+        public OpenPopulationEvaluator(params string[] parameters)
+            : base("open-pop", CommandEvaluatorType.Action, parameters)
+        {
+            
+        }
+
+        protected override void Evaluate()
         {
             if (Parameters.Count != 1)
                 throw new Exception(string.Format("Expected 1 parameter, got {0} in function name {1}.",

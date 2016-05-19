@@ -22,18 +22,6 @@ namespace Aurora4xAutomation.Command.Parser
 
         public static void Parse2(string choice)
         {
-//            if (choice.Matches("^o(pen)? r$"))
-//                Timeline.AddEvent(OpenCommands.OpenResearch);
-//
-//            else if (choice.Matches("^o(pen)? ship$"))
-//                Timeline.AddEvent(OpenCommands.OpenShipyard);
-//
-//            else if (choice.Matches("^o(pen)? tg$"))
-//                Timeline.AddEvent(OpenCommands.OpenTaskGroup);
-//
-//            else if (choice.Matches("^o(pen)? r [a-zA-Z]+$"))
-//                Timeline.AddEvent(OpenCommands.OpenResearchCategory, choice.Split(' ')[2]);
-
             if (choice.Matches("^r(esearch)? [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
                 ResearchCommands.ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
 
@@ -79,16 +67,6 @@ namespace Aurora4xAutomation.Command.Parser
 
             else if (choice.Matches("^auto research off$"))
                 Settings.AutoResearchOn = false;
-
-//            else if (choice.Matches("^mv [0-9a-z\\-]+ [a-z]+ [0-9]+ (s|d)"))
-//            {
-//                if (choice.Split(' ')[4] != "s" && choice.Split(' ')[4] != "d")
-//                    throw new Exception("e");
-//                InfrastructureCommands.MakeCivilianContract(choice.Split(' ')[1],
-//                                                              choice.Split(' ')[2],
-//                                                              int.Parse(choice.Split(' ')[3]),
-//                                                              choice.Split(' ')[4] == "s");
-//            }
 
             else if (choice.Matches("^clear$"))
             {

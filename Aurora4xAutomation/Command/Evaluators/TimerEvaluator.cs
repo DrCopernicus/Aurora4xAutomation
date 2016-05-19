@@ -11,7 +11,7 @@ namespace Aurora4xAutomation.Command.Evaluators
         {
         }
 
-        public override void Evaluate()
+        protected override void Evaluate()
         {
             foreach (var statement in StatementList)
             {

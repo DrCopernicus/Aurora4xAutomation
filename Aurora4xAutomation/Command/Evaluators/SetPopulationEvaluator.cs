@@ -11,7 +11,7 @@ namespace Aurora4xAutomation.Command.Evaluators
         {
         }
 
-        public override void Evaluate()
+        protected override void Evaluate()
         {
             if (Parameters.Count != 3)
                 throw new Exception(string.Format("Expected 3 parameters, got {0} in function name {1}.",

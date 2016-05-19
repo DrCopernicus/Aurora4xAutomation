@@ -11,7 +11,7 @@ namespace Aurora4xAutomation.Command.Evaluators
         {
         }
 
-        public override void Evaluate()
+        protected override void Evaluate()
         {
             if (Parameters.Count != 1)
                 throw new CommandExecutionException(1, Parameters.Count, Text);
