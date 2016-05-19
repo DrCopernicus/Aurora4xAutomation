@@ -16,12 +16,7 @@ namespace Aurora4xAutomation
 
         public Program()
         {
-            if (FileReader.SettingsFileExists("password.txt"))
-                Settings.DatabasePassword = FileReader.ReadSettingsFile("password.txt")["DatabasePassword"];
-
             Settings.Research = Settings.ResearchFocuses["beamfocus"];
-
-            //Timeline.AddEvent(new ResearchCommands().CheckNumberOfLabs);
 
             while (true)
             {

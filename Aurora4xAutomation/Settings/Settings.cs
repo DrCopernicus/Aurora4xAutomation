@@ -77,6 +77,16 @@ namespace Aurora4xAutomation
         public static int MinLabsPerScientist = 2;
         public static int DaysPerLabsCheck = 60;
 
-        public static string DatabasePassword = null;
+        private static string _databasePassword;
+
+        public static string DatabasePassword
+        {
+            get
+            {
+                if (_databasePassword == null && FileReader.SettingsFileExists("password.txt"))
+                    _databasePassword = FileReader.ReadSettingsFile("password.txt")["DatabasePassword"];
+                return _databasePassword;
+            }
+        }
     }
 }
