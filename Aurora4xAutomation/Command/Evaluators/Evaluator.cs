@@ -12,7 +12,7 @@ namespace Aurora4xAutomation.Command.Parser
 
     public abstract class Evaluator
     {
-        public Evaluator(string text, CommandEvaluatorType type)
+        protected Evaluator(string text, CommandEvaluatorType type)
         {
             Text = text;
             Type = type;
