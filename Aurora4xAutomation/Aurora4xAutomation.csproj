@@ -97,11 +97,11 @@
     <Compile Include="Common\FileReader.cs" />
     <Compile Include="Common\PixelGetter.cs" />
     <Compile Include="Common\PrintSettings.cs" />
-    <Compile Include="Common\QueryExecutor.cs" />
+    <Compile Include="DB\QueryExecutor.cs" />
     <Compile Include="Common\Sleeper.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\TableExtensions.cs" />
-    <Compile Include="EventParser.cs" />
+    <Compile Include="Events\EventParser.cs" />
     <Compile Include="EventReader.cs" />
     <Compile Include="Events\AuroraEvent.cs" />
     <Compile Include="Events\AuroraEventEntry.cs" />
@@ -117,7 +117,7 @@
     <Compile Include="Tests\OCRTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />
     <Compile Include="Tests\UITests.cs" />
-    <Compile Include="UI\AuroraDatabase.cs" />
+    <Compile Include="DB\AuroraDatabase.cs" />
     <Compile Include="UI\Windows\AuroraWrapperWindow.cs" />
     <Compile Include="UI\Windows\ConsoleWindow.cs" />
     <Compile Include="UI\Controls\Label.cs" />

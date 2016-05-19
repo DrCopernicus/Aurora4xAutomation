@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.DB;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.UI;

@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.OleDb;
 
-namespace Aurora4xAutomation.Common
+namespace Aurora4xAutomation.DB
 {
     public class QueryExecutor
     {
