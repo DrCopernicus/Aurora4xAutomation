@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Aurora4xAutomation.Common;
 
 namespace Aurora4xAutomation.Command.Evaluators
 {
@@ -18,6 +19,12 @@ namespace Aurora4xAutomation.Command.Evaluators
             Type = type;
             Body = null;
             Next = null;
+        }
+
+        protected Evaluator(string text, CommandEvaluatorType type, params string[] parameters)
+            : this(text, type)
+        {
+            Body = new ParameterEvaluator(parameters[0], CommandEvaluatorType.Parameter, parameters.Subset(1));
         }
 
         public string Text { get; private set; }

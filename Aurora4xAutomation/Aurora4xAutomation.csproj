@@ -94,6 +94,7 @@
     <Compile Include="Common\CommandInvalidParameterException.cs" />
     <Compile Include="Common\CommandExecutionException.cs" />
     <Compile Include="Common\FileReader.cs" />
+    <Compile Include="Common\ListExtensions.cs" />
     <Compile Include="Common\PixelGetter.cs" />
     <Compile Include="Common\PrintSettings.cs" />
     <Compile Include="DB\QueryExecutor.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\Settings.cs" />
+    <Compile Include="Tests\ListTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\OCRTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />

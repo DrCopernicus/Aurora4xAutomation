@@ -1,4 +1,6 @@
-﻿using Aurora4xAutomation.Command.Parser;
+﻿using System;
+using System.Linq;
+using Aurora4xAutomation.Common;
 
 namespace Aurora4xAutomation.Command.Evaluators
 {
@@ -9,6 +11,15 @@ namespace Aurora4xAutomation.Command.Evaluators
         {
         }
 
+        public ParameterEvaluator(string text, CommandEvaluatorType type, params string[] parameters)
+            : base(text, type)
+        {
+            if (parameters == null || !parameters.Any())
+                return;
+            
+            Body = new ParameterEvaluator(parameters[0], CommandEvaluatorType.Parameter, parameters.Subset(1));
+        }
+
         public override void Evaluate()
         {
 
@@ -16,7 +27,7 @@ namespace Aurora4xAutomation.Command.Evaluators
 
         public override string Help
         {
-            get { throw new System.NotImplementedException(); }
+            get { throw new NotImplementedException(); }
         }
     }
 }
