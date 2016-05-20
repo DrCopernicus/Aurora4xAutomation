@@ -4,6 +4,7 @@ using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.UI;
+using Grapevine.Server;
 
 namespace Aurora4xAutomation
 {
@@ -18,31 +19,29 @@ namespace Aurora4xAutomation
         {
             Settings.Research = Settings.ResearchFocuses["beamfocus"];
 
-            while (true)
+            var server = new RESTServer();
+            server.Start();
+
+            while (server.IsListening)
             {
-                Settings.Stopped = false;
-                Sleeper.Sleep(2000);
-
-                Settings.ErrorMessage = "";
-                Settings.InterruptMessage = "";
-                Settings.FeedbackMessage = "";
-
-                UIMap.EventWindow.MakeActive();
-                ParseEvents();
-
-                if (!Settings.AutoTurnsOn)
-                    Timeline.AddEvent(SettingsCommands.Stop);
-
                 ActOnActiveTimelineEntries();
 
-                if (Settings.Stopped)
+                if (!Settings.Stopped)
                 {
-                    _console.MakeActive();
-                    WriteWaitingForInputInfoBar();
-                    MakeChoices();
+                    ParseEvents();
+
+                    if (!Settings.Stopped)
+                        TurnCommands.AdvanceTurn(this, EventArgs.Empty);
+
+                    if (!Settings.AutoTurnsOn)
+                        Timeline.AddEvent(SettingsCommands.Stop);
+                }
+                else
+                {
+                    Settings.StatusMessage = "Waiting for user input";
                 }
 
-                TurnCommands.AdvanceTurn(this, EventArgs.Empty);
+                Sleeper.Sleep(2000);
             }
         }
 
@@ -69,12 +68,12 @@ namespace Aurora4xAutomation
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(Settings.ErrorMessage == "" ? "" : "\n\n" + Settings.ErrorMessage);
             Console.ForegroundColor = ConsoleColor.White;
-            
-            _console.MakeActive();
         }
 
         private void ParseEvents()
         {
+            Settings.StatusMessage = "Parsing events log";
+            UIMap.EventWindow.MakeActive();
             if (Settings.DatabasePassword == null)
                 EventParser.ParseUsingEventWindow(UIMap.SystemMap.GetTime());
             else
@@ -99,6 +98,7 @@ namespace Aurora4xAutomation
 
         private void ActOnActiveTimelineEntries()
         {
+            Settings.StatusMessage = "Evaluating events";
             AuroraEvent ev;
             while ((ev = Timeline.NextActiveEvent) != null)
                 ev.Invoke();
@@ -137,7 +137,5 @@ namespace Aurora4xAutomation
                 }
             }
         }
-
-        private readonly ConsoleWindow _console = new ConsoleWindow();
     }
 }

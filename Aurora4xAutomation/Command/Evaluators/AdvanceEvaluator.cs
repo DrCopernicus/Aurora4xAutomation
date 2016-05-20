@@ -17,6 +17,12 @@ namespace Aurora4xAutomation.Command.Evaluators
 
             switch (Parameters[0])
             {
+                case "go":
+                    Settings.Stopped = false;
+                    break;
+                case "stop":
+                    Settings.Stopped = true;
+                    break;
                 case "off":
                     Settings.AutoTurnsOn = false;
                     break;

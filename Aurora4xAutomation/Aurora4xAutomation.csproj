@@ -40,6 +40,9 @@
     <Reference Include="FluentAssertions.Core">
       <HintPath>..\packages\FluentAssertions.4.2.1\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Grapevine">
+      <HintPath>..\packages\Grapevine.3.1.0\lib\net40\Grapevine.dll</HintPath>
+    </Reference>
     <Reference Include="MoreLinq">
       <HintPath>..\packages\morelinq.1.4.0\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
@@ -53,6 +56,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -101,6 +105,7 @@
     <Compile Include="Common\Sleeper.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\TableExtensions.cs" />
+    <Compile Include="Events\EventEvaluator.cs" />
     <Compile Include="Events\EventParser.cs" />
     <Compile Include="Events\AuroraEvent.cs" />
     <Compile Include="Events\AuroraEventEntry.cs" />
@@ -111,6 +116,8 @@
     <Compile Include="OCR\OCRReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="REST\CommandResources.cs" />
+    <Compile Include="REST\Resources.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="Tests\ListTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />

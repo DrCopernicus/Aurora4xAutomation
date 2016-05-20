@@ -7,6 +7,5 @@
         public static readonly SystemMapWindow SystemMap = new SystemMapWindow();
         public static readonly PopulationAndProductionWindow PopulationAndProductionWindow = new PopulationAndProductionWindow();
         public static readonly TaskGroupsWindow TaskGroups = new TaskGroupsWindow();
-
     }
 }

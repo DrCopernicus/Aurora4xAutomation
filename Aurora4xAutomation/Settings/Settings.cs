@@ -70,6 +70,7 @@ namespace Aurora4xAutomation
         public static string ErrorMessage = "";
         public static string InterruptMessage = "";
         public static string FeedbackMessage = "";
+        public static string StatusMessage = "";
 
         public static int GameId = 18;
         public static int RaceId = 133;
