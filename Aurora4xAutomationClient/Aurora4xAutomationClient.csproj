@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7CA88EED-1D78-4D9D-A031-8A63F424FC03}</ProjectGuid>
+    <ProjectGuid>{134E7331-0C96-428D-8FE9-022FEFF1D996}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Aurora4xAutomationClient</RootNamespace>

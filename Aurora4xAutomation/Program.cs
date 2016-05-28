@@ -19,7 +19,7 @@ namespace Aurora4xAutomation
         {
             Settings.Research = Settings.ResearchFocuses["beamfocus"];
 
-            var server = new RESTServer();
+            var server = new RESTServer(host: "*");
             server.Start();
 
             while (server.IsListening)
