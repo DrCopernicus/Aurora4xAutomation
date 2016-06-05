@@ -1,4 +1,6 @@
-﻿namespace Aurora4xAutomation.UI
+﻿using Aurora4xAutomation.UI.Windows;
+
+namespace Aurora4xAutomation.UI
 {
     public static class UIMap
     {
