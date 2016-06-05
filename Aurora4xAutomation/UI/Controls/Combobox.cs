@@ -36,11 +36,19 @@ namespace Aurora4xAutomation.UI.Controls
 
         protected string ReadBox()
         {
-            var screen = new Bitmap(ScreenshotCapture.TakeScreenshot());
-
-            return OCRReader.ReadTableRow(
+            Screenshot.Dirty();
+            if (Highlighted)
+                return OCRReader.ReadTableRow(
                     PixelGetter.GetPixelsOfColor(
-                        screen,
+                        Left,
+                        Top + CharacterOffset,
+                        Right - Left,
+                        CharacterHeight,
+                        new []{new byte[]{255,255,255}}),
+                    OCRReader.Alphabet);
+            else
+                return OCRReader.ReadTableRow(
+                    PixelGetter.GetPixelsOfColor(
                         Left,
                         Top + CharacterOffset,
                         Right - Left,
@@ -53,6 +61,11 @@ namespace Aurora4xAutomation.UI.Controls
         {
             this.Click();
             this.Click((Right - Left) / 2, (Bottom - Top) / 2 + i * (Bottom - Top));
+        }
+
+        public bool Highlighted
+        {
+            get { return GetPixel(4, 4).EqualsColor(51, 153, 255); }
         }
     }
 }

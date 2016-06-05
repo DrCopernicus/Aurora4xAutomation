@@ -8,7 +8,7 @@ using Button = Aurora4xAutomation.UI.Controls.Button;
 using Label = Aurora4xAutomation.UI.Controls.Label;
 using RadioButton = Aurora4xAutomation.UI.Controls.RadioButton;
 
-namespace Aurora4xAutomation.UI
+namespace Aurora4xAutomation.UI.Windows
 {
     public class PopulationAndProductionWindow : Window
     {
@@ -82,10 +82,10 @@ namespace Aurora4xAutomation.UI
                 CharacterHeight = 9,
                 Colors = new[] {new byte[] {0, 0, 0}}
             };
-            Empire = new Combobox(this, left: 21, right: 344, top: 48, bottom: 64)
+            Empire = new Combobox(this, left: 19, right: 363, top: 46, bottom: 66)
             {
-                CharacterOffset = 4,
-                CharacterHeight = 9,
+                CharacterOffset = 6,
+                CharacterHeight = 11,
                 Colors = new[] {new byte[] {0, 0, 0}}
             };
             CurrentResearchProject = new Datagrid(this, left: 399, right: 1158, top: 193, bottom: 289)

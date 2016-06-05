@@ -1,4 +1,7 @@
-﻿namespace Aurora4xAutomation.UI.Controls
+﻿using System.Drawing;
+using Aurora4xAutomation.Common;
+
+namespace Aurora4xAutomation.UI.Controls
 {
     public class Control : IControl
     {
@@ -16,5 +19,10 @@
         public int Bottom { get; protected set; }
         public int Left { get; protected set; }
         public int Right { get; protected set; }
+
+        public Color GetPixel(int x, int y)
+        {
+            return PixelGetter.GetPixel(Left + x, Top + y);
+        }
     }
 }

@@ -30,5 +30,10 @@ namespace Aurora4xAutomation.Common
 
             return a.Contains(b);
         }
+
+        public static string[] SplitPath(this string path)
+        {
+            return path.Split('/');
+        }
     }
 }
