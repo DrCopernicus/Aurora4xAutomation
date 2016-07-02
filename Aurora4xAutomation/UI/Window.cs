@@ -16,73 +16,22 @@ namespace Aurora4xAutomation.UI
         public int Bottom { get; private set; }
         public int Left { get; private set; }
         public int Right { get; private set; }
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
-
-        [StructLayout(LayoutKind.Sequential)]
-        private struct RECT
-        {
-            public int Left;        // x position of upper-left corner
-            public int Top;         // y position of upper-left corner
-            public int Right;       // x position of lower-right corner
-            public int Bottom;      // y position of lower-right corner
-        }
-
-        public enum WMessages : int
-        {
-            WM_LBUTTONDOWN = 0x201,
-            WM_LBUTTONUP = 0x202,
-
-            WM_KEYDOWN = 0x100,
-            WM_KEYUP = 0x101,
-
-            WH_KEYBOARD_LL = 13,
-            WH_MOUSE_LL = 14,
-        }
-
-        private delegate bool EnumWindowsProc(IntPtr hWnd, int lParam);
-
-        [DllImport("USER32.DLL")]
-        private static extern bool EnumWindows(EnumWindowsProc enumFunc, int lParam);
-
-        [DllImport("USER32.DLL")]
-        private static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
-
-        [DllImport("USER32.DLL")]
-        private static extern int GetWindowTextLength(IntPtr hWnd);
-
-        [DllImport("USER32.DLL")]
-        private static extern bool IsWindowVisible(IntPtr hWnd);
-
-        [DllImport("USER32.DLL")]
-        private static extern IntPtr GetShellWindow();
-
-        [DllImport("user32.dll")]
-        static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
-        private static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll", EntryPoint = "PostMessage", CallingConvention = CallingConvention.Winapi)]
-        public static extern bool PostMessage(IntPtr hWnd, int msg, uint wParam, uint lParam);
         
         private static IDictionary<IntPtr, string> GetOpenWindows()
         {
-            var shellWindow = GetShellWindow();
+            var shellWindow = NativeMethods.GetShellWindow();
             var windows = new Dictionary<IntPtr, string>();
 
-            EnumWindows(delegate(IntPtr hWnd, int lParam)
+            NativeMethods.EnumWindows(delegate(IntPtr hWnd, int lParam)
             {
                 if (hWnd == shellWindow) return true;
-                if (!IsWindowVisible(hWnd)) return true;
+                if (!NativeMethods.IsWindowVisible(hWnd)) return true;
 
-                int length = GetWindowTextLength(hWnd);
+                int length = NativeMethods.GetWindowTextLength(hWnd);
                 if (length == 0) return true;
 
                 var builder = new StringBuilder(length);
-                GetWindowText(hWnd, builder, length + 1);
+                NativeMethods.GetWindowText(hWnd, builder, length + 1);
 
                 windows[hWnd] = builder.ToString();
                 return true;
@@ -92,7 +41,7 @@ namespace Aurora4xAutomation.UI
             return windows;
         }
 
-        public Window(string title)
+        protected Window(string title)
         {
             var window = GetOpenWindows().FirstOrDefault(x => x.Value.StartsWith(title));
 
@@ -109,8 +58,8 @@ namespace Aurora4xAutomation.UI
 
             var handle = window.Key;
 
-            RECT dimensions;
-            GetWindowRect(handle, out dimensions);
+            NativeMethods.RECT dimensions;
+            NativeMethods.GetWindowRect(handle, out dimensions);
 
             Handle = handle;
             Left = dimensions.Left;
@@ -125,7 +74,7 @@ namespace Aurora4xAutomation.UI
         {
             for (int i = 0; i < 12; i++)
             {
-                SetForegroundWindow(Handle);
+                NativeMethods.SetForegroundWindow(Handle);
                 if (WaitActive())
                 {
                     Screenshot.Dirty();
@@ -137,7 +86,7 @@ namespace Aurora4xAutomation.UI
 
         private bool WaitActive(int ms = 500, int times = 20)
         {
-            while (times > 0 && GetForegroundWindow() != Handle)
+            while (times > 0 && NativeMethods.GetForegroundWindow() != Handle)
             {
                 Thread.Sleep(ms);
                 times--;
@@ -147,9 +96,9 @@ namespace Aurora4xAutomation.UI
 
         protected string GetWindowText()
         {
-            var length = GetWindowTextLength(Handle);
+            var length = NativeMethods.GetWindowTextLength(Handle);
             var builder = new StringBuilder(length);
-            GetWindowText(Handle, builder, length + 1);
+            NativeMethods.GetWindowText(Handle, builder, length + 1);
 
             return builder.ToString();
         }

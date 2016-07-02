@@ -127,6 +127,7 @@
     <Compile Include="Tests\Sandbox.cs" />
     <Compile Include="Tests\UITests.cs" />
     <Compile Include="DB\AuroraDatabase.cs" />
+    <Compile Include="UI\NativeMethods.cs" />
     <Compile Include="UI\Windows\AuroraWrapperWindow.cs" />
     <Compile Include="UI\Windows\ConsoleWindow.cs" />
     <Compile Include="UI\Controls\Label.cs" />
