@@ -112,14 +112,10 @@
     <Compile Include="Events\MessageEventArgs.cs" />
     <Compile Include="Events\Time.cs" />
     <Compile Include="Events\Timeline.cs" />
-    <Compile Include="Game\AuroraGame.cs" />
-    <Compile Include="Game\Dirtyable.cs" />
-    <Compile Include="Game\Empire.cs" />
     <Compile Include="IO\IO.cs" />
     <Compile Include="IO\OCRReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="REST\Aurora\Empire\EmpireResources.cs" />
     <Compile Include="REST\CommandResources.cs" />
     <Compile Include="REST\Resources.cs" />
     <Compile Include="REST\Ticket.cs" />
