@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using Aurora4xAutomation.Events;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.DB
 {
@@ -17,7 +18,7 @@ namespace Aurora4xAutomation.DB
                 connection.Open();
             }
 
-            var data = QueryExecutor.Execute(string.Format("SELECT GameTime FROM Game WHERE GameID={0}", Settings.GameId), connection);
+            var data = QueryExecutor.Execute(string.Format("SELECT GameTime FROM Game WHERE GameID={0}", SettingsStore.GameId), connection);
             var time = data.Tables[0].Rows[0]["GameTime"];
 
             if (!previousConnection)
@@ -35,7 +36,7 @@ namespace Aurora4xAutomation.DB
                 connection.Open();
             }
 
-            var data = QueryExecutor.Execute(string.Format("SELECT EventType, MessageText FROM GameLog WHERE GameID={0} AND RaceID={1} AND Time>={2}", Settings.GameId, Settings.RaceId, time), connection);
+            var data = QueryExecutor.Execute(string.Format("SELECT EventType, MessageText FROM GameLog WHERE GameID={0} AND RaceID={1} AND Time>={2}", SettingsStore.GameId, SettingsStore.RaceId, time), connection);
             var list = new List<AuroraEventEntry>();
             foreach (DataRow row in data.Tables[0].Rows)
                 list.Add(new AuroraEventEntry((int) row["EventType"], (string) row["MessageText"]));

@@ -1,4 +1,5 @@
 using System;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Command
 {
@@ -6,7 +7,7 @@ namespace Aurora4xAutomation.Command
     {
         public static void Stop(object sender, EventArgs e)
         {
-            Settings.Stopped = true;
+            SettingsStore.Stopped = true;
         }
     }
 }

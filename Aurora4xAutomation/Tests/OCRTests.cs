@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Aurora4xAutomation.OCR;
+using Aurora4xAutomation.IO;
 using NUnit.Framework;
 
 namespace Aurora4xAutomation.Tests

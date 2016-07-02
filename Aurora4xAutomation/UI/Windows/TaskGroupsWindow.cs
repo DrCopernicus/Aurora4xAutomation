@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
 
-namespace Aurora4xAutomation.UI
+namespace Aurora4xAutomation.UI.Windows
 {
     public class TaskGroupsWindow : Window
     {

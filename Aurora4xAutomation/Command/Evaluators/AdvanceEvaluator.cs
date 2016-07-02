@@ -1,4 +1,5 @@
 ﻿using System;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Command.Evaluators
 {
@@ -18,52 +19,52 @@ namespace Aurora4xAutomation.Command.Evaluators
             switch (Parameters[0])
             {
                 case "go":
-                    Settings.Stopped = false;
+                    SettingsStore.Stopped = false;
                     break;
                 case "stop":
-                    Settings.Stopped = true;
+                    SettingsStore.Stopped = true;
                     break;
                 case "off":
-                    Settings.AutoTurnsOn = false;
+                    SettingsStore.AutoTurnsOn = false;
                     break;
                 case "on":
-                    Settings.AutoTurnsOn = true;
+                    SettingsStore.AutoTurnsOn = true;
                     break;
                 case "5s":
-                    Settings.Increment = Settings.IncrementLength.FiveSecond;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.FiveSecond;
                     break;
                 case "30s":
-                    Settings.Increment = Settings.IncrementLength.ThirtySecond;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.ThirtySecond;
                     break;
                 case "2m":
-                    Settings.Increment = Settings.IncrementLength.TwoMinute;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.TwoMinute;
                     break;
                 case "5m":
-                    Settings.Increment = Settings.IncrementLength.FiveMinute;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.FiveMinute;
                     break;
                 case "20m":
-                    Settings.Increment = Settings.IncrementLength.TwentyMinute;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.TwentyMinute;
                     break;
                 case "1h":
-                    Settings.Increment = Settings.IncrementLength.OneHour;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.OneHour;
                     break;
                 case "3h":
-                    Settings.Increment = Settings.IncrementLength.ThreeHour;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.ThreeHour;
                     break;
                 case "8h":
-                    Settings.Increment = Settings.IncrementLength.EightHour;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.EightHour;
                     break;
                 case "1d":
-                    Settings.Increment = Settings.IncrementLength.OneDay;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.OneDay;
                     break;
                 case "5d":
-                    Settings.Increment = Settings.IncrementLength.FiveDay;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.FiveDay;
                     break;
                 case "30d":
-                    Settings.Increment = Settings.IncrementLength.ThirtyDay;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.ThirtyDay;
                     break;
                 default:
-                    Settings.Increment = Settings.IncrementLength.FiveDay;
+                    SettingsStore.Increment = SettingsStore.IncrementLength.FiveDay;
                     break;
             }
         }

@@ -4,7 +4,7 @@ using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.UI.Controls;
 
-namespace Aurora4xAutomation.UI
+namespace Aurora4xAutomation.UI.Windows
 {
     public class CommandersWindow : Window
     {

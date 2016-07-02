@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Aurora4xAutomation.Common;
 
-namespace Aurora4xAutomation
+namespace Aurora4xAutomation.Settings
 {
-    public static class Settings
+    public static class SettingsStore
     {
         public enum IncrementLength
         {

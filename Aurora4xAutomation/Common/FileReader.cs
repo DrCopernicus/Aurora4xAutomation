@@ -10,7 +10,7 @@ namespace Aurora4xAutomation.Common
         public static Dictionary<string, string> ReadSettingsFile(string path)
         {
             string cd = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string[] lines = File.ReadAllLines(Path.Combine(cd, @"Settings\" + path));
+            string[] lines = File.ReadAllLines(Path.Combine(cd, @"SettingsStore\" + path));
             
             var dict = new Dictionary<string, string>();
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Aurora4xAutomation.OCR
+namespace Aurora4xAutomation.IO
 {
     public static class OCRReader
     {

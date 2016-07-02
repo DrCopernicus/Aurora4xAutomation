@@ -5,6 +5,7 @@ using System.Threading;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
+using Aurora4xAutomation.Settings;
 using Aurora4xAutomation.UI;
 using MoreLinq;
 
@@ -29,9 +30,9 @@ namespace Aurora4xAutomation.Command
 
         public static void FocusResearch(string category)
         {
-            Settings.Research.Clear();
-            foreach (var ban in Settings.ResearchFocuses[category])
-                Settings.Research.Add(ban.Key, ban.Value);
+            SettingsStore.Research.Clear();
+            foreach (var ban in SettingsStore.ResearchFocuses[category])
+                SettingsStore.Research.Add(ban.Key, ban.Value);
         }
 
         public static void BanResearch(string topic)
@@ -119,7 +120,7 @@ namespace Aurora4xAutomation.Command
         private bool SelectTargetedScience(List<string[]> research, List<string[]> scientists)
         {
             var totalScientists = scientists.Count(x => x[0] != "");
-            foreach (var searchFor in Settings.Research)
+            foreach (var searchFor in SettingsStore.Research)
             {
                 var sci = scientists.Where(x => x[0] != "" && x[1] == searchFor.Value).ToList();
                 if (!sci.Any())
@@ -211,10 +212,10 @@ namespace Aurora4xAutomation.Command
                 UIMap.PopulationAndProductionWindow.Populations.Select("Earth");
                 UIMap.PopulationAndProductionWindow.SelectResearchTab();
                 var numLabs = int.Parse(UIMap.PopulationAndProductionWindow.NumberOfLabs.Text);
-                if (numScientists*Settings.MinLabsPerScientist >= numLabs)
+                if (numScientists*SettingsStore.MinLabsPerScientist >= numLabs)
                     InfrastructureCommands.BuildInstallation("Earth", "lab", "1");
             }
-            Timeline.AddEvent(CheckNumberOfLabs, "", new Time(UIMap.SystemMap.GetTime()) + new Time(0, 0, Settings.DaysPerLabsCheck, 0, 0, 0));
+            Timeline.AddEvent(CheckNumberOfLabs, "", new Time(UIMap.SystemMap.GetTime()) + new Time(0, 0, SettingsStore.DaysPerLabsCheck, 0, 0, 0));
         }
     }
 }

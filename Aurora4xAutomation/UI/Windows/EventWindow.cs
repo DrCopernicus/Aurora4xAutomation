@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Button = Aurora4xAutomation.UI.Controls.Button;
 
-namespace Aurora4xAutomation.UI
+namespace Aurora4xAutomation.UI.Windows
 {
     public class EventWindow : Window
     {

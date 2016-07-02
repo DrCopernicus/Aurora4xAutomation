@@ -3,6 +3,7 @@ using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
+using Aurora4xAutomation.Settings;
 using Aurora4xAutomation.UI;
 using Grapevine.Server;
 
@@ -17,7 +18,7 @@ namespace Aurora4xAutomation
 
         public Program()
         {
-            Settings.Research = Settings.ResearchFocuses["beamfocus"];
+            SettingsStore.Research = SettingsStore.ResearchFocuses["beamfocus"];
 
             var server = new RESTServer(host: "*");
             server.Start();
@@ -26,19 +27,19 @@ namespace Aurora4xAutomation
             {
                 ActOnActiveTimelineEntries();
 
-                if (!Settings.Stopped)
+                if (!SettingsStore.Stopped)
                 {
                     ParseEvents();
 
-                    if (!Settings.Stopped)
+                    if (!SettingsStore.Stopped)
                         TurnCommands.AdvanceTurn(this, EventArgs.Empty);
 
-                    if (!Settings.AutoTurnsOn)
+                    if (!SettingsStore.AutoTurnsOn)
                         Timeline.AddEvent(SettingsCommands.Stop);
                 }
                 else
                 {
-                    Settings.StatusMessage = "Waiting for user input";
+                    SettingsStore.StatusMessage = "Waiting for user input";
                 }
 
                 Sleeper.Sleep(2000);
@@ -50,7 +51,7 @@ namespace Aurora4xAutomation
             Console.Clear();
             Console.Write("[{0,20}]", IncrementString);
             Console.ForegroundColor = ConsoleColor.Black;
-            if (Settings.AutoTurnsOn)
+            if (SettingsStore.AutoTurnsOn)
             {
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
                 Console.Write("[{0}]", "AUTOTURNS  ENABLED");
@@ -62,19 +63,19 @@ namespace Aurora4xAutomation
             }
             Console.ResetColor();
             Console.WriteLine();
-            Console.WriteLine(Settings.FeedbackMessage);
+            Console.WriteLine(SettingsStore.FeedbackMessage);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(Settings.InterruptMessage);
+            Console.WriteLine(SettingsStore.InterruptMessage);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(Settings.ErrorMessage == "" ? "" : "\n\n" + Settings.ErrorMessage);
+            Console.WriteLine(SettingsStore.ErrorMessage == "" ? "" : "\n\n" + SettingsStore.ErrorMessage);
             Console.ForegroundColor = ConsoleColor.White;
         }
 
         private void ParseEvents()
         {
-            Settings.StatusMessage = "Parsing events log";
+            SettingsStore.StatusMessage = "Parsing events log";
             UIMap.EventWindow.MakeActive();
-            if (Settings.DatabasePassword == null)
+            if (SettingsStore.DatabasePassword == null)
                 EventParser.ParseUsingEventWindow(UIMap.SystemMap.GetTime());
             else
                 EventParser.ParseUsingDatabase();
@@ -98,7 +99,7 @@ namespace Aurora4xAutomation
 
         private void ActOnActiveTimelineEntries()
         {
-            Settings.StatusMessage = "Evaluating events";
+            SettingsStore.StatusMessage = "Evaluating events";
             AuroraEvent ev;
             while ((ev = Timeline.NextActiveEvent) != null)
                 ev.Invoke();
@@ -108,29 +109,29 @@ namespace Aurora4xAutomation
         {
             get
             {
-                switch (Settings.Increment)
+                switch (SettingsStore.Increment)
                 {
-                    case Settings.IncrementLength.FiveSecond:
+                    case SettingsStore.IncrementLength.FiveSecond:
                         return "5 Seconds";
-                    case Settings.IncrementLength.ThirtySecond:
+                    case SettingsStore.IncrementLength.ThirtySecond:
                         return "30 Seconds";
-                    case Settings.IncrementLength.TwoMinute:
+                    case SettingsStore.IncrementLength.TwoMinute:
                         return "2 Minutes";
-                    case Settings.IncrementLength.FiveMinute:
+                    case SettingsStore.IncrementLength.FiveMinute:
                         return "5 Minutes";
-                    case Settings.IncrementLength.TwentyMinute:
+                    case SettingsStore.IncrementLength.TwentyMinute:
                         return "20 Minutes";
-                    case Settings.IncrementLength.OneHour:
+                    case SettingsStore.IncrementLength.OneHour:
                         return "1 Hour";
-                    case Settings.IncrementLength.ThreeHour:
+                    case SettingsStore.IncrementLength.ThreeHour:
                         return "3 Hours";
-                    case Settings.IncrementLength.EightHour:
+                    case SettingsStore.IncrementLength.EightHour:
                         return "8 Hours";
-                    case Settings.IncrementLength.OneDay:
+                    case SettingsStore.IncrementLength.OneDay:
                         return "1 Day";
-                    case Settings.IncrementLength.FiveDay:
+                    case SettingsStore.IncrementLength.FiveDay:
                         return "5 Days";
-                    case Settings.IncrementLength.ThirtyDay:
+                    case SettingsStore.IncrementLength.ThirtyDay:
                         return "30 Days";
                     default:
                         return "INCORRECT INCREMENT LENGTH";

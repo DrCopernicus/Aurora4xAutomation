@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aurora4xAutomation.UI
+namespace Aurora4xAutomation.UI.Windows
 {
     public class ConsoleWindow : Window
     {

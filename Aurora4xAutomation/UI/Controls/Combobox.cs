@@ -2,7 +2,6 @@
 using WindowsInput.Native;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO;
-using Aurora4xAutomation.OCR;
 using Pranas;
 
 namespace Aurora4xAutomation.UI.Controls

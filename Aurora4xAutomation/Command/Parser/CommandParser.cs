@@ -1,6 +1,7 @@
 ﻿using System;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
+using Aurora4xAutomation.Settings;
 using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation.Command.Parser
@@ -26,7 +27,7 @@ namespace Aurora4xAutomation.Command.Parser
                 ResearchCommands.ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
 
             else if (choice.Matches("^adv(ance)? [0-9]*[a-z]+"))
-                Settings.Increment = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
+                SettingsStore.Increment = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
 
             else if (choice.Matches("^b(uild)? ship [0-9]+ [0-9]+$"))
             {
@@ -63,53 +64,53 @@ namespace Aurora4xAutomation.Command.Parser
                 ResearchCommands.BanResearch(choice.Split(' ')[3]);
 
             else if (choice.Matches("^auto research on$"))
-                Settings.AutoResearchOn = true;
+                SettingsStore.AutoResearchOn = true;
 
             else if (choice.Matches("^auto research off$"))
-                Settings.AutoResearchOn = false;
+                SettingsStore.AutoResearchOn = false;
 
             else if (choice.Matches("^clear$"))
             {
-                Settings.FeedbackMessage = "";
-                Settings.InterruptMessage = "";
-                Settings.ErrorMessage = "";
+                SettingsStore.FeedbackMessage = "";
+                SettingsStore.InterruptMessage = "";
+                SettingsStore.ErrorMessage = "";
             }
         }
 
-        private static Settings.IncrementLength GetIncrementFromAbbreviation(string s)
+        private static SettingsStore.IncrementLength GetIncrementFromAbbreviation(string s)
         {
             switch (s)
             {
                 case "off":
-                    Settings.AutoTurnsOn = false;
-                    return Settings.Increment;
+                    SettingsStore.AutoTurnsOn = false;
+                    return SettingsStore.Increment;
                 case "on":
-                    Settings.AutoTurnsOn = true;
-                    return Settings.Increment;
+                    SettingsStore.AutoTurnsOn = true;
+                    return SettingsStore.Increment;
                 case "5s":
-                    return Settings.IncrementLength.FiveSecond;
+                    return SettingsStore.IncrementLength.FiveSecond;
                 case "30s":
-                    return Settings.IncrementLength.ThirtySecond;
+                    return SettingsStore.IncrementLength.ThirtySecond;
                 case "2m":
-                    return Settings.IncrementLength.TwoMinute;
+                    return SettingsStore.IncrementLength.TwoMinute;
                 case "5m":
-                    return Settings.IncrementLength.FiveMinute;
+                    return SettingsStore.IncrementLength.FiveMinute;
                 case "20m":
-                    return Settings.IncrementLength.TwentyMinute;
+                    return SettingsStore.IncrementLength.TwentyMinute;
                 case "1h":
-                    return Settings.IncrementLength.OneHour;
+                    return SettingsStore.IncrementLength.OneHour;
                 case "3h":
-                    return Settings.IncrementLength.ThreeHour;
+                    return SettingsStore.IncrementLength.ThreeHour;
                 case "8h":
-                    return Settings.IncrementLength.EightHour;
+                    return SettingsStore.IncrementLength.EightHour;
                 case "1d":
-                    return Settings.IncrementLength.OneDay;
+                    return SettingsStore.IncrementLength.OneDay;
                 case "5d":
-                    return Settings.IncrementLength.FiveDay;
+                    return SettingsStore.IncrementLength.FiveDay;
                 case "30d":
-                    return Settings.IncrementLength.ThirtyDay;
+                    return SettingsStore.IncrementLength.ThirtyDay;
                 default:
-                    return Settings.IncrementLength.FiveDay;
+                    return SettingsStore.IncrementLength.FiveDay;
             }
         }
     }

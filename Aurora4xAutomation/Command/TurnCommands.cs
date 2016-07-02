@@ -1,4 +1,5 @@
 using System;
+using Aurora4xAutomation.Settings;
 using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation.Command
@@ -10,39 +11,39 @@ namespace Aurora4xAutomation.Command
             UIMap.PopulationAndProductionWindow.Dirty();
 
             UIMap.SystemMap.MakeActive();
-            switch (Settings.Increment)
+            switch (SettingsStore.Increment)
             {
-                case Settings.IncrementLength.FiveSecond:
+                case SettingsStore.IncrementLength.FiveSecond:
                     UIMap.SystemMap.ClickIncrement5SecondsButton();
                     break;
-                case Settings.IncrementLength.ThirtySecond:
+                case SettingsStore.IncrementLength.ThirtySecond:
                     UIMap.SystemMap.ClickIncrement30SecondsButton();
                     break;
-                case Settings.IncrementLength.TwoMinute:
+                case SettingsStore.IncrementLength.TwoMinute:
                     UIMap.SystemMap.ClickIncrement2MinutesButton();
                     break;
-                case Settings.IncrementLength.FiveMinute:
+                case SettingsStore.IncrementLength.FiveMinute:
                     UIMap.SystemMap.ClickIncrement5MinutesButton();
                     break;
-                case Settings.IncrementLength.TwentyMinute:
+                case SettingsStore.IncrementLength.TwentyMinute:
                     UIMap.SystemMap.ClickIncrement20MinutesButton();
                     break;
-                case Settings.IncrementLength.OneHour:
+                case SettingsStore.IncrementLength.OneHour:
                     UIMap.SystemMap.ClickIncrement1HoursButton();
                     break;
-                case Settings.IncrementLength.ThreeHour:
+                case SettingsStore.IncrementLength.ThreeHour:
                     UIMap.SystemMap.ClickIncrement3HoursButton();
                     break;
-                case Settings.IncrementLength.EightHour:
+                case SettingsStore.IncrementLength.EightHour:
                     UIMap.SystemMap.ClickIncrement8HoursButton();
                     break;
-                case Settings.IncrementLength.OneDay:
+                case SettingsStore.IncrementLength.OneDay:
                     UIMap.SystemMap.ClickIncrement1DayButton();
                     break;
-                case Settings.IncrementLength.FiveDay:
+                case SettingsStore.IncrementLength.FiveDay:
                     UIMap.SystemMap.ClickIncrement5DaysButton();
                     break;
-                case Settings.IncrementLength.ThirtyDay:
+                case SettingsStore.IncrementLength.ThirtyDay:
                     UIMap.SystemMap.ClickIncrement30DaysButton();
                     break;
             }

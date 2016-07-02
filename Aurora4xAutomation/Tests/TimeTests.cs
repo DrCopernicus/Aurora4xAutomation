@@ -1,5 +1,4 @@
 ﻿using Aurora4xAutomation.Events;
-using Aurora4xAutomation.OCR;
 using NUnit.Framework;
 
 namespace Aurora4xAutomation.Tests

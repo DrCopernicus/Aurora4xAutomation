@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Aurora4xAutomation.IO;
 
-namespace Aurora4xAutomation.UI
+namespace Aurora4xAutomation.UI.Windows
 {
     public class SystemMapWindow : Window
     {

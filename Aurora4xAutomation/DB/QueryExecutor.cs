@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.OleDb;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.DB
 {
@@ -7,7 +8,7 @@ namespace Aurora4xAutomation.DB
     {
         public static OleDbConnection GetConnection()
         {
-            var accessConnStr = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\prog\Aurora\Aurora_latest\Aurora\Stevefire.mdb;Jet OLEDB:Database Password={0}", Settings.DatabasePassword);
+            var accessConnStr = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\prog\Aurora\Aurora_latest\Aurora\Stevefire.mdb;Jet OLEDB:Database Password={0}", SettingsStore.DatabasePassword);
             return new OleDbConnection(accessConnStr);
         }
 
