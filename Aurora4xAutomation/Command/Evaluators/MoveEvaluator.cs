@@ -5,8 +5,8 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class MoveEvaluator : Evaluator
     {
-        public MoveEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public MoveEvaluator(string text)
+            : base(text)
         {
         }
 

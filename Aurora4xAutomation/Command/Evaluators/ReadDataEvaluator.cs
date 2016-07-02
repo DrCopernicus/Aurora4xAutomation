@@ -6,8 +6,8 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class ReadDataEvaluator : Evaluator
     {
-        public ReadDataEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public ReadDataEvaluator(string text)
+            : base(text)
         {
         }
 

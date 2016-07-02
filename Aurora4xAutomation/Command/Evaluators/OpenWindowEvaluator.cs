@@ -6,8 +6,8 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class OpenWindowEvaluator : Evaluator
     {
-        public OpenWindowEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public OpenWindowEvaluator(string text)
+            : base(text)
         {
         }
 

@@ -6,9 +6,14 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class TimerEvaluator : Evaluator
     {
-        public TimerEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public TimerEvaluator(string text)
+            : base(text)
         {
+        }
+
+        public override CommandEvaluatorType GetEvaluatorType()
+        {
+            return CommandEvaluatorType.Timer;
         }
 
         protected override void Evaluate()

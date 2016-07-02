@@ -6,8 +6,8 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class StopEvaluator : Evaluator
     {
-        public StopEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public StopEvaluator(string text)
+            : base(text)
         {
         }
 

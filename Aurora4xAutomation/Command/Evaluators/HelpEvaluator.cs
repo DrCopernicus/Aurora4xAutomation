@@ -1,14 +1,18 @@
 ﻿using System;
-using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.Events;
 
 namespace Aurora4xAutomation.Command.Evaluators
 {
     public class HelpEvaluator : Evaluator
     {
-        public HelpEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public HelpEvaluator(string text)
+            : base(text)
         {
+        }
+
+        public override CommandEvaluatorType GetEvaluatorType()
+        {
+            return CommandEvaluatorType.Help;
         }
 
         protected override void Evaluate()

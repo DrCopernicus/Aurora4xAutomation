@@ -6,8 +6,8 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class BuildInstallationEvaluator : Evaluator
     {
-        public BuildInstallationEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public BuildInstallationEvaluator(string text)
+            : base(text)
         {
         }
 

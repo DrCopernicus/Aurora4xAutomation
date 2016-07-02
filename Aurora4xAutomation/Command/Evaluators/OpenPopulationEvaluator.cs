@@ -5,13 +5,13 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class OpenPopulationEvaluator : Evaluator
     {
-        public OpenPopulationEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public OpenPopulationEvaluator(string text)
+            : base(text)
         {
         }
 
         public OpenPopulationEvaluator(params string[] parameters)
-            : base("open-pop", CommandEvaluatorType.Action, parameters)
+            : base("open-pop", parameters)
         {
             
         }

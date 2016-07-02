@@ -6,8 +6,8 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class PrintEvaluator : Evaluator
     {
-        public PrintEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public PrintEvaluator(string text)
+            : base(text)
         {
         }
 

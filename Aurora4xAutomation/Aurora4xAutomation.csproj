@@ -121,6 +121,8 @@
     <Compile Include="REST\Ticket.cs" />
     <Compile Include="REST\TicketManager.cs" />
     <Compile Include="Settings\SettingsStore.cs" />
+    <Compile Include="Tests\LexerTests.cs" />
+    <Compile Include="Tests\ParserTests.cs" />
     <Compile Include="Tests\ListTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\OCRTests.cs" />

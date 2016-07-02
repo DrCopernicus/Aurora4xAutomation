@@ -6,8 +6,8 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class ContractEvaluator : Evaluator
     {
-        public ContractEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public ContractEvaluator(string text)
+            : base(text)
         {
         }
 

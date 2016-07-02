@@ -13,30 +13,33 @@ namespace Aurora4xAutomation.Command.Evaluators
 
     public abstract class Evaluator
     {
-        protected Evaluator(string text, CommandEvaluatorType type)
+        protected Evaluator(string text)
         {
             Text = text;
-            Type = type;
             Body = null;
             Next = null;
         }
 
-        protected Evaluator(string text, CommandEvaluatorType type, params string[] parameters)
-            : this(text, type)
+        protected Evaluator(string text, params string[] parameters)
+            : this(text)
         {
-            Body = new ParameterEvaluator(parameters[0], CommandEvaluatorType.Parameter, parameters.Subset(1));
+            Body = new ParameterEvaluator(parameters[0], parameters.Subset(1));
         }
 
         protected Evaluator(params string[] parameters)
-            : this("default", CommandEvaluatorType.Action, parameters)
+            : this("default", parameters)
         {
 
         }
 
         public string Text { get; private set; }
-        public CommandEvaluatorType Type { get; private set; }
         public Evaluator Body { get; set; }
         public Evaluator Next { get; set; }
+
+        public virtual CommandEvaluatorType GetEvaluatorType()
+        {
+            return CommandEvaluatorType.Action;
+        }
 
         protected abstract void Evaluate();
 

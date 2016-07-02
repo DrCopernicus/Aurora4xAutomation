@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Aurora4xAutomation.Command.Evaluators;
 
 namespace Aurora4xAutomation.Command.Parser
@@ -116,7 +117,7 @@ namespace Aurora4xAutomation.Command.Parser
             if (token.Type != CommandTokenType.Text)
                 throw new Exception("Failed to parse Timer token correctly: Expected Text");
 
-            var eval = new TimerEvaluator(token.Text, CommandEvaluatorType.Timer);
+            var eval = new TimerEvaluator(token.Text);
 
             token = GetNext(ref command);
             if (token.Type != CommandTokenType.RightParenthesis)
@@ -145,8 +146,8 @@ namespace Aurora4xAutomation.Command.Parser
             if (token.Type != CommandTokenType.Text)
                 throw new Exception("Failed to parse Action token correctly: Expected Text");
 
-            var eval = TextToCommand(token.Text, CommandEvaluatorType.Action);
-            if (eval.Type == CommandEvaluatorType.Help)
+            var eval = TextToCommand(token.Text);
+            if (eval.GetEvaluatorType() == CommandEvaluatorType.Help)
                 eval.Body = HelpParameter(ref command);
             else
                 eval.Body = Parameters(ref command);
@@ -162,7 +163,7 @@ namespace Aurora4xAutomation.Command.Parser
                 UngetToken(ref command, token);
                 return null;
             }
-            return TextToCommand(token.Text, CommandEvaluatorType.Action);
+            return TextToCommand(token.Text);
         }
 
         private static Evaluator Parameters(ref string command)
@@ -173,41 +174,37 @@ namespace Aurora4xAutomation.Command.Parser
                 UngetToken(ref command, token);
                 return null;
             }
-            var eval = new ParameterEvaluator(token.Text, CommandEvaluatorType.Parameter);
+            var eval = new ParameterEvaluator(token.Text);
             eval.Next = Parameters(ref command);
 
             return eval;
         }
 
-        private static Evaluator TextToCommand(string text, CommandEvaluatorType type)
+        private static Evaluator TextToCommand(string text)
         {
-            switch (text)
-            {
-                case "adv":
-                    return new AdvanceEvaluator(text, type);
-                case "build-installation":
-                    return new BuildInstallationEvaluator(text, type);
-                case "contract":
-                    return new ContractEvaluator(text, type);
-                case "help":
-                    return new HelpEvaluator(text, CommandEvaluatorType.Help);
-                case "move":
-                    return new MoveEvaluator(text, type);
-                case "open":
-                    return new OpenWindowEvaluator(text, type);
-                case "print":
-                    return new PrintEvaluator(text, type);
-                case "read":
-                    return new ReadDataEvaluator(text, type);
-                case "set-pop":
-                    return new SetPopulationEvaluator(text, type);
-                case "open-pop":
-                    return new OpenPopulationEvaluator(text, type);
-                case "stop":
-                    return new StopEvaluator(text, type);
-                default:
+                try
+                {
+                    return (Evaluator) Activator.CreateInstance(TextRepresentationOfCommands[text], text);
+                }
+                catch (Exception)
+                {
                     throw new Exception(string.Format("Did not recognize command {0}.", text));
-            }
+                }
         }
+
+        private static readonly Dictionary<string, Type> TextRepresentationOfCommands = new Dictionary<string, Type>
+        {
+            {"adv", typeof(AdvanceEvaluator)},
+            {"build-installation", typeof(BuildInstallationEvaluator)},
+            {"contract", typeof(ContractEvaluator)},
+            {"help", typeof(HelpEvaluator)},
+            {"move", typeof(MoveEvaluator)},
+            {"open", typeof(OpenWindowEvaluator)},
+            {"print", typeof(PrintEvaluator)},
+            {"read", typeof(ReadDataEvaluator)},
+            {"set-pop", typeof(SetPopulationEvaluator)},
+            {"open-pop", typeof(OpenPopulationEvaluator)},
+            {"stop", typeof(StopEvaluator)},
+        };
     }
 }

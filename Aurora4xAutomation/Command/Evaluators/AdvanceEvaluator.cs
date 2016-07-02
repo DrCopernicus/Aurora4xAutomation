@@ -5,8 +5,8 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class AdvanceEvaluator : Evaluator
     {
-        public AdvanceEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public AdvanceEvaluator(string text)
+            : base(text)
         {
         }
 

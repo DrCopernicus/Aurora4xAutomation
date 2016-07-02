@@ -6,8 +6,8 @@ namespace Aurora4xAutomation.Command.Evaluators
 {
     public class SetPopulationEvaluator : Evaluator
     {
-        public SetPopulationEvaluator(string text, CommandEvaluatorType type)
-            : base(text, type)
+        public SetPopulationEvaluator(string text)
+            : base(text)
         {
         }
 
