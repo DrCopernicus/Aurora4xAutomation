@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
+using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.UI
@@ -27,7 +26,7 @@ namespace Aurora4xAutomation.UI
                 if (hWnd == shellWindow) return true;
                 if (!NativeMethods.IsWindowVisible(hWnd)) return true;
 
-                int length = NativeMethods.GetWindowTextLength(hWnd);
+                var length = NativeMethods.GetWindowTextLength(hWnd);
                 if (length == 0) return true;
 
                 var builder = new StringBuilder(length);
@@ -43,20 +42,7 @@ namespace Aurora4xAutomation.UI
 
         protected Window(string title)
         {
-            var window = GetOpenWindows().FirstOrDefault(x => x.Value.StartsWith(title));
-
-            if (window.Value == null)
-            {
-                OpenIfNotFound();
-                Thread.Sleep(500);
-            }
-
-            window = GetOpenWindows().FirstOrDefault(x => x.Value.StartsWith(title));
-
-            if (window.Value == null)
-                throw new Exception(string.Format("{0} window not found!", title));
-
-            var handle = window.Key;
+            var handle = AttemptToOpenWindow(title);
 
             NativeMethods.RECT dimensions;
             NativeMethods.GetWindowRect(handle, out dimensions);
@@ -68,11 +54,29 @@ namespace Aurora4xAutomation.UI
             Bottom = dimensions.Bottom;
         }
 
+        private IntPtr AttemptToOpenWindow(string title)
+        {
+            var window = GetOpenWindows().FirstOrDefault(x => x.Value.StartsWith(title));
+
+            if (window.Value == null)
+            {
+                OpenIfNotFound();
+                Sleeper.Sleep(500);
+            }
+
+            window = GetOpenWindows().FirstOrDefault(x => x.Value.StartsWith(title));
+
+            if (window.Value == null)
+                throw new Exception(string.Format("{0} window not found!", title));
+
+            return window.Key;
+        }
+
         protected abstract void OpenIfNotFound();
         
         public void MakeActive()
         {
-            for (int i = 0; i < 12; i++)
+            for (var i = 0; i < 12; i++)
             {
                 NativeMethods.SetForegroundWindow(Handle);
                 if (WaitActive())
@@ -88,7 +92,7 @@ namespace Aurora4xAutomation.UI
         {
             while (times > 0 && NativeMethods.GetForegroundWindow() != Handle)
             {
-                Thread.Sleep(ms);
+                Sleeper.Sleep(ms);
                 times--;
             }
             return times > 0;
