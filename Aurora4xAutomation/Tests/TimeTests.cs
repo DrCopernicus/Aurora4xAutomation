@@ -1,4 +1,6 @@
-﻿using Aurora4xAutomation.Events;
+﻿using System;
+using System.Collections.Generic;
+using Aurora4xAutomation.Events;
 using NUnit.Framework;
 
 namespace Aurora4xAutomation.Tests
@@ -87,6 +89,14 @@ namespace Aurora4xAutomation.Tests
             Assert.IsTrue(time1 != time2);
             Assert.IsTrue(time4 == time2);
             Assert.IsTrue(time7 == time6);
+        }
+
+        [Test]
+        public void TestIncorrectMonths()
+        {
+            Assert.Throws(typeof(KeyNotFoundException), () => new Time("29th Undecimber 2035 05:10"));
+            Assert.Throws(typeof(KeyNotFoundException), () => new Time("80th Feburary 2035 05:10"));
+            Assert.Throws(typeof(KeyNotFoundException), () => new Time("1st Minnesota 2035 05:10"));
         }
     }
 }

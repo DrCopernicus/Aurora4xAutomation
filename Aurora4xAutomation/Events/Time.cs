@@ -1,10 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace Aurora4xAutomation.Events
 {
     public class Time
     {
+        private static readonly Dictionary<string, int> MonthStringToInt = new Dictionary<string, int>
+        {
+            {"january", 1},
+            {"february", 2},
+            {"march", 3},
+            {"april", 4},
+            {"may", 5},
+            {"june", 6},
+            {"july", 7},
+            {"august", 8},
+            {"september", 9},
+            {"october", 10},
+            {"november", 11},
+            {"december", 12}
+        };
+
         public Time()
         {
             Unparsed = "";
@@ -32,30 +49,7 @@ namespace Aurora4xAutomation.Events
             Unparsed = unparsed;
             var groups = new Regex("([0-9]+)(st|nd|rd|th) ([a-zA-Z]+) ([0-9]+) ([0-9]+):([0-9]+)(:([0-9]+))?").Match(unparsed).Groups;
             Year = int.Parse(groups[4].Value);
-            Month = groups[3].Value == "January"
-                ? 1
-                : groups[3].Value == "February"
-                    ? 2
-                    : groups[3].Value == "March"
-                        ? 3
-                        : groups[3].Value == "April"
-                            ? 4
-                            : groups[3].Value == "May"
-                                ? 5
-                                : groups[3].Value == "June"
-                                    ? 6
-                                    : groups[3].Value == "July"
-                                        ? 7
-                                        : groups[3].Value == "August"
-                                            ? 8
-                                            : groups[3].Value == "September"
-                                                ? 9
-                                                : groups[3].Value == "October"
-                                                    ? 10
-                                                    : groups[3].Value == "November"
-                                                        ? 11
-                                                        : groups[3].Value == "December"
-                                                            ? 12 : -1;
+            Month = MonthStringToInt[groups[3].Value.ToLower()];
             Day = int.Parse(groups[1].Value);
             Hour = int.Parse(groups[5].Value);
             Minute = int.Parse(groups[6].Value);
