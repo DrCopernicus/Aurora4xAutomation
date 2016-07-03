@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Command.Evaluators
@@ -30,44 +31,34 @@ namespace Aurora4xAutomation.Command.Evaluators
                 case "on":
                     SettingsStore.AutoTurnsOn = true;
                     break;
-                case "5s":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.FiveSecond;
-                    break;
-                case "30s":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.ThirtySecond;
-                    break;
-                case "2m":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.TwoMinute;
-                    break;
-                case "5m":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.FiveMinute;
-                    break;
-                case "20m":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.TwentyMinute;
-                    break;
-                case "1h":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.OneHour;
-                    break;
-                case "3h":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.ThreeHour;
-                    break;
-                case "8h":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.EightHour;
-                    break;
-                case "1d":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.OneDay;
-                    break;
-                case "5d":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.FiveDay;
-                    break;
-                case "30d":
-                    SettingsStore.Increment = SettingsStore.IncrementLength.ThirtyDay;
-                    break;
                 default:
-                    SettingsStore.Increment = SettingsStore.IncrementLength.FiveDay;
+                    try
+                    {
+                        SettingsStore.Increment = _incrementLengthStringRepresentations[Parameters[0]];
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        SettingsStore.Increment = SettingsStore.IncrementLength.FiveDay;
+                    }
                     break;
             }
         }
+
+        private readonly Dictionary<string, SettingsStore.IncrementLength> _incrementLengthStringRepresentations = new Dictionary
+            <string, SettingsStore.IncrementLength>
+        {
+            {"5s", SettingsStore.IncrementLength.FiveSecond},
+            {"30s", SettingsStore.IncrementLength.ThirtySecond},
+            {"2m", SettingsStore.IncrementLength.TwoMinute},
+            {"5m", SettingsStore.IncrementLength.FiveMinute},
+            {"20m", SettingsStore.IncrementLength.TwentyMinute},
+            {"1h", SettingsStore.IncrementLength.OneHour},
+            {"3h", SettingsStore.IncrementLength.ThreeHour},
+            {"8h", SettingsStore.IncrementLength.EightHour},
+            {"1d", SettingsStore.IncrementLength.OneDay},
+            {"5d", SettingsStore.IncrementLength.FiveDay},
+            {"30d", SettingsStore.IncrementLength.ThirtyDay}
+        };
 
         public override string Help
         {
