@@ -24,14 +24,14 @@ namespace Aurora4xAutomation.Command
             UIMap.TaskGroups.MakeActive();
         }
 
-        public static void OpenResearchCategory(object sender, EventArgs e)
+        public static void OpenResearchCategory(string category)
         {
             var output = "";
 
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectResearchTab();
             output += "Available Labs: " + UIMap.PopulationAndProductionWindow.AvailableLabs.Text + "\n\n";
-            if (((MessageEventArgs) e).Message == "all")
+            if (category == "all")
             {
                 UIMap.PopulationAndProductionWindow.SelectBiology();
                 output += ReadResearchTables();
@@ -52,11 +52,11 @@ namespace Aurora4xAutomation.Command
             }
             else
             {
-                UIMap.PopulationAndProductionWindow.SelectResearchByCategory(((MessageEventArgs)e).Message);
+                UIMap.PopulationAndProductionWindow.SelectResearchByCategory(category);
                 output += ReadResearchTables();
             }
 
-            Timeline.AddEvent(MessageCommands.PrintFeedback, output);
+            MessageCommands.PrintFeedback(output);
         }
 
         public void SelectColony(string colony)
@@ -65,15 +65,10 @@ namespace Aurora4xAutomation.Command
             UIMap.PopulationAndProductionWindow.Populations.Select(colony);
         }
 
-        public void SelectColony(object sender, EventArgs e)
-        {
-            SelectColony(((MessageEventArgs) e).Message);
-        }
-
-        public void ReadPopulations(object sender, EventArgs e)
+        public void ReadPopulations()
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
-            Timeline.AddEvent(MessageCommands.PrintFeedback, UIMap.PopulationAndProductionWindow.Populations.Text);
+            MessageCommands.PrintFeedback(UIMap.PopulationAndProductionWindow.Populations.Text);
         }
 
         private static string ReadResearchTables()

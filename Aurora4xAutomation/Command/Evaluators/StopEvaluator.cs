@@ -17,7 +17,7 @@ namespace Aurora4xAutomation.Command.Evaluators
                 throw new Exception(string.Format("Expected 0 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            Timeline.AddEvent(SettingsCommands.Stop);
+            SettingsCommands.Stop();
         }
 
         public override string Help

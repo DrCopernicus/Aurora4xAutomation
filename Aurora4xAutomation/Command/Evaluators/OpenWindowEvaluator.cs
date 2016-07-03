@@ -17,13 +17,13 @@ namespace Aurora4xAutomation.Command.Evaluators
                 throw new CommandExecutionException(1, Parameters.Count, Text);
 
             if (Parameters[0] == "r")
-                Timeline.AddEvent(OpenCommands.OpenResearch);
+                OpenCommands.OpenResearch();
 
             else if (Parameters[0] == "ship")
-                Timeline.AddEvent(OpenCommands.OpenShipyard);
+                OpenCommands.OpenShipyard();
 
             else if (Parameters[0] == "tg")
-                Timeline.AddEvent(OpenCommands.OpenTaskGroup);
+                OpenCommands.OpenTaskGroup();
         }
 
         public override string Help

@@ -6,21 +6,21 @@ namespace Aurora4xAutomation.Command
 {
     public static class MessageCommands
     {
-        public static void PrintError(object sender, EventArgs e)
+        public static void PrintError(string message)
         {
-            SettingsStore.ErrorMessage += string.Format("\n\n{0}", ((MessageEventArgs)e).Message);
-            Timeline.AddEvent(SettingsCommands.Stop);
+            SettingsStore.ErrorMessage += string.Format("\n\n{0}", message);
+            SettingsCommands.Stop();
         }
 
-        public static void PrintInterrupt(object sender, EventArgs e)
+        public static void PrintInterrupt(string message)
         {
-            SettingsStore.InterruptMessage += string.Format("\n\n{0}", ((MessageEventArgs)e).Message);
-            Timeline.AddEvent(SettingsCommands.Stop);
+            SettingsStore.InterruptMessage += string.Format("\n\n{0}", message);
+            SettingsCommands.Stop();
         }
 
-        public static void PrintFeedback(object sender, EventArgs e)
+        public static void PrintFeedback(string message)
         {
-            SettingsStore.FeedbackMessage += string.Format("\n\n{0}", ((MessageEventArgs)e).Message);
+            SettingsStore.FeedbackMessage += string.Format("\n\n{0}", message);
         }
     }
 }

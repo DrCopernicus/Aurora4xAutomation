@@ -9,12 +9,22 @@ namespace Aurora4xAutomation.Tests
         [Test]
         public void TestSubsetExtension()
         {
-            var list = new[] {"a", "b", "c", "d", "e"};
+            var list = new[] { "a", "b", "c", "d", "e" };
             var sublist = list.Subset(1, 3);
-            Assert.IsTrue(sublist.Length == 3);
-            Assert.IsTrue(sublist[0] == "b");
-            Assert.IsTrue(sublist[1] == "c");
-            Assert.IsTrue(sublist[2] == "d");
+            Assert.AreEqual(3, sublist.Length);
+            Assert.AreEqual("b", sublist[0]);
+            Assert.AreEqual("c", sublist[1]);
+            Assert.AreEqual("d", sublist[2]);
+        }
+
+        [Test]
+        public void TestSubsetExtensionOnlyStart()
+        {
+            var list = new[] { "a", "b", "c", "d", "e" };
+            var sublist = list.Subset(3);
+            Assert.AreEqual(2, sublist.Length);
+            Assert.AreEqual("d", sublist[0]);
+            Assert.AreEqual("e", sublist[1]);
         }
     }
 }

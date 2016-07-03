@@ -21,7 +21,7 @@ namespace Aurora4xAutomation.Command.Evaluators
                 throw new Exception(string.Format("Expected 1 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            Timeline.AddEvent(MessageCommands.PrintInterrupt, Body.Help);
+            MessageCommands.PrintInterrupt(Body.Help);
         }
 
         public override string Help

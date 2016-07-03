@@ -26,12 +26,6 @@ namespace Aurora4xAutomation.Command.Evaluators
             Body = new ParameterEvaluator(parameters[0], parameters.Subset(1));
         }
 
-        protected Evaluator(params string[] parameters)
-            : this("default", parameters)
-        {
-
-        }
-
         public string Text { get; private set; }
         public Evaluator Body { get; set; }
         public Evaluator Next { get; set; }

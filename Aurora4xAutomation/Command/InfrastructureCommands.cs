@@ -21,13 +21,13 @@ namespace Aurora4xAutomation.Command
             UIMap.PopulationAndProductionWindow.AddCivilianContract.Click();
         }
 
-        public static void PurchaseMineralOutput(object sender, EventArgs e)
+        public static void PurchaseMineralOutput(string massDriverDestination)
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectCivilianTab();
             UIMap.PopulationAndProductionWindow.PurchaseMineralOutput.Selected = true;
             UIMap.PopulationAndProductionWindow.SelectMiningTab();
-            UIMap.PopulationAndProductionWindow.MassDriverDestination.Text = ((MessageEventArgs)e).Message;
+            UIMap.PopulationAndProductionWindow.MassDriverDestination.Text = massDriverDestination;
         }
 
         public static void BuildInstallation(string population, string installationName, string installationNumber)

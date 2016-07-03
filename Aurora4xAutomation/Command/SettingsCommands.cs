@@ -5,7 +5,7 @@ namespace Aurora4xAutomation.Command
 {
     public static class SettingsCommands
     {
-        public static void Stop(object sender, EventArgs e)
+        public static void Stop()
         {
             SettingsStore.Stopped = true;
         }

@@ -21,7 +21,7 @@ namespace Aurora4xAutomation.Command.Evaluators
             foreach (var statement in StatementList)
             {
                 var time = new Time(UIMap.SystemMap.GetTime()) + TimeFromText;
-                Timeline.AddEvent(statement.Execute, "", time);
+                Timeline.AddEvent(statement, time);
             }
         }
 

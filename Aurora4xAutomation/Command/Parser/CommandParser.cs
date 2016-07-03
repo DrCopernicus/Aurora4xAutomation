@@ -17,7 +17,7 @@ namespace Aurora4xAutomation.Command.Parser
             }
             catch (Exception e)
             {
-                Timeline.AddEvent(MessageCommands.PrintError, e.Message);
+                MessageCommands.PrintError(e.Message);
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Aurora4xAutomation.Command.Evaluators;
 
 namespace Aurora4xAutomation.Events
 {
@@ -9,20 +10,13 @@ namespace Aurora4xAutomation.Events
 
         }
 
-        public AuroraEvent(Time time, EventHandler action)
+        public AuroraEvent(Time time, Evaluator evaluator)
         {
-            EventHappened += action;
+            Evaluator = evaluator;
             Time = time;
         }
 
-        public string Args;
         public Time Time;
-        public event EventHandler EventHappened;
-
-        public void Invoke()
-        {
-            if (EventHappened != null)
-                EventHappened(this, new MessageEventArgs(Args));
-        }
+        public Evaluator Evaluator;
     }
 }

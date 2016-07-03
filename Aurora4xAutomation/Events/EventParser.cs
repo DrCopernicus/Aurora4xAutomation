@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -97,8 +98,8 @@ namespace Aurora4xAutomation.Events
                 || IsColonelAgeRetirement(str))
                 return false;
 
-            Timeline.AddEvent(SettingsCommands.Stop);
-            Timeline.AddEvent(MessageCommands.PrintInterrupt, string.Format("Stopped because: {0}", str));
+            SettingsCommands.Stop();
+            MessageCommands.PrintInterrupt(string.Format("Stopped because: {0}", str));
 
             return true;
         }
@@ -116,8 +117,8 @@ namespace Aurora4xAutomation.Events
             if (!regex.IsMatch(str)) 
                 return false;
 
-            Timeline.AddEvent(new OpenCommands().SelectColony, regex.Match(str).Groups[1].Value);
-            Timeline.AddEvent(InfrastructureCommands.PurchaseMineralOutput, "Earth");
+            new OpenCommands().SelectColony(regex.Match(str).Groups[1].Value);
+            InfrastructureCommands.PurchaseMineralOutput("Earth");
             return true;
         }
 
@@ -128,8 +129,9 @@ namespace Aurora4xAutomation.Events
             if (!regex.IsMatch(str)) 
                 return false;
 
-            Timeline.AddEvent(new OpenCommands().SelectColony, regex.Match(str).Groups[1].Value);
-            Timeline.AddEvent(new ResearchCommands().AutoResearch);
+            new OpenCommands().SelectColony(regex.Match(str).Groups[1].Value);
+            //new ResearchCommands().AutoResearch();
+            throw new NotImplementedException();
             return true;
         }
 
@@ -140,8 +142,9 @@ namespace Aurora4xAutomation.Events
             if (!regex.IsMatch(str))
                 return false;
 
-            Timeline.AddEvent(new OpenCommands().SelectColony, regex.Match(str).Groups[1].Value);
-            Timeline.AddEvent(new ResearchCommands().AutoResearch);
+            new OpenCommands().SelectColony(regex.Match(str).Groups[1].Value);
+            throw new NotImplementedException();
+            //new ResearchCommands().AutoResearch();
             return true;
         }
 

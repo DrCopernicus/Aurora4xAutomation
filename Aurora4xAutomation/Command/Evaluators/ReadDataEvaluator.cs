@@ -17,7 +17,7 @@ namespace Aurora4xAutomation.Command.Evaluators
                 throw new CommandExecutionException(2, Parameters.Count, Text);
 
             if (Parameters[0] == "research")
-                Timeline.AddEvent(OpenCommands.OpenResearchCategory, Parameters[1]);
+                OpenCommands.OpenResearchCategory(Parameters[1]);
         }
 
         public override string Help

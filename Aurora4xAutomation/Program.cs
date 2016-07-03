@@ -1,5 +1,6 @@
 ﻿using System;
 using Aurora4xAutomation.Command;
+using Aurora4xAutomation.Command.Evaluators;
 using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
@@ -35,7 +36,7 @@ namespace Aurora4xAutomation
                         TurnCommands.AdvanceTurn(this, EventArgs.Empty);
 
                     if (!SettingsStore.AutoTurnsOn)
-                        Timeline.AddEvent(SettingsCommands.Stop);
+                        SettingsCommands.Stop();
                 }
                 else
                 {
@@ -100,9 +101,9 @@ namespace Aurora4xAutomation
         private void ActOnActiveTimelineEntries()
         {
             SettingsStore.StatusMessage = "Evaluating events";
-            AuroraEvent ev;
-            while ((ev = Timeline.NextActiveEvent) != null)
-                ev.Invoke();
+            Evaluator ev;
+            while ((ev = Timeline.PopNextActiveEvent(new Time(UIMap.SystemMap.GetTime()))) != null)
+                ev.Execute();
         }
 
         private string IncrementString

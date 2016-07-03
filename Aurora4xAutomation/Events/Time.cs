@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Aurora4xAutomation.Events
 {
-    public class Time
+    public class Time : IComparable
     {
         private static readonly Dictionary<string, int> MonthStringToInt = new Dictionary<string, int>
         {
@@ -49,12 +49,30 @@ namespace Aurora4xAutomation.Events
             Unparsed = unparsed;
             var groups = new Regex("([0-9]+)(st|nd|rd|th) ([a-zA-Z]+) ([0-9]+) ([0-9]+):([0-9]+)(:([0-9]+))?").Match(unparsed).Groups;
             Year = int.Parse(groups[4].Value);
-            Month = MonthStringToInt[groups[3].Value.ToLower()];
-            Day = int.Parse(groups[1].Value);
+            Month = MonthStringToInt[groups[3].Value.ToLower()] - 1;
+            Day = int.Parse(groups[1].Value) - 1;
             Hour = int.Parse(groups[5].Value);
             Minute = int.Parse(groups[6].Value);
             if (groups[7].Value != "")
                 Second = int.Parse(groups[8].Value);
+        }
+
+        public Time(long totalSeconds)
+        {
+            var remainingSeconds = totalSeconds;
+            remainingSeconds = AllocateSecondsToField(ref Year, remainingSeconds, 60L * 60L * 24L * 30L * 12L);
+            remainingSeconds = AllocateSecondsToField(ref Month, remainingSeconds, 60L * 60L * 24L * 30L);
+            remainingSeconds = AllocateSecondsToField(ref Day, remainingSeconds, 60L * 60L * 24L);
+            remainingSeconds = AllocateSecondsToField(ref Hour, remainingSeconds, 60L * 60L);
+            remainingSeconds = AllocateSecondsToField(ref Minute, remainingSeconds, 60L);
+            Second = (int) remainingSeconds;
+        }
+
+        private long AllocateSecondsToField(ref int field, long remainingSeconds, long constant)
+        {
+            field = (int)(remainingSeconds / constant);
+            remainingSeconds -= field * constant;
+            return remainingSeconds;
         }
 
         public string Unparsed;
@@ -163,19 +181,32 @@ namespace Aurora4xAutomation.Events
 
         public static Time operator +(Time left, Time right)
         {
-            var seconds = left.Second + right.Second;
-            var minutes = left.Minute + right.Minute + seconds/60;
-            seconds -= (seconds / 60)*60;
-            var hours = left.Hour + right.Hour + minutes / 60;
-            minutes -= (minutes / 60) * 60;
-            var days = left.Day + right.Day + hours / 24;
-            hours -= (hours / 24)*24;
-            var months = left.Month + right.Month + (days - 1) / 30;
-            days -= ((days-1)/30)*30;
-            var years = left.Year + right.Year + (months - 1) / 12;
-            months -= ((months - 1)/12)*12;
+            return new Time(left.GetTotalSeconds() + right.GetTotalSeconds());
+        }
 
-            return new Time(years, months, days, hours, minutes, seconds);
+        public long GetTotalSeconds()
+        {
+            return Second
+                   + Minute * 60L
+                   + Hour * 60L * 60L
+                   + Day * 60L * 60L * 24L
+                   + Month * 60L * 60L * 24L * 30L
+                   + Year * 60L * 60L * 24L * 30L * 12L;
+        }
+
+        public int CompareTo(object obj)
+        {
+            return (int)(GetTotalSeconds() - ((Time) obj).GetTotalSeconds());
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1} {2} {3}:{4}:{5}", Day, Month, Year, Hour, Minute, Second);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this == (Time) obj;
         }
     }
 }

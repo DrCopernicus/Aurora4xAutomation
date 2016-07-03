@@ -89,8 +89,8 @@ namespace Aurora4xAutomation.Command
                 if (SelectScience(research, scientists))
                     return;
 
-                Timeline.AddEvent(SettingsCommands.Stop);
-                Timeline.AddEvent(MessageCommands.PrintError, "[AutoResearch] Failed to assign a new research project.");
+                SettingsCommands.Stop();
+                MessageCommands.PrintError("[AutoResearch] Failed to assign a new research project.");
             }
         }
 
@@ -139,9 +139,10 @@ namespace Aurora4xAutomation.Command
                             if (res[i][0] == searchAgainst[0])
                             {
                                 ResearchTechCommand(searchFor.Value, i, 0, -1);
-                                Timeline.AddEvent(MessageCommands.PrintFeedback, string.Format("[AutoResearch] Successfully selected research {0}.", searchFor.Key));
+                                MessageCommands.PrintFeedback(string.Format("[AutoResearch] Successfully selected research {0}.", searchFor.Key));
                                 if (totalScientists > 1)
-                                    Timeline.AddEvent(BalanceResearch);
+                                    throw new NotImplementedException();
+                                    //Timeline.AddEvent(BalanceResearch);
                                 return true;
                             }
                         }
@@ -193,7 +194,8 @@ namespace Aurora4xAutomation.Command
                 {
                     UIMap.PopulationAndProductionWindow.RemoveRL.Click();
                 }
-                Timeline.AddEvent(AutoResearch);
+                //Timeline.AddEvent(AutoResearch);
+                throw new NotImplementedException();
             }
         }
 
@@ -203,7 +205,7 @@ namespace Aurora4xAutomation.Command
             UIMap.Leaders.LeaderType.Text = "l";
             if (!UIMap.Leaders.Officiers.Children[0].Text.Contains("Scientist"))
             {
-                Timeline.AddEvent(MessageCommands.PrintError, "[CheckNumberOfLabs] Could not find the Scientist row!");
+                MessageCommands.PrintError("[CheckNumberOfLabs] Could not find the Scientist row!");
             }
             else
             {
@@ -215,7 +217,8 @@ namespace Aurora4xAutomation.Command
                 if (numScientists*SettingsStore.MinLabsPerScientist >= numLabs)
                     InfrastructureCommands.BuildInstallation("Earth", "lab", "1");
             }
-            Timeline.AddEvent(CheckNumberOfLabs, "", new Time(UIMap.SystemMap.GetTime()) + new Time(0, 0, SettingsStore.DaysPerLabsCheck, 0, 0, 0));
+            //Timeline.AddEvent(CheckNumberOfLabs, "", new Time(UIMap.SystemMap.GetTime()) + new Time(0, 0, SettingsStore.DaysPerLabsCheck, 0, 0, 0));
+            //TODO
         }
     }
 }

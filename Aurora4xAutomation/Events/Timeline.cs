@@ -1,39 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Aurora4xAutomation.UI;
+using Aurora4xAutomation.Command.Evaluators;
 
 namespace Aurora4xAutomation.Events
 {
     public static class Timeline
     {
         public static List<AuroraEvent> Events = new List<AuroraEvent>();
-
-        public static AuroraEvent NextActiveEvent
+        
+        public static Evaluator PopNextActiveEvent(Time time)
         {
-            get
-            {
-                var ev = Events.FirstOrDefault(x => x.Time <= new Time(UIMap.SystemMap.GetTime()));
+            var ev = Events.OrderBy(evaluator => evaluator.Time).FirstOrDefault(x => x.Time <= time);
 
-                if (ev == null)
-                    return null;
+            if (ev == null)
+                return null;
 
-                Events.Remove(ev);
+            Events.Remove(ev);
 
-                return ev;
-            }
+            return ev.Evaluator;
         }
 
-        public static void AddEvent(EventHandler action, string args = "", Time time = null)
+        public static void AddEvent(Evaluator evaluator, Time time = null)
         {
-            var ev = new AuroraEvent(time ?? new Time(), action) { Args = args };
-            Events.Add(ev);
-        }
-
-        public static void AddEvent(Action action, string args = "", Time time = null)
-        {
-            var ev = new AuroraEvent(time ?? new Time(), (sender, eventArgs) => action()) { Args = args };
-            Events.Add(ev);
+            Events.Add(new AuroraEvent(time ?? new Time(), evaluator));
         }
     }
 }
