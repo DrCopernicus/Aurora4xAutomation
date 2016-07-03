@@ -1,4 +1,4 @@
-﻿namespace Aurora4xAutomation.Events
+﻿namespace Aurora4xAutomation.DB
 {
     public class AuroraEventEntry
     {

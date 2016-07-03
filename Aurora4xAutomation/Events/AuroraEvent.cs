@@ -2,14 +2,6 @@
 
 namespace Aurora4xAutomation.Events
 {
-    public enum AuroraEventType
-    {
-        NonStopping,
-        Research,
-        MineralsLocated,
-        Unspecified
-    }
-
     public class AuroraEvent
     {
         public AuroraEvent()
@@ -23,8 +15,6 @@ namespace Aurora4xAutomation.Events
             Time = time;
         }
 
-        public AuroraEventType Type;
-        public string Text;
         public string Args;
         public Time Time;
         public event EventHandler EventHappened;

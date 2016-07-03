@@ -108,7 +108,7 @@
     <Compile Include="Events\EventEvaluator.cs" />
     <Compile Include="Events\EventParser.cs" />
     <Compile Include="Events\AuroraEvent.cs" />
-    <Compile Include="Events\AuroraEventEntry.cs" />
+    <Compile Include="DB\AuroraEventEntry.cs" />
     <Compile Include="Events\MessageEventArgs.cs" />
     <Compile Include="Events\Time.cs" />
     <Compile Include="Events\Timeline.cs" />
