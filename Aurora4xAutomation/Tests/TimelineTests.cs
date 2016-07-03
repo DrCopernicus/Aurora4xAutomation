@@ -45,27 +45,39 @@ namespace Aurora4xAutomation.Tests
         [Test]
         public void TestTimelineAddInOrder()
         {
-            var currentTime = new Time("29th January 2016 20:00:11");
+            var currentDate = new Time("29th January 2016 20:00:11");
             Timeline.AddEvent(new EvaluatorDouble(), new Time("25th January 2016 20:00:11"));
             Timeline.AddEvent(new EvaluatorDoubleTwo(), new Time("26th January 2016 20:00:11"));
             Timeline.AddEvent(new EvaluatorDoubleThree(), new Time("27th January 2016 20:00:11"));
-            Assert.AreEqual(typeof(EvaluatorDouble), Timeline.PopNextActiveEvent(currentTime).GetType());
-            Assert.AreEqual(typeof(EvaluatorDoubleTwo), Timeline.PopNextActiveEvent(currentTime).GetType());
-            Assert.AreEqual(typeof(EvaluatorDoubleThree), Timeline.PopNextActiveEvent(currentTime).GetType());
-            Assert.AreEqual(null, Timeline.PopNextActiveEvent(currentTime));
+            Assert.AreEqual(typeof(EvaluatorDouble), Timeline.PopNextActiveEvent(currentDate).GetType());
+            Assert.AreEqual(typeof(EvaluatorDoubleTwo), Timeline.PopNextActiveEvent(currentDate).GetType());
+            Assert.AreEqual(typeof(EvaluatorDoubleThree), Timeline.PopNextActiveEvent(currentDate).GetType());
+            Assert.AreEqual(null, Timeline.PopNextActiveEvent(currentDate));
         }
 
         [Test]
         public void TestTimelineNotInOrder()
         {
-            var currentTime = new Time("29th January 2016 20:00:11");
+            var currentDate = new Time("29th January 2016 20:00:11");
             Timeline.AddEvent(new EvaluatorDouble(), new Time("25th January 2016 20:00:11"));
             Timeline.AddEvent(new EvaluatorDoubleThree(), new Time("27th January 2016 20:00:11"));
             Timeline.AddEvent(new EvaluatorDoubleTwo(), new Time("26th January 2016 20:00:11"));
-            Assert.AreEqual(typeof(EvaluatorDouble), Timeline.PopNextActiveEvent(currentTime).GetType());
-            Assert.AreEqual(typeof(EvaluatorDoubleTwo), Timeline.PopNextActiveEvent(currentTime).GetType());
-            Assert.AreEqual(typeof(EvaluatorDoubleThree), Timeline.PopNextActiveEvent(currentTime).GetType());
-            Assert.AreEqual(null, Timeline.PopNextActiveEvent(currentTime));
+            Assert.AreEqual(typeof(EvaluatorDouble), Timeline.PopNextActiveEvent(currentDate).GetType());
+            Assert.AreEqual(typeof(EvaluatorDoubleTwo), Timeline.PopNextActiveEvent(currentDate).GetType());
+            Assert.AreEqual(typeof(EvaluatorDoubleThree), Timeline.PopNextActiveEvent(currentDate).GetType());
+            Assert.AreEqual(null, Timeline.PopNextActiveEvent(currentDate));
+        }
+
+        [Test]
+        public void TestItemsInTimelineAfterCurrentDate()
+        {
+            var currentDate = new Time("29th January 2016 20:00:11");
+            Timeline.AddEvent(new EvaluatorDouble(), new Time("25th January 2016 20:00:11"));
+            Timeline.AddEvent(new EvaluatorDoubleThree(), new Time("30th January 2016 20:00:11"));
+            Timeline.AddEvent(new EvaluatorDoubleTwo(), new Time("26th January 2016 20:00:11"));
+            Assert.AreEqual(typeof(EvaluatorDouble), Timeline.PopNextActiveEvent(currentDate).GetType());
+            Assert.AreEqual(typeof(EvaluatorDoubleTwo), Timeline.PopNextActiveEvent(currentDate).GetType());
+            Assert.AreEqual(null, Timeline.PopNextActiveEvent(currentDate));
         }
     }
 }
