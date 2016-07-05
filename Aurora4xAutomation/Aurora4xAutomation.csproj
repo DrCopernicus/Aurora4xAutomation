@@ -105,7 +105,6 @@
     <Compile Include="Common\Sleeper.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\TableExtensions.cs" />
-    <Compile Include="Events\EventEvaluator.cs" />
     <Compile Include="Events\EventParser.cs" />
     <Compile Include="Events\AuroraEvent.cs" />
     <Compile Include="DB\AuroraEventEntry.cs" />
