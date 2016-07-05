@@ -26,7 +26,7 @@ namespace Aurora4xAutomation.Command.Evaluators
 
         public override string Help
         {
-            get { return "help: Takes 1 parameter. Returns the help message for the command in the parameter."; }
+            get { return "help <command>: Returns the help message for <command>."; }
         }
     }
 }
