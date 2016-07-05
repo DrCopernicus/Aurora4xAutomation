@@ -1,12 +1,8 @@
 ﻿using System;
-using Aurora4xAutomation.Command;
-using Aurora4xAutomation.Command.Evaluators;
-using Aurora4xAutomation.Command.Parser;
-using Aurora4xAutomation.Common;
+using System.Threading;
 using Aurora4xAutomation.Events;
+using Aurora4xAutomation.REST;
 using Aurora4xAutomation.Settings;
-using Aurora4xAutomation.UI;
-using Grapevine.Server;
 
 namespace Aurora4xAutomation
 {
@@ -20,31 +16,8 @@ namespace Aurora4xAutomation
         public Program()
         {
             SettingsStore.Research = SettingsStore.ResearchFocuses["beamfocus"];
-
-            var server = new RESTServer(host: "*");
-            server.Start();
-
-            while (server.IsListening)
-            {
-                ActOnActiveTimelineEntries();
-
-                if (!SettingsStore.Stopped)
-                {
-                    ParseEvents();
-
-                    if (!SettingsStore.Stopped)
-                        TurnCommands.AdvanceTurn(this, EventArgs.Empty);
-
-                    if (!SettingsStore.AutoTurnsOn)
-                        SettingsCommands.Stop();
-                }
-                else
-                {
-                    SettingsStore.StatusMessage = "Waiting for user input";
-                }
-
-                Sleeper.Sleep(2000);
-            }
+            new Thread(() => new EventManager().Begin());
+            new RESTManager().Begin();
         }
 
         private void WriteWaitingForInputInfoBar()
@@ -70,40 +43,6 @@ namespace Aurora4xAutomation
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(SettingsStore.ErrorMessage == "" ? "" : "\n\n" + SettingsStore.ErrorMessage);
             Console.ForegroundColor = ConsoleColor.White;
-        }
-
-        private void ParseEvents()
-        {
-            SettingsStore.StatusMessage = "Parsing events log";
-            UIMap.EventWindow.MakeActive();
-            if (SettingsStore.DatabasePassword == null)
-                EventParser.ParseUsingEventWindow(UIMap.SystemMap.GetTime());
-            else
-                EventParser.ParseUsingDatabase();
-        }
-
-        private void MakeChoices()
-        {
-            while (true)
-            {
-                var choice = Console.ReadLine().ToLower();
-
-                if (choice == "")
-                    break;
-
-                CommandParser.Parse(choice);
-
-                ActOnActiveTimelineEntries();
-                WriteWaitingForInputInfoBar();
-            }
-        }
-
-        private void ActOnActiveTimelineEntries()
-        {
-            SettingsStore.StatusMessage = "Evaluating events";
-            Evaluator ev;
-            while ((ev = Timeline.PopNextActiveEvent(new Time(UIMap.SystemMap.GetTime()))) != null)
-                ev.Execute();
         }
 
         private string IncrementString

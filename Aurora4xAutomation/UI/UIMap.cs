@@ -4,10 +4,35 @@ namespace Aurora4xAutomation.UI
 {
     public static class UIMap
     {
-        public static readonly EventWindow EventWindow = new EventWindow();
-        public static readonly CommandersWindow Leaders = new CommandersWindow();
-        public static readonly SystemMapWindow SystemMap = new SystemMapWindow();
-        public static readonly PopulationAndProductionWindow PopulationAndProductionWindow = new PopulationAndProductionWindow();
-        public static readonly TaskGroupsWindow TaskGroups = new TaskGroupsWindow();
+        public static EventWindow EventWindow
+        {
+            get { return _eventWindow ?? (_eventWindow = new EventWindow()); }
+        }
+
+        public static CommandersWindow Leaders
+        {
+            get { return _commandersWindow ?? (_commandersWindow = new CommandersWindow()); }
+        }
+
+        public static SystemMapWindow SystemMap
+        {
+            get { return _systemMapWindow ?? (_systemMapWindow = new SystemMapWindow()); }
+        }
+
+        public static PopulationAndProductionWindow PopulationAndProductionWindow
+        {
+            get { return _populationAndProductionWindow ?? (_populationAndProductionWindow = new PopulationAndProductionWindow()); }
+        }
+
+        public static TaskGroupsWindow TaskGroups
+        {
+            get { return _taskGroupsWindow ?? (_taskGroupsWindow = new TaskGroupsWindow()); }
+        }
+        
+        private static EventWindow _eventWindow;
+        private static CommandersWindow _commandersWindow;
+        private static SystemMapWindow _systemMapWindow;
+        private static PopulationAndProductionWindow _populationAndProductionWindow;
+        private static TaskGroupsWindow _taskGroupsWindow;
     }
 }

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Aurora4xAutomation.UI
 {
@@ -11,7 +8,7 @@ namespace Aurora4xAutomation.UI
     {
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+        private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
 
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
@@ -59,6 +56,12 @@ namespace Aurora4xAutomation.UI
 
         [DllImport("user32.dll", EntryPoint = "PostMessage", CallingConvention = CallingConvention.Winapi)]
         public static extern bool PostMessage(IntPtr hWnd, int msg, uint wParam, uint lParam);
-        
+
+        public static RECT GetWindowRect(IntPtr handle)
+        {
+            RECT dimensions;
+            GetWindowRect(handle, out dimensions);
+            return dimensions;
+        }
     }
 }

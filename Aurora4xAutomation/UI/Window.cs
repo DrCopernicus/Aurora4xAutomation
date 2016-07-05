@@ -43,9 +43,7 @@ namespace Aurora4xAutomation.UI
         protected Window(string title)
         {
             var handle = AttemptToOpenWindow(title);
-
-            NativeMethods.RECT dimensions;
-            NativeMethods.GetWindowRect(handle, out dimensions);
+            var dimensions = NativeMethods.GetWindowRect(handle);
 
             Handle = handle;
             Left = dimensions.Left;
