@@ -91,7 +91,6 @@
     <Compile Include="Evaluators\ReadDataEvaluator.cs" />
     <Compile Include="Evaluators\OpenWindowEvaluator.cs" />
     <Compile Include="Command\TurnCommands.cs" />
-    <Compile Include="Command\SettingsCommands.cs" />
     <Compile Include="Command\MessageCommands.cs" />
     <Compile Include="Command\InfrastructureCommands.cs" />
     <Compile Include="Command\OpenCommands.cs" />
@@ -103,6 +102,7 @@
     <Compile Include="Common\ListExtensions.cs" />
     <Compile Include="Common\PixelGetter.cs" />
     <Compile Include="Common\PrintSettings.cs" />
+    <Compile Include="Evaluators\SettingsEvaluator.cs" />
     <Compile Include="Evaluators\UIEvaluator.cs" />
     <Compile Include="IO\DB\QueryExecutor.cs" />
     <Compile Include="Common\Sleeper.cs" />

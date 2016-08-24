@@ -1,11 +1,12 @@
 ﻿using System;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class ConsoleWindow : Window
     {
-        public ConsoleWindow() : 
-            base(@"file:///")
+        public ConsoleWindow(SettingsStore settings) : 
+            base(@"file:///", settings)
         {
             
         }

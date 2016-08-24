@@ -1,12 +1,13 @@
 ﻿using System;
 using Aurora4xAutomation.Command;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class PrintEvaluator : Evaluator
+    public class PrintEvaluator : SettingsEvaluator
     {
-        public PrintEvaluator(string text)
-            : base(text)
+        public PrintEvaluator(string text, SettingsStore settings)
+            : base(text, settings)
         {
         }
 
@@ -16,7 +17,7 @@ namespace Aurora4xAutomation.Evaluators
                 throw new Exception(string.Format("Expected 1 parameter, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            MessageCommands.PrintFeedback(Parameters[0]);
+            new MessageCommands(Settings).PrintFeedback(Parameters[0]);
         }
 
         public override string Help

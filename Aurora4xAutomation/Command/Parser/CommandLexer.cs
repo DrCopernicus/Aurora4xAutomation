@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.IO;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Command.Parser
 {
     public class CommandLexer
     {
-        public CommandLexer(IUIMap uiMap)
+        public CommandLexer(IUIMap uiMap, SettingsStore settings)
         {
             UIMap = uiMap;
+            Settings = settings;
         }
 
         private IUIMap UIMap { get; set; }
+        private SettingsStore Settings { get; set; }
 
         private void SkipSpaces(ref string command)
         {
@@ -74,7 +77,7 @@ namespace Aurora4xAutomation.Command.Parser
             command = token.Text + " " + command;
         }
 
-        public Evaluator Lex(string command)
+        public IEvaluator Lex(string command)
         {
             var statement = Statement(ref command);
             if (statement == null)
@@ -82,10 +85,10 @@ namespace Aurora4xAutomation.Command.Parser
             return statement;
         }
 
-        private Evaluator Statement(ref string command)
+        private IEvaluator Statement(ref string command)
         {
             var token = GetNext(ref command);
-            Evaluator eval;
+            IEvaluator eval;
 
             if (token.Type == CommandTokenType.LeftParenthesis)
             {
@@ -115,7 +118,7 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private Evaluator Timer(ref string command)
+        private IEvaluator Timer(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.LeftParenthesis)
@@ -148,7 +151,7 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private Evaluator Action(ref string command)
+        private IEvaluator Action(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.Text)
@@ -163,7 +166,7 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private Evaluator HelpParameter(ref string command)
+        private IEvaluator HelpParameter(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.Text)
@@ -174,7 +177,7 @@ namespace Aurora4xAutomation.Command.Parser
             return TextToCommand(token.Text);
         }
 
-        private Evaluator Parameters(ref string command)
+        private IEvaluator Parameters(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.Text)
@@ -188,31 +191,41 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private Evaluator TextToCommand(string text)
+        private IEvaluator TextToCommand(string text)
         {
             try
             {
-                return (Evaluator) Activator.CreateInstance(TextRepresentationOfCommands[text], text);
-            }
-            catch (Exception)
-            {
+                switch (text.ToLower())
+                {
+                    case "adv":
+                        return new AdvanceEvaluator(text, Settings);
+                    case "build-installation":
+                        return new BuildInstallationEvaluator(text, UIMap);
+                    case "contract":
+                        return new ContractEvaluator(text, UIMap);
+                    case "help":
+                        return new HelpEvaluator(text, Settings);
+                    case "move":
+                        return new MoveEvaluator(text, UIMap);
+                    case "open":
+                        return new OpenWindowEvaluator(text, UIMap);
+                    case "print":
+                        return new PrintEvaluator(text, Settings);
+                    case "read":
+                        return new ReadDataEvaluator(text, UIMap);
+                    case "set-pop":
+                        return new SetPopulationEvaluator(text, UIMap);
+                    case "open-pop":
+                        return new OpenPopulationEvaluator(text, UIMap);
+                    case "stop":
+                        return new StopEvaluator(text, Settings);
+                }
                 throw new Exception(string.Format("Did not recognize command {0}.", text));
             }
+            catch (Exception e)
+            {
+                throw new Exception(string.Format("Threw an exception attempting to convert text <{0}> to a command. Exception message: {1}", text, e.Message));
+            }
         }
-
-        private readonly Dictionary<string, Type> TextRepresentationOfCommands = new Dictionary<string, Type>
-        {
-            {"adv", typeof(AdvanceEvaluator)},
-            {"build-installation", typeof(BuildInstallationEvaluator)},
-            {"contract", typeof(ContractEvaluator)},
-            {"help", typeof(HelpEvaluator)},
-            {"move", typeof(MoveEvaluator)},
-            {"open", typeof(OpenWindowEvaluator)},
-            {"print", typeof(PrintEvaluator)},
-            {"read", typeof(ReadDataEvaluator)},
-            {"set-pop", typeof(SetPopulationEvaluator)},
-            {"open-pop", typeof(OpenPopulationEvaluator)},
-            {"stop", typeof(StopEvaluator)},
-        };
     }
 }

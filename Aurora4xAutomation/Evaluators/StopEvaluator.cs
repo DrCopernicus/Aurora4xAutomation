@@ -1,12 +1,12 @@
 ﻿using System;
-using Aurora4xAutomation.Command;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class StopEvaluator : Evaluator
+    public class StopEvaluator : SettingsEvaluator
     {
-        public StopEvaluator(string text)
-            : base(text)
+        public StopEvaluator(string text, SettingsStore settings)
+            : base(text, settings)
         {
         }
 
@@ -16,7 +16,7 @@ namespace Aurora4xAutomation.Evaluators
                 throw new Exception(string.Format("Expected 0 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            SettingsCommands.Stop();
+            Settings.Stopped = true;
         }
 
         public override string Help

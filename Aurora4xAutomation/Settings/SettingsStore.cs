@@ -3,7 +3,7 @@ using Aurora4xAutomation.Common;
 
 namespace Aurora4xAutomation.Settings
 {
-    public static class SettingsStore
+    public class SettingsStore
     {
         public enum IncrementLength
         {
@@ -20,7 +20,7 @@ namespace Aurora4xAutomation.Settings
             ThirtyDay
         }
 
-        public static Dictionary<string, Dictionary<string, string>> ResearchFocuses
+        public Dictionary<string, Dictionary<string, string>> ResearchFocuses
         {
             get
             {
@@ -33,9 +33,9 @@ namespace Aurora4xAutomation.Settings
             }
         }
 
-        private static Dictionary<string, Dictionary<string, string>> _researchFocuses;
+        private Dictionary<string, Dictionary<string, string>> _researchFocuses;
 
-        public static Dictionary<string, string> Research
+        public Dictionary<string, string> Research
         {
             get
             {
@@ -59,30 +59,30 @@ namespace Aurora4xAutomation.Settings
             }
         }
 
-        private static Dictionary<string, string> _research;
+        private Dictionary<string, string> _research;
 
-        public static IncrementLength Increment = IncrementLength.FiveDay;
+        public IncrementLength Increment = IncrementLength.FiveDay;
 
-        public static bool AutoResearchOn = false;
-        public static bool AutoTurnsOn = false;
-        public static bool Stopped = true;
+        public bool AutoResearchOn = false;
+        public bool AutoTurnsOn = false;
+        public bool Stopped = true;
 
-        public static string ErrorMessage = "";
-        public static string InterruptMessage = "";
-        public static string FeedbackMessage = "";
-        public static string StatusMessage = "";
+        public string ErrorMessage = "";
+        public string InterruptMessage = "";
+        public string FeedbackMessage = "";
+        public string StatusMessage = "";
 
-        public static int GameId = 18;
-        public static int RaceId = 133;
+        public int GameId = 18;
+        public int RaceId = 133;
 
-        public static int MinLabsPerScientist = 2;
-        public static int DaysPerLabsCheck = 60;
+        public int MinLabsPerScientist = 2;
+        public int DaysPerLabsCheck = 60;
 
-        public static string GameName = "AutomatedAuroraGame";
+        public string GameName = "AutomatedAuroraGame";
 
-        private static string _databasePassword;
+        private string _databasePassword;
 
-        public static string DatabasePassword
+        public string DatabasePassword
         {
             get
             {
@@ -92,9 +92,9 @@ namespace Aurora4xAutomation.Settings
             }
         }
 
-        public static string DatabaseLocation = @"C:\Users\Administrator\Desktop\Aurora\Stevefire.mdb";
+        public string DatabaseLocation = @"C:\Users\Administrator\Desktop\Aurora\Stevefire.mdb";
 
-        public static string EventLogLocation = @"C:\Users\Administrator\Desktop\Aurora\FederationEventLog.txt";
+        public string EventLogLocation = @"C:\Users\Administrator\Desktop\Aurora\FederationEventLog.txt";
 
     }
 }

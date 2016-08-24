@@ -12,9 +12,10 @@ namespace Aurora4xAutomation.Command
     [Obsolete("Commands and related classes should be discontinued in favor of Evaluators, and in the case of duplicated functionality using compound evaluators.")]
     public class ResearchCommands
     {
-        public ResearchCommands(IUIMap uiMap)
+        public ResearchCommands(IUIMap uiMap, SettingsStore settings)
         {
             UIMap = uiMap;
+            Settings = settings;
         }
 
         public void ResearchTechCommand(string category, int researchNum, int scientistNum, int labsNum)
@@ -32,14 +33,14 @@ namespace Aurora4xAutomation.Command
             UIMap.PopulationAndProductionWindow.CreateResearch();
         }
 
-        public static void FocusResearch(string category)
+        public void FocusResearch(string category)
         {
-            SettingsStore.Research.Clear();
-            foreach (var ban in SettingsStore.ResearchFocuses[category])
-                SettingsStore.Research.Add(ban.Key, ban.Value);
+            Settings.Research.Clear();
+            foreach (var ban in Settings.ResearchFocuses[category])
+                Settings.Research.Add(ban.Key, ban.Value);
         }
 
-        public static void BanResearch(string topic)
+        public void BanResearch(string topic)
         {
             throw new NotImplementedException();
         }
@@ -93,8 +94,7 @@ namespace Aurora4xAutomation.Command
                 if (SelectScience(research, scientists))
                     return;
 
-                SettingsCommands.Stop();
-                MessageCommands.PrintError("[AutoResearch] Failed to assign a new research project.");
+                new MessageCommands(Settings).PrintError("[AutoResearch] Failed to assign a new research project.");
             }
         }
 
@@ -124,7 +124,7 @@ namespace Aurora4xAutomation.Command
         private bool SelectTargetedScience(List<string[]> research, List<string[]> scientists)
         {
             var totalScientists = scientists.Count(x => x[0] != "");
-            foreach (var searchFor in SettingsStore.Research)
+            foreach (var searchFor in Settings.Research)
             {
                 var sci = scientists.Where(x => x[0] != "" && x[1] == searchFor.Value).ToList();
                 if (!sci.Any())
@@ -143,7 +143,7 @@ namespace Aurora4xAutomation.Command
                             if (res[i][0] == searchAgainst[0])
                             {
                                 ResearchTechCommand(searchFor.Value, i, 0, -1);
-                                MessageCommands.PrintFeedback(string.Format("[AutoResearch] Successfully selected research {0}.", searchFor.Key));
+                                new MessageCommands(Settings).PrintFeedback(string.Format("[AutoResearch] Successfully selected research {0}.", searchFor.Key));
                                 if (totalScientists > 1)
                                     throw new NotImplementedException();
                                     //Timeline.AddEvent(BalanceResearch);
@@ -209,7 +209,7 @@ namespace Aurora4xAutomation.Command
             UIMap.Leaders.LeaderType.Text = "l";
             if (!UIMap.Leaders.Officiers.Children[0].Text.Contains("Scientist"))
             {
-                MessageCommands.PrintError("[CheckNumberOfLabs] Could not find the Scientist row!");
+                new MessageCommands(Settings).PrintError("[CheckNumberOfLabs] Could not find the Scientist row!");
             }
             else
             {
@@ -218,7 +218,7 @@ namespace Aurora4xAutomation.Command
                 UIMap.PopulationAndProductionWindow.Populations.Select("Earth");
                 UIMap.PopulationAndProductionWindow.SelectResearchTab();
                 var numLabs = int.Parse(UIMap.PopulationAndProductionWindow.NumberOfLabs.Text);
-                if (numScientists*SettingsStore.MinLabsPerScientist >= numLabs)
+                if (numScientists*Settings.MinLabsPerScientist >= numLabs)
                     new InfrastructureCommands(UIMap).BuildInstallation("Earth", "lab", "1");
             }
             //Timeline.AddEvent(CheckNumberOfLabs, "", new Time(UIMap.SystemMap.GetTime()) + new Time(0, 0, SettingsStore.DaysPerLabsCheck, 0, 0, 0));
@@ -226,5 +226,6 @@ namespace Aurora4xAutomation.Command
         }
 
         private IUIMap UIMap { get; set; }
+        private SettingsStore Settings { get; set; }
     }
 }

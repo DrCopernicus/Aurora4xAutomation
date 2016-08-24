@@ -12,17 +12,18 @@ namespace Aurora4xAutomation.Evaluators
 {
     public class EventParser
     {
-        public EventParser(IUIMap uiMap)
+        public EventParser(IUIMap uiMap, SettingsStore settings)
         {
             UIMap = uiMap;
+            Settings = settings;
         }
 
         public void ParseUsingDatabase()
         {
-            var connection = QueryExecutor.GetConnection();
+            var connection = QueryExecutor.GetConnection(Settings.DatabaseLocation, Settings.DatabasePassword);
             connection.Open();
-            var time = AuroraDatabase.GetTime(connection);
-            var recentEvents = AuroraDatabase.GetRecentEvents(time, connection);
+            var time = AuroraDatabase.GetTime(Settings, connection);
+            var recentEvents = AuroraDatabase.GetRecentEvents(Settings, Settings.RaceId, time, connection);
             foreach (var ev in recentEvents)
                 IsStopEvent(ev.Text);
             connection.Close();
@@ -33,7 +34,7 @@ namespace Aurora4xAutomation.Evaluators
             UIMap.EventWindow.MakeActive();
             UIMap.EventWindow.TextFileButton.Click();
             Sleeper.Sleep(1500);
-            var file = SettingsStore.EventLogLocation;
+            var file = Settings.EventLogLocation;
             var allEvents = File.ReadAllLines(file);
             if (!GetLatestTime(allEvents).StartsWith(time))
                 return false;
@@ -102,8 +103,7 @@ namespace Aurora4xAutomation.Evaluators
                 || IsColonelAgeRetirement(str))
                 return false;
 
-            SettingsCommands.Stop();
-            MessageCommands.PrintInterrupt(string.Format("Stopped because: {0}", str));
+            new MessageCommands(Settings).PrintInterrupt(string.Format("Stopped because: {0}", str));
 
             return true;
         }
@@ -304,5 +304,6 @@ namespace Aurora4xAutomation.Evaluators
         }
 
         private IUIMap UIMap { get; set; }
+        private SettingsStore Settings { get; set; }
     }
 }

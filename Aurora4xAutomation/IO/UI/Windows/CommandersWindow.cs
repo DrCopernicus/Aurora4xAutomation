@@ -1,13 +1,14 @@
 ﻿using System.Windows.Forms;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO.UI.Controls;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class CommandersWindow : Window
     {
-        public CommandersWindow() 
-            : base("Commanders")
+        public CommandersWindow(SettingsStore settings) 
+            : base("Commanders", settings)
         {
             LeaderType = new Combobox(this, left: 101, right: 272, top: 140, bottom: 156)
             {
@@ -38,7 +39,7 @@ namespace Aurora4xAutomation.IO.UI.Windows
 
         protected override void OpenIfNotFound()
         {
-            new BaseAuroraWindow().MakeActive();
+            new BaseAuroraWindow(Settings).MakeActive();
             Sleeper.Sleep(1000);
             SendKeys.SendWait("{F4}");
         }

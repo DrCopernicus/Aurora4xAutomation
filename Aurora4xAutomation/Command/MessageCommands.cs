@@ -1,26 +1,35 @@
 using System;
+using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Messages;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Command
 {
     [Obsolete("Commands and related classes should be discontinued in favor of Evaluators, and in the case of duplicated functionality using compound evaluators.")]
-    public static class MessageCommands
+    public class MessageCommands
     {
-        public static void PrintError(string message)
+        public MessageCommands(SettingsStore settings)
         {
-            MessageManagerManager.AddMessage(message);
-            SettingsCommands.Stop();
+            Settings = settings;
         }
 
-        public static void PrintInterrupt(string message)
+        public void PrintError(string message)
         {
             MessageManagerManager.AddMessage(message);
-            SettingsCommands.Stop();
+            new StopEvaluator("stop", Settings).Execute();
         }
 
-        public static void PrintFeedback(string message)
+        public void PrintInterrupt(string message)
+        {
+            MessageManagerManager.AddMessage(message);
+            new StopEvaluator("stop", Settings).Execute();;
+        }
+
+        public void PrintFeedback(string message)
         {
             MessageManagerManager.AddMessage(message);
         }
+
+        private SettingsStore Settings { get; set; }
     }
 }

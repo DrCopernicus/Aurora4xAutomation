@@ -20,8 +20,8 @@ namespace Aurora4xAutomation.Evaluators
         }
 
         public string Text { get; private set; }
-        public Evaluator Body { get; set; }
-        public Evaluator Next { get; set; }
+        public IEvaluator Body { get; set; }
+        public IEvaluator Next { get; set; }
 
         public virtual CommandEvaluatorType GetEvaluatorType()
         {
@@ -60,15 +60,15 @@ namespace Aurora4xAutomation.Evaluators
             }
         }
 
-        private List<Evaluator> _statementList;
+        private List<IEvaluator> _statementList;
 
-        protected List<Evaluator> StatementList
+        protected List<IEvaluator> StatementList
         {
             get
             {
                 if (_statementList == null)
                 {
-                    _statementList = new List<Evaluator>();
+                    _statementList = new List<IEvaluator>();
                     if (Body == null)
                         return _statementList;
 

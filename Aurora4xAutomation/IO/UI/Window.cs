@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.IO.UI
 {
@@ -39,8 +40,10 @@ namespace Aurora4xAutomation.IO.UI
             return windows;
         }
 
-        protected Window(string title)
+        protected Window(string title, SettingsStore settings)
         {
+            Settings = settings;
+
             var handle = AttemptToOpenWindow(title);
             var dimensions = NativeMethods.GetWindowRect(handle);
 
@@ -103,5 +106,7 @@ namespace Aurora4xAutomation.IO.UI
 
             return builder.ToString();
         }
+
+        protected SettingsStore Settings { get; set; }
     }
 }

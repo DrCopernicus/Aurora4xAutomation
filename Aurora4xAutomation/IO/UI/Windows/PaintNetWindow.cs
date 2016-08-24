@@ -1,11 +1,12 @@
 ﻿using System;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class PaintNetWindow : Window
     {
-        public PaintNetWindow()
-            : base("Untitled")
+        public PaintNetWindow(SettingsStore settings)
+            : base("Untitled", settings)
         {
 
         }

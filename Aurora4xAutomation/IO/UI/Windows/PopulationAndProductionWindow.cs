@@ -2,6 +2,7 @@
 using WindowsInput.Native;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO.UI.Controls;
+using Aurora4xAutomation.Settings;
 using Button = Aurora4xAutomation.IO.UI.Controls.Button;
 using Label = Aurora4xAutomation.IO.UI.Controls.Label;
 using RadioButton = Aurora4xAutomation.IO.UI.Controls.RadioButton;
@@ -10,8 +11,8 @@ namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class PopulationAndProductionWindow : Window
     {
-        public PopulationAndProductionWindow() 
-            : base("Population and Production")
+        public PopulationAndProductionWindow(SettingsStore settings) 
+            : base("Population and Production", settings)
         {
             ResearchTable = new Datagrid(this, left: 406, right: 776, top: 406, bottom: 613)
             {
@@ -301,7 +302,7 @@ namespace Aurora4xAutomation.IO.UI.Windows
 
         protected override void OpenIfNotFound()
         {
-            new BaseAuroraWindow().MakeActive();
+            new BaseAuroraWindow(Settings).MakeActive();
             Sleeper.Sleep(1000);
             SendKeys.SendWait("{F2}");
         }

@@ -5,8 +5,8 @@ namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class BaseAuroraWindow : Window
     {
-        public BaseAuroraWindow() : 
-            base(SettingsStore.GameName)
+        public BaseAuroraWindow(SettingsStore settings) :
+            base(settings.GameName, settings)
         {
             
         }

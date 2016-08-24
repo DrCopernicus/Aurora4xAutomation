@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Aurora4xAutomation.IO;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Command
 {
@@ -61,7 +62,8 @@ namespace Aurora4xAutomation.Command
                 output += ReadResearchTables();
             }
 
-            MessageCommands.PrintFeedback(output);
+            //new MessageCommands(Settings).PrintFeedback(output);
+            throw new NotImplementedException();
         }
 
         public void SelectColony(string colony)
@@ -73,7 +75,8 @@ namespace Aurora4xAutomation.Command
         public void ReadPopulations()
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
-            MessageCommands.PrintFeedback(UIMap.PopulationAndProductionWindow.Populations.Text);
+            //new MessageCommands(Settings).PrintFeedback(UIMap.PopulationAndProductionWindow.Populations.Text);
+            throw new NotImplementedException();
         }
 
         private string ReadResearchTables()

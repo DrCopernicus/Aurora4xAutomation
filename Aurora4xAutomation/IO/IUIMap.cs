@@ -4,6 +4,7 @@ namespace Aurora4xAutomation.IO
 {
     public interface IUIMap
     {
+        BaseAuroraWindow BaseAuroraWindow { get; }
         EventWindow EventWindow { get; }
         CommandersWindow Leaders { get; }
         SystemMapWindow SystemMap { get; }

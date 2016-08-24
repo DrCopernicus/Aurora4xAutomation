@@ -7,19 +7,21 @@ namespace Aurora4xAutomation.Command
     [Obsolete("Commands and related classes should be discontinued in favor of Evaluators, and in the case of duplicated functionality using compound evaluators.")]
     public class TurnCommands
     {
-        public TurnCommands(IUIMap uiMap)
+        public TurnCommands(IUIMap uiMap, SettingsStore settings)
         {
             UIMap = uiMap;
+            Settings = settings;
         }
 
         private IUIMap UIMap { get; set; }
+        private SettingsStore Settings { get; set; }
 
         public void AdvanceTurn()
         {
             UIMap.PopulationAndProductionWindow.Dirty();
 
             UIMap.SystemMap.MakeActive();
-            switch (SettingsStore.Increment)
+            switch (Settings.Increment)
             {
                 case SettingsStore.IncrementLength.FiveSecond:
                     UIMap.SystemMap.ClickIncrement5SecondsButton();

@@ -38,7 +38,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                 return;
             }
 
-            MessageCommands.PrintError(string.Format("Couldn't find {0} in a tree list. Tree list text: \n{1}", name, Text));
+            throw new Exception(string.Format("Couldn't find {0} in a tree list. Tree list text: \n{1}", name, Text));
         }
 
         private List<TreeListItem> GetParents(TreeListItem item)

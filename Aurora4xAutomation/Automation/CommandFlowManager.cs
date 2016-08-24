@@ -22,31 +22,34 @@ namespace Aurora4xAutomation.Automation
 
         public static void Begin()
         {
+            Settings.Research = Settings.ResearchFocuses["beamfocus"];
+
             while (true)
             {
                 EventManager.ActOnActiveTimelineEntries();
 
-                if (!SettingsStore.Stopped)
+                if (!Settings.Stopped)
                 {
                     EventManager.ParseEvents();
 
-                    if (!SettingsStore.Stopped)
-                        new TurnCommands(AuroraUI).AdvanceTurn();
+                    if (!Settings.Stopped)
+                        new TurnCommands(AuroraUI, Settings).AdvanceTurn();
 
-                    if (!SettingsStore.AutoTurnsOn)
-                        SettingsCommands.Stop();
+                    if (!Settings.AutoTurnsOn)
+                        new StopEvaluator("stop", Settings).Execute();
                 }
                 else
                 {
-                    SettingsStore.StatusMessage = "Waiting for user input";
+                    Settings.StatusMessage = "Waiting for user input";
                 }
 
                 Sleeper.Sleep(1000);
             }
         }
 
-        private static readonly UIMap AuroraUI = new UIMap();
-        private static readonly EventManager EventManager = new EventManager(AuroraUI);
-        private static readonly CommandParser CommandParser = new CommandParser(AuroraUI);
+        private static readonly SettingsStore Settings = new SettingsStore();
+        private static readonly UIMap AuroraUI = new UIMap(Settings);
+        private static readonly EventManager EventManager = new EventManager(AuroraUI, Settings);
+        private static readonly CommandParser CommandParser = new CommandParser(AuroraUI, Settings);
     }
 }

@@ -1,14 +1,13 @@
 ﻿using System.Data;
 using System.Data.OleDb;
-using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.IO.DB
 {
     public class QueryExecutor
     {
-        public static OleDbConnection GetConnection()
+        public static OleDbConnection GetConnection(string location, string password)
         {
-            var accessConnStr = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Jet OLEDB:Database Password={1}", SettingsStore.DatabaseLocation, SettingsStore.DatabasePassword);
+            var accessConnStr = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Jet OLEDB:Database Password={1}", location, password);
             return new OleDbConnection(accessConnStr);
         }
 

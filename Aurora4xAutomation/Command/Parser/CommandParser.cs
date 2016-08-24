@@ -8,10 +8,11 @@ namespace Aurora4xAutomation.Command.Parser
 {
     public class CommandParser
     {
-        public CommandParser(IUIMap uiMap)
+        public CommandParser(IUIMap uiMap, SettingsStore settings)
         {
             UIMap = uiMap;
-            Lexer = new CommandLexer(UIMap);
+            Settings = settings;
+            Lexer = new CommandLexer(UIMap, settings);
         }
 
         public IEvaluator Parse(string choice)
@@ -22,7 +23,7 @@ namespace Aurora4xAutomation.Command.Parser
             }
             catch (Exception e)
             {
-                MessageCommands.PrintError(e.Message);
+                new MessageCommands(Settings).PrintError(e.Message);
                 return new NoOpEvaluator("noop");
             }
         }
@@ -30,10 +31,10 @@ namespace Aurora4xAutomation.Command.Parser
         public void Parse2(string choice)
         {
             if (choice.Matches("^r(esearch)? [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
-                new ResearchCommands(UIMap).ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
+                new ResearchCommands(UIMap, Settings).ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
 
             else if (choice.Matches("^adv(ance)? [0-9]*[a-z]+"))
-                SettingsStore.Increment = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
+                Settings.Increment = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
 
             else if (choice.Matches("^b(uild)? ship [0-9]+ [0-9]+$"))
             {
@@ -64,22 +65,22 @@ namespace Aurora4xAutomation.Command.Parser
             }
 
             else if (choice.Matches("^auto research focus [a-z]+$"))
-                ResearchCommands.FocusResearch(choice.Split(' ')[3]);
+                new ResearchCommands(UIMap, Settings).FocusResearch(choice.Split(' ')[3]);
 
             else if (choice.Matches("^auto research ban [a-z]+$"))
-                ResearchCommands.BanResearch(choice.Split(' ')[3]);
+                new ResearchCommands(UIMap, Settings).BanResearch(choice.Split(' ')[3]);
 
             else if (choice.Matches("^auto research on$"))
-                SettingsStore.AutoResearchOn = true;
+                Settings.AutoResearchOn = true;
 
             else if (choice.Matches("^auto research off$"))
-                SettingsStore.AutoResearchOn = false;
+                Settings.AutoResearchOn = false;
 
             else if (choice.Matches("^clear$"))
             {
-                SettingsStore.FeedbackMessage = "";
-                SettingsStore.InterruptMessage = "";
-                SettingsStore.ErrorMessage = "";
+                Settings.FeedbackMessage = "";
+                Settings.InterruptMessage = "";
+                Settings.ErrorMessage = "";
             }
         }
 
@@ -88,11 +89,11 @@ namespace Aurora4xAutomation.Command.Parser
             switch (s)
             {
                 case "off":
-                    SettingsStore.AutoTurnsOn = false;
-                    return SettingsStore.Increment;
+                    Settings.AutoTurnsOn = false;
+                    return Settings.Increment;
                 case "on":
-                    SettingsStore.AutoTurnsOn = true;
-                    return SettingsStore.Increment;
+                    Settings.AutoTurnsOn = true;
+                    return Settings.Increment;
                 case "5s":
                     return SettingsStore.IncrementLength.FiveSecond;
                 case "30s":
@@ -122,5 +123,6 @@ namespace Aurora4xAutomation.Command.Parser
 
         private IUIMap UIMap { get; set; }
         private CommandLexer Lexer { get; set; }
+        private SettingsStore Settings { get; set; }
     }
 }

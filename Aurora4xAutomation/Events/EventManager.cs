@@ -6,9 +6,10 @@ namespace Aurora4xAutomation.Events
 {
     public class EventManager
     {
-        public EventManager(IUIMap uiMap)
+        public EventManager(IUIMap uiMap, SettingsStore settings)
         {
             UIMap = uiMap;
+            Settings = settings;
         }
 
         public void AddEvent(IEvaluator evaluator, Time time = null)
@@ -18,7 +19,7 @@ namespace Aurora4xAutomation.Events
 
         public void ActOnActiveTimelineEntries()
         {
-            SettingsStore.StatusMessage = "Evaluating events";
+            Settings.StatusMessage = "Evaluating events";
             IEvaluator ev;
             while ((ev = _timeline.PopNextActiveEvent(new Time(UIMap.SystemMap.GetTime()))) != null)
                 ev.Execute();
@@ -26,17 +27,18 @@ namespace Aurora4xAutomation.Events
 
         public void ParseEvents()
         {
-            SettingsStore.StatusMessage = "Parsing events log";
+            Settings.StatusMessage = "Parsing events log";
 
-            if (SettingsStore.DatabasePassword == null)
+            if (Settings.DatabasePassword == null)
             {
-                new EventParser(UIMap).ParseUsingEventWindow(UIMap.SystemMap.GetTime());
+                new EventParser(UIMap, Settings).ParseUsingEventWindow(UIMap.SystemMap.GetTime());
             }
             else
-                new EventParser(UIMap).ParseUsingDatabase();
+                new EventParser(UIMap, Settings).ParseUsingDatabase();
         }
 
         private IUIMap UIMap { get; set; }
+        private SettingsStore Settings { get; set; }
         private readonly Timeline _timeline = new Timeline();
     }
 }

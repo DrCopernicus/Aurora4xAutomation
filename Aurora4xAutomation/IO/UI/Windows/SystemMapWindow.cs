@@ -1,12 +1,13 @@
 ﻿using System.Windows.Forms;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class SystemMapWindow : Window
     {
-        public SystemMapWindow() :
-            base("System Map")
+        public SystemMapWindow(SettingsStore settings) :
+            base("System Map", settings)
         {
             
         }
@@ -73,7 +74,7 @@ namespace Aurora4xAutomation.IO.UI.Windows
 
         protected override void OpenIfNotFound()
         {
-            new BaseAuroraWindow().MakeActive();
+            new BaseAuroraWindow(Settings).MakeActive();
             Sleeper.Sleep(1000);
             SendKeys.SendWait("{F3}");
         }

@@ -4,10 +4,10 @@ using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class AdvanceEvaluator : Evaluator
+    public class AdvanceEvaluator : SettingsEvaluator
     {
-        public AdvanceEvaluator(string text)
-            : base(text)
+        public AdvanceEvaluator(string text, SettingsStore settings)
+            : base(text, settings)
         {
         }
 
@@ -20,25 +20,25 @@ namespace Aurora4xAutomation.Evaluators
             switch (Parameters[0])
             {
                 case "go":
-                    SettingsStore.Stopped = false;
+                    Settings.Stopped = false;
                     break;
                 case "stop":
-                    SettingsStore.Stopped = true;
+                    Settings.Stopped = true;
                     break;
                 case "off":
-                    SettingsStore.AutoTurnsOn = false;
+                    Settings.AutoTurnsOn = false;
                     break;
                 case "on":
-                    SettingsStore.AutoTurnsOn = true;
+                    Settings.AutoTurnsOn = true;
                     break;
                 default:
                     try
                     {
-                        SettingsStore.Increment = _incrementLengthStringRepresentations[Parameters[0]];
+                        Settings.Increment = _incrementLengthStringRepresentations[Parameters[0]];
                     }
                     catch (KeyNotFoundException)
                     {
-                        SettingsStore.Increment = SettingsStore.IncrementLength.FiveDay;
+                        Settings.Increment = SettingsStore.IncrementLength.FiveDay;
                     }
                     break;
             }
