@@ -1,30 +1,30 @@
 ﻿using Aurora4xAutomation.IO.UI.Windows;
 
-namespace Aurora4xAutomation.IO.UI
+namespace Aurora4xAutomation.IO
 {
-    public static class UIMap
+    public class UIMap : IUIMap
     {
-        public static EventWindow EventWindow
+        public EventWindow EventWindow
         {
             get { return _eventWindow ?? (_eventWindow = new EventWindow()); }
         }
 
-        public static CommandersWindow Leaders
+        public CommandersWindow Leaders
         {
             get { return _commandersWindow ?? (_commandersWindow = new CommandersWindow()); }
         }
 
-        public static SystemMapWindow SystemMap
+        public SystemMapWindow SystemMap
         {
             get { return _systemMapWindow ?? (_systemMapWindow = new SystemMapWindow()); }
         }
 
-        public static PopulationAndProductionWindow PopulationAndProductionWindow
+        public PopulationAndProductionWindow PopulationAndProductionWindow
         {
             get { return _populationAndProductionWindow ?? (_populationAndProductionWindow = new PopulationAndProductionWindow()); }
         }
 
-        public static TaskGroupsWindow TaskGroups
+        public TaskGroupsWindow TaskGroups
         {
             get { return _taskGroupsWindow ?? (_taskGroupsWindow = new TaskGroupsWindow()); }
         }

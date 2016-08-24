@@ -1,12 +1,13 @@
 ﻿using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class OpenWindowEvaluator : Evaluator
+    public class OpenWindowEvaluator : UIEvaluator
     {
-        public OpenWindowEvaluator(string text)
-            : base(text)
+        public OpenWindowEvaluator(string text, IUIMap uiMap)
+            : base(text, uiMap)
         {
         }
 
@@ -16,13 +17,13 @@ namespace Aurora4xAutomation.Evaluators
                 throw new CommandExecutionException(1, Parameters.Count, Text);
 
             if (Parameters[0] == "r")
-                OpenCommands.OpenResearch();
+                new OpenCommands(UIMap).OpenResearch();
 
             else if (Parameters[0] == "ship")
-                OpenCommands.OpenShipyard();
+                new OpenCommands(UIMap).OpenShipyard();
 
             else if (Parameters[0] == "tg")
-                OpenCommands.OpenTaskGroup();
+                new OpenCommands(UIMap).OpenTaskGroup();
         }
 
         public override string Help

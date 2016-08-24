@@ -1,13 +1,12 @@
 ﻿using System;
 using Aurora4xAutomation.IO;
-using Aurora4xAutomation.IO.UI;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class BuildInstallationEvaluator : Evaluator
+    public class BuildInstallationEvaluator : UIEvaluator
     {
-        public BuildInstallationEvaluator(string text)
-            : base(text)
+        public BuildInstallationEvaluator(string text, IUIMap uiMap)
+            : base(text, uiMap)
         {
         }
 
@@ -17,7 +16,7 @@ namespace Aurora4xAutomation.Evaluators
                 throw new Exception(string.Format("Expected 3 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            new OpenPopulationEvaluator(Parameters[0]).Execute();
+            new OpenPopulationEvaluator(Parameters[0], UIMap).Execute();
             UIMap.PopulationAndProductionWindow.SelectIndustry();
             switch (Parameters[1])
             {

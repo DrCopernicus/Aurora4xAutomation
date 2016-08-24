@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading;
-using Aurora4xAutomation.Events;
+using Aurora4xAutomation.Automation;
 using Aurora4xAutomation.REST;
 using Aurora4xAutomation.Settings;
 
@@ -16,7 +16,7 @@ namespace Aurora4xAutomation
         public Program()
         {
             SettingsStore.Research = SettingsStore.ResearchFocuses["beamfocus"];
-            new Thread(() => new EventManager().Begin());
+            new Thread(CommandFlowManager.Begin);
             new RESTManager().Begin();
         }
 

@@ -1,19 +1,14 @@
 ﻿using System;
 using Aurora4xAutomation.Command;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class OpenPopulationEvaluator : Evaluator
+    public class OpenPopulationEvaluator : UIEvaluator
     {
-        public OpenPopulationEvaluator(string text)
-            : base(text)
+        public OpenPopulationEvaluator(string text, IUIMap uiMap)
+            : base(text, uiMap)
         {
-        }
-
-        public OpenPopulationEvaluator(params string[] parameters)
-            : base("open-pop", parameters)
-        {
-            
         }
 
         protected override void Evaluate()
@@ -22,7 +17,7 @@ namespace Aurora4xAutomation.Evaluators
                 throw new Exception(string.Format("Expected 1 parameter, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            new OpenCommands().SelectColony(Parameters[0]);
+            new OpenCommands(UIMap).SelectColony(Parameters[0]);
         }
 
         public override string Help

@@ -1,12 +1,13 @@
 ﻿using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class ReadDataEvaluator : Evaluator
+    public class ReadDataEvaluator : UIEvaluator
     {
-        public ReadDataEvaluator(string text)
-            : base(text)
+        public ReadDataEvaluator(string text, IUIMap uiMap)
+            : base(text, uiMap)
         {
         }
 
@@ -16,7 +17,7 @@ namespace Aurora4xAutomation.Evaluators
                 throw new CommandExecutionException(2, Parameters.Count, Text);
 
             if (Parameters[0] == "research")
-                OpenCommands.OpenResearchCategory(Parameters[1]);
+                new OpenCommands(UIMap).OpenResearchCategory(Parameters[1]);
         }
 
         public override string Help

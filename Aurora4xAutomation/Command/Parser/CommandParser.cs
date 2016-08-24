@@ -1,30 +1,36 @@
 ﻿using System;
 using Aurora4xAutomation.Common;
-using Aurora4xAutomation.Events;
-using Aurora4xAutomation.IO.UI;
+using Aurora4xAutomation.Evaluators;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Command.Parser
 {
     public class CommandParser
     {
-        public static void Parse(string choice)
+        public CommandParser(IUIMap uiMap)
+        {
+            UIMap = uiMap;
+            Lexer = new CommandLexer(UIMap);
+        }
+
+        public IEvaluator Parse(string choice)
         {
             try
             {
-                var command = CommandLexer.Lex(choice);
-                command.Execute();
+                return Lexer.Lex(choice);
             }
             catch (Exception e)
             {
                 MessageCommands.PrintError(e.Message);
+                return new NoOpEvaluator("noop");
             }
         }
 
-        public static void Parse2(string choice)
+        public void Parse2(string choice)
         {
             if (choice.Matches("^r(esearch)? [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
-                ResearchCommands.ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
+                new ResearchCommands(UIMap).ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
 
             else if (choice.Matches("^adv(ance)? [0-9]*[a-z]+"))
                 SettingsStore.Increment = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
@@ -42,7 +48,7 @@ namespace Aurora4xAutomation.Command.Parser
 
             else if (choice.Matches("^b(uild)? inst(allation)? [a-z0-9\\-]+ [a-z]+ [0-9]+$"))
             {
-                InfrastructureCommands.BuildInstallation(choice.Split(' ')[2], choice.Split(' ')[3], choice.Split(' ')[4]);
+                new InfrastructureCommands(UIMap).BuildInstallation(choice.Split(' ')[2], choice.Split(' ')[3], choice.Split(' ')[4]);
             }
 
             else if (choice.Matches("^auto assign(ment(s)?)? on$"))
@@ -77,7 +83,7 @@ namespace Aurora4xAutomation.Command.Parser
             }
         }
 
-        private static SettingsStore.IncrementLength GetIncrementFromAbbreviation(string s)
+        private SettingsStore.IncrementLength GetIncrementFromAbbreviation(string s)
         {
             switch (s)
             {
@@ -113,5 +119,8 @@ namespace Aurora4xAutomation.Command.Parser
                     return SettingsStore.IncrementLength.FiveDay;
             }
         }
+
+        private IUIMap UIMap { get; set; }
+        private CommandLexer Lexer { get; set; }
     }
 }

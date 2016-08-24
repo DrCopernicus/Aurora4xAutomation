@@ -1,13 +1,14 @@
 ﻿using System;
 using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class ContractEvaluator : Evaluator
+    public class ContractEvaluator : UIEvaluator
     {
-        public ContractEvaluator(string text)
-            : base(text)
+        public ContractEvaluator(string text, IUIMap uiMap)
+            : base(text, uiMap)
         {
         }
 
@@ -20,7 +21,7 @@ namespace Aurora4xAutomation.Evaluators
             if (Parameters[3] != "s" && Parameters[3] != "d" && Parameters[3] != "supply" && Parameters[3] != "demand")
                 throw new CommandInvalidParameterException(4, "Expected either s(upply) or d(emand).");
 
-            InfrastructureCommands.MakeCivilianContract(Parameters[0],
+            new InfrastructureCommands(UIMap).MakeCivilianContract(Parameters[0],
                 Parameters[1],
                 int.Parse(Parameters[2]),
                 Parameters[3] == "s" || Parameters[3] == "supply");

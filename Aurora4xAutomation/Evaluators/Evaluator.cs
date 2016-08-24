@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
 {
@@ -11,19 +12,13 @@ namespace Aurora4xAutomation.Evaluators
         Help
     }
 
-    public abstract class Evaluator
+    public abstract class Evaluator : IEvaluator
     {
         protected Evaluator(string text)
         {
             Text = text;
             Body = null;
             Next = null;
-        }
-
-        protected Evaluator(string text, params string[] parameters)
-            : this(text)
-        {
-            Body = new ParameterEvaluator(parameters[0], parameters.Subset(1));
         }
 
         public string Text { get; private set; }
@@ -37,7 +32,7 @@ namespace Aurora4xAutomation.Evaluators
 
         protected abstract void Evaluate();
 
-        public void Execute()
+        public virtual void Execute()
         {
             Evaluate();
             if (Next != null)

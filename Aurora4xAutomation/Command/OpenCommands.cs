@@ -1,31 +1,35 @@
 using System;
 using System.Threading;
-using Aurora4xAutomation.Events;
-using Aurora4xAutomation.IO.UI;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Command
 {
     [Obsolete("Commands and related classes should be discontinued in favor of Evaluators, and in the case of duplicated functionality using compound evaluators.")]
     public class OpenCommands
     {
-        public static void OpenResearch()
+        public OpenCommands(IUIMap uiMap)
+        {
+            UIMap = uiMap;
+        }
+
+        public void OpenResearch()
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectResearchTab();
         }
 
-        public static void OpenShipyard()
+        public void OpenShipyard()
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectManageShipyards();
         }
 
-        public static void OpenTaskGroup()
+        public void OpenTaskGroup()
         {
             UIMap.TaskGroups.MakeActive();
         }
 
-        public static void OpenResearchCategory(string category)
+        public void OpenResearchCategory(string category)
         {
             var output = "";
 
@@ -72,7 +76,7 @@ namespace Aurora4xAutomation.Command
             MessageCommands.PrintFeedback(UIMap.PopulationAndProductionWindow.Populations.Text);
         }
 
-        private static string ReadResearchTables()
+        private string ReadResearchTables()
         {
             var output = "";
             UIMap.PopulationAndProductionWindow.SetShowMatchingScientistsOnly(true);
@@ -81,5 +85,7 @@ namespace Aurora4xAutomation.Command
             output += UIMap.PopulationAndProductionWindow.AvailableScientistsTable.GetText();
             return output;
         }
+
+        private IUIMap UIMap { get; set; }
     }
 }

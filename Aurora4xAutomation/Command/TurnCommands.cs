@@ -1,13 +1,20 @@
 using System;
-using Aurora4xAutomation.IO.UI;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Command
 {
     [Obsolete("Commands and related classes should be discontinued in favor of Evaluators, and in the case of duplicated functionality using compound evaluators.")]
-    public static class TurnCommands
+    public class TurnCommands
     {
-        public static void AdvanceTurn(object sender, EventArgs e)
+        public TurnCommands(IUIMap uiMap)
+        {
+            UIMap = uiMap;
+        }
+
+        private IUIMap UIMap { get; set; }
+
+        public void AdvanceTurn()
         {
             UIMap.PopulationAndProductionWindow.Dirty();
 

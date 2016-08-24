@@ -1,13 +1,14 @@
 ﻿using System.Text.RegularExpressions;
+using Aurora4xAutomation.Automation;
 using Aurora4xAutomation.Events;
-using Aurora4xAutomation.IO.UI;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class TimerEvaluator : Evaluator
+    public class TimerEvaluator : UIEvaluator
     {
-        public TimerEvaluator(string text)
-            : base(text)
+        public TimerEvaluator(string text, IUIMap uiMap)
+            : base(text, uiMap)
         {
         }
 
@@ -21,7 +22,7 @@ namespace Aurora4xAutomation.Evaluators
             foreach (var statement in StatementList)
             {
                 var time = new Time(UIMap.SystemMap.GetTime()) + TimeFromText;
-                Timeline.AddEvent(statement, time);
+                CommandFlowManager.QueueCommand(statement, time);
             }
         }
 

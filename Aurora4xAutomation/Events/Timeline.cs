@@ -4,25 +4,31 @@ using Aurora4xAutomation.Evaluators;
 
 namespace Aurora4xAutomation.Events
 {
-    public static class Timeline
+    public class Timeline
     {
-        public static List<AuroraEvent> Events = new List<AuroraEvent>();
+        public List<AuroraEvent> Events = new List<AuroraEvent>();
         
-        public static Evaluator PopNextActiveEvent(Time time)
+        public IEvaluator PopNextActiveEvent(Time time)
         {
-            var ev = Events.OrderBy(evaluator => evaluator.Time).FirstOrDefault(x => x.Time <= time);
+            lock (_lock)
+            {
+                var ev = Events.OrderBy(evaluator => evaluator.Time).FirstOrDefault(x => x.Time <= time);
 
-            if (ev == null)
-                return null;
+                if (ev == null)
+                    return null;
 
-            Events.Remove(ev);
+                Events.Remove(ev);
 
-            return ev.Evaluator;
+                return ev.Evaluator;
+            }
         }
 
-        public static void AddEvent(Evaluator evaluator, Time time = null)
+        public void AddEvent(IEvaluator evaluator, Time time = null)
         {
-            Events.Add(new AuroraEvent(time ?? new Time(), evaluator));
+            lock (_lock)
+                Events.Add(new AuroraEvent(time ?? new Time(), evaluator));
         }
+
+        private readonly object _lock = new object();
     }
 }

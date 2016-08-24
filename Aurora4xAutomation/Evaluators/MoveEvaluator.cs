@@ -1,12 +1,13 @@
 ﻿using System;
 using Aurora4xAutomation.Command;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class MoveEvaluator : Evaluator
+    public class MoveEvaluator : UIEvaluator
     {
-        public MoveEvaluator(string text)
-            : base(text)
+        public MoveEvaluator(string text, IUIMap uiMap)
+            : base(text, uiMap)
         {
         }
 
@@ -16,12 +17,12 @@ namespace Aurora4xAutomation.Evaluators
                 throw new Exception(string.Format("Expected 4 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            InfrastructureCommands.MakeCivilianContract(Parameters[0],
+            new InfrastructureCommands(UIMap).MakeCivilianContract(Parameters[0],
                 Parameters[2],
                 int.Parse(Parameters[3]),
                 true);
 
-            InfrastructureCommands.MakeCivilianContract(Parameters[1],
+            new InfrastructureCommands(UIMap).MakeCivilianContract(Parameters[1],
                 Parameters[2],
                 int.Parse(Parameters[3]),
                 false);

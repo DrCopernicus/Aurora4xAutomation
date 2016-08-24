@@ -6,7 +6,7 @@ namespace Aurora4xAutomation.Tests
     public class ParserTests
     {
         [Test]
-        public void Test()
+        public void ParsesPrintCommand()
         {
 
         }

@@ -7,14 +7,18 @@ using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.IO.DB;
-using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.Settings;
 
-namespace Aurora4xAutomation.Events
+namespace Aurora4xAutomation.Evaluators
 {
     public class EventParser
     {
-        public static void ParseUsingDatabase()
+        public EventParser(IUIMap uiMap)
+        {
+            UIMap = uiMap;
+        }
+
+        public void ParseUsingDatabase()
         {
             var connection = QueryExecutor.GetConnection();
             connection.Open();
@@ -25,7 +29,7 @@ namespace Aurora4xAutomation.Events
             connection.Close();
         }
 
-        public static bool ParseUsingEventWindow(string time)
+        public bool ParseUsingEventWindow(string time)
         {
             UIMap.EventWindow.MakeActive();
             UIMap.EventWindow.TextFileButton.Click();
@@ -38,7 +42,7 @@ namespace Aurora4xAutomation.Events
             return list.Any(x => x);
         }
 
-        private static List<string> GetLatestEvents(string[] strs)
+        private List<string> GetLatestEvents(string[] strs)
         {
             var list = new List<string>();
 
@@ -59,12 +63,12 @@ namespace Aurora4xAutomation.Events
             return list;
         }
 
-        private static string GetLatestTime(string[] strs)
+        private string GetLatestTime(string[] strs)
         {
             return strs.Last().Split(',').First();
         }
 
-        private static bool IsStopEvent(string str)
+        private bool IsStopEvent(string str)
         {
             if (IsMiningColonyUpgrade(str)
                 || IsExperienceGain(str)
@@ -111,41 +115,30 @@ namespace Aurora4xAutomation.Events
             return regex.IsMatch(str);
         }
 
-        private static bool IsCivilianMiningColony(string str)
+        private bool IsCivilianMiningColony(string str)
         {
             var regex = new Regex(@"^A civilian mining colony has been established on ([a-zA-Z0-9\- ]*)");
 
             if (!regex.IsMatch(str)) 
                 return false;
-
-            new OpenCommands().SelectColony(regex.Match(str).Groups[1].Value);
-            InfrastructureCommands.PurchaseMineralOutput("Earth");
             return true;
         }
 
-        private static bool IsInactiveLab(string str)
+        private bool IsInactiveLab(string str)
         {
             var regex = new Regex(@"^[0-9]+ inactive Research Labs on ([a-zA-Z0-9\- ]*)");
 
             if (!regex.IsMatch(str)) 
                 return false;
-
-            new OpenCommands().SelectColony(regex.Match(str).Groups[1].Value);
-            //new ResearchCommands().AutoResearch();
-            throw new NotImplementedException();
             return true;
         }
 
-        private static bool IsResearchCompleted(string str)
+        private bool IsResearchCompleted(string str)
         {
             var regex = new Regex(@"^A team on ([a-zA-Z0-9\- ]*) led by [a-zA-Z0-9\- ]* has completed research into ");
 
             if (!regex.IsMatch(str))
                 return false;
-
-            new OpenCommands().SelectColony(regex.Match(str).Groups[1].Value);
-            throw new NotImplementedException();
-            //new ResearchCommands().AutoResearch();
             return true;
         }
 
@@ -310,5 +303,7 @@ namespace Aurora4xAutomation.Events
             var regex = new Regex(@"^[a-zA-Z0-9\- ]* has joined your scientific establishment.");
             return regex.IsMatch(str);
         }
+
+        private IUIMap UIMap { get; set; }
     }
 }

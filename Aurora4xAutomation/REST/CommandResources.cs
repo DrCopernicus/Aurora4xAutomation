@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
-using Aurora4xAutomation.Command.Parser;
+using Aurora4xAutomation.Automation;
 using Aurora4xAutomation.Messages;
 using Grapevine;
 using Grapevine.Server;
@@ -13,7 +13,7 @@ namespace Aurora4xAutomation.REST
         [RESTRoute(Method = HttpMethod.GET, PathInfo = @"^/command$")]
         public void HandleCommandGetRequests(HttpListenerContext context)
         {
-            CommandParser.Parse(context.Request.QueryString["q"]);
+            CommandFlowManager.QueueCommand(context.Request.QueryString["q"]);
             SendTextResponse(context, "Processed command!");
         }
 

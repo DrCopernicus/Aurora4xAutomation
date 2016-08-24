@@ -1,59 +1,42 @@
-﻿using System;
-using Aurora4xAutomation.Command;
-using Aurora4xAutomation.Common;
-using Aurora4xAutomation.Evaluators;
-using Aurora4xAutomation.IO.UI;
+﻿using Aurora4xAutomation.Evaluators;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Events
 {
     public class EventManager
     {
-        public void Begin()
+        public EventManager(IUIMap uiMap)
         {
-            while (true)
-            {
-                ActOnActiveTimelineEntries();
-
-                if (!SettingsStore.Stopped)
-                {
-                    ParseEvents();
-
-                    if (!SettingsStore.Stopped)
-                        TurnCommands.AdvanceTurn(this, EventArgs.Empty);
-
-                    if (!SettingsStore.AutoTurnsOn)
-                        SettingsCommands.Stop();
-                }
-                else
-                {
-                    SettingsStore.StatusMessage = "Waiting for user input";
-                }
-
-                Sleeper.Sleep(1000);
-            }
+            UIMap = uiMap;
         }
 
-        private void ActOnActiveTimelineEntries()
+        public void AddEvent(IEvaluator evaluator, Time time = null)
+        {
+            _timeline.AddEvent(evaluator);
+        }
+
+        public void ActOnActiveTimelineEntries()
         {
             SettingsStore.StatusMessage = "Evaluating events";
-            Evaluator ev;
-            while ((ev = Timeline.PopNextActiveEvent(new Time(UIMap.SystemMap.GetTime()))) != null)
+            IEvaluator ev;
+            while ((ev = _timeline.PopNextActiveEvent(new Time(UIMap.SystemMap.GetTime()))) != null)
                 ev.Execute();
         }
 
-        private void ParseEvents()
+        public void ParseEvents()
         {
             SettingsStore.StatusMessage = "Parsing events log";
 
             if (SettingsStore.DatabasePassword == null)
             {
-                UIMap.EventWindow.MakeActive();
-                EventParser.ParseUsingEventWindow(UIMap.SystemMap.GetTime());
+                new EventParser(UIMap).ParseUsingEventWindow(UIMap.SystemMap.GetTime());
             }
             else
-                EventParser.ParseUsingDatabase();
+                new EventParser(UIMap).ParseUsingDatabase();
         }
 
+        private IUIMap UIMap { get; set; }
+        private readonly Timeline _timeline = new Timeline();
     }
 }

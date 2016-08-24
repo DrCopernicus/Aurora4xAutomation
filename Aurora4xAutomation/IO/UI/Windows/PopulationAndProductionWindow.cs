@@ -70,8 +70,8 @@ namespace Aurora4xAutomation.IO.UI.Windows
             Populations = new TreeList(this, left: 21, right: 361, top: 100, bottom: 807);
             Populations.Refresh += (sender, args) =>
             {
-                UIMap.PopulationAndProductionWindow.MakeActive();
-                UIMap.PopulationAndProductionWindow.Empire.SelectOption(1);
+                MakeActive();
+                Empire.SelectOption(1);
             };
             PurchaseMineralOutput = new RadioButton(this, left: 536, right: 547, top: 804, bottom: 815);
             MassDriverDestination = new Combobox(this, left: 1005, right: 1184, top: 156, bottom: 172)

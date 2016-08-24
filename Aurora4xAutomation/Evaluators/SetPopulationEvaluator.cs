@@ -1,13 +1,13 @@
 ﻿using System;
 using Aurora4xAutomation.Command;
-using Aurora4xAutomation.IO.UI;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class SetPopulationEvaluator : Evaluator
+    public class SetPopulationEvaluator : UIEvaluator
     {
-        public SetPopulationEvaluator(string text)
-            : base(text)
+        public SetPopulationEvaluator(string text, IUIMap uiMap)
+            : base(text, uiMap)
         {
         }
 
@@ -17,7 +17,7 @@ namespace Aurora4xAutomation.Evaluators
                 throw new Exception(string.Format("Expected 3 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            new OpenCommands().SelectColony(Parameters[0]);
+            new OpenCommands(UIMap).SelectColony(Parameters[0]);
 
             if (Parameters[1] == "mining-destination")
             {

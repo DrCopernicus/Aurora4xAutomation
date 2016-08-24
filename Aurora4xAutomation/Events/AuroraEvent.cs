@@ -1,5 +1,4 @@
-﻿using System;
-using Aurora4xAutomation.Evaluators;
+﻿using Aurora4xAutomation.Evaluators;
 
 namespace Aurora4xAutomation.Events
 {
@@ -10,13 +9,13 @@ namespace Aurora4xAutomation.Events
 
         }
 
-        public AuroraEvent(Time time, Evaluator evaluator)
+        public AuroraEvent(Time time, IEvaluator evaluator)
         {
             Evaluator = evaluator;
             Time = time;
         }
 
         public Time Time;
-        public Evaluator Evaluator;
+        public IEvaluator Evaluator;
     }
 }

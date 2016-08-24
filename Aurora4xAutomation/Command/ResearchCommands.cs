@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Aurora4xAutomation.Common;
-using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
-using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.Settings;
 using MoreLinq;
 
@@ -14,7 +12,12 @@ namespace Aurora4xAutomation.Command
     [Obsolete("Commands and related classes should be discontinued in favor of Evaluators, and in the case of duplicated functionality using compound evaluators.")]
     public class ResearchCommands
     {
-        public static void ResearchTechCommand(string category, int researchNum, int scientistNum, int labsNum)
+        public ResearchCommands(IUIMap uiMap)
+        {
+            UIMap = uiMap;
+        }
+
+        public void ResearchTechCommand(string category, int researchNum, int scientistNum, int labsNum)
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectResearchTab();
@@ -216,10 +219,12 @@ namespace Aurora4xAutomation.Command
                 UIMap.PopulationAndProductionWindow.SelectResearchTab();
                 var numLabs = int.Parse(UIMap.PopulationAndProductionWindow.NumberOfLabs.Text);
                 if (numScientists*SettingsStore.MinLabsPerScientist >= numLabs)
-                    InfrastructureCommands.BuildInstallation("Earth", "lab", "1");
+                    new InfrastructureCommands(UIMap).BuildInstallation("Earth", "lab", "1");
             }
             //Timeline.AddEvent(CheckNumberOfLabs, "", new Time(UIMap.SystemMap.GetTime()) + new Time(0, 0, SettingsStore.DaysPerLabsCheck, 0, 0, 0));
             //TODO
         }
+
+        private IUIMap UIMap { get; set; }
     }
 }

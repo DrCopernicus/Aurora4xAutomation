@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using Aurora4xAutomation.Evaluators;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Command.Parser
 {
     public class CommandLexer
     {
-        private static void SkipSpaces(ref string command)
+        public CommandLexer(IUIMap uiMap)
+        {
+            UIMap = uiMap;
+        }
+
+        private IUIMap UIMap { get; set; }
+
+        private void SkipSpaces(ref string command)
         {
             while (true)
             {
@@ -21,7 +29,7 @@ namespace Aurora4xAutomation.Command.Parser
             }
         }
 
-        private static CommandToken GetNext(ref string command)
+        private CommandToken GetNext(ref string command)
         {
             SkipSpaces(ref command);
 
@@ -61,12 +69,12 @@ namespace Aurora4xAutomation.Command.Parser
             return new CommandToken(str, CommandTokenType.Text);
         }
 
-        private static void UngetToken(ref string command, CommandToken token)
+        private void UngetToken(ref string command, CommandToken token)
         {
             command = token.Text + " " + command;
         }
 
-        public static Evaluator Lex(string command)
+        public Evaluator Lex(string command)
         {
             var statement = Statement(ref command);
             if (statement == null)
@@ -74,7 +82,7 @@ namespace Aurora4xAutomation.Command.Parser
             return statement;
         }
 
-        private static Evaluator Statement(ref string command)
+        private Evaluator Statement(ref string command)
         {
             var token = GetNext(ref command);
             Evaluator eval;
@@ -107,7 +115,7 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private static Evaluator Timer(ref string command)
+        private Evaluator Timer(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.LeftParenthesis)
@@ -117,7 +125,7 @@ namespace Aurora4xAutomation.Command.Parser
             if (token.Type != CommandTokenType.Text)
                 throw new Exception("Failed to parse Timer token correctly: Expected Text");
 
-            var eval = new TimerEvaluator(token.Text);
+            var eval = new TimerEvaluator(token.Text, UIMap);
 
             token = GetNext(ref command);
             if (token.Type != CommandTokenType.RightParenthesis)
@@ -140,7 +148,7 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private static Evaluator Action(ref string command)
+        private Evaluator Action(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.Text)
@@ -155,7 +163,7 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private static Evaluator HelpParameter(ref string command)
+        private Evaluator HelpParameter(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.Text)
@@ -166,7 +174,7 @@ namespace Aurora4xAutomation.Command.Parser
             return TextToCommand(token.Text);
         }
 
-        private static Evaluator Parameters(ref string command)
+        private Evaluator Parameters(ref string command)
         {
             var token = GetNext(ref command);
             if (token.Type != CommandTokenType.Text)
@@ -180,19 +188,19 @@ namespace Aurora4xAutomation.Command.Parser
             return eval;
         }
 
-        private static Evaluator TextToCommand(string text)
+        private Evaluator TextToCommand(string text)
         {
-                try
-                {
-                    return (Evaluator) Activator.CreateInstance(TextRepresentationOfCommands[text], text);
-                }
-                catch (Exception)
-                {
-                    throw new Exception(string.Format("Did not recognize command {0}.", text));
-                }
+            try
+            {
+                return (Evaluator) Activator.CreateInstance(TextRepresentationOfCommands[text], text);
+            }
+            catch (Exception)
+            {
+                throw new Exception(string.Format("Did not recognize command {0}.", text));
+            }
         }
 
-        private static readonly Dictionary<string, Type> TextRepresentationOfCommands = new Dictionary<string, Type>
+        private readonly Dictionary<string, Type> TextRepresentationOfCommands = new Dictionary<string, Type>
         {
             {"adv", typeof(AdvanceEvaluator)},
             {"build-installation", typeof(BuildInstallationEvaluator)},

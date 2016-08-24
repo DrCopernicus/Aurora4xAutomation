@@ -1,15 +1,21 @@
 using System;
 using Aurora4xAutomation.IO;
-using Aurora4xAutomation.IO.UI;
 
 namespace Aurora4xAutomation.Command
 {
     [Obsolete("Commands and related classes should be discontinued in favor of Evaluators, and in the case of duplicated functionality using compound evaluators.")]
-    public static class InfrastructureCommands
+    public class InfrastructureCommands
     {
-        public static void MakeCivilianContract(string population, string installation, int amount, bool supply)
+        public InfrastructureCommands(IUIMap uiMap)
         {
-            new OpenCommands().SelectColony(population);
+            UIMap = uiMap;
+        }
+
+        private IUIMap UIMap { get; set; }
+
+        public void MakeCivilianContract(string population, string installation, int amount, bool supply)
+        {
+            new OpenCommands(UIMap).SelectColony(population);
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectCivilianTab();
             UIMap.PopulationAndProductionWindow.InstallationType.Text = installation;
@@ -21,7 +27,7 @@ namespace Aurora4xAutomation.Command
             UIMap.PopulationAndProductionWindow.AddCivilianContract.Click();
         }
 
-        public static void PurchaseMineralOutput(string massDriverDestination)
+        public void PurchaseMineralOutput(string massDriverDestination)
         {
             UIMap.PopulationAndProductionWindow.MakeActive();
             UIMap.PopulationAndProductionWindow.SelectCivilianTab();
@@ -30,9 +36,9 @@ namespace Aurora4xAutomation.Command
             UIMap.PopulationAndProductionWindow.MassDriverDestination.Text = massDriverDestination;
         }
 
-        public static void BuildInstallation(string population, string installationName, string installationNumber)
+        public void BuildInstallation(string population, string installationName, string installationNumber)
         {
-            new OpenCommands().SelectColony(population);
+            new OpenCommands(UIMap).SelectColony(population);
             UIMap.PopulationAndProductionWindow.SelectIndustry();
             switch (installationName)
             {
