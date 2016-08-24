@@ -71,23 +71,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command\Commands.cs" />
-    <Compile Include="Command\Evaluators\Evaluator.cs" />
+    <Compile Include="Evaluators\Evaluator.cs" />
     <Compile Include="Command\Parser\CommandLexer.cs" />
     <Compile Include="Command\Parser\CommandParser.cs" />
     <Compile Include="Command\Parser\CommandToken.cs" />
-    <Compile Include="Command\Evaluators\BuildInstallationEvaluator.cs" />
-    <Compile Include="Command\Evaluators\HelpEvaluator.cs" />
-    <Compile Include="Command\Evaluators\AdvanceEvaluator.cs" />
-    <Compile Include="Command\Evaluators\SetPopulationEvaluator.cs" />
-    <Compile Include="Command\Evaluators\StopEvaluator.cs" />
-    <Compile Include="Command\Evaluators\PrintEvaluator.cs" />
-    <Compile Include="Command\Evaluators\OpenPopulationEvaluator.cs" />
-    <Compile Include="Command\Evaluators\ParameterEvaluator.cs" />
-    <Compile Include="Command\Evaluators\ContractEvaluator.cs" />
-    <Compile Include="Command\Evaluators\MoveEvaluator.cs" />
-    <Compile Include="Command\Evaluators\TimerEvaluator.cs" />
-    <Compile Include="Command\Evaluators\ReadDataEvaluator.cs" />
-    <Compile Include="Command\Evaluators\OpenWindowEvaluator.cs" />
+    <Compile Include="Evaluators\BuildInstallationEvaluator.cs" />
+    <Compile Include="Evaluators\HelpEvaluator.cs" />
+    <Compile Include="Evaluators\AdvanceEvaluator.cs" />
+    <Compile Include="Evaluators\SetPopulationEvaluator.cs" />
+    <Compile Include="Evaluators\StopEvaluator.cs" />
+    <Compile Include="Evaluators\PrintEvaluator.cs" />
+    <Compile Include="Evaluators\OpenPopulationEvaluator.cs" />
+    <Compile Include="Evaluators\ParameterEvaluator.cs" />
+    <Compile Include="Evaluators\ContractEvaluator.cs" />
+    <Compile Include="Evaluators\MoveEvaluator.cs" />
+    <Compile Include="Evaluators\TimerEvaluator.cs" />
+    <Compile Include="Evaluators\ReadDataEvaluator.cs" />
+    <Compile Include="Evaluators\OpenWindowEvaluator.cs" />
     <Compile Include="Command\TurnCommands.cs" />
     <Compile Include="Command\SettingsCommands.cs" />
     <Compile Include="Command\MessageCommands.cs" />

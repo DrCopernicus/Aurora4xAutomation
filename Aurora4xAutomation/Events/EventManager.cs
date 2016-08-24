@@ -1,7 +1,7 @@
 ﻿using System;
 using Aurora4xAutomation.Command;
-using Aurora4xAutomation.Command.Evaluators;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.Settings;
 

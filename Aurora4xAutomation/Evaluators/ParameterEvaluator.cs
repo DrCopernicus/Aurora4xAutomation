@@ -2,7 +2,7 @@
 using System.Linq;
 using Aurora4xAutomation.Common;
 
-namespace Aurora4xAutomation.Command.Evaluators
+namespace Aurora4xAutomation.Evaluators
 {
     public class ParameterEvaluator : Evaluator
     {

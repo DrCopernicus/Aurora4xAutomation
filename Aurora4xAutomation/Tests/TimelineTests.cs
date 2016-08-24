@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Aurora4xAutomation.Command.Evaluators;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Events;
 using NUnit.Framework;
 

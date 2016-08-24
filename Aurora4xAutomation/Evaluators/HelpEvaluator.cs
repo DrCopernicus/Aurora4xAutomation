@@ -1,7 +1,7 @@
 ﻿using System;
-using Aurora4xAutomation.Events;
+using Aurora4xAutomation.Command;
 
-namespace Aurora4xAutomation.Command.Evaluators
+namespace Aurora4xAutomation.Evaluators
 {
     public class HelpEvaluator : Evaluator
     {

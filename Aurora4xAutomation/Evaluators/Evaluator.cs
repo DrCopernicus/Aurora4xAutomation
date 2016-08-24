@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Aurora4xAutomation.Common;
 
-namespace Aurora4xAutomation.Command.Evaluators
+namespace Aurora4xAutomation.Evaluators
 {
     public enum CommandEvaluatorType
     {

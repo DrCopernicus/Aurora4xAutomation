@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Aurora4xAutomation.Command.Evaluators;
+using Aurora4xAutomation.Evaluators;
 
 namespace Aurora4xAutomation.Command.Parser
 {

@@ -1,8 +1,7 @@
-﻿using Aurora4xAutomation.Command.Parser;
+﻿using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
-using Aurora4xAutomation.Events;
 
-namespace Aurora4xAutomation.Command.Evaluators
+namespace Aurora4xAutomation.Evaluators
 {
     public class ReadDataEvaluator : Evaluator
     {

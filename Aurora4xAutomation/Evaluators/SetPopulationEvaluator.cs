@@ -1,8 +1,8 @@
 ﻿using System;
-using Aurora4xAutomation.Command.Parser;
+using Aurora4xAutomation.Command;
 using Aurora4xAutomation.IO.UI;
 
-namespace Aurora4xAutomation.Command.Evaluators
+namespace Aurora4xAutomation.Evaluators
 {
     public class SetPopulationEvaluator : Evaluator
     {

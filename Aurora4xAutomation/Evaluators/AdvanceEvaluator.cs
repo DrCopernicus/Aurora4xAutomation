@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Aurora4xAutomation.Settings;
 
-namespace Aurora4xAutomation.Command.Evaluators
+namespace Aurora4xAutomation.Evaluators
 {
     public class AdvanceEvaluator : Evaluator
     {
