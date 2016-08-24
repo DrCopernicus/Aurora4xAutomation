@@ -1,6 +1,4 @@
-using System;
-using Aurora4xAutomation.Events;
-using Aurora4xAutomation.Settings;
+using Aurora4xAutomation.Messages;
 
 namespace Aurora4xAutomation.Command
 {
@@ -8,19 +6,19 @@ namespace Aurora4xAutomation.Command
     {
         public static void PrintError(string message)
         {
-            SettingsStore.ErrorMessage += string.Format("\n\n{0}", message);
+            MessageManagerManager.AddMessage(message);
             SettingsCommands.Stop();
         }
 
         public static void PrintInterrupt(string message)
         {
-            SettingsStore.InterruptMessage += string.Format("\n\n{0}", message);
+            MessageManagerManager.AddMessage(message);
             SettingsCommands.Stop();
         }
 
         public static void PrintFeedback(string message)
         {
-            SettingsStore.FeedbackMessage += string.Format("\n\n{0}", message);
+            MessageManagerManager.AddMessage(message);
         }
     }
 }

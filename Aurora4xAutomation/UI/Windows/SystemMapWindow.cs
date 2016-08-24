@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
+using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.UI.Windows
@@ -74,8 +75,8 @@ namespace Aurora4xAutomation.UI.Windows
 
         protected override void OpenIfNotFound()
         {
-            new AuroraWrapperWindow().OpenBase();
-            Thread.Sleep(1000);
+            new BaseAuroraWindow().MakeActive();
+            Sleeper.Sleep(1000);
             SendKeys.SendWait("{F3}");
         }
     }

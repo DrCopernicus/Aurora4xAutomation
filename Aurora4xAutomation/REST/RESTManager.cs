@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Aurora4xAutomation.Common;
 using Grapevine.Server;
 
 namespace Aurora4xAutomation.REST
@@ -16,6 +12,7 @@ namespace Aurora4xAutomation.REST
 
             while (server.IsListening)
             {
+                Sleeper.Sleep(1000);
             }
 
         }

@@ -30,7 +30,7 @@ namespace Aurora4xAutomation.Events
                     SettingsStore.StatusMessage = "Waiting for user input";
                 }
 
-                Sleeper.Sleep(2000);
+                Sleeper.Sleep(1000);
             }
         }
 
@@ -45,9 +45,12 @@ namespace Aurora4xAutomation.Events
         private void ParseEvents()
         {
             SettingsStore.StatusMessage = "Parsing events log";
-            UIMap.EventWindow.MakeActive();
+
             if (SettingsStore.DatabasePassword == null)
+            {
+                UIMap.EventWindow.MakeActive();
                 EventParser.ParseUsingEventWindow(UIMap.SystemMap.GetTime());
+            }
             else
                 EventParser.ParseUsingDatabase();
         }

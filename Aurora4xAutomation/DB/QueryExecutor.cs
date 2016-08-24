@@ -8,7 +8,7 @@ namespace Aurora4xAutomation.DB
     {
         public static OleDbConnection GetConnection()
         {
-            var accessConnStr = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\prog\Aurora\Aurora_latest\Aurora\Stevefire.mdb;Jet OLEDB:Database Password={0}", SettingsStore.DatabasePassword);
+            var accessConnStr = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Jet OLEDB:Database Password={1}", SettingsStore.DatabaseLocation, SettingsStore.DatabasePassword);
             return new OleDbConnection(accessConnStr);
         }
 

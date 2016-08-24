@@ -7,6 +7,7 @@ using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.DB;
 using Aurora4xAutomation.IO;
+using Aurora4xAutomation.Settings;
 using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation.Events
@@ -29,7 +30,7 @@ namespace Aurora4xAutomation.Events
             UIMap.EventWindow.MakeActive();
             UIMap.EventWindow.TextFileButton.Click();
             Sleeper.Sleep(1500);
-            var file = @"D:\prog\Aurora\Aurora_latest\Aurora\FederationEventLog.txt";
+            var file = SettingsStore.EventLogLocation;
             var allEvents = File.ReadAllLines(file);
             if (!GetLatestTime(allEvents).StartsWith(time))
                 return false;

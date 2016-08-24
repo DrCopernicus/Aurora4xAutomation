@@ -78,6 +78,8 @@ namespace Aurora4xAutomation.Settings
         public static int MinLabsPerScientist = 2;
         public static int DaysPerLabsCheck = 60;
 
+        public static string GameName = "AutomatedAuroraGame";
+
         private static string _databasePassword;
 
         public static string DatabasePassword
@@ -89,5 +91,10 @@ namespace Aurora4xAutomation.Settings
                 return _databasePassword;
             }
         }
+
+        public static string DatabaseLocation = @"C:\Users\Administrator\Desktop\Aurora\Stevefire.mdb";
+
+        public static string EventLogLocation = @"C:\Users\Administrator\Desktop\Aurora\FederationEventLog.txt";
+
     }
 }
