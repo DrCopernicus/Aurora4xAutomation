@@ -1,5 +1,5 @@
 ﻿using System;
-using Aurora4xAutomation.Command;
+using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
@@ -17,15 +17,14 @@ namespace Aurora4xAutomation.Evaluators
                 throw new Exception(string.Format("Expected 4 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            new InfrastructureCommands(UIMap).MakeCivilianContract(Parameters[0],
-                Parameters[2],
-                int.Parse(Parameters[3]),
-                true);
+            var supplyContract = new ContractEvaluator("move", UIMap);
+            new EvaluatorParameterizer().SetParameters(supplyContract, Parameters[0], Parameters[2], Parameters[3], true);
 
-            new InfrastructureCommands(UIMap).MakeCivilianContract(Parameters[1],
-                Parameters[2],
-                int.Parse(Parameters[3]),
-                false);
+            var demandContract = new ContractEvaluator("move", UIMap);
+            new EvaluatorParameterizer().SetParameters(demandContract, Parameters[1], Parameters[2], Parameters[3], false);
+
+            supplyContract.Execute();
+            demandContract.Execute();
         }
 
         public override string Help

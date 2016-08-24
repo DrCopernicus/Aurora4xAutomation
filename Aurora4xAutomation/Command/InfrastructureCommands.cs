@@ -1,6 +1,5 @@
 using System;
 using Aurora4xAutomation.IO;
-using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Command
 {
@@ -13,20 +12,6 @@ namespace Aurora4xAutomation.Command
         }
 
         private IUIMap UIMap { get; set; }
-
-        public void MakeCivilianContract(string population, string installation, int amount, bool supply)
-        {
-            new OpenCommands(UIMap).SelectColony(population);
-            UIMap.PopulationAndProductionWindow.MakeActive();
-            UIMap.PopulationAndProductionWindow.SelectCivilianTab();
-            UIMap.PopulationAndProductionWindow.InstallationType.Text = installation;
-            UIMap.PopulationAndProductionWindow.ContractAmount.Text = amount + "";
-            if (supply)
-                UIMap.PopulationAndProductionWindow.CivilianContractSupply.Selected = true;
-            else
-                UIMap.PopulationAndProductionWindow.CivilianContractDemand.Selected = true;
-            UIMap.PopulationAndProductionWindow.AddCivilianContract.Click();
-        }
 
         public void PurchaseMineralOutput(string massDriverDestination)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
@@ -18,18 +19,35 @@ namespace Aurora4xAutomation.Evaluators
                 throw new Exception(string.Format("Expected 4 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            if (Parameters[3] != "s" && Parameters[3] != "d" && Parameters[3] != "supply" && Parameters[3] != "demand")
-                throw new CommandInvalidParameterException(4, "Expected either s(upply) or d(emand).");
+            new OpenCommands(UIMap).SelectColony(Parameters[0]);
+            UIMap.PopulationAndProductionWindow.MakeActive();
+            UIMap.PopulationAndProductionWindow.SelectCivilianTab();
+            UIMap.PopulationAndProductionWindow.InstallationType.Text = Parameters[1];
+            UIMap.PopulationAndProductionWindow.ContractAmount.Text = Parameters[2];
+            if (IsSupplyContract(Parameters[3]))
+                UIMap.PopulationAndProductionWindow.CivilianContractSupply.Selected = true;
+            else
+                UIMap.PopulationAndProductionWindow.CivilianContractDemand.Selected = true;
+            UIMap.PopulationAndProductionWindow.AddCivilianContract.Click();
+        }
 
-            new InfrastructureCommands(UIMap).MakeCivilianContract(Parameters[0],
-                Parameters[1],
-                int.Parse(Parameters[2]),
-                Parameters[3] == "s" || Parameters[3] == "supply");
+        private static bool IsSupplyContract(string parameter)
+        {
+            bool isSupply;
+            if (bool.TryParse(parameter, out isSupply))
+                return isSupply;
+            
+            if (parameter != "s" && parameter != "d" && parameter != "supply" && parameter != "demand")
+                throw new CommandInvalidParameterException(4, "Expected one of the following: s(upply), d(emand), true, false.");
+
+            return parameter == "s" || parameter == "supply";
         }
 
         public static ContractEvaluator SupplyContract(IUIMap uiMap, string population, string installation, int amount, bool supply)
         {
-            return new ContractEvaluator("contract", uiMap);
+            var evaluator = new ContractEvaluator("contract", uiMap);
+            new EvaluatorParameterizer().SetParameters(evaluator, population, installation, amount, supply);
+            return evaluator;
         }
 
         public override string Help
