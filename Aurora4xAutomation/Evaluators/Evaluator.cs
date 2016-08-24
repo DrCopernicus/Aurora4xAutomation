@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using Aurora4xAutomation.Common;
-using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomation.Evaluators
 {
