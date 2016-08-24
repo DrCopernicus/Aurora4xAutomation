@@ -121,8 +121,6 @@
     <Compile Include="REST\CommandResources.cs" />
     <Compile Include="REST\Resources.cs" />
     <Compile Include="REST\RESTManager.cs" />
-    <Compile Include="REST\Ticket.cs" />
-    <Compile Include="REST\TicketManager.cs" />
     <Compile Include="Settings\SettingsStore.cs" />
     <Compile Include="Tests\LexerTests.cs" />
     <Compile Include="Tests\MessageManagerTests.cs" />

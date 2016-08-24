@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net;
 using Aurora4xAutomation.Command.Parser;
-using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Messages;
 using Grapevine;
 using Grapevine.Server;
@@ -44,32 +43,6 @@ namespace Aurora4xAutomation.REST
         public void HandleLastMessageRequests(HttpListenerContext context)
         {
             SendTextResponse(context, MessageManagerManager.GetLastId().ToString());
-        }
-
-        [RESTRoute(Method = HttpMethod.GET, PathInfo = @"^/ticket/[a-zA-Z0-9\-]+$")]
-        public void HandleTicketGetRequests(HttpListenerContext context)
-        {
-            var ticket = TicketManager.GetTicket(context.Request.Url.AbsolutePath.SplitPath()[2]);
-            if (ticket == null)
-            {
-                context.Response.StatusCode = 404;
-                SendTextResponse(context, "404 Not Found");
-            }
-            else if (ticket.Response == Ticket.TicketResponse.Complete)
-            {
-                context.Response.StatusCode = 404;
-                SendTextResponse(context, ticket.Message);
-            }
-            else if (ticket.Response == Ticket.TicketResponse.Working)
-            {
-                context.Response.StatusCode = 202;
-                SendTextResponse(context, "202 Accepted");
-            }
-            else
-            {
-                context.Response.StatusCode = 500;
-                SendTextResponse(context, "500 Unknown Ticket State");
-            }
         }
     }
 }
