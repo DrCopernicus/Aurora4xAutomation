@@ -1,9 +1,8 @@
-﻿using System.Threading;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Aurora4xAutomation.Common;
-using Button = Aurora4xAutomation.UI.Controls.Button;
+using Button = Aurora4xAutomation.IO.UI.Controls.Button;
 
-namespace Aurora4xAutomation.UI.Windows
+namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class EventWindow : Window
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Aurora4xAutomation.Settings;
 
-namespace Aurora4xAutomation.UI.Windows
+namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class BaseAuroraWindow : Window
     {

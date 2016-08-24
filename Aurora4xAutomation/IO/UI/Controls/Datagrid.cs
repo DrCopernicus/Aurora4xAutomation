@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 using Aurora4xAutomation.Common;
-using Aurora4xAutomation.IO;
 
-namespace Aurora4xAutomation.UI.Controls
+namespace Aurora4xAutomation.IO.UI.Controls
 {
     public class Datagrid : Control
     {

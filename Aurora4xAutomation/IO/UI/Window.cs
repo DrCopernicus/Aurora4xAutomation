@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Aurora4xAutomation.Common;
-using Aurora4xAutomation.IO;
 
-namespace Aurora4xAutomation.UI
+namespace Aurora4xAutomation.IO.UI
 {
     public abstract class Window : IWindow
     {

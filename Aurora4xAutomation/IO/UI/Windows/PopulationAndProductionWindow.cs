@@ -1,14 +1,12 @@
-﻿using System.Threading;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using WindowsInput.Native;
 using Aurora4xAutomation.Common;
-using Aurora4xAutomation.IO;
-using Aurora4xAutomation.UI.Controls;
-using Button = Aurora4xAutomation.UI.Controls.Button;
-using Label = Aurora4xAutomation.UI.Controls.Label;
-using RadioButton = Aurora4xAutomation.UI.Controls.RadioButton;
+using Aurora4xAutomation.IO.UI.Controls;
+using Button = Aurora4xAutomation.IO.UI.Controls.Button;
+using Label = Aurora4xAutomation.IO.UI.Controls.Label;
+using RadioButton = Aurora4xAutomation.IO.UI.Controls.RadioButton;
 
-namespace Aurora4xAutomation.UI.Windows
+namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class PopulationAndProductionWindow : Window
     {

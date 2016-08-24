@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
-using Aurora4xAutomation.Events;
 
-namespace Aurora4xAutomation.UI.Controls
+namespace Aurora4xAutomation.IO.UI.Controls
 {
     public class TreeList : Control
     {

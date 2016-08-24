@@ -1,7 +1,7 @@
 using System;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
-using Aurora4xAutomation.UI;
+using Aurora4xAutomation.IO.UI;
 
 namespace Aurora4xAutomation.Command
 {

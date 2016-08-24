@@ -1,6 +1,6 @@
 ﻿using System;
-using Aurora4xAutomation.UI;
-using Aurora4xAutomation.UI.Controls;
+using Aurora4xAutomation.IO.UI;
+using Aurora4xAutomation.IO.UI.Controls;
 using NUnit.Framework;
 
 namespace Aurora4xAutomation.Tests

@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using Aurora4xAutomation.Common;
 
-namespace Aurora4xAutomation.UI.Controls
+namespace Aurora4xAutomation.IO.UI.Controls
 {
     public class Control : IControl
     {

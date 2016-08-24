@@ -5,8 +5,8 @@ using System.Threading;
 using System.Windows.Forms;
 using WindowsInput;
 using WindowsInput.Native;
-using Aurora4xAutomation.UI;
-using Control = Aurora4xAutomation.UI.Controls.Control;
+using Aurora4xAutomation.IO.UI;
+using Control = Aurora4xAutomation.IO.UI.Controls.Control;
 
 namespace Aurora4xAutomation.IO
 {

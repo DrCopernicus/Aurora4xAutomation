@@ -1,6 +1,6 @@
 ﻿using System;
 using Aurora4xAutomation.Command.Parser;
-using Aurora4xAutomation.UI;
+using Aurora4xAutomation.IO.UI;
 
 namespace Aurora4xAutomation.Command.Evaluators
 {

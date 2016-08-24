@@ -1,8 +1,8 @@
 ﻿using System;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Events;
+using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.Settings;
-using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation.Command.Parser
 {

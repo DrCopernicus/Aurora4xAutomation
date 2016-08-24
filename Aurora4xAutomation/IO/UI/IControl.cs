@@ -1,4 +1,4 @@
-﻿namespace Aurora4xAutomation.UI
+﻿namespace Aurora4xAutomation.IO.UI
 {
     public interface IControl
     {

@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Aurora4xAutomation.UI
+namespace Aurora4xAutomation.IO.UI
 {
     public class NativeMethods
     {

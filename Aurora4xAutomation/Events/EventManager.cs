@@ -2,8 +2,8 @@
 using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Command.Evaluators;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.Settings;
-using Aurora4xAutomation.UI;
 
 namespace Aurora4xAutomation.Events
 {

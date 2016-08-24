@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using Aurora4xAutomation.Events;
 using Aurora4xAutomation.Settings;
 
-namespace Aurora4xAutomation.DB
+namespace Aurora4xAutomation.IO.DB
 {
     public static class AuroraDatabase
     {
