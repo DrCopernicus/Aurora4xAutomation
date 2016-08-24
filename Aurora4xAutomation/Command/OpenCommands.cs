@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using Aurora4xAutomation.IO;
-using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Command
 {
@@ -11,23 +10,6 @@ namespace Aurora4xAutomation.Command
         public OpenCommands(IUIMap uiMap)
         {
             UIMap = uiMap;
-        }
-
-        public void OpenResearch()
-        {
-            UIMap.PopulationAndProductionWindow.MakeActive();
-            UIMap.PopulationAndProductionWindow.SelectResearchTab();
-        }
-
-        public void OpenShipyard()
-        {
-            UIMap.PopulationAndProductionWindow.MakeActive();
-            UIMap.PopulationAndProductionWindow.SelectManageShipyards();
-        }
-
-        public void OpenTaskGroup()
-        {
-            UIMap.TaskGroups.MakeActive();
         }
 
         public void OpenResearchCategory(string category)

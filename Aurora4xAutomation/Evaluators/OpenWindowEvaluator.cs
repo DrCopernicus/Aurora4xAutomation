@@ -16,14 +16,20 @@ namespace Aurora4xAutomation.Evaluators
             if (Parameters.Count != 1)
                 throw new CommandExecutionException(1, Parameters.Count, Text);
 
-            if (Parameters[0] == "r")
-                new OpenCommands(UIMap).OpenResearch();
-
-            else if (Parameters[0] == "ship")
-                new OpenCommands(UIMap).OpenShipyard();
-
-            else if (Parameters[0] == "tg")
-                new OpenCommands(UIMap).OpenTaskGroup();
+            switch (Parameters[0])
+            {
+                case "r":
+                    UIMap.PopulationAndProductionWindow.MakeActive();
+                    UIMap.PopulationAndProductionWindow.SelectResearchTab();
+                    break;
+                case "ship":
+                    UIMap.PopulationAndProductionWindow.MakeActive();
+                    UIMap.PopulationAndProductionWindow.SelectManageShipyards();
+                    break;
+                case "tg":
+                    UIMap.TaskGroups.MakeActive();
+                    break;
+            }
         }
 
         public override string Help
