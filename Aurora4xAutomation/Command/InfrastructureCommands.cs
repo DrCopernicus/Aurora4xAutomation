@@ -1,10 +1,10 @@
 using System;
-using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.IO.UI;
 
 namespace Aurora4xAutomation.Command
 {
+    [Obsolete("Commands and related classes should be discontinued in favor of Evaluators, and in the case of duplicated functionality using compound evaluators.")]
     public static class InfrastructureCommands
     {
         public static void MakeCivilianContract(string population, string installation, int amount, bool supply)
