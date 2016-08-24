@@ -41,7 +41,7 @@ namespace Aurora4xAutomation.Evaluators
 
         private List<string> _parameters;
 
-        protected List<string> Parameters
+        public List<string> Parameters
         {
             get
             {

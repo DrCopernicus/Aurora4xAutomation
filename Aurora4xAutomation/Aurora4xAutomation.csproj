@@ -46,9 +46,9 @@
     <Reference Include="MoreLinq">
       <HintPath>..\packages\morelinq.1.4.0\lib\net35\MoreLinq.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=3.4.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Pranas.ScreenshotCapture">
       <HintPath>..\packages\Pranas.ScreenshotCapture.1.0.11\lib\net40\Pranas.ScreenshotCapture.dll</HintPath>
@@ -76,6 +76,7 @@
     <Compile Include="Command\Parser\CommandParser.cs" />
     <Compile Include="Command\Parser\CommandToken.cs" />
     <Compile Include="Evaluators\BuildInstallationEvaluator.cs" />
+    <Compile Include="Evaluators\Factories\EvaluatorParameterizer.cs" />
     <Compile Include="Evaluators\NoOpEvaluator.cs" />
     <Compile Include="Evaluators\HelpEvaluator.cs" />
     <Compile Include="Evaluators\AdvanceEvaluator.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="REST\Resources.cs" />
     <Compile Include="REST\RESTManager.cs" />
     <Compile Include="Settings\SettingsStore.cs" />
+    <Compile Include="Tests\EvaluatorParamaterizerTests.cs" />
     <Compile Include="Tests\LexerTests.cs" />
     <Compile Include="Tests\MessageManagerTests.cs" />
     <Compile Include="Tests\ParserTests.cs" />

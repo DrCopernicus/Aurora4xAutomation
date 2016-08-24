@@ -13,7 +13,6 @@ namespace Aurora4xAutomation.Command
         }
 
         private IUIMap UIMap { get; set; }
-        private SettingsStore Settings { get; set; }
 
         public void MakeCivilianContract(string population, string installation, int amount, bool supply)
         {

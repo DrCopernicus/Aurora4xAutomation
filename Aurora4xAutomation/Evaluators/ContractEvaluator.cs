@@ -27,6 +27,11 @@ namespace Aurora4xAutomation.Evaluators
                 Parameters[3] == "s" || Parameters[3] == "supply");
         }
 
+        public static ContractEvaluator SupplyContract(IUIMap uiMap, string population, string installation, int amount, bool supply)
+        {
+            return new ContractEvaluator("contract", uiMap);
+        }
+
         public override string Help
         {
             get { throw new NotImplementedException(); }
