@@ -12,26 +12,26 @@ namespace Aurora4xAutomation.Automation
     {
         public static void QueueCommand(string command, Time time = null)
         {
-            _eventManager.AddEvent(_commandParser.Parse(command), time);
+            EventManager.AddEvent(CommandParser.Parse(command), time);
         }
 
         public static void QueueCommand(IEvaluator evaluator, Time time = null)
         {
-            _eventManager.AddEvent(evaluator, time);
+            EventManager.AddEvent(evaluator, time);
         }
 
         public static void Begin()
         {
             while (true)
             {
-                _eventManager.ActOnActiveTimelineEntries();
+                EventManager.ActOnActiveTimelineEntries();
 
                 if (!SettingsStore.Stopped)
                 {
-                    _eventManager.ParseEvents();
+                    EventManager.ParseEvents();
 
                     if (!SettingsStore.Stopped)
-                        new TurnCommands(_auroraUI).AdvanceTurn();
+                        new TurnCommands(AuroraUI).AdvanceTurn();
 
                     if (!SettingsStore.AutoTurnsOn)
                         SettingsCommands.Stop();
@@ -45,9 +45,8 @@ namespace Aurora4xAutomation.Automation
             }
         }
 
-        private static UIMap _auroraUI = new UIMap();
-        private static Timeline _timeline = new Timeline();
-        private static readonly EventManager _eventManager = new EventManager(_auroraUI);
-        private static readonly CommandParser _commandParser = new CommandParser(_auroraUI);
+        private static readonly UIMap AuroraUI = new UIMap();
+        private static readonly EventManager EventManager = new EventManager(AuroraUI);
+        private static readonly CommandParser CommandParser = new CommandParser(AuroraUI);
     }
 }
