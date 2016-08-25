@@ -77,13 +77,14 @@
     <Compile Include="Command\Parser\CommandToken.cs" />
     <Compile Include="Evaluators\BuildInstallationEvaluator.cs" />
     <Compile Include="Evaluators\Factories\EvaluatorParameterizer.cs" />
+    <Compile Include="Evaluators\Message\MessageEvaluator.cs" />
     <Compile Include="Evaluators\NoOpEvaluator.cs" />
     <Compile Include="Evaluators\HelpEvaluator.cs" />
     <Compile Include="Evaluators\AdvanceEvaluator.cs" />
     <Compile Include="Evaluators\IEvaluator.cs" />
     <Compile Include="Evaluators\SetPopulationEvaluator.cs" />
     <Compile Include="Evaluators\StopEvaluator.cs" />
-    <Compile Include="Evaluators\PrintEvaluator.cs" />
+    <Compile Include="Evaluators\Message\PrintEvaluator.cs" />
     <Compile Include="Evaluators\OpenPopulationEvaluator.cs" />
     <Compile Include="Evaluators\ParameterEvaluator.cs" />
     <Compile Include="Evaluators\ContractEvaluator.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="IO\IO.cs" />
     <Compile Include="IO\IUIMap.cs" />
     <Compile Include="IO\OCRReader.cs" />
+    <Compile Include="Messages\IMessageManager.cs" />
     <Compile Include="Messages\MessageManager.cs" />
     <Compile Include="Messages\MessageManagerManager.cs" />
     <Compile Include="Program.cs" />
@@ -126,9 +128,10 @@
     <Compile Include="REST\Resources.cs" />
     <Compile Include="REST\RESTManager.cs" />
     <Compile Include="Settings\SettingsStore.cs" />
-    <Compile Include="Tests\EvaluatorParamaterizerTests.cs" />
+    <Compile Include="Tests\EvaluatorTests\EvaluatorParamaterizerTests.cs" />
+    <Compile Include="Tests\EvaluatorTests\PrintEvaluatorTests.cs" />
     <Compile Include="Tests\LexerTests.cs" />
-    <Compile Include="Tests\MessageManagerTests.cs" />
+    <Compile Include="Tests\Messages\MessageManagerTests.cs" />
     <Compile Include="Tests\ParserTests.cs" />
     <Compile Include="Tests\ListTests.cs" />
     <Compile Include="Tests\TimelineTests.cs" />

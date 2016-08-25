@@ -4,6 +4,7 @@ using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
+using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Automation
@@ -49,7 +50,8 @@ namespace Aurora4xAutomation.Automation
 
         private static readonly SettingsStore Settings = new SettingsStore();
         private static readonly UIMap AuroraUI = new UIMap(Settings);
+        private static readonly MessageManager Messages = new MessageManager();
         private static readonly EventManager EventManager = new EventManager(AuroraUI, Settings);
-        private static readonly CommandParser CommandParser = new CommandParser(AuroraUI, Settings);
+        private static readonly CommandParser CommandParser = new CommandParser(AuroraUI, Settings, Messages);
     }
 }

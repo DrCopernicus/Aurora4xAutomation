@@ -1,7 +1,7 @@
 ﻿using Aurora4xAutomation.Messages;
 using NUnit.Framework;
 
-namespace Aurora4xAutomation.Tests
+namespace Aurora4xAutomation.Tests.Messages
 {
     [TestFixture]
     public class MessageManagerTests

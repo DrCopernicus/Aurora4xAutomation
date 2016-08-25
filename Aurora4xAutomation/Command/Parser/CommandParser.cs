@@ -1,18 +1,19 @@
-﻿using System;
-using Aurora4xAutomation.Common;
+﻿using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.IO;
+using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
+using System;
 
 namespace Aurora4xAutomation.Command.Parser
 {
     public class CommandParser
     {
-        public CommandParser(IUIMap uiMap, SettingsStore settings)
+        public CommandParser(IUIMap uiMap, SettingsStore settings, MessageManager messages)
         {
             UIMap = uiMap;
             Settings = settings;
-            Lexer = new CommandLexer(UIMap, settings);
+            Lexer = new CommandLexer(UIMap, settings, messages);
         }
 
         public IEvaluator Parse(string choice)

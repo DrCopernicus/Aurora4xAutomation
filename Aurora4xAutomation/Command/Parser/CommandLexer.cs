@@ -1,21 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using Aurora4xAutomation.Evaluators;
+﻿using Aurora4xAutomation.Evaluators;
+using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.IO;
+using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
+using System;
 
 namespace Aurora4xAutomation.Command.Parser
 {
     public class CommandLexer
     {
-        public CommandLexer(IUIMap uiMap, SettingsStore settings)
+        public CommandLexer(IUIMap uiMap, SettingsStore settings, MessageManager messages)
         {
             UIMap = uiMap;
             Settings = settings;
+            Messages = messages;
         }
 
         private IUIMap UIMap { get; set; }
         private SettingsStore Settings { get; set; }
+        private MessageManager Messages { get; set; }
 
         private void SkipSpaces(ref string command)
         {
@@ -210,7 +213,7 @@ namespace Aurora4xAutomation.Command.Parser
                     case "open":
                         return new OpenWindowEvaluator(text, UIMap);
                     case "print":
-                        return new PrintEvaluator(text, Settings);
+                        return new PrintEvaluator(text, Messages);
                     case "read":
                         return new ReadDataEvaluator(text, UIMap);
                     case "set-pop":

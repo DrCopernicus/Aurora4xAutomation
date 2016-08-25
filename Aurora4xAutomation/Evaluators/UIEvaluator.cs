@@ -4,7 +4,7 @@ namespace Aurora4xAutomation.Evaluators
 {
     public abstract class UIEvaluator : Evaluator
     {
-        public UIEvaluator(string text, IUIMap uiMap) : base(text)
+        protected UIEvaluator(string text, IUIMap uiMap) : base(text)
         {
             UIMap = uiMap;
         }
