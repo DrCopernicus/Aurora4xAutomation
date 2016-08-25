@@ -77,9 +77,10 @@
     <Compile Include="Command\Parser\CommandToken.cs" />
     <Compile Include="Evaluators\BuildInstallationEvaluator.cs" />
     <Compile Include="Evaluators\Factories\EvaluatorParameterizer.cs" />
+    <Compile Include="Evaluators\Message\LogEvaluator.cs" />
     <Compile Include="Evaluators\Message\MessageEvaluator.cs" />
     <Compile Include="Evaluators\NoOpEvaluator.cs" />
-    <Compile Include="Evaluators\HelpEvaluator.cs" />
+    <Compile Include="Evaluators\Message\HelpEvaluator.cs" />
     <Compile Include="Evaluators\AdvanceEvaluator.cs" />
     <Compile Include="Evaluators\IEvaluator.cs" />
     <Compile Include="Evaluators\SetPopulationEvaluator.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="Messages\IMessageManager.cs" />
     <Compile Include="Messages\MessageManager.cs" />
     <Compile Include="Messages\MessageManagerManager.cs" />
+    <Compile Include="Messages\MessageType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="REST\CommandResources.cs" />

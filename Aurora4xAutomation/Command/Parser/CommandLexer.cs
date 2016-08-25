@@ -207,7 +207,7 @@ namespace Aurora4xAutomation.Command.Parser
                     case "contract":
                         return new ContractEvaluator(text, UIMap);
                     case "help":
-                        return new HelpEvaluator(text, Settings);
+                        return new HelpEvaluator(text, Messages);
                     case "move":
                         return new MoveEvaluator(text, UIMap);
                     case "open":

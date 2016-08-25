@@ -16,7 +16,7 @@ namespace Aurora4xAutomation.Evaluators.Message
                 throw new Exception(string.Format("Expected 1 parameter, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            Messages.AddMessage(Parameters[0]);
+            Messages.AddMessage(MessageType.Information, Parameters[0]);
         }
 
         public override string Help

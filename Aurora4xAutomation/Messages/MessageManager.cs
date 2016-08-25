@@ -14,16 +14,30 @@ namespace Aurora4xAutomation.Messages
             return _messages.Where(message => message.Key > start && message.Key <= end).Select(message => message.Value).ToList();
         }
 
-        public void AddMessage(string message)
+        public void AddMessage(MessageType type, string message)
         {
             _lastId++;
-            Console.WriteLine("{0}: message", _lastId);
-            _messages[_lastId] = message;
+            Console.WriteLine("{0}: {1}", _lastId, message);
+            _messages[_lastId] = string.Format("[{0}] {1}", MessageTypeToString(type), message);
         }
 
         public long GetLastId()
         {
             return _lastId;
+        }
+
+        private string MessageTypeToString(MessageType type)
+        {
+            switch (type)
+            {
+                case MessageType.Error:
+                    return "CRIT";
+                case MessageType.Information:
+                    return "INFO";
+                case MessageType.Warning:
+                    return "WARN";
+            }
+            throw new Exception(string.Format("Tried to print message with unhandled type: {0}", type));
         }
     }
 }

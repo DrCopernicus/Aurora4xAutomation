@@ -15,7 +15,7 @@ namespace Aurora4xAutomation.Messages
 
         public static void AddMessage(string message)
         {
-            Instance.AddMessage(message);
+            Instance.AddMessage(MessageType.Information, message);
         }
 
         public static long GetLastId()

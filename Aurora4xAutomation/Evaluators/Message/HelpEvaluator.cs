@@ -1,13 +1,12 @@
 ﻿using System;
-using Aurora4xAutomation.Command;
-using Aurora4xAutomation.Settings;
+using Aurora4xAutomation.Messages;
 
-namespace Aurora4xAutomation.Evaluators
+namespace Aurora4xAutomation.Evaluators.Message
 {
-    public class HelpEvaluator : SettingsEvaluator
+    public class HelpEvaluator : MessageEvaluator
     {
-        public HelpEvaluator(string text, SettingsStore settings)
-            : base(text, settings)
+        public HelpEvaluator(string text, IMessageManager messages)
+            : base(text, messages)
         {
         }
 
@@ -19,10 +18,10 @@ namespace Aurora4xAutomation.Evaluators
         protected override void Evaluate()
         {
             if (Parameters.Count != 1)
-                throw new Exception(string.Format("Expected 1 parameters, got {0} in function name {1}.",
+                throw new Exception(string.Format("Expected 1 parameter, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            new MessageCommands(Settings).PrintInterrupt(Body.Help);
+            Messages.AddMessage(MessageType.Information, Body.Help);
         }
 
         public override string Help
