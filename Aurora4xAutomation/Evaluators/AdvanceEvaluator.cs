@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Aurora4xAutomation.Settings;
+using System;
 using System.Collections.Generic;
-using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Evaluators
 {

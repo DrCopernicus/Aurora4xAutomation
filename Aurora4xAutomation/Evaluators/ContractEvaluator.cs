@@ -1,8 +1,8 @@
-﻿using System;
-using Aurora4xAutomation.Command;
+﻿using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.IO;
+using System;
 
 namespace Aurora4xAutomation.Evaluators
 {

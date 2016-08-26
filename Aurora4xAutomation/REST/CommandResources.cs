@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using Aurora4xAutomation.Automation;
-using Aurora4xAutomation.Messages;
+﻿using Aurora4xAutomation.Automation;
 using Grapevine;
 using Grapevine.Server;
+using System;
+using System.Linq;
+using System.Net;
 
 namespace Aurora4xAutomation.REST
 {
@@ -20,7 +19,7 @@ namespace Aurora4xAutomation.REST
         [RESTRoute(Method = HttpMethod.GET, PathInfo = @"^/allmessages$")]
         public void HandleAllMessageRequests(HttpListenerContext context)
         {
-            var messages = MessageManagerManager.GetMessagesAfterId(-1, MessageManagerManager.GetLastId());
+            var messages = CommandFlowManager.GetMessages(-1);
             if (messages.Any())
                 SendTextResponse(context, string.Join("\n", messages));
             else
@@ -32,7 +31,7 @@ namespace Aurora4xAutomation.REST
         {
             var afterId = Convert.ToInt64(context.Request.QueryString["after"]);
             var uptoId = Convert.ToInt64(context.Request.QueryString["upto"]);
-            var messages = MessageManagerManager.GetMessagesAfterId(afterId, uptoId);
+            var messages = CommandFlowManager.GetMessages(afterId, uptoId);
             if (messages.Any())
                 SendTextResponse(context, string.Join("\n", messages));
             else
@@ -42,7 +41,7 @@ namespace Aurora4xAutomation.REST
         [RESTRoute(Method = HttpMethod.GET, PathInfo = @"^/lastmessage")]
         public void HandleLastMessageRequests(HttpListenerContext context)
         {
-            SendTextResponse(context, MessageManagerManager.GetLastId().ToString());
+            SendTextResponse(context, CommandFlowManager.GetLastMessageId().ToString());
         }
     }
 }

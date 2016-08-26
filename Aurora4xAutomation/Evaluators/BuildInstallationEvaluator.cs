@@ -1,5 +1,5 @@
-﻿using System;
-using Aurora4xAutomation.IO;
+﻿using Aurora4xAutomation.IO;
+using System;
 
 namespace Aurora4xAutomation.Evaluators
 {

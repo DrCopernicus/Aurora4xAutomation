@@ -2,6 +2,6 @@
 {
     public enum MessageType
     {
-        Warning, Information, Error
+        Warning, Information, Error, Debug
     }
 }

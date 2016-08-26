@@ -2,10 +2,13 @@
 using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Evaluators;
+using Aurora4xAutomation.Evaluators.Factories;
+using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
+using System.Collections.Generic;
 
 namespace Aurora4xAutomation.Automation
 {
@@ -41,17 +44,28 @@ namespace Aurora4xAutomation.Automation
                 }
                 else
                 {
-                    Settings.StatusMessage = "Waiting for user input";
+                    var log = new LogEvaluator("log", Messages);
+                    new EvaluatorParameterizer().SetParameters(log, MessageType.Debug, "Waiting for user input.");
                 }
 
                 Sleeper.Sleep(1000);
             }
         }
 
+        public static List<string> GetMessages(long startId, long endId = long.MaxValue)
+        {
+            return Messages.GetMessagesAfterId(startId, endId);
+        }
+
+        public static long GetLastMessageId()
+        {
+            return Messages.GetLastId();
+        }
+
         private static readonly SettingsStore Settings = new SettingsStore();
         private static readonly UIMap AuroraUI = new UIMap(Settings);
         private static readonly MessageManager Messages = new MessageManager();
-        private static readonly EventManager EventManager = new EventManager(AuroraUI, Settings);
+        private static readonly EventManager EventManager = new EventManager(AuroraUI, Settings, Messages);
         private static readonly CommandParser CommandParser = new CommandParser(AuroraUI, Settings, Messages);
     }
 }

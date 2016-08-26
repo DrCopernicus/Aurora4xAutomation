@@ -39,8 +39,8 @@ namespace Aurora4xAutomation.Tests.EvaluatorTests
 
             evaluator.Execute();
 
-            Assert.AreEqual(1, messages.GetMessagesAfterId(-1,100).Count);
-            Assert.AreEqual("parameter", messages.GetMessagesAfterId(-1,100)[0]);
+            Assert.AreEqual(1, messages.GetMessagesAfterId(-1, 100).Count);
+            Assert.AreEqual("parameter", messages.GetMessagesAfterId(-1, 100)[0]);
         }
 
     }
