@@ -1,18 +1,18 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using Aurora4xAutomation.Command;
+﻿using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.IO.DB;
 using Aurora4xAutomation.Settings;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Aurora4xAutomation.Evaluators
 {
     public class EventParser
     {
-        public EventParser(IUIMap uiMap, SettingsStore settings)
+        public EventParser(IUIMap uiMap, ISettingsStore settings)
         {
             UIMap = uiMap;
             Settings = settings;
@@ -102,9 +102,7 @@ namespace Aurora4xAutomation.Evaluators
                 || IsNewShippingLine(str)
                 || IsColonelAgeRetirement(str))
                 return false;
-
-            new MessageCommands(Settings).PrintInterrupt(string.Format("Stopped because: {0}", str));
-
+            
             return true;
         }
 
@@ -304,6 +302,6 @@ namespace Aurora4xAutomation.Evaluators
         }
 
         private IUIMap UIMap { get; set; }
-        private SettingsStore Settings { get; set; }
+        private ISettingsStore Settings { get; set; }
     }
 }

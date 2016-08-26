@@ -1,4 +1,5 @@
-﻿using Aurora4xAutomation.IO.UI.Windows;
+﻿using Aurora4xAutomation.Events;
+using Aurora4xAutomation.IO.UI.Windows;
 using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.IO
@@ -35,6 +36,11 @@ namespace Aurora4xAutomation.IO
         public PopulationAndProductionWindow PopulationAndProductionWindow
         {
             get { return _populationAndProductionWindow ?? (_populationAndProductionWindow = new PopulationAndProductionWindow(Settings)); }
+        }
+
+        public Time GetTime()
+        {
+            return new Time(SystemMap.GetTime());
         }
 
         public TaskGroupsWindow TaskGroups

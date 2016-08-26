@@ -130,12 +130,16 @@
     <Compile Include="REST\CommandResources.cs" />
     <Compile Include="REST\Resources.cs" />
     <Compile Include="REST\RESTManager.cs" />
+    <Compile Include="Settings\IncrementLength.cs" />
+    <Compile Include="Settings\ISettingsStore.cs" />
     <Compile Include="Settings\SettingsStore.cs" />
     <Compile Include="Tests\CommandFlowManagerTests\CommandFlowManagerTests.cs" />
     <Compile Include="Tests\ConverterTests\MessageTypeConverterTests.cs" />
+    <Compile Include="Tests\CSharpTests.cs" />
     <Compile Include="Tests\EvaluatorTests\EvaluatorParamaterizerTests.cs" />
     <Compile Include="Tests\EvaluatorTests\LogEvaluatorTests.cs" />
     <Compile Include="Tests\EvaluatorTests\PrintEvaluatorTests.cs" />
+    <Compile Include="Tests\EventManagerTests.cs" />
     <Compile Include="Tests\LexerTests.cs" />
     <Compile Include="Tests\Messages\MessageManagerTests.cs" />
     <Compile Include="Tests\ParserTests.cs" />

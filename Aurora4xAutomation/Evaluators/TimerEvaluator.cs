@@ -1,7 +1,7 @@
-﻿using System.Text.RegularExpressions;
-using Aurora4xAutomation.Automation;
+﻿using Aurora4xAutomation.Automation;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
+using System.Text.RegularExpressions;
 
 namespace Aurora4xAutomation.Evaluators
 {
@@ -21,7 +21,7 @@ namespace Aurora4xAutomation.Evaluators
         {
             foreach (var statement in StatementList)
             {
-                var time = new Time(UIMap.SystemMap.GetTime()) + TimeFromText;
+                var time = UIMap.GetTime() + TimeFromText;
                 CommandFlowManager.QueueCommand(statement, time);
             }
         }

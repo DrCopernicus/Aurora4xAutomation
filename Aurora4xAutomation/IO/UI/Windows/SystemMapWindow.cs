@@ -1,6 +1,6 @@
-﻿using System.Windows.Forms;
-using Aurora4xAutomation.Common;
+﻿using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Settings;
+using System.Windows.Forms;
 
 namespace Aurora4xAutomation.IO.UI.Windows
 {

@@ -1,7 +1,8 @@
-﻿using System;
-using Aurora4xAutomation.Evaluators;
+﻿using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Events;
 using NUnit.Framework;
+using System;
+using System.Threading;
 
 namespace Aurora4xAutomation.Tests
 {
@@ -81,6 +82,83 @@ namespace Aurora4xAutomation.Tests
             Assert.AreEqual(typeof(EvaluatorDouble), timeline.PopNextActiveEvent(currentDate).GetType());
             Assert.AreEqual(typeof(EvaluatorDoubleTwo), timeline.PopNextActiveEvent(currentDate).GetType());
             Assert.AreEqual(null, timeline.PopNextActiveEvent(currentDate));
+        }
+
+        [Test]
+        public void CanAddEventsFromAnotherThread()
+        {
+            var timeline = new Timeline();
+
+            for (var i = 0; i < 5; i++)
+                timeline.AddEvent(new EvaluatorDouble());
+
+            Assert.AreEqual(5, timeline.Events.Count);
+            
+            var addingThread = new Thread(() =>
+            {
+                for (var i = 0; i < 10; i++)
+                    timeline.AddEvent(new EvaluatorDouble());
+            });
+
+            addingThread.Start();
+            addingThread.Join();
+
+            Assert.AreEqual(15, timeline.Events.Count);
+        }
+
+        [Test]
+        public void CanPopEventsFromAnotherThread()
+        {
+            var currentDate = new Time("29th January 2016 20:00:11");
+            var timeline = new Timeline();
+
+            for (var i = 0; i < 10; i++)
+                timeline.AddEvent(new EvaluatorDouble());
+
+            Assert.AreEqual(10, timeline.Events.Count);
+
+            var removalThread = new Thread(() =>
+            {
+                for (var i = 0; i < 10; i++)
+                    timeline.PopNextActiveEvent(currentDate);
+            });
+
+            removalThread.Start();
+            removalThread.Join();
+
+            Assert.AreEqual(0, timeline.Events.Count);
+        }
+
+        [Test]
+        public void MultiThreadedAccessAllowsAddingAndRemovingSimultaneously()
+        {
+            var currentDate = new Time("29th January 2016 20:00:11");
+            var timeline = new Timeline();
+
+            for (var i = 0; i < 1000; i++)
+                timeline.AddEvent(new EvaluatorDouble());
+
+            Assert.AreEqual(1000, timeline.Events.Count);
+
+            var removalThread = new Thread(() =>
+            {
+                for (var i = 0; i < 500; i++)
+                    timeline.PopNextActiveEvent(currentDate);
+            });
+
+            var addingThread = new Thread(() =>
+            {
+                for (var i = 0; i < 2000; i++)
+                    timeline.AddEvent(new EvaluatorDouble());
+            });
+
+            removalThread.Start();
+            addingThread.Start();
+
+            removalThread.Join();
+            addingThread.Join();
+
+            Assert.AreEqual(2500, timeline.Events.Count);
         }
     }
 }

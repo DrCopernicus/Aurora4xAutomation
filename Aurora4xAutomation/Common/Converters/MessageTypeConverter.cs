@@ -22,7 +22,6 @@ namespace Aurora4xAutomation.Common.Converters
             throw new InvalidEnumArgumentException("messageType", (int)messageType, typeof(MessageType));
         }
 
-
         public static MessageType ToType(string messageType)
         {
             switch (messageType.ToLower())

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aurora4xAutomation.Common.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,26 +19,12 @@ namespace Aurora4xAutomation.Messages
         {
             _lastId++;
             Console.WriteLine("{0}: {1}", _lastId, message);
-            _messages[_lastId] = string.Format("[{0}] {1}", MessageTypeToString(type), message);
+            _messages[_lastId] = string.Format("[{0}] {1}", MessageTypeConverter.ToString(type), message);
         }
 
         public long GetLastId()
         {
             return _lastId;
-        }
-
-        private string MessageTypeToString(MessageType type)
-        {
-            switch (type)
-            {
-                case MessageType.Error:
-                    return "CRIT";
-                case MessageType.Information:
-                    return "INFO";
-                case MessageType.Warning:
-                    return "WARN";
-            }
-            throw new Exception(string.Format("Tried to print message with unhandled type: {0}", type));
         }
     }
 }

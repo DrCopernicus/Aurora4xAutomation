@@ -38,26 +38,26 @@ namespace Aurora4xAutomation.Evaluators
                     }
                     catch (KeyNotFoundException)
                     {
-                        Settings.Increment = SettingsStore.IncrementLength.FiveDay;
+                        Settings.Increment = IncrementLength.FiveDay;
                     }
                     break;
             }
         }
 
-        private readonly Dictionary<string, SettingsStore.IncrementLength> _incrementLengthStringRepresentations = new Dictionary
-            <string, SettingsStore.IncrementLength>
+        private readonly Dictionary<string, IncrementLength> _incrementLengthStringRepresentations = new Dictionary
+            <string, IncrementLength>
         {
-            {"5s", SettingsStore.IncrementLength.FiveSecond},
-            {"30s", SettingsStore.IncrementLength.ThirtySecond},
-            {"2m", SettingsStore.IncrementLength.TwoMinute},
-            {"5m", SettingsStore.IncrementLength.FiveMinute},
-            {"20m", SettingsStore.IncrementLength.TwentyMinute},
-            {"1h", SettingsStore.IncrementLength.OneHour},
-            {"3h", SettingsStore.IncrementLength.ThreeHour},
-            {"8h", SettingsStore.IncrementLength.EightHour},
-            {"1d", SettingsStore.IncrementLength.OneDay},
-            {"5d", SettingsStore.IncrementLength.FiveDay},
-            {"30d", SettingsStore.IncrementLength.ThirtyDay}
+            {"5s", IncrementLength.FiveSecond},
+            {"30s", IncrementLength.ThirtySecond},
+            {"2m", IncrementLength.TwoMinute},
+            {"5m", IncrementLength.FiveMinute},
+            {"20m", IncrementLength.TwentyMinute},
+            {"1h", IncrementLength.OneHour},
+            {"3h", IncrementLength.ThreeHour},
+            {"8h", IncrementLength.EightHour},
+            {"1d", IncrementLength.OneDay},
+            {"5d", IncrementLength.FiveDay},
+            {"30d", IncrementLength.ThirtyDay}
         };
 
         public override string Help

@@ -1,4 +1,5 @@
 ﻿using Aurora4xAutomation.Command.Parser;
+using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.IO.UI.Windows;
 using Aurora4xAutomation.Messages;
@@ -20,6 +21,10 @@ namespace Aurora4xAutomation.Tests
             public SystemMapWindow SystemMap { get; private set; }
             public TaskGroupsWindow TaskGroups { get; private set; }
             public PopulationAndProductionWindow PopulationAndProductionWindow { get; private set; }
+            public Time GetTime()
+            {
+                throw new NotImplementedException();
+            }
         }
 
         private class MessageManagerDouble : IMessageManager

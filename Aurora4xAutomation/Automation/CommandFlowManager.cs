@@ -1,9 +1,5 @@
-﻿using Aurora4xAutomation.Command;
-using Aurora4xAutomation.Command.Parser;
-using Aurora4xAutomation.Common;
+﻿using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.Evaluators;
-using Aurora4xAutomation.Evaluators.Factories;
-using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.Messages;
@@ -26,30 +22,7 @@ namespace Aurora4xAutomation.Automation
 
         public static void Begin()
         {
-            Settings.Research = Settings.ResearchFocuses["beamfocus"];
-
-            while (true)
-            {
-                EventManager.ActOnActiveTimelineEntries();
-
-                if (!Settings.Stopped)
-                {
-                    EventManager.ParseEvents();
-
-                    if (!Settings.Stopped)
-                        new TurnCommands(AuroraUI, Settings).AdvanceTurn();
-
-                    if (!Settings.AutoTurnsOn)
-                        new StopEvaluator("stop", Settings).Execute();
-                }
-                else
-                {
-                    var log = new LogEvaluator("log", Messages);
-                    new EvaluatorParameterizer().SetParameters(log, MessageType.Debug, "Waiting for user input.");
-                }
-
-                Sleeper.Sleep(1000);
-            }
+            EventManager.Begin();
         }
 
         public static List<string> GetMessages(long startId, long endId = long.MaxValue)

@@ -5,7 +5,7 @@ namespace Aurora4xAutomation.Evaluators
 {
     public class StopEvaluator : SettingsEvaluator
     {
-        public StopEvaluator(string text, SettingsStore settings)
+        public StopEvaluator(string text, ISettingsStore settings)
             : base(text, settings)
         {
         }

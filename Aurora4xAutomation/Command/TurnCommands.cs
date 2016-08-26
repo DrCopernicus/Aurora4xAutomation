@@ -7,14 +7,14 @@ namespace Aurora4xAutomation.Command
     [Obsolete("Commands and related classes should be discontinued in favor of Evaluators, and in the case of duplicated functionality using compound evaluators.")]
     public class TurnCommands
     {
-        public TurnCommands(IUIMap uiMap, SettingsStore settings)
+        public TurnCommands(IUIMap uiMap, ISettingsStore settings)
         {
             UIMap = uiMap;
             Settings = settings;
         }
 
         private IUIMap UIMap { get; set; }
-        private SettingsStore Settings { get; set; }
+        private ISettingsStore Settings { get; set; }
 
         public void AdvanceTurn()
         {
@@ -23,37 +23,37 @@ namespace Aurora4xAutomation.Command
             UIMap.SystemMap.MakeActive();
             switch (Settings.Increment)
             {
-                case SettingsStore.IncrementLength.FiveSecond:
+                case IncrementLength.FiveSecond:
                     UIMap.SystemMap.ClickIncrement5SecondsButton();
                     break;
-                case SettingsStore.IncrementLength.ThirtySecond:
+                case IncrementLength.ThirtySecond:
                     UIMap.SystemMap.ClickIncrement30SecondsButton();
                     break;
-                case SettingsStore.IncrementLength.TwoMinute:
+                case IncrementLength.TwoMinute:
                     UIMap.SystemMap.ClickIncrement2MinutesButton();
                     break;
-                case SettingsStore.IncrementLength.FiveMinute:
+                case IncrementLength.FiveMinute:
                     UIMap.SystemMap.ClickIncrement5MinutesButton();
                     break;
-                case SettingsStore.IncrementLength.TwentyMinute:
+                case IncrementLength.TwentyMinute:
                     UIMap.SystemMap.ClickIncrement20MinutesButton();
                     break;
-                case SettingsStore.IncrementLength.OneHour:
+                case IncrementLength.OneHour:
                     UIMap.SystemMap.ClickIncrement1HoursButton();
                     break;
-                case SettingsStore.IncrementLength.ThreeHour:
+                case IncrementLength.ThreeHour:
                     UIMap.SystemMap.ClickIncrement3HoursButton();
                     break;
-                case SettingsStore.IncrementLength.EightHour:
+                case IncrementLength.EightHour:
                     UIMap.SystemMap.ClickIncrement8HoursButton();
                     break;
-                case SettingsStore.IncrementLength.OneDay:
+                case IncrementLength.OneDay:
                     UIMap.SystemMap.ClickIncrement1DayButton();
                     break;
-                case SettingsStore.IncrementLength.FiveDay:
+                case IncrementLength.FiveDay:
                     UIMap.SystemMap.ClickIncrement5DaysButton();
                     break;
-                case SettingsStore.IncrementLength.ThirtyDay:
+                case IncrementLength.ThirtyDay:
                     UIMap.SystemMap.ClickIncrement30DaysButton();
                     break;
             }

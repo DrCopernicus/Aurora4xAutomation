@@ -1,4 +1,5 @@
-﻿using Aurora4xAutomation.IO.UI.Windows;
+﻿using Aurora4xAutomation.Events;
+using Aurora4xAutomation.IO.UI.Windows;
 
 namespace Aurora4xAutomation.IO
 {
@@ -10,5 +11,7 @@ namespace Aurora4xAutomation.IO
         SystemMapWindow SystemMap { get; }
         TaskGroupsWindow TaskGroups { get; }
         PopulationAndProductionWindow PopulationAndProductionWindow { get; }
+
+        Time GetTime();
     }
 }

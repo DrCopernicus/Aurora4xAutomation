@@ -85,7 +85,7 @@ namespace Aurora4xAutomation.Command.Parser
             }
         }
 
-        private SettingsStore.IncrementLength GetIncrementFromAbbreviation(string s)
+        private IncrementLength GetIncrementFromAbbreviation(string s)
         {
             switch (s)
             {
@@ -96,29 +96,29 @@ namespace Aurora4xAutomation.Command.Parser
                     Settings.AutoTurnsOn = true;
                     return Settings.Increment;
                 case "5s":
-                    return SettingsStore.IncrementLength.FiveSecond;
+                    return IncrementLength.FiveSecond;
                 case "30s":
-                    return SettingsStore.IncrementLength.ThirtySecond;
+                    return IncrementLength.ThirtySecond;
                 case "2m":
-                    return SettingsStore.IncrementLength.TwoMinute;
+                    return IncrementLength.TwoMinute;
                 case "5m":
-                    return SettingsStore.IncrementLength.FiveMinute;
+                    return IncrementLength.FiveMinute;
                 case "20m":
-                    return SettingsStore.IncrementLength.TwentyMinute;
+                    return IncrementLength.TwentyMinute;
                 case "1h":
-                    return SettingsStore.IncrementLength.OneHour;
+                    return IncrementLength.OneHour;
                 case "3h":
-                    return SettingsStore.IncrementLength.ThreeHour;
+                    return IncrementLength.ThreeHour;
                 case "8h":
-                    return SettingsStore.IncrementLength.EightHour;
+                    return IncrementLength.EightHour;
                 case "1d":
-                    return SettingsStore.IncrementLength.OneDay;
+                    return IncrementLength.OneDay;
                 case "5d":
-                    return SettingsStore.IncrementLength.FiveDay;
+                    return IncrementLength.FiveDay;
                 case "30d":
-                    return SettingsStore.IncrementLength.ThirtyDay;
+                    return IncrementLength.ThirtyDay;
                 default:
-                    return SettingsStore.IncrementLength.FiveDay;
+                    return IncrementLength.FiveDay;
             }
         }
 

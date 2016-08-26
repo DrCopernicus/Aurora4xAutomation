@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Aurora4xAutomation.Settings;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.IO.DB
 {
     public static class AuroraDatabase
     {
-        public static long GetTime(SettingsStore settings, OleDbConnection connection = null)
+        public static long GetTime(ISettingsStore settings, OleDbConnection connection = null)
         {
             var previousConnection = connection != null;
             if (!previousConnection)
@@ -26,7 +26,7 @@ namespace Aurora4xAutomation.IO.DB
             return Convert.ToInt64(time);
         }
 
-        public static List<AuroraEventEntry> GetRecentEvents(SettingsStore settings, int raceId, double time, OleDbConnection connection)
+        public static List<AuroraEventEntry> GetRecentEvents(ISettingsStore settings, int raceId, double time, OleDbConnection connection)
         {
             var previousConnection = connection != null;
             if (!previousConnection)

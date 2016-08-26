@@ -4,12 +4,12 @@ namespace Aurora4xAutomation.Evaluators
 {
     public abstract class SettingsEvaluator : Evaluator
     {
-        public SettingsEvaluator(string text, SettingsStore settings)
+        public SettingsEvaluator(string text, ISettingsStore settings)
             : base(text)
         {
             Settings = settings;
         }
 
-        protected SettingsStore Settings { get; set; }
+        protected ISettingsStore Settings { get; set; }
     }
 }

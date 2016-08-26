@@ -1,23 +1,17 @@
-﻿using System.Collections.Generic;
-using Aurora4xAutomation.Common;
+﻿using Aurora4xAutomation.Common;
+using System.Collections.Generic;
 
 namespace Aurora4xAutomation.Settings
 {
-    public class SettingsStore
+    public class SettingsStore : ISettingsStore
     {
-        public enum IncrementLength
+        public SettingsStore()
         {
-            FiveSecond,
-            ThirtySecond,
-            TwoMinute,
-            FiveMinute,
-            TwentyMinute,
-            OneHour,
-            ThreeHour,
-            EightHour,
-            OneDay,
-            FiveDay,
-            ThirtyDay
+            AutoTurnsOn = false;
+            Stopped = true;
+            RaceId = 133;
+            GameId = 18;
+            Increment = IncrementLength.FiveDay;
         }
 
         public Dictionary<string, Dictionary<string, string>> ResearchFocuses
@@ -59,21 +53,17 @@ namespace Aurora4xAutomation.Settings
             }
         }
 
+        public int GameId { get; set; }
+        public IncrementLength Increment { get; set; }
+
         private Dictionary<string, string> _research;
 
-        public IncrementLength Increment = IncrementLength.FiveDay;
-
         public bool AutoResearchOn = false;
-        public bool AutoTurnsOn = false;
-        public bool Stopped = true;
 
         public string ErrorMessage = "";
         public string InterruptMessage = "";
         public string FeedbackMessage = "";
         public string StatusMessage = "";
-
-        public int GameId = 18;
-        public int RaceId = 133;
 
         public int MinLabsPerScientist = 2;
         public int DaysPerLabsCheck = 60;
@@ -92,9 +82,11 @@ namespace Aurora4xAutomation.Settings
             }
         }
 
-        public string DatabaseLocation = @"C:\Users\Administrator\Desktop\Aurora\Stevefire.mdb";
+        public bool Stopped { get; set; }
+        public bool AutoTurnsOn { get; set; }
+        public string DatabaseLocation { get { return @"C:\Users\Administrator\Desktop\Aurora\Stevefire.mdb"; } }
 
-        public string EventLogLocation = @"C:\Users\Administrator\Desktop\Aurora\FederationEventLog.txt";
-
+        public string EventLogLocation { get { return @"C:\Users\Administrator\Desktop\Aurora\FederationEventLog.txt"; } }
+        public int RaceId { get; set; }
     }
 }
