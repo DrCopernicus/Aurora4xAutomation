@@ -22,7 +22,7 @@ namespace Aurora4xAutomation.Automation
 
         public static void Begin()
         {
-            EventManager.Begin();
+            EventManager.Begin(new Logger());
         }
 
         public static List<string> GetMessages(long startId, long endId = long.MaxValue)

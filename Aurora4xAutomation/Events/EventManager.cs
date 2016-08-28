@@ -25,7 +25,7 @@ namespace Aurora4xAutomation.Events
             _timeline.AddEvent(evaluator);
         }
 
-        public void Begin()
+        public void Begin(ILogger handler)
         {
             if (Settings.ResearchFocuses != null && Settings.ResearchFocuses.Any())
                 Settings.Research = Settings.ResearchFocuses["beamfocus"];
@@ -44,26 +44,7 @@ namespace Aurora4xAutomation.Events
                         e.Cancel = true;
                         break;
                     }
-
-                    ActOnActiveTimelineEntries();
-
-                    if (!Settings.Stopped)
-                    {
-                        ParseEvents();
-
-                        if (!Settings.Stopped)
-                            new TurnCommands(UIMap, Settings).AdvanceTurn();
-
-                        if (!Settings.AutoTurnsOn)
-                            new StopEvaluator("stop", Settings).Execute();
-                    }
-                    else
-                    {
-                        var log = new LogEvaluator("log", Messages);
-                        new EvaluatorParameterizer().SetParameters(log, MessageType.Debug, "Waiting for user input.");
-                        log.Execute();
-                    }
-
+                    CompleteOneRound();
                     Sleeper.Sleep(1000);
                 }
             };
@@ -71,10 +52,32 @@ namespace Aurora4xAutomation.Events
             _worker.RunWorkerCompleted += (sender, e) =>
             {
                 if (e.Error != null)
-                    throw e.Error;
+                    handler.Handle(e.Error);
             };
 
             _worker.RunWorkerAsync();
+        }
+
+        private void CompleteOneRound()
+        {
+            ActOnActiveTimelineEntries();
+
+            if (!Settings.Stopped)
+            {
+                ParseEvents();
+
+                if (!Settings.Stopped)
+                    new TurnCommands(UIMap, Settings).AdvanceTurn();
+
+                if (!Settings.AutoTurnsOn)
+                    new StopEvaluator("stop", Settings).Execute();
+            }
+            else
+            {
+                var log = new LogEvaluator("log", Messages);
+                new EvaluatorParameterizer().SetParameters(log, MessageType.Debug, "Waiting for user input.");
+                log.Execute();
+            }
         }
 
         public void Stop()

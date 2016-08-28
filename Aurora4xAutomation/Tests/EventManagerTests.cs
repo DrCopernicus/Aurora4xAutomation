@@ -1,10 +1,12 @@
-﻿using Aurora4xAutomation.Evaluators.Message;
+﻿using Aurora4xAutomation.Evaluators;
+using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.IO.UI.Windows;
 using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -49,13 +51,32 @@ namespace Aurora4xAutomation.Tests
 
         private class MessageWriterEvaluator : MessageEvaluator
         {
-            public MessageWriterEvaluator(string text, IMessageManager messages) : base(text, messages)
+            public MessageWriterEvaluator(string text, IMessageManager messages)
+                : base(text, messages)
             {
             }
 
             protected override void Evaluate()
             {
                 Messages.AddMessage(MessageType.Information, "test message");
+            }
+
+            public override string Help
+            {
+                get { throw new System.NotImplementedException(); }
+            }
+        }
+
+        private class ThrowEvaluator : Evaluator
+        {
+            public ThrowEvaluator(string text)
+                : base(text)
+            {
+            }
+
+            protected override void Evaluate()
+            {
+                throw new Exception();
             }
 
             public override string Help
@@ -76,6 +97,16 @@ namespace Aurora4xAutomation.Tests
             public Dictionary<string, Dictionary<string, string>> ResearchFocuses { get; private set; }
             public int GameId { get; set; }
             public IncrementLength Increment { get; set; }
+        }
+
+        private class LoggerDouble : ILogger
+        {
+            public void Handle(Exception e)
+            {
+                HandleRunAttempts++;
+            }
+
+            public int HandleRunAttempts { get; set; }
         }
 
         [Test]
@@ -115,13 +146,43 @@ namespace Aurora4xAutomation.Tests
 
             Assert.AreEqual(0, messages.GetMessagesAfterId(-1, 100).Count);
 
-            eventManager.Begin();
+            eventManager.Begin(new LoggerDouble());
             
             Thread.Sleep(2000);
 
             eventManager.Stop();
 
             Assert.Contains("test message", messages.GetMessagesAfterId(-1, 100));
+        }
+
+        [Test]
+        public void ExceptionsCanPercolateFromEvaluatorsToEventManager()
+        {
+            var messages = new MessageManagerDouble();
+            var settings = new SettingsStoreDouble();
+            var eventManager = new EventManager(new EmptyUIMap(), settings, messages);
+
+            eventManager.AddEvent(new ThrowEvaluator(""));
+
+            Assert.Throws<Exception>(() => eventManager.ActOnActiveTimelineEntries());
+        }
+
+        [Test]
+        public void ExceptionsAreContainedInEventManagerControlLoop()
+        {
+            var messages = new MessageManagerDouble();
+            var settings = new SettingsStoreDouble();
+            var eventManager = new EventManager(new EmptyUIMap(), settings, messages);
+
+            eventManager.AddEvent(new ThrowEvaluator(""));
+            
+            var handler = new LoggerDouble();
+
+            eventManager.Begin(handler);
+            Thread.Sleep(2000);
+            eventManager.Stop();
+
+            Assert.AreEqual(1, handler.HandleRunAttempts);
         }
     }
 }

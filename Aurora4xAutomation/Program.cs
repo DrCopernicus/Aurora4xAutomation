@@ -1,6 +1,6 @@
-﻿using System.Threading;
-using Aurora4xAutomation.Automation;
+﻿using Aurora4xAutomation.Automation;
 using Aurora4xAutomation.REST;
+using System.Threading;
 
 namespace Aurora4xAutomation
 {
