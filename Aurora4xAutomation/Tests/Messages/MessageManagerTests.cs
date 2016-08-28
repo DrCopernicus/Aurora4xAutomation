@@ -12,7 +12,19 @@ namespace Aurora4xAutomation.Tests.Messages
             var messageManager = new MessageManager();
 
             messageManager.AddMessage(MessageType.Information, "hello");
+
             Assert.AreEqual(0, messageManager.GetLastId());
+        }
+
+        [Test]
+        public void IncrementsIdCounterAfterTenMessages()
+        {
+            var messageManager = new MessageManager();
+
+            for (var i = 0; i < 10; i++)
+                messageManager.AddMessage(MessageType.Information, "hello");
+
+            Assert.AreEqual(9, messageManager.GetLastId());
         }
 
         [Test]
@@ -37,6 +49,45 @@ namespace Aurora4xAutomation.Tests.Messages
             var messages = messageManager.GetMessagesAfterId(-1, 10);
 
             Assert.AreEqual(10, messages.Count);
+        }
+
+        [Test]
+        public void GetsFirstFiveMessagesAfterTenAdded()
+        {
+            var messageManager = new MessageManager();
+
+            for (var i = 0; i < 10; i++)
+                messageManager.AddMessage(MessageType.Information, "hello");
+
+            var messages = messageManager.GetMessagesAfterId(-1, 4);
+
+            Assert.AreEqual(5, messages.Count);
+        }
+
+        [Test]
+        public void GetsMiddleFiveMessagesAfterTenAdded()
+        {
+            var messageManager = new MessageManager();
+
+            for (var i = 0; i < 10; i++)
+                messageManager.AddMessage(MessageType.Information, "hello");
+
+            var messages = messageManager.GetMessagesAfterId(2, 7);
+
+            Assert.AreEqual(5, messages.Count);
+        }
+
+        [Test]
+        public void GetsLastFiveMessagesAfterTenAdded()
+        {
+            var messageManager = new MessageManager();
+
+            for (var i = 0; i < 10; i++)
+                messageManager.AddMessage(MessageType.Information, "hello");
+
+            var messages = messageManager.GetMessagesAfterId(4, 9);
+
+            Assert.AreEqual(5, messages.Count);
         }
 
         [Test]

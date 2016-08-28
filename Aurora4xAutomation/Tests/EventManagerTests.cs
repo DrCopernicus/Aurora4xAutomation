@@ -79,6 +79,16 @@ namespace Aurora4xAutomation.Tests
         }
 
         [Test]
+        public void DoesNotCrashWhenStoppedWithoutBeingPreviouslyStarted()
+        {
+            var messages = new MessageManagerDouble();
+            var settings = new SettingsStoreDouble();
+            var eventManager = new EventManager(new EmptyUIMap(), settings, messages);
+            
+            Assert.DoesNotThrow(() => eventManager.Stop());
+        }
+
+        [Test]
         public void ProcessEventsOnTimelineWithoutControlLoop()
         {
             var messages = new MessageManagerDouble();
