@@ -45,17 +45,31 @@ namespace Aurora4xAutomation.Tests
             }
         }
 
+        private class SettingsStoreDouble : ISettingsStore
+        {
+            public bool Stopped { get; set; }
+            public bool AutoTurnsOn { get; set; }
+            public string DatabaseLocation { get; private set; }
+            public string DatabasePassword { get; private set; }
+            public string EventLogLocation { get; private set; }
+            public int RaceId { get; set; }
+            public Dictionary<string, string> Research { get; set; }
+            public Dictionary<string, Dictionary<string, string>> ResearchFocuses { get; private set; }
+            public int GameId { get; set; }
+            public IncrementLength Increment { get; set; }
+        }
+
         [Test]
         public void TestNonsensicalInput()
         {
-            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStore(), new MessageManagerDouble());
+            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), new MessageManagerDouble());
             Assert.Throws(typeof(Exception), () => lexer.Lex("awdh3ukhij 3lij 3lij5 la j3il li5 (a24 **248 **@&( kjahkuh"));
         }
 
         [Test]
         public void TestSimpleAdvanceCommand()
         {
-            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStore(), new MessageManagerDouble());
+            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), new MessageManagerDouble());
             var command = lexer.Lex("adv go");
             Assert.AreEqual("adv", command.Text);
             Assert.AreEqual("go", command.Body.Text);
@@ -66,7 +80,7 @@ namespace Aurora4xAutomation.Tests
         [Test]
         public void TestAdvanceMoreThanMaxParameters()
         {
-            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStore(), new MessageManagerDouble());
+            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), new MessageManagerDouble());
             var command = lexer.Lex("adv go go go go go!!!!!");
             Assert.AreEqual("adv", command.Text);
             Assert.AreEqual("go", command.Body.Text);
@@ -81,7 +95,7 @@ namespace Aurora4xAutomation.Tests
         [Test]
         public void TestTwoAdvanceCommandsInARow()
         {
-            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStore(), new MessageManagerDouble());
+            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), new MessageManagerDouble());
             var command = lexer.Lex("adv go ; adv go");
             Assert.AreEqual("adv", command.Text);
             Assert.AreEqual("go", command.Body.Text);
@@ -94,7 +108,7 @@ namespace Aurora4xAutomation.Tests
         [Test]
         public void TestSimpleTimerCommand()
         {
-            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStore(), new MessageManagerDouble());
+            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), new MessageManagerDouble());
             var command = lexer.Lex("( 15s ) => { adv go } ");
             Assert.AreEqual("15s", command.Text);
             Assert.AreEqual("adv", command.Body.Text);
@@ -107,7 +121,7 @@ namespace Aurora4xAutomation.Tests
         [Test]
         public void TestNestedTimerCommand()
         {
-            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStore(), new MessageManagerDouble());
+            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), new MessageManagerDouble());
             var command = lexer.Lex("( 15s ) => { ( 8s ) => { ( 729689s ) => { adv go } } } ");
             Assert.AreEqual("15s", command.Text);
             Assert.AreEqual("8s", command.Body.Text);

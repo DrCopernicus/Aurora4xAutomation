@@ -7,6 +7,14 @@ namespace Aurora4xAutomation.Tests.Messages
     public class MessageManagerTests
     {
         [Test]
+        public void EmptyMessageListInitialMessageIdIsNegativeOne()
+        {
+            var messageManager = new MessageManager();
+
+            Assert.AreEqual(-1, messageManager.GetLastId());
+        }
+
+        [Test]
         public void IncrementsIdCounterAfterFirstMessage()
         {
             var messageManager = new MessageManager();

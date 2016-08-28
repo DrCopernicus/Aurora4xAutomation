@@ -9,7 +9,7 @@ namespace Aurora4xAutomation.Command.Parser
 {
     public class CommandLexer
     {
-        public CommandLexer(IUIMap uiMap, SettingsStore settings, IMessageManager messages)
+        public CommandLexer(IUIMap uiMap, ISettingsStore settings, IMessageManager messages)
         {
             UIMap = uiMap;
             Settings = settings;
@@ -17,7 +17,7 @@ namespace Aurora4xAutomation.Command.Parser
         }
 
         private IUIMap UIMap { get; set; }
-        private SettingsStore Settings { get; set; }
+        private ISettingsStore Settings { get; set; }
         private IMessageManager Messages { get; set; }
 
         private void SkipSpaces(ref string command)

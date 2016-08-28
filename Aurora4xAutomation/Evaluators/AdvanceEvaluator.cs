@@ -6,7 +6,7 @@ namespace Aurora4xAutomation.Evaluators
 {
     public class AdvanceEvaluator : SettingsEvaluator
     {
-        public AdvanceEvaluator(string text, SettingsStore settings)
+        public AdvanceEvaluator(string text, ISettingsStore settings)
             : base(text, settings)
         {
         }

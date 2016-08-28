@@ -1,5 +1,4 @@
-﻿using Aurora4xAutomation.Common;
-using Grapevine.Server;
+﻿using Grapevine.Server;
 
 namespace Aurora4xAutomation.REST
 {
@@ -9,12 +8,6 @@ namespace Aurora4xAutomation.REST
         {
             var server = new RESTServer(host: "*");
             server.Start();
-
-            while (server.IsListening)
-            {
-                Sleeper.Sleep(1000);
-            }
-
         }
     }
 }
