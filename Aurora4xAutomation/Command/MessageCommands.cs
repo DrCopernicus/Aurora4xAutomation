@@ -1,14 +1,14 @@
-using System;
 using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
+using System;
 
 namespace Aurora4xAutomation.Command
 {
     [Obsolete("Commands and related classes should be discontinued in favor of Evaluators, and in the case of duplicated functionality using compound evaluators.")]
     public class MessageCommands
     {
-        public MessageCommands(SettingsStore settings)
+        public MessageCommands(ISettingsStore settings)
         {
             Settings = settings;
         }
@@ -30,6 +30,6 @@ namespace Aurora4xAutomation.Command
             MessageManagerManager.AddMessage(message);
         }
 
-        private SettingsStore Settings { get; set; }
+        private ISettingsStore Settings { get; set; }
     }
 }

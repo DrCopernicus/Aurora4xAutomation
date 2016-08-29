@@ -101,12 +101,16 @@ namespace Aurora4xAutomation.Tests
 
         private class LoggerDouble : ILogger
         {
-            public void Handle(Exception e)
+            public void Error(Exception e)
             {
-                HandleRunAttempts++;
+                ErrorsInLog++;
             }
 
-            public int HandleRunAttempts { get; set; }
+            public void Write(string message)
+            {
+            }
+
+            public int ErrorsInLog { get; set; }
         }
 
         [Test]
@@ -182,7 +186,7 @@ namespace Aurora4xAutomation.Tests
             Thread.Sleep(2000);
             eventManager.Stop();
 
-            Assert.AreEqual(1, handler.HandleRunAttempts);
+            Assert.AreEqual(1, handler.ErrorsInLog);
         }
     }
 }

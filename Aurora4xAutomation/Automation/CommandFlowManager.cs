@@ -3,42 +3,61 @@ using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.Messages;
+using Aurora4xAutomation.REST;
 using Aurora4xAutomation.Settings;
 using System.Collections.Generic;
 
 namespace Aurora4xAutomation.Automation
 {
-    public static class CommandFlowManager
+    public class CommandFlowManager
     {
-        public static void QueueCommand(string command, Time time = null)
+        public CommandFlowManager(ISettingsStore settings, IUIMap uiMap, IMessageManager messageManager, IEventManager eventManager, ILogger logger)
         {
-            EventManager.AddEvent(CommandParser.Parse(command), time);
+            _logger = logger;
+            _settings = settings;
+            _auroraUI = uiMap;
+            _messages = messageManager;
+            _eventManager = eventManager;
+            _commandParser = new CommandParser(_auroraUI, _settings, _messages, _eventManager);
+
+            RESTManager.CommandFlowManager = this;
         }
 
-        public static void QueueCommand(IEvaluator evaluator, Time time = null)
+        public void QueueCommand(string command, Time time = null)
         {
-            EventManager.AddEvent(evaluator, time);
+            _eventManager.AddEvent(_commandParser.Parse(command), time);
         }
 
-        public static void Begin()
+        public void QueueCommand(IEvaluator evaluator, Time time = null)
         {
-            EventManager.Begin(new Logger());
+            _eventManager.AddEvent(evaluator, time);
         }
 
-        public static List<string> GetMessages(long startId, long endId = long.MaxValue)
+        public void Begin()
         {
-            return Messages.GetMessagesAfterId(startId, endId);
+            _eventManager.Begin(_logger);
         }
 
-        public static long GetLastMessageId()
+        public void Stop()
         {
-            return Messages.GetLastId();
+            _eventManager.Stop();
         }
 
-        private static readonly SettingsStore Settings = new SettingsStore();
-        private static readonly UIMap AuroraUI = new UIMap(Settings);
-        private static readonly MessageManager Messages = new MessageManager();
-        private static readonly EventManager EventManager = new EventManager(AuroraUI, Settings, Messages);
-        private static readonly CommandParser CommandParser = new CommandParser(AuroraUI, Settings, Messages);
+        public List<string> GetMessages(long startId, long endId = long.MaxValue)
+        {
+            return _messages.GetMessagesAfterId(startId, endId);
+        }
+
+        public long GetLastMessageId()
+        {
+            return _messages.GetLastId();
+        }
+
+        private readonly ILogger _logger;
+        private readonly IUIMap _auroraUI;
+        private readonly ISettingsStore _settings;
+        private readonly IMessageManager _messages;
+        private readonly IEventManager _eventManager;
+        private readonly CommandParser _commandParser;
     }
 }

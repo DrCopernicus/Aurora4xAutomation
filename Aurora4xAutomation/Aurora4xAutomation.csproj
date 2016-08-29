@@ -108,6 +108,7 @@
     <Compile Include="Common\PrintSettings.cs" />
     <Compile Include="Evaluators\SettingsEvaluator.cs" />
     <Compile Include="Evaluators\UIEvaluator.cs" />
+    <Compile Include="Events\IEventManager.cs" />
     <Compile Include="Events\Logger.cs" />
     <Compile Include="Events\ILogger.cs" />
     <Compile Include="IO\DB\QueryExecutor.cs" />

@@ -4,16 +4,17 @@ using Aurora4xAutomation.IO;
 using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
 using System;
+using Aurora4xAutomation.Events;
 
 namespace Aurora4xAutomation.Command.Parser
 {
     public class CommandParser
     {
-        public CommandParser(IUIMap uiMap, SettingsStore settings, MessageManager messages)
+        public CommandParser(IUIMap uiMap, ISettingsStore settings, IMessageManager messages, IEventManager eventManager)
         {
             UIMap = uiMap;
             Settings = settings;
-            Lexer = new CommandLexer(UIMap, settings, messages);
+            Lexer = new CommandLexer(UIMap, settings, messages, eventManager);
         }
 
         public IEvaluator Parse(string choice)
@@ -31,58 +32,58 @@ namespace Aurora4xAutomation.Command.Parser
 
         public void Parse2(string choice)
         {
-            if (choice.Matches("^r(esearch)? [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
-                new ResearchCommands(UIMap, Settings).ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
-
-            else if (choice.Matches("^adv(ance)? [0-9]*[a-z]+"))
-                Settings.Increment = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
-
-            else if (choice.Matches("^b(uild)? ship [0-9]+ [0-9]+$"))
-            {
-                var shipyardNumber = int.Parse(choice.Split(' ')[2]);
-                var shipsNumber = int.Parse(choice.Split(' ')[3]);
-                UIMap.PopulationAndProductionWindow.MakeActive();
-                UIMap.PopulationAndProductionWindow.SelectManageShipyards();
-                UIMap.PopulationAndProductionWindow.SelectNthShipyard(shipyardNumber);
-                for (int i = 0; i < shipsNumber; i++)
-                    UIMap.PopulationAndProductionWindow.AddShipyardTask();
-            }
-
-            else if (choice.Matches("^b(uild)? inst(allation)? [a-z0-9\\-]+ [a-z]+ [0-9]+$"))
-            {
-                new InfrastructureCommands(UIMap).BuildInstallation(choice.Split(' ')[2], choice.Split(' ')[3], choice.Split(' ')[4]);
-            }
-
-            else if (choice.Matches("^auto assign(ment(s)?)? on$"))
-            {
-                UIMap.Leaders.MakeActive();
-                UIMap.Leaders.SetAutomatedAssignments(true);
-            }
-
-            else if (choice.Matches("^auto assign(ment(s)?)? off$"))
-            {
-                UIMap.Leaders.MakeActive();
-                UIMap.Leaders.SetAutomatedAssignments(false);
-            }
-
-            else if (choice.Matches("^auto research focus [a-z]+$"))
-                new ResearchCommands(UIMap, Settings).FocusResearch(choice.Split(' ')[3]);
-
-            else if (choice.Matches("^auto research ban [a-z]+$"))
-                new ResearchCommands(UIMap, Settings).BanResearch(choice.Split(' ')[3]);
-
-            else if (choice.Matches("^auto research on$"))
-                Settings.AutoResearchOn = true;
-
-            else if (choice.Matches("^auto research off$"))
-                Settings.AutoResearchOn = false;
-
-            else if (choice.Matches("^clear$"))
-            {
-                Settings.FeedbackMessage = "";
-                Settings.InterruptMessage = "";
-                Settings.ErrorMessage = "";
-            }
+//            if (choice.Matches("^r(esearch)? [a-zA-Z]+ [0-9]+ [0-9]+ [0-9]+$"))
+//                new ResearchCommands(UIMap, Settings).ResearchTechCommand(choice.Split(' ')[1], int.Parse(choice.Split(' ')[2]), int.Parse(choice.Split(' ')[3]), int.Parse(choice.Split(' ')[4]));
+//
+//            else if (choice.Matches("^adv(ance)? [0-9]*[a-z]+"))
+//                Settings.Increment = GetIncrementFromAbbreviation(choice.Split(' ')[1]);
+//
+//            else if (choice.Matches("^b(uild)? ship [0-9]+ [0-9]+$"))
+//            {
+//                var shipyardNumber = int.Parse(choice.Split(' ')[2]);
+//                var shipsNumber = int.Parse(choice.Split(' ')[3]);
+//                UIMap.PopulationAndProductionWindow.MakeActive();
+//                UIMap.PopulationAndProductionWindow.SelectManageShipyards();
+//                UIMap.PopulationAndProductionWindow.SelectNthShipyard(shipyardNumber);
+//                for (int i = 0; i < shipsNumber; i++)
+//                    UIMap.PopulationAndProductionWindow.AddShipyardTask();
+//            }
+//
+//            else if (choice.Matches("^b(uild)? inst(allation)? [a-z0-9\\-]+ [a-z]+ [0-9]+$"))
+//            {
+//                new InfrastructureCommands(UIMap).BuildInstallation(choice.Split(' ')[2], choice.Split(' ')[3], choice.Split(' ')[4]);
+//            }
+//
+//            else if (choice.Matches("^auto assign(ment(s)?)? on$"))
+//            {
+//                UIMap.Leaders.MakeActive();
+//                UIMap.Leaders.SetAutomatedAssignments(true);
+//            }
+//
+//            else if (choice.Matches("^auto assign(ment(s)?)? off$"))
+//            {
+//                UIMap.Leaders.MakeActive();
+//                UIMap.Leaders.SetAutomatedAssignments(false);
+//            }
+//
+//            else if (choice.Matches("^auto research focus [a-z]+$"))
+//                new ResearchCommands(UIMap, Settings).FocusResearch(choice.Split(' ')[3]);
+//
+//            else if (choice.Matches("^auto research ban [a-z]+$"))
+//                new ResearchCommands(UIMap, Settings).BanResearch(choice.Split(' ')[3]);
+//
+//            else if (choice.Matches("^auto research on$"))
+//                Settings.AutoResearchOn = true;
+//
+//            else if (choice.Matches("^auto research off$"))
+//                Settings.AutoResearchOn = false;
+//
+//            else if (choice.Matches("^clear$"))
+//            {
+//                Settings.FeedbackMessage = "";
+//                Settings.InterruptMessage = "";
+//                Settings.ErrorMessage = "";
+//            }
         }
 
         private IncrementLength GetIncrementFromAbbreviation(string s)
@@ -124,6 +125,6 @@ namespace Aurora4xAutomation.Command.Parser
 
         private IUIMap UIMap { get; set; }
         private CommandLexer Lexer { get; set; }
-        private SettingsStore Settings { get; set; }
+        private ISettingsStore Settings { get; set; }
     }
 }

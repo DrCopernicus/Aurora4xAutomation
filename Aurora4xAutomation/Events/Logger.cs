@@ -4,7 +4,7 @@ namespace Aurora4xAutomation.Events
 {
     public class Logger : ILogger
     {
-        public void Handle(Exception e)
+        public void Error(Exception e)
         {
             var previousColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;

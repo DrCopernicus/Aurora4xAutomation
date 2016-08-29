@@ -1,5 +1,9 @@
 ﻿using Aurora4xAutomation.Automation;
+using Aurora4xAutomation.Events;
+using Aurora4xAutomation.IO;
+using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.REST;
+using Aurora4xAutomation.Settings;
 using System.Threading;
 
 namespace Aurora4xAutomation
@@ -13,8 +17,14 @@ namespace Aurora4xAutomation
 
         public Program()
         {
-            new Thread(CommandFlowManager.Begin);
-            new RESTManager().Begin();
+            var logger = new Logger();
+            var settings = new SettingsStore();
+            var uiMap = new UIMap(settings);
+            var messages = new MessageManager();
+            var eventManager = new EventManager(uiMap, settings, messages);
+
+            new Thread(new CommandFlowManager(settings, uiMap, messages, eventManager, logger).Begin);
+            RESTManager.Begin();
         }
     }
 }

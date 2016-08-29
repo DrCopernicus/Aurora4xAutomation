@@ -1,4 +1,5 @@
 ﻿using Aurora4xAutomation.Command.Parser;
+using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.IO.UI.Windows;
@@ -61,10 +62,28 @@ namespace Aurora4xAutomation.Tests.CommandTests
             public IncrementLength Increment { get; set; }
         }
 
+        private class EventManagerDouble : IEventManager
+        {
+            public void AddEvent(IEvaluator evaluator, Time time)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Begin(ILogger logger)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Stop()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         [Test]
         public void NoParameterPrintThrowsWhenExecuted()
         {
-            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), new MessageManagerDouble());
+            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), new MessageManagerDouble(), new EventManagerDouble());
 
             var evaluator = lexer.Lex("print");
 
@@ -75,7 +94,7 @@ namespace Aurora4xAutomation.Tests.CommandTests
         public void SingleParameterPrintAddsMessageToMessageManager()
         {
             var messages = new MessageManagerDouble();
-            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), messages);
+            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), messages, new EventManagerDouble());
 
             var evaluator = lexer.Lex("print abcd");
 
@@ -87,7 +106,7 @@ namespace Aurora4xAutomation.Tests.CommandTests
         public void MoreThanOneParamterPrintThrowsWhenExecuted()
         {
             var messages = new MessageManagerDouble();
-            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), messages);
+            var lexer = new CommandLexer(new EmptyUIMap(), new SettingsStoreDouble(), messages, new EventManagerDouble());
 
             var evaluator = lexer.Lex("print abcd efg hijiijl kljlaisjdknmv rg");
 

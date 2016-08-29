@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace Aurora4xAutomation.Events
 {
-    public class EventManager
+    public class EventManager : IEventManager
     {
         public EventManager(IUIMap uiMap, ISettingsStore settings, IMessageManager messages)
         {
@@ -51,8 +51,10 @@ namespace Aurora4xAutomation.Events
 
             _worker.RunWorkerCompleted += (sender, e) =>
             {
+                handler.Write("Stopping event manager.");
+
                 if (e.Error != null)
-                    handler.Handle(e.Error);
+                    handler.Error(e.Error);
             };
 
             _worker.RunWorkerAsync();

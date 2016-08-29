@@ -1,5 +1,6 @@
 ﻿using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Evaluators.Message;
+using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
@@ -9,16 +10,18 @@ namespace Aurora4xAutomation.Command.Parser
 {
     public class CommandLexer
     {
-        public CommandLexer(IUIMap uiMap, ISettingsStore settings, IMessageManager messages)
+        public CommandLexer(IUIMap uiMap, ISettingsStore settings, IMessageManager messages, IEventManager eventManager)
         {
             UIMap = uiMap;
             Settings = settings;
             Messages = messages;
+            EventManager = eventManager;
         }
 
         private IUIMap UIMap { get; set; }
         private ISettingsStore Settings { get; set; }
         private IMessageManager Messages { get; set; }
+        private IEventManager EventManager { get; set; }
 
         private void SkipSpaces(ref string command)
         {
@@ -131,7 +134,7 @@ namespace Aurora4xAutomation.Command.Parser
             if (token.Type != CommandTokenType.Text)
                 throw new Exception("Failed to parse Timer token correctly: Expected Text");
 
-            var eval = new TimerEvaluator(token.Text, UIMap);
+            var eval = new TimerEvaluator(token.Text, UIMap, EventManager);
 
             token = GetNext(ref command);
             if (token.Type != CommandTokenType.RightParenthesis)

@@ -1,16 +1,20 @@
-﻿using Aurora4xAutomation.Automation;
-using Aurora4xAutomation.Events;
+﻿using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using System.Text.RegularExpressions;
 
 namespace Aurora4xAutomation.Evaluators
 {
-    public class TimerEvaluator : UIEvaluator
+    public class TimerEvaluator : Evaluator
     {
-        public TimerEvaluator(string text, IUIMap uiMap)
-            : base(text, uiMap)
+        public TimerEvaluator(string text, IUIMap uiMap, IEventManager eventManager)
+            : base(text)
         {
+            UIMap = uiMap;
+            EventManager = eventManager;
         }
+
+        public IUIMap UIMap { get; set; }
+        public IEventManager EventManager { get; set; }
 
         public override CommandEvaluatorType GetEvaluatorType()
         {
@@ -22,7 +26,7 @@ namespace Aurora4xAutomation.Evaluators
             foreach (var statement in StatementList)
             {
                 var time = UIMap.GetTime() + TimeFromText;
-                CommandFlowManager.QueueCommand(statement, time);
+                EventManager.AddEvent(statement, time);
             }
         }
 
