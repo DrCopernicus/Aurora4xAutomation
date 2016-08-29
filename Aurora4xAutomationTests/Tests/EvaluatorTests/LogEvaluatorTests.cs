@@ -1,11 +1,11 @@
-﻿using Aurora4xAutomation.Evaluators.Factories;
+﻿using System;
+using System.Collections.Generic;
+using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.Messages;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 
-namespace Aurora4xAutomation.Tests.EvaluatorTests
+namespace Aurora4xAutomationTests.Tests.EvaluatorTests
 {
     [TestFixture]
     public class LogEvaluatorTests

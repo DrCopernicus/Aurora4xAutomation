@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Aurora4xAutomation.Tests
+namespace Aurora4xAutomationTests.Tests
 {
     /// <summary>
     /// made this so i remember how C# handles a couple of things

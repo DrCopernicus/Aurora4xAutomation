@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Aurora4xAutomation.Tests
+namespace Aurora4xAutomationTests.Tests
 {
     [TestFixture]
     public class Sandbox

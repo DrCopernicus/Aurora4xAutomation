@@ -1,10 +1,10 @@
-﻿using Aurora4xAutomation.Common.Converters;
+﻿using System;
+using System.ComponentModel;
+using Aurora4xAutomation.Common.Converters;
 using Aurora4xAutomation.Messages;
 using NUnit.Framework;
-using System;
-using System.ComponentModel;
 
-namespace Aurora4xAutomation.Tests.ConverterTests
+namespace Aurora4xAutomationTests.Tests.ConverterTests
 {
     [TestFixture]
     public class MessageTypeConverterTests

@@ -3,7 +3,7 @@ using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.IO.UI.Controls;
 using NUnit.Framework;
 
-namespace Aurora4xAutomation.Tests
+namespace Aurora4xAutomationTests.Tests
 {
     [TestFixture]
     public class UITests

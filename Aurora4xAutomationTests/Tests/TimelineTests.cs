@@ -1,10 +1,10 @@
-﻿using Aurora4xAutomation.Evaluators;
+﻿using System;
+using System.Threading;
+using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Events;
 using NUnit.Framework;
-using System;
-using System.Threading;
 
-namespace Aurora4xAutomation.Tests
+namespace Aurora4xAutomationTests.Tests
 {
     [TestFixture]
     public class TimelineTests
