@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Grapevine.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Grapevine.Client;
 
 namespace Aurora4xAutomationClient
 {
