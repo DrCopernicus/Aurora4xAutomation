@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientUI\ClientWrapper.cs" />
+    <Compile Include="ClientUI\CommandSender.cs" />
     <Compile Include="ClientUI\ConnectionCreator.cs" />
     <Compile Include="ClientUI\IClientWrapper.cs" />
     <Compile Include="ClientUI\IConsole.cs" />

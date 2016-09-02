@@ -6,9 +6,9 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
     [TestFixture]
     public class ConnectionCreatorTests
     {
-        private class TestServerConsole : IConsole
+        private class TestConsole : IConsole
         {
-            public TestServerConsole(string server)
+            public TestConsole(string server)
             {
                 _server = server;
             }
@@ -40,7 +40,7 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         [Test]
         public void WritesPromptToConsoleForUserInput()
         {
-            var console = new TestServerConsole("http://192.168.1.2:1234");
+            var console = new TestConsole("http://192.168.1.2:1234");
             var connectionCreator = new ConnectionCreator(console);
 
             var client = connectionCreator.CreateClient();
@@ -51,7 +51,7 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         public void CreatesClientWithCorrectLocalNetworkAddress()
         {
             var address = "http://192.168.1.2:1234";
-            var console = new TestServerConsole(address);
+            var console = new TestConsole(address);
             var connectionCreator = new ConnectionCreator(console);
 
             var client = connectionCreator.CreateClient();
@@ -63,7 +63,7 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         public void CreatesClientWithCorrectLocalhostAddress()
         {
             var address = "http://127.0.0.1:5823";
-            var console = new TestServerConsole(address);
+            var console = new TestConsole(address);
             var connectionCreator = new ConnectionCreator(console);
 
             var client = connectionCreator.CreateClient();
@@ -75,7 +75,7 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         public void CreatesClientWithCorrectRemoteAddress()
         {
             var address = "http://74.125.224.72:105";
-            var console = new TestServerConsole(address);
+            var console = new TestConsole(address);
             var connectionCreator = new ConnectionCreator(console);
 
             var client = connectionCreator.CreateClient();
