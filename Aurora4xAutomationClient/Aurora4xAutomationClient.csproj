@@ -45,14 +45,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientUI\ClientWrapper.cs" />
     <Compile Include="ClientUI\ConnectionCreator.cs" />
+    <Compile Include="ClientUI\IClientWrapper.cs" />
     <Compile Include="ClientUI\IConsole.cs" />
+    <Compile Include="ClientUI\ServerMessageRetriever.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aurora4xAutomation\Aurora4xAutomation.csproj">
+      <Project>{F08B2DE2-6197-4321-AB8D-6F018F548DC6}</Project>
+      <Name>Aurora4xAutomation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
