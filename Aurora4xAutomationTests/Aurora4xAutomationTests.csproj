@@ -61,6 +61,7 @@
     <Compile Include="Tests\ConverterTests\MessageTypeConverterTests.cs" />
     <Compile Include="Tests\CSharpTests.cs" />
     <Compile Include="Tests\EvaluatorTests\EvaluatorParamaterizerTests.cs" />
+    <Compile Include="Tests\EvaluatorTests\HelpEvaluatorTests.cs" />
     <Compile Include="Tests\EvaluatorTests\LogEvaluatorTests.cs" />
     <Compile Include="Tests\EvaluatorTests\PrintEvaluatorTests.cs" />
     <Compile Include="Tests\EventManagerTests.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="ListTests.cs" />
     <Compile Include="Tests\Messages\MessageManagerTests.cs" />
     <Compile Include="Tests\OCRTests.cs" />
+    <Compile Include="Tests\ParserTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />
     <Compile Include="Tests\TimelineTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
