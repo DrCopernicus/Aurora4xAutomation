@@ -38,7 +38,8 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         [Test]
         public void PromptsUserForInputInConsole()
         {
-            var commandSender = new CommandSender(new TestConsole());
+            var console = new TestConsole();
+            var commandSender = new CommandSender(console);
         }
     }
 }

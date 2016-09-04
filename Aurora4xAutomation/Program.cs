@@ -23,7 +23,7 @@ namespace Aurora4xAutomation
             var messages = new MessageManager();
             var eventManager = new EventManager(uiMap, settings, messages);
 
-            new Thread(new CommandFlowManager(settings, uiMap, messages, eventManager, logger).Begin);
+            new Thread(new CommandFlowManager(settings, uiMap, messages, eventManager, logger).Begin).Start();
             RESTManager.Begin();
         }
     }

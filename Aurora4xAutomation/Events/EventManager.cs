@@ -22,11 +22,12 @@ namespace Aurora4xAutomation.Events
 
         public void AddEvent(IEvaluator evaluator, Time time = null)
         {
-            _timeline.AddEvent(evaluator);
+            _timeline.AddEvent(evaluator, time);
         }
 
         public void Begin(ILogger handler)
         {
+            handler.Write("Beginning event manager.");
             if (Settings.ResearchFocuses != null && Settings.ResearchFocuses.Any())
                 Settings.Research = Settings.ResearchFocuses["beamfocus"];
 
@@ -41,6 +42,7 @@ namespace Aurora4xAutomation.Events
                 {
                     if (_worker.CancellationPending)
                     {
+                        handler.Write("Cancellation pending.");
                         e.Cancel = true;
                         break;
                     }
@@ -64,22 +66,16 @@ namespace Aurora4xAutomation.Events
         {
             ActOnActiveTimelineEntries();
 
+            if (Settings.Stopped)
+                return;
+
+            ParseAuroraEventLog();
+
             if (!Settings.Stopped)
-            {
-                ParseEvents();
+                new TurnCommands(UIMap, Settings).AdvanceTurn();
 
-                if (!Settings.Stopped)
-                    new TurnCommands(UIMap, Settings).AdvanceTurn();
-
-                if (!Settings.AutoTurnsOn)
-                    new StopEvaluator("stop", Settings).Execute();
-            }
-            else
-            {
-                var log = new LogEvaluator("log", Messages);
-                new EvaluatorParameterizer().SetParameters(log, MessageType.Debug, "Waiting for user input.");
-                log.Execute();
-            }
+            if (!Settings.AutoTurnsOn)
+                new StopEvaluator("stop", Settings).Execute();
         }
 
         public void Stop()
@@ -92,16 +88,12 @@ namespace Aurora4xAutomation.Events
 
         public void ActOnActiveTimelineEntries()
         {
-            var log = new LogEvaluator("log", Messages);
-            new EvaluatorParameterizer().SetParameters(log, MessageType.Debug, "Waiting for user input.");
-            log.Execute();
-
             IEvaluator ev;
             while ((ev = _timeline.PopNextActiveEvent(UIMap.GetTime())) != null)
                 ev.Execute();
         }
 
-        public void ParseEvents()
+        public void ParseAuroraEventLog()
         {
             var log = new LogEvaluator("log", Messages);
             new EvaluatorParameterizer().SetParameters(log, MessageType.Debug, "Parsing event log.");

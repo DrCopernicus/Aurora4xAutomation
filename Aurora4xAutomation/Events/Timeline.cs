@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Aurora4xAutomation.Evaluators;
+using System.Collections.Generic;
 using System.Linq;
-using Aurora4xAutomation.Evaluators;
 
 namespace Aurora4xAutomation.Events
 {
@@ -26,7 +26,9 @@ namespace Aurora4xAutomation.Events
         public void AddEvent(IEvaluator evaluator, Time time = null)
         {
             lock (_lock)
+            {
                 Events.Add(new AuroraEvent(time ?? new Time(), evaluator));
+            }
         }
 
         private readonly object _lock = new object();
