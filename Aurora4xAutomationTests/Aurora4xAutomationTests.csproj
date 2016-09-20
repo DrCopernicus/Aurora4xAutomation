@@ -62,6 +62,7 @@
     <Compile Include="Tests\CSharpTests.cs" />
     <Compile Include="Tests\EvaluatorTests\EvaluatorParamaterizerTests.cs" />
     <Compile Include="Tests\EvaluatorTests\HelpEvaluatorTests.cs" />
+    <Compile Include="Tests\EvaluatorTests\StopEvaluatorTests.cs" />
     <Compile Include="Tests\EvaluatorTests\LogEvaluatorTests.cs" />
     <Compile Include="Tests\EvaluatorTests\PrintEvaluatorTests.cs" />
     <Compile Include="Tests\EventManagerTests.cs" />

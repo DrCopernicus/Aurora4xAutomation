@@ -44,7 +44,7 @@ namespace Aurora4xAutomationTests.Tests.CommandFlowManagerTests
 
             public override string Help
             {
-                get { throw new System.NotImplementedException(); }
+                get { throw new NotImplementedException(); }
             }
         }
 
@@ -62,7 +62,7 @@ namespace Aurora4xAutomationTests.Tests.CommandFlowManagerTests
 
             public override string Help
             {
-                get { throw new System.NotImplementedException(); }
+                get { throw new NotImplementedException(); }
             }
         }
 

@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Automation\CommandFlowManager.cs" />
     <Compile Include="Common\Args.cs" />
+    <Compile Include="Common\TooManyParametersException.cs" />
     <Compile Include="Common\Converters\MessageTypeConverter.cs" />
     <Compile Include="Evaluators\Evaluator.cs" />
     <Compile Include="Command\Parser\CommandLexer.cs" />

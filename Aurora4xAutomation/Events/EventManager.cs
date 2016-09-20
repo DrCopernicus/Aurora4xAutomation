@@ -93,7 +93,7 @@ namespace Aurora4xAutomation.Events
                 ev.Execute();
         }
 
-        public void ParseAuroraEventLog()
+        private void ParseAuroraEventLog()
         {
             var log = new LogEvaluator("log", Messages);
             new EvaluatorParameterizer().SetParameters(log, MessageType.Debug, "Parsing event log.");

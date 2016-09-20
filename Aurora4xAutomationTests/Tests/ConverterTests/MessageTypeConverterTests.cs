@@ -10,15 +10,51 @@ namespace Aurora4xAutomationTests.Tests.ConverterTests
     public class MessageTypeConverterTests
     {
         [Test]
-        public void ConvertsInfoTypeToString()
+        public void ConvertsInformationTypeToString()
         {
             Assert.AreEqual("INFO", MessageTypeConverter.ToString(MessageType.Information));
         }
 
         [Test]
-        public void ConvertsInfoStringToType()
+        public void ConvertsWarningTypeToString()
+        {
+            Assert.AreEqual("WARN", MessageTypeConverter.ToString(MessageType.Warning));
+        }
+
+        [Test]
+        public void ConvertsErrorTypeToString()
+        {
+            Assert.AreEqual("CRIT", MessageTypeConverter.ToString(MessageType.Error));
+        }
+
+        [Test]
+        public void ConvertsDebugTypeToString()
+        {
+            Assert.AreEqual("DBUG", MessageTypeConverter.ToString(MessageType.Debug));
+        }
+
+        [Test]
+        public void ConvertsINFOToType()
         {
             Assert.AreEqual(MessageType.Information, MessageTypeConverter.ToType("INFO"));
+        }
+
+        [Test]
+        public void ConvertsDBUGToType()
+        {
+            Assert.AreEqual(MessageType.Debug, MessageTypeConverter.ToType("DBUG"));
+        }
+
+        [Test]
+        public void ConvertsCRITToType()
+        {
+            Assert.AreEqual(MessageType.Error, MessageTypeConverter.ToType("CRIT"));
+        }
+
+        [Test]
+        public void ConvertsWARNToType()
+        {
+            Assert.AreEqual(MessageType.Warning, MessageTypeConverter.ToType("WARN"));
         }
 
         [Test]

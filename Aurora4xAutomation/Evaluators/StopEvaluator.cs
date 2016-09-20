@@ -1,4 +1,5 @@
 ﻿using System;
+using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Evaluators
@@ -13,8 +14,7 @@ namespace Aurora4xAutomation.Evaluators
         protected override void Evaluate()
         {
             if (Parameters.Count != 0)
-                throw new Exception(string.Format("Expected 0 parameters, got {0} in function name {1}.",
-                    Parameters.Count, Text));
+                throw new TooManyParametersException(0, Parameters.Count, Text);
 
             Settings.Stopped = true;
         }

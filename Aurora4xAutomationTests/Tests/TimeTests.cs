@@ -74,6 +74,7 @@ namespace Aurora4xAutomationTests.Tests
             Assert.IsTrue(time4 > time3);
             Assert.IsTrue(time3 < time4);
 
+            Assert.IsTrue(time5 >= time1);
             Assert.IsTrue(time5 > time1);
             Assert.IsTrue(time5 > time2);
             Assert.IsTrue(time5 > time3);
