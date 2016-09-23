@@ -18,7 +18,7 @@ namespace Aurora4xAutomation.IO
             get { return _baseAuroraWindow ?? (_baseAuroraWindow = new BaseAuroraWindow(Settings)); }
         }
 
-        public EventWindow EventWindow
+        public EventWindow Events
         {
             get { return _eventWindow ?? (_eventWindow = new EventWindow(Settings)); }
         }
@@ -33,19 +33,19 @@ namespace Aurora4xAutomation.IO
             get { return _systemMapWindow ?? (_systemMapWindow = new SystemMapWindow(Settings)); }
         }
 
-        public PopulationAndProductionWindow PopulationAndProductionWindow
+        public PopulationAndProductionWindow PopulationAndProduction
         {
             get { return _populationAndProductionWindow ?? (_populationAndProductionWindow = new PopulationAndProductionWindow(Settings)); }
-        }
-
-        public Time GetTime()
-        {
-            return new Time(SystemMap.GetTime());
         }
 
         public TaskGroupsWindow TaskGroups
         {
             get { return _taskGroupsWindow ?? (_taskGroupsWindow = new TaskGroupsWindow(Settings)); }
+        }
+
+        public Time GetTime()
+        {
+            return new Time(SystemMap.GetTime());
         }
         
         private EventWindow _eventWindow;

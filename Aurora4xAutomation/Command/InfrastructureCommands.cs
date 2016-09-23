@@ -15,45 +15,45 @@ namespace Aurora4xAutomation.Command
 
         public void PurchaseMineralOutput(string massDriverDestination)
         {
-            UIMap.PopulationAndProductionWindow.MakeActive();
-            UIMap.PopulationAndProductionWindow.SelectCivilianTab();
-            UIMap.PopulationAndProductionWindow.PurchaseMineralOutput.Selected = true;
-            UIMap.PopulationAndProductionWindow.SelectMiningTab();
-            UIMap.PopulationAndProductionWindow.MassDriverDestination.Text = massDriverDestination;
+            UIMap.PopulationAndProduction.MakeActive();
+            UIMap.PopulationAndProduction.SelectCivilianTab();
+            UIMap.PopulationAndProduction.PurchaseMineralOutput.Selected = true;
+            UIMap.PopulationAndProduction.SelectMiningTab();
+            UIMap.PopulationAndProduction.MassDriverDestination.Text = massDriverDestination;
         }
 
         public void BuildInstallation(string population, string installationName, string installationNumber)
         {
             new OpenCommands(UIMap).SelectColony(population);
-            UIMap.PopulationAndProductionWindow.SelectIndustry();
+            UIMap.PopulationAndProduction.SelectIndustry();
             switch (installationName)
             {
                 case "automine":
-                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(0);
+                    UIMap.PopulationAndProduction.ConstructionOptions.ClickRow(0);
                     break;
                 case "csc":
-                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(1);
+                    UIMap.PopulationAndProduction.ConstructionOptions.ClickRow(1);
                     break;
                 case "inf":
                 case "infra":
                 case "infrastructure":
-                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(10);
+                    UIMap.PopulationAndProduction.ConstructionOptions.ClickRow(10);
                     break;
                 case "massdriver":
-                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(12);
+                    UIMap.PopulationAndProduction.ConstructionOptions.ClickRow(12);
                     break;
                 case "nsc":
-                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(15);
+                    UIMap.PopulationAndProduction.ConstructionOptions.ClickRow(15);
                     break;
                 case "lab":
-                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(17);
+                    UIMap.PopulationAndProduction.ConstructionOptions.ClickRow(17);
                     break;
                 case "terra":
-                    UIMap.PopulationAndProductionWindow.ConstructionOptions.ClickRow(19);
+                    UIMap.PopulationAndProduction.ConstructionOptions.ClickRow(19);
                     break;
             }
-            UIMap.PopulationAndProductionWindow.NumberOfIndustrialProject.Text = installationNumber;
-            UIMap.PopulationAndProductionWindow.CreateIndustrialProject.Click();
+            UIMap.PopulationAndProduction.NumberOfIndustrialProject.Text = installationNumber;
+            UIMap.PopulationAndProduction.CreateIndustrialProject.Click();
         }
     }
 }

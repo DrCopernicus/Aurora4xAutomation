@@ -21,9 +21,9 @@ namespace Aurora4xAutomation.Evaluators
 
             if (Parameters[1] == "mining-destination")
             {
-                UIMap.PopulationAndProductionWindow.MakeActive();
-                UIMap.PopulationAndProductionWindow.SelectMiningTab();
-                UIMap.PopulationAndProductionWindow.MassDriverDestination.Text = Parameters[2];
+                UIMap.PopulationAndProduction.MakeActive();
+                UIMap.PopulationAndProduction.SelectMiningTab();
+                UIMap.PopulationAndProduction.MassDriverDestination.Text = Parameters[2];
             }
         }
 

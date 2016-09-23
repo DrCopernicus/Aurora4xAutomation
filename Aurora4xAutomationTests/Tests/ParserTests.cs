@@ -18,11 +18,11 @@ namespace Aurora4xAutomationTests.Tests
         private class TestUIMap : IUIMap
         {
             public BaseAuroraWindow BaseAuroraWindow { get; private set; }
-            public EventWindow EventWindow { get; private set; }
+            public EventWindow Events { get; private set; }
             public CommandersWindow Leaders { get; private set; }
             public SystemMapWindow SystemMap { get; private set; }
             public TaskGroupsWindow TaskGroups { get; private set; }
-            public PopulationAndProductionWindow PopulationAndProductionWindow { get; private set; }
+            public PopulationAndProductionWindow PopulationAndProduction { get; private set; }
             public Time GetTime()
             {
                 throw new NotImplementedException();

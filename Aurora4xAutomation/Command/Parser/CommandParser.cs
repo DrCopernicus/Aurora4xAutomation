@@ -42,11 +42,11 @@ namespace Aurora4xAutomation.Command.Parser
 //            {
 //                var shipyardNumber = int.Parse(choice.Split(' ')[2]);
 //                var shipsNumber = int.Parse(choice.Split(' ')[3]);
-//                UIMap.PopulationAndProductionWindow.MakeActive();
-//                UIMap.PopulationAndProductionWindow.SelectManageShipyards();
-//                UIMap.PopulationAndProductionWindow.SelectNthShipyard(shipyardNumber);
+//                UIMap.PopulationAndProduction.MakeActive();
+//                UIMap.PopulationAndProduction.SelectManageShipyards();
+//                UIMap.PopulationAndProduction.SelectNthShipyard(shipyardNumber);
 //                for (int i = 0; i < shipsNumber; i++)
-//                    UIMap.PopulationAndProductionWindow.AddShipyardTask();
+//                    UIMap.PopulationAndProduction.AddShipyardTask();
 //            }
 //
 //            else if (choice.Matches("^b(uild)? inst(allation)? [a-z0-9\\-]+ [a-z]+ [0-9]+$"))

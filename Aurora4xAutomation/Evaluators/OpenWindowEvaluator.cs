@@ -18,12 +18,12 @@ namespace Aurora4xAutomation.Evaluators
             switch (Parameters[0])
             {
                 case "r":
-                    UIMap.PopulationAndProductionWindow.MakeActive();
-                    UIMap.PopulationAndProductionWindow.SelectResearchTab();
+                    UIMap.PopulationAndProduction.MakeActive();
+                    UIMap.PopulationAndProduction.SelectResearchTab();
                     break;
                 case "ship":
-                    UIMap.PopulationAndProductionWindow.MakeActive();
-                    UIMap.PopulationAndProductionWindow.SelectManageShipyards();
+                    UIMap.PopulationAndProduction.MakeActive();
+                    UIMap.PopulationAndProduction.SelectManageShipyards();
                     break;
                 case "tg":
                     UIMap.TaskGroups.MakeActive();
