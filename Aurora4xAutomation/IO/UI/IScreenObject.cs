@@ -1,6 +1,6 @@
 ﻿namespace Aurora4xAutomation.IO.UI
 {
-    public interface IControl
+    public interface IScreenObject
     {
         int Top { get; }
         int Bottom { get; }

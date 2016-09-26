@@ -8,18 +8,12 @@ namespace Aurora4xAutomationTests.Tests
     [TestFixture]
     public class UITests
     {
-        private class WindowDouble : IWindow
+        private class WindowDouble : IScreenObject
         {
             public int Top { get; private set; }
             public int Bottom { get; private set; }
             public int Left { get; private set; }
             public int Right { get; private set; }
-            public IntPtr Handle { get; private set; }
-
-            public void MakeActive()
-            {
-
-            }
 
             public WindowDouble(int top, int bottom, int left, int right)
             {

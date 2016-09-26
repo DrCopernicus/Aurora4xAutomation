@@ -54,7 +54,6 @@ namespace Aurora4xAutomation.IO
             return color;
         }
 
-
         public static Color GetPixel(this Control control, int x, int y)
         {
             IntPtr hdc = GetDC(IntPtr.Zero);

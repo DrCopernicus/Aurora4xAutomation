@@ -8,7 +8,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public Label(IWindow parent, int top, int bottom, int left, int right)
+        public Label(IScreenObject parent, int top, int bottom, int left, int right)
             : base(parent, top, bottom, left, right)
         {
             CharacterHeight = 9;

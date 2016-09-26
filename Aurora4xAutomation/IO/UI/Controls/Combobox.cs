@@ -9,7 +9,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public Combobox(IWindow parent, int top, int bottom, int left, int right)
+        public Combobox(IScreenObject parent, int top, int bottom, int left, int right)
             : base(parent, top, bottom, left, right)
         {
             

@@ -3,9 +3,9 @@ using Aurora4xAutomation.Common;
 
 namespace Aurora4xAutomation.IO.UI.Controls
 {
-    public class Control : IControl
+    public class Control : IScreenObject
     {
-        public Control(IControl parent, int top, int bottom, int left, int right)
+        public Control(IScreenObject parent, int top, int bottom, int left, int right)
         {
             Parent = parent;
             Top = Parent.Top + top;
@@ -14,7 +14,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
             Right = Parent.Left + right;
         }
 
-        public IControl Parent { get; protected set; }
+        public IScreenObject Parent { get; protected set; }
         public int Top { get; protected set; }
         public int Bottom { get; protected set; }
         public int Left { get; protected set; }

@@ -2,7 +2,7 @@
 {
     public class Button : Control
     {
-        public Button(IWindow parent, int top, int bottom, int left, int right)
+        public Button(IScreenObject parent, int top, int bottom, int left, int right)
             : base(parent, top, bottom, left, right)
         {
             

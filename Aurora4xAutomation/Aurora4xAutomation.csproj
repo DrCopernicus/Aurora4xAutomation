@@ -126,6 +126,8 @@
     <Compile Include="IO\IO.cs" />
     <Compile Include="IO\IUIMap.cs" />
     <Compile Include="IO\OCRReader.cs" />
+    <Compile Include="IO\UI\IScreenObject.cs" />
+    <Compile Include="IO\UI\ScreenObject.cs" />
     <Compile Include="Messages\IMessageManager.cs" />
     <Compile Include="Messages\MessageManager.cs" />
     <Compile Include="Messages\MessageManagerManager.cs" />
@@ -151,7 +153,6 @@
     <Compile Include="IO\UI\Controls\Button.cs" />
     <Compile Include="IO\UI\Controls\Combobox.cs" />
     <Compile Include="IO\UI\Controls\Textbox.cs" />
-    <Compile Include="IO\UI\IControl.cs" />
     <Compile Include="IO\UI\IWindow.cs" />
     <Compile Include="IO\UI\Windows\PaintNetWindow.cs" />
     <Compile Include="IO\UI\Windows\CommandersWindow.cs" />
