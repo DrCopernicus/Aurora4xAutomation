@@ -3,6 +3,7 @@ using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.IO;
 using System;
+using Aurora4xAutomation.Common.Exceptions;
 
 namespace Aurora4xAutomation.Evaluators
 {

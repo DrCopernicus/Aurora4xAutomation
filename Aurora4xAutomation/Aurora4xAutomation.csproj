@@ -72,7 +72,7 @@
   <ItemGroup>
     <Compile Include="Automation\CommandFlowManager.cs" />
     <Compile Include="Common\Args.cs" />
-    <Compile Include="Common\TooManyParametersException.cs" />
+    <Compile Include="Common\Exceptions\TooManyParametersException.cs" />
     <Compile Include="Common\Converters\MessageTypeConverter.cs" />
     <Compile Include="Evaluators\Evaluator.cs" />
     <Compile Include="Command\Parser\CommandLexer.cs" />
@@ -102,8 +102,8 @@
     <Compile Include="Command\OpenCommands.cs" />
     <Compile Include="Command\ResearchCommands.cs" />
     <Compile Include="Common\ColorExtensions.cs" />
-    <Compile Include="Common\CommandInvalidParameterException.cs" />
-    <Compile Include="Common\CommandExecutionException.cs" />
+    <Compile Include="Common\Exceptions\CommandInvalidParameterException.cs" />
+    <Compile Include="Common\Exceptions\CommandExecutionException.cs" />
     <Compile Include="Common\FileReader.cs" />
     <Compile Include="Common\ListExtensions.cs" />
     <Compile Include="Common\PixelGetter.cs" />
