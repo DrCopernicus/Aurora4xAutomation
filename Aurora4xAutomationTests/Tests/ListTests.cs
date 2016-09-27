@@ -1,7 +1,7 @@
 ﻿using Aurora4xAutomation.Common;
 using NUnit.Framework;
 
-namespace Aurora4xAutomationTests
+namespace Aurora4xAutomationTests.Tests
 {
     [TestFixture]
     public class ListTests

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Drawing;
-using Aurora4xAutomation.IO.UI;
+﻿using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.IO.UI.Controls;
 using NUnit.Framework;
+using System;
+using System.Drawing;
 
 namespace Aurora4xAutomationTests.Tests.UI
 {
@@ -25,30 +25,87 @@ namespace Aurora4xAutomationTests.Tests.UI
             }
         }
 
-        [Test]
-        public void PointsOnButtonAreCorrectColors()
+        private void AssertPixelsOnControlAreCorrect(IScreenObject control)
         {
-            var screen = new MultiColoredScreen();
-            var button = new Button(screen, 1, 3, 1, 3);
+            Assert.AreEqual(Color.LightBlue, control.GetPixel(0, 0));
+            Assert.AreEqual(Color.LightGreen, control.GetPixel(0, 2));
+            Assert.AreEqual(Color.DarkGreen, control.GetPixel(2, 2));
+            Assert.AreEqual(Color.DarkBlue, control.GetPixel(2, 0));
+            Assert.AreEqual(Color.Red, control.GetPixel(1, 1));
+        }
 
-            Assert.AreEqual(Color.LightBlue, button.GetPixel(0, 0));
-            Assert.AreEqual(Color.LightGreen, button.GetPixel(0, 2));
-            Assert.AreEqual(Color.DarkGreen, button.GetPixel(2, 2));
-            Assert.AreEqual(Color.DarkBlue, button.GetPixel(2, 0));
+        private void AssertGettingOutOfBoundsPixelsThrows(IScreenObject control)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => control.GetPixel(-1, 0));
+            Assert.Throws<ArgumentOutOfRangeException>(() => control.GetPixel(-1, -1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => control.GetPixel(0, -1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => control.GetPixel(-5, -100));
+            Assert.Throws<ArgumentOutOfRangeException>(() => control.GetPixel(0, 4));
+            Assert.Throws<ArgumentOutOfRangeException>(() => control.GetPixel(10, 49));
         }
 
         [Test]
-        public void PointsOutsideOfButtonThrow()
+        public void PointsOnGenericControlReturnCorrectValues()
         {
-            var screen = new MultiColoredScreen();
-            var button = new Button(screen, 1, 3, 1, 3);
+            var control = new Control(new MultiColoredScreen(), 1, 3, 1, 3);
+            AssertPixelsOnControlAreCorrect(control);
+            AssertGettingOutOfBoundsPixelsThrows(control);
+        }
 
-            Assert.Throws<ArgumentOutOfRangeException>(() => button.GetPixel(-1, 0));
-            Assert.Throws<ArgumentOutOfRangeException>(() => button.GetPixel(-1, -1));
-            Assert.Throws<ArgumentOutOfRangeException>(() => button.GetPixel(0, -1));
-            Assert.Throws<ArgumentOutOfRangeException>(() => button.GetPixel(-5, -100));
-            Assert.Throws<ArgumentOutOfRangeException>(() => button.GetPixel(0, 4));
-            Assert.Throws<ArgumentOutOfRangeException>(() => button.GetPixel(10, 49));
+        [Test]
+        public void PointsOnButtonReturnCorrectValues()
+        {
+            var button = new Button(new MultiColoredScreen(), 1, 3, 1, 3);
+            AssertPixelsOnControlAreCorrect(button);
+            AssertGettingOutOfBoundsPixelsThrows(button);
+        }
+
+        [Test]
+        public void PointsOnComboboxAreCorrectColors()
+        {
+            var combobox = new Combobox(new MultiColoredScreen(), 1, 3, 1, 3);
+            AssertPixelsOnControlAreCorrect(combobox);
+            AssertGettingOutOfBoundsPixelsThrows(combobox);
+        }
+
+        [Test]
+        public void PointsOnDatagridAreCorrectColors()
+        {
+            var datagrid = new Datagrid(new MultiColoredScreen(), 1, 3, 1, 3);
+            AssertPixelsOnControlAreCorrect(datagrid);
+            AssertGettingOutOfBoundsPixelsThrows(datagrid);
+        }
+
+        [Test]
+        public void PointsOnLabelAreCorrectColors()
+        {
+            var label = new Label(new MultiColoredScreen(), 1, 3, 1, 3);
+            AssertPixelsOnControlAreCorrect(label);
+            AssertGettingOutOfBoundsPixelsThrows(label);
+        }
+
+        [Test]
+        public void PointsOnRadioButtonAreCorrectColors()
+        {
+            var radiobutton = new RadioButton(new MultiColoredScreen(), 1, 3, 1, 3);
+            AssertPixelsOnControlAreCorrect(radiobutton);
+            AssertGettingOutOfBoundsPixelsThrows(radiobutton);
+        }
+
+        [Test]
+        public void PointsOnTextboxAreCorrectColors()
+        {
+            var textbox = new Textbox(new MultiColoredScreen(), 1, 3, 1, 3);
+            AssertPixelsOnControlAreCorrect(textbox);
+            AssertGettingOutOfBoundsPixelsThrows(textbox);
+        }
+
+        [Test]
+        public void PointsOnTreeListAreCorrectColors()
+        {
+            var treelist = new TreeList(new MultiColoredScreen(), 1, 3, 1, 3);
+            AssertPixelsOnControlAreCorrect(treelist);
+            AssertGettingOutOfBoundsPixelsThrows(treelist);
         }
     }
 }

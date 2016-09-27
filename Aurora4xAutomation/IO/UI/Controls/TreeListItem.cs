@@ -18,6 +18,15 @@ namespace Aurora4xAutomation.IO.UI.Controls
             Colors = new[] { new byte[] { 0, 0, 0 } };
         }
 
+        public TreeListItem(IScreen screen, TreeListItem parentItem, int left, int right, int top, int offset, int height)
+            : base(screen, top, top + 16, left, right)
+        {
+            ParentItem = parentItem;
+            CharacterOffset = offset;
+            CharacterHeight = height;
+            Colors = new[] { new byte[] { 0, 0, 0 } };
+        }
+
         public string Text { get; private set; }
 
         public void Initialize()

@@ -1,5 +1,5 @@
-﻿using WindowsInput.Native;
-using Aurora4xAutomation.Common;
+﻿using Aurora4xAutomation.Common;
+using WindowsInput.Native;
 
 namespace Aurora4xAutomation.IO.UI.Controls
 {
@@ -9,10 +9,16 @@ namespace Aurora4xAutomation.IO.UI.Controls
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public Combobox(IScreenObject screen, int top, int bottom, int left, int right)
+        public Combobox(IScreenObject parent, int top, int bottom, int left, int right)
+            : base(parent, top, bottom, left, right)
+        {
+
+        }
+
+        public Combobox(IScreen screen, int top, int bottom, int left, int right)
             : base(screen, top, bottom, left, right)
         {
-            
+
         }
 
         public string Text
