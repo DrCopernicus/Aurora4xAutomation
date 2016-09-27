@@ -1,13 +1,16 @@
 ﻿using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.IO.UI.Controls;
+using Aurora4xAutomation.IO.UI.Windows;
+using Aurora4xAutomation.Settings;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace Aurora4xAutomationTests.Tests.UI
 {
     [TestFixture]
-    public class ControlPixelTests
+    public class PixelTests
     {
         private class MultiColoredScreen : IScreen
         {
@@ -23,6 +26,34 @@ namespace Aurora4xAutomationTests.Tests.UI
             {
                 return _screen[x][y];
             }
+        }
+
+        private class TestWindowFinder : IWindowFinder
+        {
+            public IntPtr GetWindowHandle(string title)
+            {
+                return IntPtr.Zero;
+            }
+
+            public NativeMethods.RECT GetDimensions(IntPtr handle)
+            {
+                return new NativeMethods.RECT { Left = 1, Bottom = 3, Right = 3, Top = 1 };
+            }
+        }
+
+        private class TestSettingsStore : ISettingsStore
+        {
+            public bool Stopped { get; set; }
+            public bool AutoTurnsOn { get; set; }
+            public string DatabaseLocation { get; private set; }
+            public string DatabasePassword { get; private set; }
+            public string EventLogLocation { get; private set; }
+            public int RaceId { get; set; }
+            public Dictionary<string, string> Research { get; set; }
+            public Dictionary<string, Dictionary<string, string>> ResearchFocuses { get; private set; }
+            public int GameId { get; set; }
+            public IncrementLength Increment { get; set; }
+            public string GameName { get; set; }
         }
 
         private void AssertPixelsOnControlAreCorrect(IScreenObject control)
@@ -106,6 +137,62 @@ namespace Aurora4xAutomationTests.Tests.UI
             var treelist = new TreeList(new MultiColoredScreen(), 1, 3, 1, 3);
             AssertPixelsOnControlAreCorrect(treelist);
             AssertGettingOutOfBoundsPixelsThrows(treelist);
+        }
+
+        [Test]
+        public void PointsOnBaseAuroraWindowAreCorrectColors()
+        {
+            var window = new BaseAuroraWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestSettingsStore());
+            AssertPixelsOnControlAreCorrect(window);
+            AssertGettingOutOfBoundsPixelsThrows(window);
+        }
+
+        [Test]
+        public void PointsOnCommandersWindowAreCorrectColors()
+        {
+            var window = new CommandersWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestSettingsStore());
+            AssertPixelsOnControlAreCorrect(window);
+            AssertGettingOutOfBoundsPixelsThrows(window);
+        }
+
+        [Test]
+        public void PointsOnConsoleWindowAreCorrectColors()
+        {
+            var window = new ConsoleWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestSettingsStore());
+            AssertPixelsOnControlAreCorrect(window);
+            AssertGettingOutOfBoundsPixelsThrows(window);
+        }
+
+        [Test]
+        public void PointsOnEventWindowAreCorrectColors()
+        {
+            var window = new EventWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestSettingsStore());
+            AssertPixelsOnControlAreCorrect(window);
+            AssertGettingOutOfBoundsPixelsThrows(window);
+        }
+
+        [Test]
+        public void PointsOnPopulationAndProductionWindowAreCorrectColors()
+        {
+            var window = new PopulationAndProductionWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestSettingsStore());
+            AssertPixelsOnControlAreCorrect(window);
+            AssertGettingOutOfBoundsPixelsThrows(window);
+        }
+
+        [Test]
+        public void PointsOnSystemMapWindowAreCorrectColors()
+        {
+            var window = new SystemMapWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestSettingsStore());
+            AssertPixelsOnControlAreCorrect(window);
+            AssertGettingOutOfBoundsPixelsThrows(window);
+        }
+
+        [Test]
+        public void PointsOnTaskGroupsWindowAreCorrectColors()
+        {
+            var window = new TaskGroupsWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestSettingsStore());
+            AssertPixelsOnControlAreCorrect(window);
+            AssertGettingOutOfBoundsPixelsThrows(window);
         }
     }
 }

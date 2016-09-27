@@ -1,7 +1,5 @@
 ﻿using Aurora4xAutomation.IO.UI;
-using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using WindowsInput;
@@ -13,15 +11,6 @@ namespace Aurora4xAutomation.IO
     public static class IO
     {
         private static readonly InputSimulator Input = new InputSimulator();
-        
-        [DllImport("user32.dll")]
-        static extern IntPtr GetDC(IntPtr hwnd);
-
-        [DllImport("user32.dll")]
-        static extern Int32 ReleaseDC(IntPtr hwnd, IntPtr hdc);
-
-        [DllImport("gdi32.dll")]
-        static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
         
         public static void Click(this Window window, int x, int y)
         {

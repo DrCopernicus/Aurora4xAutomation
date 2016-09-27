@@ -7,8 +7,8 @@ namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class CommandersWindow : Window
     {
-        public CommandersWindow(SettingsStore settings) 
-            : base("Commanders", settings)
+        public CommandersWindow(IScreen screen, IWindowFinder windowFinder, ISettingsStore settings) 
+            : base("Commanders", screen, windowFinder, settings)
         {
             LeaderType = new Combobox(this, left: 101, right: 272, top: 140, bottom: 156)
             {
@@ -39,7 +39,7 @@ namespace Aurora4xAutomation.IO.UI.Windows
 
         protected override void OpenIfNotFound()
         {
-            new BaseAuroraWindow(Settings).MakeActive();
+            new BaseAuroraWindow(Screen, WindowFinder, Settings).MakeActive();
             Sleeper.Sleep(1000);
             SendKeys.SendWait("{F4}");
         }

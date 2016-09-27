@@ -11,8 +11,8 @@ namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class PopulationAndProductionWindow : Window
     {
-        public PopulationAndProductionWindow(SettingsStore settings) 
-            : base("Population and Production", settings)
+        public PopulationAndProductionWindow(IScreen screen, IWindowFinder windowFinder, ISettingsStore settings) 
+            : base("Population and Production", screen, windowFinder, settings)
         {
             ResearchTable = new Datagrid(this, left: 406, right: 776, top: 406, bottom: 613)
             {
@@ -302,7 +302,7 @@ namespace Aurora4xAutomation.IO.UI.Windows
 
         protected override void OpenIfNotFound()
         {
-            new BaseAuroraWindow(Settings).MakeActive();
+            new BaseAuroraWindow(Screen, WindowFinder, Settings).MakeActive();
             Sleeper.Sleep(1000);
             SendKeys.SendWait("{F2}");
         }

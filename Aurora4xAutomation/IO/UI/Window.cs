@@ -1,70 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Aurora4xAutomation.Common;
+﻿using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Common.Exceptions;
 using Aurora4xAutomation.Settings;
+using System;
+using System.Drawing;
+using System.Text;
 
 namespace Aurora4xAutomation.IO.UI
 {
-    public abstract class Window : ScreenObject, IWindow
+    public abstract class Window : IScreenObject, IWindow
     {
         public IntPtr Handle { get; private set; }
-        
-        private static IDictionary<IntPtr, string> GetOpenWindows()
-        {
-            var shellWindow = NativeMethods.GetShellWindow();
-            var windows = new Dictionary<IntPtr, string>();
 
-            NativeMethods.EnumWindows(delegate(IntPtr hWnd, int lParam)
-            {
-                if (hWnd == shellWindow) return true;
-                if (!NativeMethods.IsWindowVisible(hWnd)) return true;
-
-                var length = NativeMethods.GetWindowTextLength(hWnd);
-                if (length == 0) return true;
-
-                var builder = new StringBuilder(length);
-                NativeMethods.GetWindowText(hWnd, builder, length + 1);
-
-                windows[hWnd] = builder.ToString();
-                return true;
-
-            }, 0);
-
-            return windows;
-        }
-
-        protected Window(string title, SettingsStore settings)
+        protected Window(string title, IScreen screen, IWindowFinder windowFinder, ISettingsStore settings)
         {
             Settings = settings;
+            Screen = screen;
 
-            var handle = AttemptToOpenWindow(title);
-            var dimensions = NativeMethods.GetWindowRect(handle);
+            IntPtr handle;
+
+            try
+            {
+                handle = windowFinder.GetWindowHandle(title);
+            }
+            catch (WindowNotFoundException)
+            {
+                OpenIfNotFound();
+                handle = windowFinder.GetWindowHandle(title);
+            }
+
+            var dimensions = windowFinder.GetDimensions(handle);
 
             Handle = handle;
             Left = dimensions.Left;
             Right = dimensions.Right;
             Top = dimensions.Top;
             Bottom = dimensions.Bottom;
-        }
-
-        private IntPtr AttemptToOpenWindow(string title)
-        {
-            var window = GetOpenWindows().FirstOrDefault(x => x.Value.StartsWith(title));
-
-            if (window.Value == null)
-            {
-                OpenIfNotFound();
-                Sleeper.Sleep(500);
-            }
-
-            window = GetOpenWindows().FirstOrDefault(x => x.Value.StartsWith(title));
-
-            if (window.Value == null)
-                throw new Exception(string.Format("{0} window not found!", title));
-
-            return window.Key;
         }
 
         protected abstract void OpenIfNotFound();
@@ -74,11 +44,11 @@ namespace Aurora4xAutomation.IO.UI
             for (var i = 0; i < 12; i++)
             {
                 NativeMethods.SetForegroundWindow(Handle);
-                if (WaitActive())
-                {
-                    Screenshot.Dirty();
-                    return;
-                }
+                if (!WaitActive())
+                    continue;
+                Screenshot.Dirty();
+                Sleeper.Sleep(500);
+                return;
             }
             throw new Exception("Window never opened!");
         }
@@ -102,6 +72,25 @@ namespace Aurora4xAutomation.IO.UI
             return builder.ToString();
         }
 
-        protected SettingsStore Settings { get; set; }
+        protected ISettingsStore Settings { get; set; }
+        protected IWindowFinder WindowFinder { get; set; }
+        public IScreen Screen { get; private set; }
+        public Color GetPixel(int x, int y)
+        {
+            if (x < 0)
+                throw new ArgumentOutOfRangeException("x", "x cannot be less than 0");
+            if (Left + x > Right)
+                throw new ArgumentOutOfRangeException("x", "x cannot be greater than width");
+            if (y < 0)
+                throw new ArgumentOutOfRangeException("y", "y cannot be less than 0");
+            if (Top + y > Bottom)
+                throw new ArgumentOutOfRangeException("y", "y cannot be greater than height");
+            return Screen.GetPixel(Left + x, Top + y);
+        }
+
+        public int Top { get; private set; }
+        public int Bottom { get; private set; }
+        public int Left { get; private set; }
+        public int Right { get; private set; }
     }
 }

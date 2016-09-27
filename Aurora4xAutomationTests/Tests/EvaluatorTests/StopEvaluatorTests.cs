@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using Aurora4xAutomation.Common;
-using Aurora4xAutomation.Common.Exceptions;
+﻿using Aurora4xAutomation.Common.Exceptions;
 using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Evaluators.Factories;
-using Aurora4xAutomation.Evaluators.Message;
-using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Aurora4xAutomationTests.Tests.EvaluatorTests
 {
@@ -26,6 +22,7 @@ namespace Aurora4xAutomationTests.Tests.EvaluatorTests
             public Dictionary<string, Dictionary<string, string>> ResearchFocuses { get; private set; }
             public int GameId { get; set; }
             public IncrementLength Increment { get; set; }
+            public string GameName { get; private set; }
         }
 
         [Test]

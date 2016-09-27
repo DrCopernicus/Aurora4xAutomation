@@ -68,7 +68,10 @@ namespace Aurora4xAutomation.Settings
         public int MinLabsPerScientist = 2;
         public int DaysPerLabsCheck = 60;
 
-        public string GameName = "AutomatedAuroraGame";
+        public string GameName
+        {
+            get { return "AutomatedAuroraGame"; }
+        }
 
         private string _databasePassword;
 

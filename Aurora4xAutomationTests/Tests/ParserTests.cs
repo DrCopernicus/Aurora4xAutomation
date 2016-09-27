@@ -41,6 +41,7 @@ namespace Aurora4xAutomationTests.Tests
             public Dictionary<string, Dictionary<string, string>> ResearchFocuses { get; private set; }
             public int GameId { get; set; }
             public IncrementLength Increment { get; set; }
+            public string GameName { get; private set; }
         }
 
         private class TestMessageManager : IMessageManager

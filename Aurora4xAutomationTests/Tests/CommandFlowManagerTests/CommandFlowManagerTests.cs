@@ -78,6 +78,7 @@ namespace Aurora4xAutomationTests.Tests.CommandFlowManagerTests
             public Dictionary<string, Dictionary<string, string>> ResearchFocuses { get; private set; }
             public int GameId { get; set; }
             public IncrementLength Increment { get; set; }
+            public string GameName { get; private set; }
         }
 
         private class LoggerDouble : ILogger

@@ -14,5 +14,6 @@ namespace Aurora4xAutomation.Settings
         Dictionary<string, Dictionary<string, string>> ResearchFocuses { get; }
         int GameId { get; set; }
         IncrementLength Increment { get; set; }
+        string GameName { get; }
     }
 }

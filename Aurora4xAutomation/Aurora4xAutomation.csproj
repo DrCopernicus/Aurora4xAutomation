@@ -74,6 +74,7 @@
     <Compile Include="Common\Args.cs" />
     <Compile Include="Common\Exceptions\TooManyParametersException.cs" />
     <Compile Include="Common\Converters\MessageTypeConverter.cs" />
+    <Compile Include="Common\Exceptions\WindowNotFoundException.cs" />
     <Compile Include="Evaluators\Evaluator.cs" />
     <Compile Include="Command\Parser\CommandLexer.cs" />
     <Compile Include="Command\Parser\CommandParser.cs" />
@@ -127,7 +128,9 @@
     <Compile Include="IO\OCRReader.cs" />
     <Compile Include="IO\UI\IScreen.cs" />
     <Compile Include="IO\UI\IScreenObject.cs" />
+    <Compile Include="IO\UI\IWindowFInder.cs" />
     <Compile Include="IO\UI\ScreenObject.cs" />
+    <Compile Include="IO\UI\WindowFinder.cs" />
     <Compile Include="Messages\IMessageManager.cs" />
     <Compile Include="Messages\MessageManager.cs" />
     <Compile Include="Messages\MessageType.cs" />
@@ -153,7 +156,6 @@
     <Compile Include="IO\UI\Controls\Combobox.cs" />
     <Compile Include="IO\UI\Controls\Textbox.cs" />
     <Compile Include="IO\UI\IWindow.cs" />
-    <Compile Include="IO\UI\Windows\PaintNetWindow.cs" />
     <Compile Include="IO\UI\Windows\CommandersWindow.cs" />
     <Compile Include="IO\Screenshot.cs" />
     <Compile Include="IO\UI\Windows\TaskGroupsWindow.cs" />

@@ -76,7 +76,7 @@
     <Compile Include="Tests\TimelineTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\UI\ControlPositioningTests.cs" />
-    <Compile Include="Tests\UI\ControlPixelTests.cs" />
+    <Compile Include="Tests\UI\PixelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
