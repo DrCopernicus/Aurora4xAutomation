@@ -6,11 +6,11 @@ namespace Aurora4xAutomation.IO
     public interface IUIMap
     {
         BaseAuroraWindow BaseAuroraWindow { get; }
-        EventWindow EventWindow { get; }
+        EventWindow Events { get; }
         CommandersWindow Leaders { get; }
         SystemMapWindow SystemMap { get; }
         TaskGroupsWindow TaskGroups { get; }
-        PopulationAndProductionWindow PopulationAndProductionWindow { get; }
+        PopulationAndProductionWindow PopulationAndProduction { get; }
 
         Time GetTime();
     }

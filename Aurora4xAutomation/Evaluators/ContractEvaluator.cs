@@ -3,6 +3,7 @@ using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.IO;
 using System;
+using Aurora4xAutomation.Common.Exceptions;
 
 namespace Aurora4xAutomation.Evaluators
 {
@@ -20,15 +21,15 @@ namespace Aurora4xAutomation.Evaluators
                     Parameters.Count, Text));
 
             new OpenCommands(UIMap).SelectColony(Parameters[0]);
-            UIMap.PopulationAndProductionWindow.MakeActive();
-            UIMap.PopulationAndProductionWindow.SelectCivilianTab();
-            UIMap.PopulationAndProductionWindow.InstallationType.Text = Parameters[1];
-            UIMap.PopulationAndProductionWindow.ContractAmount.Text = Parameters[2];
+            UIMap.PopulationAndProduction.MakeActive();
+            UIMap.PopulationAndProduction.SelectCivilianTab();
+            UIMap.PopulationAndProduction.InstallationType.Text = Parameters[1];
+            UIMap.PopulationAndProduction.ContractAmount.Text = Parameters[2];
             if (IsSupplyContract(Parameters[3]))
-                UIMap.PopulationAndProductionWindow.CivilianContractSupply.Selected = true;
+                UIMap.PopulationAndProduction.CivilianContractSupply.Selected = true;
             else
-                UIMap.PopulationAndProductionWindow.CivilianContractDemand.Selected = true;
-            UIMap.PopulationAndProductionWindow.AddCivilianContract.Click();
+                UIMap.PopulationAndProduction.CivilianContractDemand.Selected = true;
+            UIMap.PopulationAndProduction.AddCivilianContract.Click();
         }
 
         private static bool IsSupplyContract(string parameter)

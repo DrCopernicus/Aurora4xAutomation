@@ -57,6 +57,15 @@ namespace Aurora4xAutomation.IO.UI
         [DllImport("user32.dll", EntryPoint = "PostMessage", CallingConvention = CallingConvention.Winapi)]
         public static extern bool PostMessage(IntPtr hWnd, int msg, uint wParam, uint lParam);
 
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetDC(IntPtr hwnd);
+
+        [DllImport("user32.dll")]
+        public static extern Int32 ReleaseDC(IntPtr hwnd, IntPtr hdc);
+
+        [DllImport("gdi32.dll")]
+        public static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
+
         public static RECT GetWindowRect(IntPtr handle)
         {
             RECT dimensions;

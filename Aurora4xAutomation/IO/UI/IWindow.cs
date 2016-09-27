@@ -2,7 +2,7 @@
 
 namespace Aurora4xAutomation.IO.UI
 {
-    public interface IWindow : IControl
+    public interface IWindow
     {
         IntPtr Handle { get; }
 

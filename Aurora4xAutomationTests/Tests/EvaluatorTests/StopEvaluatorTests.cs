@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Common.Exceptions;
 using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.Evaluators.Message;

@@ -18,7 +18,7 @@ namespace Aurora4xAutomation.Command
 
         public void AdvanceTurn()
         {
-            UIMap.PopulationAndProductionWindow.Dirty();
+            UIMap.PopulationAndProduction.Dirty();
 
             UIMap.SystemMap.MakeActive();
             switch (Settings.Increment)

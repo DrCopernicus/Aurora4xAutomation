@@ -1,5 +1,6 @@
 ﻿using System;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Common.Exceptions;
 using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Evaluators

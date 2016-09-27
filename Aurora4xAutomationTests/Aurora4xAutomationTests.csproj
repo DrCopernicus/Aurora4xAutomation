@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -67,14 +68,15 @@
     <Compile Include="Tests\EvaluatorTests\PrintEvaluatorTests.cs" />
     <Compile Include="Tests\EventManagerTests.cs" />
     <Compile Include="Tests\LexerTests.cs" />
-    <Compile Include="ListTests.cs" />
+    <Compile Include="Tests\ListTests.cs" />
     <Compile Include="Tests\Messages\MessageManagerTests.cs" />
     <Compile Include="Tests\OCRTests.cs" />
     <Compile Include="Tests\ParserTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />
     <Compile Include="Tests\TimelineTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
-    <Compile Include="Tests\UITests.cs" />
+    <Compile Include="Tests\UI\ControlPositioningTests.cs" />
+    <Compile Include="Tests\UI\ControlPixelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

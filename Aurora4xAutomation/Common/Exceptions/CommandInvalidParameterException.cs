@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aurora4xAutomation.Common
+namespace Aurora4xAutomation.Common.Exceptions
 {
     public class CommandInvalidParameterException : Exception
     {

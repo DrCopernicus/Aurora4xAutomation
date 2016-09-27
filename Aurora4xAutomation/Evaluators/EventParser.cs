@@ -31,8 +31,8 @@ namespace Aurora4xAutomation.Evaluators
 
         public bool ParseUsingEventWindow(string time)
         {
-            UIMap.EventWindow.MakeActive();
-            UIMap.EventWindow.TextFileButton.Click();
+            UIMap.Events.MakeActive();
+            UIMap.Events.TextFileButton.Click();
             Sleeper.Sleep(1500);
             var file = Settings.EventLogLocation;
             var allEvents = File.ReadAllLines(file);

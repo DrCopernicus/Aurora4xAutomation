@@ -9,7 +9,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public TreeListItem(IControl parent, TreeListItem parentItem, int left, int right, int top, int offset, int height)
+        public TreeListItem(IScreenObject parent, TreeListItem parentItem, int left, int right, int top, int offset, int height)
             : base(parent, top, top + 16, left, right)
         {
             ParentItem = parentItem;
@@ -115,7 +115,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
         {
             get
             {
-                if (PixelGetter.GetPixel(
+                if (GetPixel(
                     Left + Level * 17 + 8,
                     Top + 7).EqualsColor(0, 0, 0))
                 {

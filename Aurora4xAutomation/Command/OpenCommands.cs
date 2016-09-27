@@ -16,31 +16,31 @@ namespace Aurora4xAutomation.Command
         {
             var output = "";
 
-            UIMap.PopulationAndProductionWindow.MakeActive();
-            UIMap.PopulationAndProductionWindow.SelectResearchTab();
-            output += "Available Labs: " + UIMap.PopulationAndProductionWindow.AvailableLabs.Text + "\n\n";
+            UIMap.PopulationAndProduction.MakeActive();
+            UIMap.PopulationAndProduction.SelectResearchTab();
+            output += "Available Labs: " + UIMap.PopulationAndProduction.AvailableLabs.Text + "\n\n";
             if (category == "all")
             {
-                UIMap.PopulationAndProductionWindow.SelectBiology();
+                UIMap.PopulationAndProduction.SelectBiology();
                 output += ReadResearchTables();
-                UIMap.PopulationAndProductionWindow.SelectConstruction();
+                UIMap.PopulationAndProduction.SelectConstruction();
                 output += ReadResearchTables();
-                UIMap.PopulationAndProductionWindow.SelectDefensive();
+                UIMap.PopulationAndProduction.SelectDefensive();
                 output += ReadResearchTables();
-                UIMap.PopulationAndProductionWindow.SelectEnergy();
+                UIMap.PopulationAndProduction.SelectEnergy();
                 output += ReadResearchTables();
-                UIMap.PopulationAndProductionWindow.SelectLogistics();
+                UIMap.PopulationAndProduction.SelectLogistics();
                 output += ReadResearchTables();
-                UIMap.PopulationAndProductionWindow.SelectMissiles();
+                UIMap.PopulationAndProduction.SelectMissiles();
                 output += ReadResearchTables();
-                UIMap.PopulationAndProductionWindow.SelectPower();
+                UIMap.PopulationAndProduction.SelectPower();
                 output += ReadResearchTables();
-                UIMap.PopulationAndProductionWindow.SelectSensors();
+                UIMap.PopulationAndProduction.SelectSensors();
                 output += ReadResearchTables();
             }
             else
             {
-                UIMap.PopulationAndProductionWindow.SelectResearchByCategory(category);
+                UIMap.PopulationAndProduction.SelectResearchByCategory(category);
                 output += ReadResearchTables();
             }
 
@@ -50,24 +50,24 @@ namespace Aurora4xAutomation.Command
 
         public void SelectColony(string colony)
         {
-            UIMap.PopulationAndProductionWindow.MakeActive();
-            UIMap.PopulationAndProductionWindow.Populations.Select(colony);
+            UIMap.PopulationAndProduction.MakeActive();
+            UIMap.PopulationAndProduction.Populations.Select(colony);
         }
 
         public void ReadPopulations()
         {
-            UIMap.PopulationAndProductionWindow.MakeActive();
-            //new MessageCommands(Settings).PrintFeedback(UIMap.PopulationAndProductionWindow.Populations.Text);
+            UIMap.PopulationAndProduction.MakeActive();
+            //new MessageCommands(Settings).PrintFeedback(UIMap.PopulationAndProduction.Populations.Text);
             throw new NotImplementedException();
         }
 
         private string ReadResearchTables()
         {
             var output = "";
-            UIMap.PopulationAndProductionWindow.SetShowMatchingScientistsOnly(true);
+            UIMap.PopulationAndProduction.SetShowMatchingScientistsOnly(true);
             Thread.Sleep(250);
-            output += UIMap.PopulationAndProductionWindow.ResearchTable.GetText();
-            output += UIMap.PopulationAndProductionWindow.AvailableScientistsTable.GetText();
+            output += UIMap.PopulationAndProduction.ResearchTable.GetText();
+            output += UIMap.PopulationAndProduction.AvailableScientistsTable.GetText();
             return output;
         }
 
