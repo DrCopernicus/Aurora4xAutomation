@@ -126,6 +126,7 @@
     <Compile Include="IO\IO.cs" />
     <Compile Include="IO\IUIMap.cs" />
     <Compile Include="IO\OCRReader.cs" />
+    <Compile Include="IO\UI\IScreen.cs" />
     <Compile Include="IO\UI\IScreenObject.cs" />
     <Compile Include="IO\UI\ScreenObject.cs" />
     <Compile Include="Messages\IMessageManager.cs" />

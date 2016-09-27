@@ -1,28 +1,45 @@
-﻿using System.Drawing;
-using Aurora4xAutomation.Common;
+﻿using System;
+using System.Drawing;
 
 namespace Aurora4xAutomation.IO.UI.Controls
 {
     public class Control : IScreenObject
     {
-        public Control(IScreenObject parent, int top, int bottom, int left, int right)
+        public Control(IScreen screen, int top, int bottom, int left, int right)
         {
-            Parent = parent;
-            Top = Parent.Top + top;
-            Bottom = Parent.Top + bottom;
-            Left = Parent.Left + left;
-            Right = Parent.Left + right;
+            Screen = screen;
+            Top = top;
+            Bottom = bottom;
+            Left = left;
+            Right = right;
         }
 
-        public IScreenObject Parent { get; protected set; }
+        public Control(IScreenObject parent, int top, int bottom, int left, int right)
+        {
+            Screen = parent.Screen;
+            Top = parent.Top + top;
+            Bottom = parent.Top + bottom;
+            Left = parent.Left + left;
+            Right = parent.Left + right;
+        }
+
+        public IScreen Screen { get; protected set; }
+        public Color GetPixel(int x, int y)
+        {
+            if (x < 0)
+                throw new ArgumentOutOfRangeException("x", "x cannot be less than 0");
+            if (Left + x > Right)
+                throw new ArgumentOutOfRangeException("x", "x cannot be greater than width");
+            if (y < 0)
+                throw new ArgumentOutOfRangeException("y", "y cannot be less than 0");
+            if (Top + y > Bottom)
+                throw new ArgumentOutOfRangeException("y", "y cannot be greater than height");
+            return Screen.GetPixel(Left + x, Top + y);
+        }
+
         public int Top { get; protected set; }
         public int Bottom { get; protected set; }
         public int Left { get; protected set; }
         public int Right { get; protected set; }
-
-        public Color GetPixel(int x, int y)
-        {
-            return PixelGetter.GetPixel(Left + x, Top + y);
-        }
     }
 }

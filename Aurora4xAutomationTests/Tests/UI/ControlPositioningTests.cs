@@ -1,15 +1,21 @@
-﻿using System;
+﻿using System.Drawing;
 using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.IO.UI.Controls;
 using NUnit.Framework;
 
-namespace Aurora4xAutomationTests.Tests
+namespace Aurora4xAutomationTests.Tests.UI
 {
     [TestFixture]
-    public class UITests
+    public class ControlPositioningTests
     {
         private class WindowDouble : IScreenObject
         {
+            public IScreen Screen { get; private set; }
+            public Color GetPixel(int x, int y)
+            {
+                throw new System.NotImplementedException();
+            }
+
             public int Top { get; private set; }
             public int Bottom { get; private set; }
             public int Left { get; private set; }

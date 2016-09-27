@@ -115,7 +115,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
         {
             get
             {
-                if (PixelGetter.GetPixel(
+                if (GetPixel(
                     Left + Level * 17 + 8,
                     Top + 7).EqualsColor(0, 0, 0))
                 {

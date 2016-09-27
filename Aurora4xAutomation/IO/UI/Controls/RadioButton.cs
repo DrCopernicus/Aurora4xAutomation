@@ -4,8 +4,8 @@ namespace Aurora4xAutomation.IO.UI.Controls
 {
     public class RadioButton : Control
     {
-        public RadioButton(IScreenObject parent, int top, int bottom, int left, int right)
-            : base(parent, top, bottom, left, right)
+        public RadioButton(IScreenObject screen, int top, int bottom, int left, int right)
+            : base(screen, top, bottom, left, right)
         {
             
         }
