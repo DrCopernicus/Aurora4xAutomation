@@ -102,33 +102,33 @@ namespace Aurora4xAutomationTests.Tests
         }
 
         [Test]
-        public void IncorrectCommandWithoutParametersReturnsNoOpCommand()
+        public void IncorrectCommandWithoutParametersReturnsLogCommand()
         {
             var commandParser = new CommandParser(new TestUIMap(), new TestSettings(), new TestMessageManager(),
                 new TestEventManager());
             var evaluator = commandParser.Parse("thiscommanddoesnotexist");
 
-            Assert.AreEqual(typeof(NoOpEvaluator), evaluator.GetType());
+            Assert.AreEqual(typeof(LogEvaluator), evaluator.GetType());
         }
 
         [Test]
-        public void IncorrectCommandWithOneParameterReturnsNoOpCommand()
+        public void IncorrectCommandWithOneParameterReturnsLogCommand()
         {
             var commandParser = new CommandParser(new TestUIMap(), new TestSettings(), new TestMessageManager(),
                 new TestEventManager());
             var evaluator = commandParser.Parse("thiscommanddoesnotexist parameter1");
 
-            Assert.AreEqual(typeof(NoOpEvaluator), evaluator.GetType());
+            Assert.AreEqual(typeof(LogEvaluator), evaluator.GetType());
         }
 
         [Test]
-        public void IncorrectCommandWithFiveParametersReturnsNoOpCommand()
+        public void IncorrectCommandWithFiveParametersReturnsLogCommand()
         {
             var commandParser = new CommandParser(new TestUIMap(), new TestSettings(), new TestMessageManager(),
                 new TestEventManager());
             var evaluator = commandParser.Parse("thiscommanddoesnotexist parameter1 parameter2 parameter3 parameter4 parameter5");
 
-            Assert.AreEqual(typeof(NoOpEvaluator), evaluator.GetType());
+            Assert.AreEqual(typeof(LogEvaluator), evaluator.GetType());
         }
     }
 }

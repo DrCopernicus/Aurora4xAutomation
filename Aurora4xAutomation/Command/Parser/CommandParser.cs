@@ -1,10 +1,11 @@
-﻿using Aurora4xAutomation.Common;
-using Aurora4xAutomation.Evaluators;
+﻿using Aurora4xAutomation.Evaluators;
+using Aurora4xAutomation.Evaluators.Factories;
+using Aurora4xAutomation.Evaluators.Message;
+using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
 using System;
-using Aurora4xAutomation.Events;
 
 namespace Aurora4xAutomation.Command.Parser
 {
@@ -14,7 +15,8 @@ namespace Aurora4xAutomation.Command.Parser
         {
             UIMap = uiMap;
             Settings = settings;
-            Lexer = new CommandLexer(UIMap, settings, messages, eventManager);
+            Messages = messages;
+            Lexer = new CommandLexer(UIMap, Settings, Messages, eventManager);
         }
 
         public IEvaluator Parse(string choice)
@@ -25,8 +27,9 @@ namespace Aurora4xAutomation.Command.Parser
             }
             catch (Exception e)
             {
-                new MessageCommands(Settings).PrintError(e.Message);
-                return new NoOpEvaluator("noop");
+                var log = new LogEvaluator("log", Messages);
+                new EvaluatorParameterizer().SetParameters(log, e.Message);
+                return log;
             }
         }
 
@@ -125,6 +128,7 @@ namespace Aurora4xAutomation.Command.Parser
 
         private IUIMap UIMap { get; set; }
         private CommandLexer Lexer { get; set; }
+        private IMessageManager Messages { get; set; }
         private ISettingsStore Settings { get; set; }
     }
 }

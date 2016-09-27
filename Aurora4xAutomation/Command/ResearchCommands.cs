@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.Settings;
 using MoreLinq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 
 namespace Aurora4xAutomation.Command
 {
@@ -94,7 +94,7 @@ namespace Aurora4xAutomation.Command
                 if (SelectScience(research, scientists))
                     return;
 
-                new MessageCommands(Settings).PrintError("[AutoResearch] Failed to assign a new research project.");
+                //new MessageCommands(Settings).PrintError("[AutoResearch] Failed to assign a new research project.");
             }
         }
 
@@ -143,7 +143,7 @@ namespace Aurora4xAutomation.Command
                             if (res[i][0] == searchAgainst[0])
                             {
                                 ResearchTechCommand(searchFor.Value, i, 0, -1);
-                                new MessageCommands(Settings).PrintFeedback(string.Format("[AutoResearch] Successfully selected research {0}.", searchFor.Key));
+                                //new MessageCommands(Settings).PrintFeedback(string.Format("[AutoResearch] Successfully selected research {0}.", searchFor.Key));
                                 if (totalScientists > 1)
                                     throw new NotImplementedException();
                                     //Timeline.AddEvent(BalanceResearch);
@@ -209,7 +209,7 @@ namespace Aurora4xAutomation.Command
             UIMap.Leaders.LeaderType.Text = "l";
             if (!UIMap.Leaders.Officiers.Children[0].Text.Contains("Scientist"))
             {
-                new MessageCommands(Settings).PrintError("[CheckNumberOfLabs] Could not find the Scientist row!");
+                //new MessageCommands(Settings).PrintError("[CheckNumberOfLabs] Could not find the Scientist row!");
             }
             else
             {

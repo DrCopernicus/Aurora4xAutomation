@@ -97,7 +97,6 @@
     <Compile Include="Evaluators\ReadDataEvaluator.cs" />
     <Compile Include="Evaluators\OpenWindowEvaluator.cs" />
     <Compile Include="Command\TurnCommands.cs" />
-    <Compile Include="Command\MessageCommands.cs" />
     <Compile Include="Command\InfrastructureCommands.cs" />
     <Compile Include="Command\OpenCommands.cs" />
     <Compile Include="Command\ResearchCommands.cs" />
@@ -128,7 +127,6 @@
     <Compile Include="IO\OCRReader.cs" />
     <Compile Include="Messages\IMessageManager.cs" />
     <Compile Include="Messages\MessageManager.cs" />
-    <Compile Include="Messages\MessageManagerManager.cs" />
     <Compile Include="Messages\MessageType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
