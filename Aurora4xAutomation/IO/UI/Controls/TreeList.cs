@@ -14,8 +14,8 @@ namespace Aurora4xAutomation.IO.UI.Controls
         public byte[][] Colors;
         public event EventHandler Refresh;
 
-        public TreeList(IScreenObject parent, int top, int bottom, int left, int right)
-            : base(parent, top, bottom, left, right)
+        public TreeList(IScreenObject parent, IInputDevice inputDevice, int top, int bottom, int left, int right)
+            : base(parent, inputDevice, top, bottom, left, right)
         {
             CharacterHeight = 11;
             CharacterOffset = 3;
@@ -23,8 +23,8 @@ namespace Aurora4xAutomation.IO.UI.Controls
             Colors = new[] { new byte[] { 0, 0, 0 } };
         }
 
-        public TreeList(IScreen screen, int top, int bottom, int left, int right)
-            : base(screen, top, bottom, left, right)
+        public TreeList(IScreen screen, IInputDevice inputDevice, int top, int bottom, int left, int right)
+            : base(screen, inputDevice, top, bottom, left, right)
         {
             CharacterHeight = 11;
             CharacterOffset = 3;
@@ -77,7 +77,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                     var index = 0;
                     while (true)
                     {
-                        var item = new TreeListItem(this, parents.LastOrDefault(), 0, Right, index * (BottomOffset + CharacterOffset + CharacterHeight), CharacterOffset, CharacterHeight);
+                        var item = new TreeListItem(this, InputDevice, parents.LastOrDefault(), 0, Right, index * (BottomOffset + CharacterOffset + CharacterHeight), CharacterOffset, CharacterHeight);
                         if (item.Level != 6)
                         {
                             for (int i = 0; i < parents.Count - item.Level; i++)

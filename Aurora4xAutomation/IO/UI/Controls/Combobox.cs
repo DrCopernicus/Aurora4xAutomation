@@ -9,14 +9,14 @@ namespace Aurora4xAutomation.IO.UI.Controls
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public Combobox(IScreenObject parent, int top, int bottom, int left, int right)
-            : base(parent, top, bottom, left, right)
+        public Combobox(IScreenObject parent, IInputDevice inputDevice, int top, int bottom, int left, int right)
+            : base(parent, inputDevice, top, bottom, left, right)
         {
 
         }
 
-        public Combobox(IScreen screen, int top, int bottom, int left, int right)
-            : base(screen, top, bottom, left, right)
+        public Combobox(IScreen screen, IInputDevice inputDevice, int top, int bottom, int left, int right)
+            : base(screen, inputDevice, top, bottom, left, right)
         {
 
         }
@@ -32,7 +32,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                 this.Click();
                 this.Click();
                 this.PressKey(VirtualKeyCode.HOME);
-                this.SendKeys(value);
+                this.PressKeys(value);
             }
         }
 

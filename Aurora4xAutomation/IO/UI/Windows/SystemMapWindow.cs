@@ -6,8 +6,8 @@ namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class SystemMapWindow : Window
     {
-        public SystemMapWindow(IScreen screen, IWindowFinder windowFinder, ISettingsStore settings) :
-            base("System Map", screen, windowFinder, settings)
+        public SystemMapWindow(IScreen screen, IWindowFinder windowFinder, IInputDevice inputDevice, ISettingsStore settings) :
+            base("System Map", screen, windowFinder, inputDevice, settings)
         {
             
         }
@@ -74,7 +74,7 @@ namespace Aurora4xAutomation.IO.UI.Windows
 
         protected override void OpenIfNotFound()
         {
-            new BaseAuroraWindow(Screen, WindowFinder, Settings).MakeActive();
+            new BaseAuroraWindow(Screen, WindowFinder, InputDevice, Settings).MakeActive();
             Sleeper.Sleep(1000);
             SendKeys.SendWait("{F3}");
         }

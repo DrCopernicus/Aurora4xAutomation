@@ -2,14 +2,14 @@
 {
     public class Button : Control
     {
-        public Button(IScreen screen, int top, int bottom, int left, int right)
-            : base(screen, top, bottom, left, right)
+        public Button(IScreen screen, IInputDevice inputDevice, int top, int bottom, int left, int right)
+            : base(screen, inputDevice, top, bottom, left, right)
         {
 
         }
 
-        public Button(IScreenObject parent, int top, int bottom, int left, int right)
-            : base(parent, top, bottom, left, right)
+        public Button(IScreenObject parent, IInputDevice inputDevice, int top, int bottom, int left, int right)
+            : base(parent, inputDevice, top, bottom, left, right)
         {
 
         }

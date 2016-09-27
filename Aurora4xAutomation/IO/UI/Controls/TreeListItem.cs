@@ -9,8 +9,8 @@ namespace Aurora4xAutomation.IO.UI.Controls
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public TreeListItem(IScreenObject parent, TreeListItem parentItem, int left, int right, int top, int offset, int height)
-            : base(parent, top, top + 16, left, right)
+        public TreeListItem(IScreenObject parent, IInputDevice inputDevice, TreeListItem parentItem, int left, int right, int top, int offset, int height)
+            : base(parent, inputDevice, top, top + 16, left, right)
         {
             ParentItem = parentItem;
             CharacterOffset = offset;
@@ -18,8 +18,8 @@ namespace Aurora4xAutomation.IO.UI.Controls
             Colors = new[] { new byte[] { 0, 0, 0 } };
         }
 
-        public TreeListItem(IScreen screen, TreeListItem parentItem, int left, int right, int top, int offset, int height)
-            : base(screen, top, top + 16, left, right)
+        public TreeListItem(IScreen screen, IInputDevice inputDevice, TreeListItem parentItem, int left, int right, int top, int offset, int height)
+            : base(screen, inputDevice, top, top + 16, left, right)
         {
             ParentItem = parentItem;
             CharacterOffset = offset;

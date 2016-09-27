@@ -5,8 +5,8 @@ namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class ConsoleWindow : Window
     {
-        public ConsoleWindow(IScreen screen, IWindowFinder windowFinder, ISettingsStore settings) :
-            base(@"file:///", screen, windowFinder, settings)
+        public ConsoleWindow(IScreen screen, IWindowFinder windowFinder, IInputDevice inputDevice, ISettingsStore settings) :
+            base(@"file:///", screen, windowFinder, inputDevice, settings)
         {
             
         }

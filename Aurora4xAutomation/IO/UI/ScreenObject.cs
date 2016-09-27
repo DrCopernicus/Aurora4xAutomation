@@ -1,20 +1,45 @@
 ﻿using System;
 using System.Drawing;
+using WindowsInput.Native;
 
 namespace Aurora4xAutomation.IO.UI
 {
-    public class ScreenObject : IScreenObject
+    public abstract class ScreenObject : IScreenObject
     {
-        public IScreen Screen { get; private set; }
+        public void Click(int x, int y, int wait = 250)
+        {
+            InputDevice.Click(Left + x, Top + y, wait);
+        }
+
+        public void PressKeys(string text)
+        {
+            InputDevice.SendKeys(text);
+        }
+
+        public void PressKey(VirtualKeyCode key)
+        {
+            InputDevice.PressKey(key);
+        }
+
+        public void Click()
+        {
+            Click((Right - Left) / 2, (Bottom - Top) / 2);
+        }
+
+        public IScreen Screen { get; protected set; }
+        public IInputDevice InputDevice { get; protected set; }
+
         public Color GetPixel(int x, int y)
         {
-            var context = NativeMethods.GetDC(IntPtr.Zero);
-            var pixel = NativeMethods.GetPixel(context, x, y);
-            NativeMethods.ReleaseDC(IntPtr.Zero, context);
-            var color = Color.FromArgb((int)(pixel & 0x000000FF),
-                         (int)(pixel & 0x0000FF00) >> 8,
-                         (int)(pixel & 0x00FF0000) >> 16);
-            return color;
+            if (x < 0)
+                throw new ArgumentOutOfRangeException("x", "x cannot be less than 0");
+            if (Left + x > Right)
+                throw new ArgumentOutOfRangeException("x", "x cannot be greater than width");
+            if (y < 0)
+                throw new ArgumentOutOfRangeException("y", "y cannot be less than 0");
+            if (Top + y > Bottom)
+                throw new ArgumentOutOfRangeException("y", "y cannot be greater than height");
+            return Screen.GetPixel(Left + x, Top + y);
         }
 
         public int Top { get; protected set; }

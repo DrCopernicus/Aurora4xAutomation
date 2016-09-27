@@ -7,17 +7,17 @@ namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class CommandersWindow : Window
     {
-        public CommandersWindow(IScreen screen, IWindowFinder windowFinder, ISettingsStore settings) 
-            : base("Commanders", screen, windowFinder, settings)
+        public CommandersWindow(IScreen screen, IWindowFinder windowFinder, IInputDevice inputDevice, ISettingsStore settings) 
+            : base("Commanders", screen, windowFinder, inputDevice, settings)
         {
-            LeaderType = new Combobox(this, left: 101, right: 272, top: 140, bottom: 156)
+            LeaderType = new Combobox(this, inputDevice, left: 101, right: 272, top: 140, bottom: 156)
             {
                 CharacterOffset = 4,
                 CharacterHeight = 9,
                 Colors = new[] {new byte[] {0, 0, 0}}
             };
 
-            Officiers = new TreeList(this, left: 29, right: 289, top: 176, bottom: 292)
+            Officiers = new TreeList(this, inputDevice, left: 29, right: 289, top: 176, bottom: 292)
             {
                 CharacterOffset = 2,
                 BottomOffset = 2,
@@ -39,7 +39,7 @@ namespace Aurora4xAutomation.IO.UI.Windows
 
         protected override void OpenIfNotFound()
         {
-            new BaseAuroraWindow(Screen, WindowFinder, Settings).MakeActive();
+            new BaseAuroraWindow(Screen, WindowFinder, InputDevice, Settings).MakeActive();
             Sleeper.Sleep(1000);
             SendKeys.SendWait("{F4}");
         }
