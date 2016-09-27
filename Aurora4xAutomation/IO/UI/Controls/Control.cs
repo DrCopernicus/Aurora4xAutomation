@@ -23,7 +23,6 @@ namespace Aurora4xAutomation.IO.UI.Controls
             Right = parent.Left + right;
         }
 
-        public IScreen Screen { get; protected set; }
         public Color GetPixel(int x, int y)
         {
             if (x < 0)
@@ -37,6 +36,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
             return Screen.GetPixel(Left + x, Top + y);
         }
 
+        public IScreen Screen { get; protected set; }
         public int Top { get; protected set; }
         public int Bottom { get; protected set; }
         public int Left { get; protected set; }

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Aurora4xAutomation.IO.UI;
+using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using WindowsInput;
 using WindowsInput.Native;
-using Aurora4xAutomation.IO.UI;
 using Control = Aurora4xAutomation.IO.UI.Controls.Control;
 
 namespace Aurora4xAutomation.IO
@@ -41,28 +41,6 @@ namespace Aurora4xAutomation.IO
         public static void Click(this Control control)
         {
             control.Click((control.Right - control.Left) / 2, (control.Bottom - control.Top) / 2);
-        }
-
-        public static Color GetPixel(this Window window, int x, int y)
-        {
-            IntPtr hdc = GetDC(IntPtr.Zero);
-            uint pixel = GetPixel(hdc, window.Left + x, window.Top + y);
-            ReleaseDC(IntPtr.Zero, hdc);
-            Color color = Color.FromArgb((int)(pixel & 0x000000FF),
-                         (int)(pixel & 0x0000FF00) >> 8,
-                         (int)(pixel & 0x00FF0000) >> 16);
-            return color;
-        }
-
-        public static Color GetPixel(this Control control, int x, int y)
-        {
-            IntPtr hdc = GetDC(IntPtr.Zero);
-            uint pixel = GetPixel(hdc, control.Left + x, control.Top + y);
-            ReleaseDC(IntPtr.Zero, hdc);
-            Color color = Color.FromArgb((int)(pixel & 0x000000FF),
-                         (int)(pixel & 0x0000FF00) >> 8,
-                         (int)(pixel & 0x00FF0000) >> 16);
-            return color;
         }
 
         public static void SendKeys(this Window window, string text)
