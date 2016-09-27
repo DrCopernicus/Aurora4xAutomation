@@ -67,7 +67,7 @@
     <Compile Include="Tests\EvaluatorTests\PrintEvaluatorTests.cs" />
     <Compile Include="Tests\EventManagerTests.cs" />
     <Compile Include="Tests\LexerTests.cs" />
-    <Compile Include="ListTests.cs" />
+    <Compile Include="Tests\ListTests.cs" />
     <Compile Include="Tests\Messages\MessageManagerTests.cs" />
     <Compile Include="Tests\OCRTests.cs" />
     <Compile Include="Tests\ParserTests.cs" />
