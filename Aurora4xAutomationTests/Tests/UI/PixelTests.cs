@@ -40,6 +40,21 @@ namespace Aurora4xAutomationTests.Tests.UI
             {
                 return new NativeMethods.RECT { Left = 1, Bottom = 3, Right = 3, Top = 1 };
             }
+
+            public void SetForegroundWindow(IntPtr handle)
+            {
+                throw new NotImplementedException();
+            }
+
+            public IntPtr GetForegroundWindow()
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetWindowText(IntPtr handle)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         private class TestInputDevice : IInputDevice

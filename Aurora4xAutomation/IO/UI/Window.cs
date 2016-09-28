@@ -2,7 +2,6 @@
 using Aurora4xAutomation.Common.Exceptions;
 using Aurora4xAutomation.Settings;
 using System;
-using System.Text;
 
 namespace Aurora4xAutomation.IO.UI
 {
@@ -43,7 +42,7 @@ namespace Aurora4xAutomation.IO.UI
         {
             for (var i = 0; i < 12; i++)
             {
-                NativeMethods.SetForegroundWindow(Handle);
+                WindowFinder.SetForegroundWindow(Handle);
                 if (!WaitActive())
                     continue;
                 Screenshot.Dirty();
@@ -55,7 +54,7 @@ namespace Aurora4xAutomation.IO.UI
 
         private bool WaitActive(int ms = 500, int times = 20)
         {
-            while (times > 0 && NativeMethods.GetForegroundWindow() != Handle)
+            while (times > 0 && WindowFinder.GetForegroundWindow() != Handle)
             {
                 Sleeper.Sleep(ms);
                 times--;
@@ -65,11 +64,7 @@ namespace Aurora4xAutomation.IO.UI
 
         protected string GetWindowText()
         {
-            var length = NativeMethods.GetWindowTextLength(Handle);
-            var builder = new StringBuilder(length);
-            NativeMethods.GetWindowText(Handle, builder, length + 1);
-
-            return builder.ToString();
+            return WindowFinder.GetWindowText(Handle);
         }
 
         protected ISettingsStore Settings { get; set; }

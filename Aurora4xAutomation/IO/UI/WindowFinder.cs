@@ -45,5 +45,24 @@ namespace Aurora4xAutomation.IO.UI
         {
             return NativeMethods.GetWindowRect(handle);
         }
+
+        public void SetForegroundWindow(IntPtr handle)
+        {
+            NativeMethods.SetForegroundWindow(handle);
+        }
+
+        public IntPtr GetForegroundWindow()
+        {
+            return NativeMethods.GetForegroundWindow();
+        }
+
+        public string GetWindowText(IntPtr handle)
+        {
+            var length = NativeMethods.GetWindowTextLength(handle);
+            var builder = new StringBuilder(length);
+            NativeMethods.GetWindowText(handle, builder, length + 1);
+
+            return builder.ToString();
+        }
     }
 }
