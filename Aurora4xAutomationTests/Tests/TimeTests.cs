@@ -174,5 +174,26 @@ namespace Aurora4xAutomationTests.Tests
             var time = new Time(-1000, 0, 0, 0, 0, 0);
             Assert.AreEqual(-31104000000, time.GetTotalSeconds());
         }
+
+        [Test]
+        public void TimeDisplaysCorrectlyIfWithinNormalBounds()
+        {
+            var time = new Time("10th September 2036 05:10");
+            Assert.AreEqual("2036-09-10T05:10:00", time.ToString());
+        }
+
+        [Test]
+        public void TimeDisplaysCorrectlyIfWithin30DayMonthBounds()
+        {
+            var time = new Time("30th February 2036 05:10");
+            Assert.AreEqual("2036-02-30T05:10:00", time.ToString());
+        }
+
+        [Test]
+        public void TimeDoesNotRollOverIfOutsideBounds()
+        {
+            var time = new Time("34th February 2036 05:10");
+            Assert.AreEqual("2036-02-34T05:10:00", time.ToString());
+        }
     }
 }

@@ -201,7 +201,7 @@ namespace Aurora4xAutomation.Events
 
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} {3}:{4}:{5}", Day, Month, Year, Hour, Minute, Second);
+            return string.Format("{0:0000}-{1:00}-{2:00}T{3:00}:{4:00}:{5:00}", Year, Month + 1, Day + 1, Hour, Minute, Second);
         }
 
         public override bool Equals(object obj)
