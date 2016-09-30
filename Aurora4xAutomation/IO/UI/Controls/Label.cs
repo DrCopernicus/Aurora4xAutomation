@@ -35,8 +35,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
         protected string ReadBox()
         {
             return OCRReader.ReadTableRow(
-                    PixelGetter.GetPixelsOfColor(
-                        Screenshot.Latest,
+                    Screen.GetPixelsOfColor(
                         Left,
                         Top + CharacterOffset,
                         Right - Left,

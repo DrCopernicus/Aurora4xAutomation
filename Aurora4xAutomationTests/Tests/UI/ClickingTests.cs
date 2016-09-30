@@ -16,6 +16,21 @@ namespace Aurora4xAutomationTests.Tests.UI
             {
                 throw new NotImplementedException();
             }
+
+            public byte[,] GetPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool HasPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool OnlyHasPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         private class TestInputDevice : IInputDevice

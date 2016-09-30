@@ -106,7 +106,6 @@
     <Compile Include="Common\Exceptions\CommandExecutionException.cs" />
     <Compile Include="Common\FileReader.cs" />
     <Compile Include="Common\ListExtensions.cs" />
-    <Compile Include="Common\PixelGetter.cs" />
     <Compile Include="Common\PrintSettings.cs" />
     <Compile Include="Evaluators\SettingsEvaluator.cs" />
     <Compile Include="Evaluators\UIEvaluator.cs" />

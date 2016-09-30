@@ -27,6 +27,21 @@ namespace Aurora4xAutomationTests.Tests.UI
             {
                 return _screen[x][y];
             }
+
+            public byte[,] GetPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool HasPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool OnlyHasPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         private class TestWindowFinder : IWindowFinder

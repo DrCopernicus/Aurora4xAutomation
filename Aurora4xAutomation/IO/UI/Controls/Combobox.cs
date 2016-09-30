@@ -29,10 +29,10 @@ namespace Aurora4xAutomation.IO.UI.Controls
             }
             set
             {
-                this.Click();
-                this.Click();
-                this.PressKey(VirtualKeyCode.HOME);
-                this.PressKeys(value);
+                Click();
+                Click();
+                PressKey(VirtualKeyCode.HOME);
+                PressKeys(value);
             }
         }
 
@@ -41,7 +41,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
             Screenshot.Dirty();
             if (Highlighted)
                 return OCRReader.ReadTableRow(
-                    PixelGetter.GetPixelsOfColor(
+                    Screen.GetPixelsOfColor(
                         Left,
                         Top + CharacterOffset,
                         Right - Left,
@@ -50,7 +50,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                     OCRReader.Alphabet);
             else
                 return OCRReader.ReadTableRow(
-                    PixelGetter.GetPixelsOfColor(
+                    Screen.GetPixelsOfColor(
                         Left,
                         Top + CharacterOffset,
                         Right - Left,
@@ -61,8 +61,8 @@ namespace Aurora4xAutomation.IO.UI.Controls
 
         public void SelectOption(int i)
         {
-            this.Click();
-            this.Click((Right - Left) / 2, (Bottom - Top) / 2 + i * (Bottom - Top));
+            Click();
+            Click((Right - Left) / 2, (Bottom - Top) / 2 + i * (Bottom - Top));
         }
 
         public bool Highlighted

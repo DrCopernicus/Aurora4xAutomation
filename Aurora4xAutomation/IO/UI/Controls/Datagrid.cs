@@ -25,7 +25,6 @@ namespace Aurora4xAutomation.IO.UI.Controls
 
         private List<string[]> ReadDataTable(int[] columns, int top, int bottom, int lineHeight, int topOfCharactersOffset)
         {
-            var screen = new Bitmap(Pranas.ScreenshotCapture.TakeScreenshot());
             var table = new List<string[]>();
             var currentRowY = top;
 
@@ -35,8 +34,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                 for (int i = 0; i < columns.Length - 1; i++)
                 {
                     data[i] = OCRReader.ReadTableRow(
-                        PixelGetter.GetPixelsOfColor(
-                            screen,
+                        Screen.GetPixelsOfColor(
                             columns[i],
                             currentRowY + topOfCharactersOffset,
                             columns[i + 1] - columns[i],
@@ -64,7 +62,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
 
         public void ClickRow(int row)
         {
-            this.Click((Right - Left) / 2, row * LineHeight + LineHeight/2);
+            Click((Right - Left) / 2, row * LineHeight + LineHeight/2);
         }
     }
 }

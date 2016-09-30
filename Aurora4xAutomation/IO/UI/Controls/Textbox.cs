@@ -29,19 +29,16 @@ namespace Aurora4xAutomation.IO.UI.Controls
             }
             set
             {
-                this.Click();
-                this.Click();
-                this.PressKeys(value);
+                Click();
+                Click();
+                PressKeys(value);
             }
         }
 
         protected string ReadBox()
         {
-            var screen = new Bitmap(ScreenshotCapture.TakeScreenshot());
-
             return OCRReader.ReadTableRow(
-                    PixelGetter.GetPixelsOfColor(
-                        screen,
+                    Screen.GetPixelsOfColor(
                         Left,
                         Top + CharacterOffset,
                         Right - Left,

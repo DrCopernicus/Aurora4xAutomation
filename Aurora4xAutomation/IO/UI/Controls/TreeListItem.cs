@@ -31,7 +31,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
 
         public void Initialize()
         {
-            if (PixelGetter.HasPixelsOfColor(
+            if (Screen.HasPixelsOfColor(
                 Left + Level * 17,
                 Top,
                 10,
@@ -39,7 +39,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                 new[] { new byte[] {51, 153, 255} }))
             {
                 Text = OCRReader.ReadTableRow(
-                            PixelGetter.GetPixelsOfColor(
+                            Screen.GetPixelsOfColor(
                                 Left + Level * 17,
                                 Top + CharacterOffset,
                                 Right - Left,
@@ -50,7 +50,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
             else
             {
                 Text = OCRReader.ReadTableRow(
-                            PixelGetter.GetPixelsOfColor(
+                            Screen.GetPixelsOfColor(
                                 Left + Level * 17,
                                 Top + CharacterOffset,
                                 Right - Left,
@@ -58,7 +58,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                                 Colors),
                             OCRReader.Alphabet);
             }
-            _collapsable = PixelGetter.HasPixelsOfColor(
+            _collapsable = Screen.HasPixelsOfColor(
                                 Left + Level * 17,
                                 Top,
                                 17,
@@ -87,7 +87,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                 {
                     for (int i = 0; i < 5; i++)
                     {
-                        if (!PixelGetter.OnlyHasPixelsOfColor(
+                        if (!Screen.OnlyHasPixelsOfColor(
                             Left + i * 17,
                             Top,
                             17,
@@ -111,7 +111,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
         {
             get
             {
-                return PixelGetter.OnlyHasPixelsOfColor(
+                return Screen.OnlyHasPixelsOfColor(
                     Left,
                     Top,
                     Right - Left,
@@ -131,7 +131,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                     return true;
                 }
 
-                if (!PixelGetter.HasPixelsOfColor(
+                if (!Screen.HasPixelsOfColor(
                             Left + Level * 17,
                             Top,
                             17,
@@ -152,7 +152,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                 {
                     if (!Collapsed)
                     {
-                        this.Click(Level * 17 + 9, 7, 0);
+                        Click(Level * 17 + 9, 7, 0);
                         Screenshot.Dirty();
                         Sleeper.Sleep(250);
                     }
@@ -161,7 +161,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                 {
                     if (Collapsed)
                     {
-                        this.Click(Level * 17 + 9, 7, 0);
+                        Click(Level * 17 + 9, 7, 0);
                         Screenshot.Dirty();
                         Sleeper.Sleep(250);
                     }
@@ -173,7 +173,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
 
         public void Select()
         {
-            this.Click((Level + 2) * 17, (Bottom - Top) / 2);
+            Click((Level + 2) * 17, (Bottom - Top) / 2);
         }
     }
 }
