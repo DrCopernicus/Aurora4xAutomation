@@ -1,30 +1,34 @@
 ﻿using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO.OCR;
 
 namespace Aurora4xAutomation.IO.UI.Controls
 {
     public class TreeListItem : Control
     {
+        private IOCRReader OCR { get; set; }
         public TreeListItem ParentItem;
         public int CharacterOffset;
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public TreeListItem(IScreenObject parent, IInputDevice inputDevice, TreeListItem parentItem, int left, int right, int top, int offset, int height)
+        public TreeListItem(IScreenObject parent, IInputDevice inputDevice, IOCRReader ocr, TreeListItem parentItem, int left, int right, int top, int offset, int height)
             : base(parent, inputDevice, top, top + 16, left, right)
         {
             ParentItem = parentItem;
             CharacterOffset = offset;
             CharacterHeight = height;
             Colors = new[] { new byte[] { 0, 0, 0 } };
+            OCR = ocr;
         }
 
-        public TreeListItem(IScreen screen, IInputDevice inputDevice, TreeListItem parentItem, int left, int right, int top, int offset, int height)
+        public TreeListItem(IScreen screen, IInputDevice inputDevice, IOCRReader ocr, TreeListItem parentItem, int left, int right, int top, int offset, int height)
             : base(screen, inputDevice, top, top + 16, left, right)
         {
             ParentItem = parentItem;
             CharacterOffset = offset;
             CharacterHeight = height;
             Colors = new[] { new byte[] { 0, 0, 0 } };
+            OCR = ocr;
         }
 
         public string Text { get; private set; }
@@ -38,7 +42,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                 10,
                 new[] { new byte[] {51, 153, 255} }))
             {
-                Text = OCRReader.ReadTableRow(
+                Text = OCR.ReadTableRow(
                             Screen.GetPixelsOfColor(
                                 Left + Level * 17,
                                 Top + CharacterOffset,
@@ -49,7 +53,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
             }
             else
             {
-                Text = OCRReader.ReadTableRow(
+                Text = OCR.ReadTableRow(
                             Screen.GetPixelsOfColor(
                                 Left + Level * 17,
                                 Top + CharacterOffset,

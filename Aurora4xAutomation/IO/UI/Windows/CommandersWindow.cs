@@ -7,17 +7,17 @@ namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class CommandersWindow : Window
     {
-        public CommandersWindow(IScreen screen, IWindowFinder windowFinder, IInputDevice inputDevice, ISettingsStore settings) 
+        public CommandersWindow(IScreen screen, IWindowFinder windowFinder, IInputDevice inputDevice, IOCRReader ocr, ISettingsStore settings) 
             : base("Commanders", screen, windowFinder, inputDevice, settings)
         {
-            LeaderType = new Combobox(this, inputDevice, left: 101, right: 272, top: 140, bottom: 156)
+            LeaderType = new Combobox(this, inputDevice, ocr, left: 101, right: 272, top: 140, bottom: 156)
             {
                 CharacterOffset = 4,
                 CharacterHeight = 9,
                 Colors = new[] {new byte[] {0, 0, 0}}
             };
 
-            Officiers = new TreeList(this, inputDevice, left: 29, right: 289, top: 176, bottom: 292)
+            Officiers = new TreeList(this, inputDevice, ocr, left: 29, right: 289, top: 176, bottom: 292)
             {
                 CharacterOffset = 2,
                 BottomOffset = 2,
@@ -30,10 +30,10 @@ namespace Aurora4xAutomation.IO.UI.Windows
 
         public void SetAutomatedAssignments(bool toggle)
         {
-            if ((this.GetPixel(100, 88).EqualsColor(0, 0, 0) && !toggle)
-                || this.GetPixel(100, 88).EqualsColor(255, 255, 255) && toggle)
+            if ((GetPixel(100, 88).EqualsColor(0, 0, 0) && !toggle)
+                || GetPixel(100, 88).EqualsColor(255, 255, 255) && toggle)
             {
-                this.Click(100, 88);
+                Click(100, 88);
             }
         }
 

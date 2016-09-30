@@ -1,26 +1,28 @@
 ﻿using Aurora4xAutomation.Common;
 using System.Collections.Generic;
 using System.Drawing;
+using Aurora4xAutomation.IO.OCR;
 
 namespace Aurora4xAutomation.IO.UI.Controls
 {
     public class Datagrid : Control
     {
+        private IOCRReader OCR { get; set; }
         public int[] Columns { get; set; }
         public int LineHeight { get; set; }
         public int TopOfCharactersOffset { get; set; }
         public PrintSettings Settings;
 
-        public Datagrid(IScreenObject parent, IInputDevice inputDevice, int top, int bottom, int left, int right)
+        public Datagrid(IScreenObject parent, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int left, int right)
             : base(parent, inputDevice, top, bottom, left, right)
         {
-
+            OCR = ocr;
         }
 
-        public Datagrid(IScreen screen, IInputDevice inputDevice, int top, int bottom, int left, int right)
+        public Datagrid(IScreen screen, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int left, int right)
             : base(screen, inputDevice, top, bottom, left, right)
         {
-
+            OCR = ocr;
         }
 
         private List<string[]> ReadDataTable(int[] columns, int top, int bottom, int lineHeight, int topOfCharactersOffset)
@@ -33,7 +35,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                 var data = new string[columns.Length - 1];
                 for (int i = 0; i < columns.Length - 1; i++)
                 {
-                    data[i] = OCRReader.ReadTableRow(
+                    data[i] = OCR.ReadTableRow(
                         Screen.GetPixelsOfColor(
                             columns[i],
                             currentRowY + topOfCharactersOffset,

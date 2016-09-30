@@ -1,5 +1,8 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using WindowsInput.Native;
+using Aurora4xAutomation.IO;
 using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.IO.UI.Controls;
 using NUnit.Framework;
@@ -71,6 +74,14 @@ namespace Aurora4xAutomationTests.Tests.UI
             }
         }
 
+        private class TestOCRReader : IOCRReader
+        {
+            public string ReadTableRow(byte[,] pixels, Dictionary<string, byte[,]> alphabet)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         [Test]
         public void TestGenericControlCorrectLocation()
         {
@@ -99,7 +110,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         public void TestComboboxCorrectLocation()
         {
             var window = new WindowDouble(10, 110, 10, 110);
-            var control = new Combobox(window, new TestInputDevice(), 20, 40, 20, 60);
+            var control = new Combobox(window, new TestInputDevice(), new TestOCRReader(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
@@ -111,7 +122,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         public void TestDataGridCorrectLocation()
         {
             var window = new WindowDouble(10, 110, 10, 110);
-            var control = new Datagrid(window, new TestInputDevice(), 20, 40, 20, 60);
+            var control = new Datagrid(window, new TestInputDevice(), new TestOCRReader(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
@@ -123,7 +134,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         public void TestLabelCorrectLocation()
         {
             var window = new WindowDouble(10, 110, 10, 110);
-            var control = new Label(window, new TestInputDevice(), 20, 40, 20, 60);
+            var control = new Label(window, new TestInputDevice(), new TestOCRReader(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
@@ -147,7 +158,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         public void TestTextboxCorrectLocation()
         {
             var window = new WindowDouble(10, 110, 10, 110);
-            var control = new Textbox(window, new TestInputDevice(), 20, 40, 20, 60);
+            var control = new Textbox(window, new TestInputDevice(), new TestOCRReader(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
@@ -159,7 +170,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         public void TestTreeListCorrectLocation()
         {
             var window = new WindowDouble(10, 110, 10, 110);
-            var control = new TreeList(window, new TestInputDevice(), 20, 40, 20, 60);
+            var control = new TreeList(window, new TestInputDevice(), new TestOCRReader(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);

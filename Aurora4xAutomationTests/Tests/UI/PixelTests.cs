@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using WindowsInput.Native;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomationTests.Tests.UI
 {
@@ -124,6 +125,14 @@ namespace Aurora4xAutomationTests.Tests.UI
             Assert.Throws<ArgumentOutOfRangeException>(() => control.GetPixel(10, 49));
         }
 
+        private class TestOCRReader : IOCRReader
+        {
+            public string ReadTableRow(byte[,] pixels, Dictionary<string, byte[,]> alphabet)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         [Test]
         public void PointsOnGenericControlReturnCorrectValues()
         {
@@ -143,7 +152,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnComboboxAreCorrectColors()
         {
-            var combobox = new Combobox(new MultiColoredScreen(), new TestInputDevice(), 1, 3, 1, 3);
+            var combobox = new Combobox(new MultiColoredScreen(), new TestInputDevice(), new TestOCRReader(), 1, 3, 1, 3);
             AssertPixelsOnControlAreCorrect(combobox);
             AssertGettingOutOfBoundsPixelsThrows(combobox);
         }
@@ -151,7 +160,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnDatagridAreCorrectColors()
         {
-            var datagrid = new Datagrid(new MultiColoredScreen(), new TestInputDevice(), 1, 3, 1, 3);
+            var datagrid = new Datagrid(new MultiColoredScreen(), new TestInputDevice(), new TestOCRReader(), 1, 3, 1, 3);
             AssertPixelsOnControlAreCorrect(datagrid);
             AssertGettingOutOfBoundsPixelsThrows(datagrid);
         }
@@ -159,7 +168,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnLabelAreCorrectColors()
         {
-            var label = new Label(new MultiColoredScreen(), new TestInputDevice(), 1, 3, 1, 3);
+            var label = new Label(new MultiColoredScreen(), new TestInputDevice(), new TestOCRReader(), 1, 3, 1, 3);
             AssertPixelsOnControlAreCorrect(label);
             AssertGettingOutOfBoundsPixelsThrows(label);
         }
@@ -175,7 +184,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnTextboxAreCorrectColors()
         {
-            var textbox = new Textbox(new MultiColoredScreen(), new TestInputDevice(), 1, 3, 1, 3);
+            var textbox = new Textbox(new MultiColoredScreen(), new TestInputDevice(), new TestOCRReader(), 1, 3, 1, 3);
             AssertPixelsOnControlAreCorrect(textbox);
             AssertGettingOutOfBoundsPixelsThrows(textbox);
         }
@@ -183,7 +192,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnTreeListAreCorrectColors()
         {
-            var treelist = new TreeList(new MultiColoredScreen(), new TestInputDevice(), 1, 3, 1, 3);
+            var treelist = new TreeList(new MultiColoredScreen(), new TestInputDevice(), new TestOCRReader(), 1, 3, 1, 3);
             AssertPixelsOnControlAreCorrect(treelist);
             AssertGettingOutOfBoundsPixelsThrows(treelist);
         }
@@ -191,7 +200,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnBaseAuroraWindowAreCorrectColors()
         {
-            var window = new BaseAuroraWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(),  new TestSettingsStore());
+            var window = new BaseAuroraWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(), new TestSettingsStore());
             AssertPixelsOnControlAreCorrect(window);
             AssertGettingOutOfBoundsPixelsThrows(window);
         }
@@ -199,7 +208,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnCommandersWindowAreCorrectColors()
         {
-            var window = new CommandersWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(),  new TestSettingsStore());
+            var window = new CommandersWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(), new TestOCRReader(), new TestSettingsStore());
             AssertPixelsOnControlAreCorrect(window);
             AssertGettingOutOfBoundsPixelsThrows(window);
         }
@@ -207,7 +216,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnConsoleWindowAreCorrectColors()
         {
-            var window = new ConsoleWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(),  new TestSettingsStore());
+            var window = new ConsoleWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(), new TestSettingsStore());
             AssertPixelsOnControlAreCorrect(window);
             AssertGettingOutOfBoundsPixelsThrows(window);
         }
@@ -215,7 +224,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnEventWindowAreCorrectColors()
         {
-            var window = new EventWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(),  new TestSettingsStore());
+            var window = new EventWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(), new TestSettingsStore());
             AssertPixelsOnControlAreCorrect(window);
             AssertGettingOutOfBoundsPixelsThrows(window);
         }
@@ -223,7 +232,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnPopulationAndProductionWindowAreCorrectColors()
         {
-            var window = new PopulationAndProductionWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(),  new TestSettingsStore());
+            var window = new PopulationAndProductionWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(), new TestOCRReader(), new TestSettingsStore());
             AssertPixelsOnControlAreCorrect(window);
             AssertGettingOutOfBoundsPixelsThrows(window);
         }
@@ -231,7 +240,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void PointsOnSystemMapWindowAreCorrectColors()
         {
-            var window = new SystemMapWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(),  new TestSettingsStore());
+            var window = new SystemMapWindow(new MultiColoredScreen(), new TestWindowFinder(), new TestInputDevice(), new TestSettingsStore());
             AssertPixelsOnControlAreCorrect(window);
             AssertGettingOutOfBoundsPixelsThrows(window);
         }

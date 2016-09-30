@@ -11,55 +11,55 @@ namespace Aurora4xAutomation.IO.UI.Windows
 {
     public class PopulationAndProductionWindow : Window
     {
-        public PopulationAndProductionWindow(IScreen screen, IWindowFinder windowFinder, IInputDevice inputDevice, ISettingsStore settings)
+        public PopulationAndProductionWindow(IScreen screen, IWindowFinder windowFinder, IInputDevice inputDevice, IOCRReader ocr, ISettingsStore settings)
             : base("Population and Production", screen, windowFinder, inputDevice, settings)
         {
-            ResearchTable = new Datagrid(this, inputDevice, left: 406, right: 776, top: 406, bottom: 613)
+            ResearchTable = new Datagrid(this, inputDevice, ocr, left: 406, right: 776, top: 406, bottom: 613)
             {
                 Columns = new[] {406, 687, 754},
                 LineHeight = 16,
                 TopOfCharactersOffset = 3,
                 Settings = PrintSettings.NewResearchTable
             };
-            AvailableScientistsTable = new Datagrid(this, inputDevice, left: 790, right: 1184, top: 406, bottom: 613)
+            AvailableScientistsTable = new Datagrid(this, inputDevice, ocr, left: 790, right: 1184, top: 406, bottom: 613)
             {
                 Columns = new[] {790, 909, 1056},
                 LineHeight = 16,
                 TopOfCharactersOffset = 3,
                 Settings = PrintSettings.AvailableScientistTable
             };
-            ConstructionOptions = new Datagrid(this, inputDevice, left: 398, right: 599, top: 245, bottom: 669)
+            ConstructionOptions = new Datagrid(this, inputDevice, ocr, left: 398, right: 599, top: 245, bottom: 669)
             {
                 Columns = new[] {398, 599},
                 LineHeight = 16,
                 TopOfCharactersOffset = 3
             };
-            AllocatedLabs = new Textbox(this, inputDevice, left: 885, right: 929, top: 357, bottom: 371)
+            AllocatedLabs = new Textbox(this, inputDevice, ocr, left: 885, right: 929, top: 357, bottom: 371)
             {
                 CharacterOffset = 3,
                 CharacterHeight = 9,
                 Colors = new[] {new byte[] {0, 0, 0}}
             };
-            AvailableLabs = new Textbox(this, inputDevice, left: 1037, right: 1073, top: 357, bottom: 371)
+            AvailableLabs = new Textbox(this, inputDevice, ocr, left: 1037, right: 1073, top: 357, bottom: 371)
             {
                 CharacterOffset = 3,
                 CharacterHeight = 9,
                 Colors = new[] {new byte[] {109, 109, 109}}
             };
-            NumberOfIndustrialProject = new Textbox(this, inputDevice, left: 725, right: 769, top: 696, bottom: 710)
+            NumberOfIndustrialProject = new Textbox(this, inputDevice, ocr, left: 725, right: 769, top: 696, bottom: 710)
             {
                 CharacterOffset = 3,
                 CharacterHeight = 9,
                 Colors = new[] {new byte[] {0, 0, 0}}
             };
             CreateIndustrialProject = new Button(this, inputDevice, left: 635, right: 707, top: 730, bottom: 754);
-            InstallationType = new Combobox(this, inputDevice, left: 501, right: 801, top: 180, bottom: 196)
+            InstallationType = new Combobox(this, inputDevice, ocr, left: 501, right: 801, top: 180, bottom: 196)
             {
                 CharacterOffset = 4,
                 CharacterHeight = 9,
                 Colors = new[] {new byte[] {0, 0, 0}}
             };
-            ContractAmount = new Textbox(this, inputDevice, left: 501, right: 553, top: 220, bottom: 234)
+            ContractAmount = new Textbox(this, inputDevice, ocr, left: 501, right: 553, top: 220, bottom: 234)
             {
                 CharacterOffset = 3,
                 CharacterHeight = 9,
@@ -68,26 +68,26 @@ namespace Aurora4xAutomation.IO.UI.Windows
             CivilianContractSupply = new RadioButton(this, inputDevice, left: 696, right: 707, top: 220, bottom: 231);
             CivilianContractDemand = new RadioButton(this, inputDevice, left: 784, right: 795, top: 221, bottom: 232);
             AddCivilianContract = new Button(this, inputDevice, left: 411, right: 491, top: 514, bottom: 538);
-            Populations = new TreeList(this, inputDevice, left: 21, right: 361, top: 100, bottom: 807);
+            Populations = new TreeList(this, inputDevice, ocr, left: 21, right: 361, top: 100, bottom: 807);
             Populations.Refresh += (sender, args) =>
             {
                 MakeActive();
                 Empire.SelectOption(1);
             };
             PurchaseMineralOutput = new RadioButton(this, inputDevice, left: 536, right: 547, top: 804, bottom: 815);
-            MassDriverDestination = new Combobox(this, inputDevice, left: 1005, right: 1184, top: 156, bottom: 172)
+            MassDriverDestination = new Combobox(this, inputDevice, ocr, left: 1005, right: 1184, top: 156, bottom: 172)
             {
                 CharacterOffset = 4,
                 CharacterHeight = 9,
                 Colors = new[] {new byte[] {0, 0, 0}}
             };
-            Empire = new Combobox(this, inputDevice, left: 19, right: 363, top: 46, bottom: 66)
+            Empire = new Combobox(this, inputDevice, ocr, left: 19, right: 363, top: 46, bottom: 66)
             {
                 CharacterOffset = 6,
                 CharacterHeight = 11,
                 Colors = new[] {new byte[] {0, 0, 0}}
             };
-            CurrentResearchProject = new Datagrid(this, inputDevice, left: 399, right: 1158, top: 193, bottom: 289)
+            CurrentResearchProject = new Datagrid(this, inputDevice, ocr, left: 399, right: 1158, top: 193, bottom: 289)
             {
                 Columns = new[] {399, 632, 799, 859, 929, 999, 1132, 1158},
                 LineHeight = 16,
@@ -95,7 +95,7 @@ namespace Aurora4xAutomation.IO.UI.Windows
             };
             RemoveRL = new Button(this, inputDevice, left: 683, right: 763, top: 299, bottom: 323);
             AddRL = new Button(this, inputDevice, left: 587, right: 667, top: 299, bottom: 323);
-            NumberOfLabs = new Label(this, inputDevice, left: 515, right: 541, top: 140, bottom: 148);
+            NumberOfLabs = new Label(this, inputDevice, ocr, left: 515, right: 541, top: 140, bottom: 148);
         }
 
         private bool IsSummaryTabRowOnTop()

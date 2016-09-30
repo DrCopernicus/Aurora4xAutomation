@@ -14,6 +14,7 @@ namespace Aurora4xAutomation.IO
 
         public ISettingsStore Settings { get; set; }
         public IWindowFinder WindowFinder { get; set; }
+        public IOCRReader OCR { get; set; }
         public IInputDevice InputDevice { get; set; }
         public IScreen Screen { get; set; }
 
@@ -29,7 +30,7 @@ namespace Aurora4xAutomation.IO
 
         public CommandersWindow Leaders
         {
-            get { return _commandersWindow ?? (_commandersWindow = new CommandersWindow(Screen, WindowFinder, InputDevice, Settings)); }
+            get { return _commandersWindow ?? (_commandersWindow = new CommandersWindow(Screen, WindowFinder, InputDevice, OCR, Settings)); }
         }
 
         public SystemMapWindow SystemMap
@@ -39,7 +40,7 @@ namespace Aurora4xAutomation.IO
 
         public PopulationAndProductionWindow PopulationAndProduction
         {
-            get { return _populationAndProductionWindow ?? (_populationAndProductionWindow = new PopulationAndProductionWindow(Screen, WindowFinder, InputDevice, Settings)); }
+            get { return _populationAndProductionWindow ?? (_populationAndProductionWindow = new PopulationAndProductionWindow(Screen, WindowFinder, InputDevice, OCR, Settings)); }
         }
 
         public TaskGroupsWindow TaskGroups

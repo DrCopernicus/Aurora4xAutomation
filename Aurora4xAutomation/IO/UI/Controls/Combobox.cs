@@ -1,24 +1,26 @@
 ﻿using Aurora4xAutomation.Common;
 using WindowsInput.Native;
+using Aurora4xAutomation.IO.OCR;
 
 namespace Aurora4xAutomation.IO.UI.Controls
 {
     public class Combobox : Control
     {
+        private IOCRReader OCR { get; set; }
         public int CharacterOffset;
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public Combobox(IScreenObject parent, IInputDevice inputDevice, int top, int bottom, int left, int right)
+        public Combobox(IScreenObject parent, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int left, int right)
             : base(parent, inputDevice, top, bottom, left, right)
         {
-
+            OCR = ocr;
         }
 
-        public Combobox(IScreen screen, IInputDevice inputDevice, int top, int bottom, int left, int right)
+        public Combobox(IScreen screen, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int left, int right)
             : base(screen, inputDevice, top, bottom, left, right)
         {
-
+            OCR = ocr;
         }
 
         public string Text
@@ -40,7 +42,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
         {
             Screenshot.Dirty();
             if (Highlighted)
-                return OCRReader.ReadTableRow(
+                return OCR.ReadTableRow(
                     Screen.GetPixelsOfColor(
                         Left,
                         Top + CharacterOffset,
@@ -49,7 +51,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                         new []{new byte[]{255,255,255}}),
                     OCRReader.Alphabet);
             else
-                return OCRReader.ReadTableRow(
+                return OCR.ReadTableRow(
                     Screen.GetPixelsOfColor(
                         Left,
                         Top + CharacterOffset,

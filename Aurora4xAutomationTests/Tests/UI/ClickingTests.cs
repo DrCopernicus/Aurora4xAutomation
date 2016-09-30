@@ -2,8 +2,10 @@
 using Aurora4xAutomation.IO.UI.Controls;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using WindowsInput.Native;
+using Aurora4xAutomation.IO;
 
 namespace Aurora4xAutomationTests.Tests.UI
 {
@@ -53,6 +55,14 @@ namespace Aurora4xAutomationTests.Tests.UI
             }
         }
 
+        private class TestOCRReader : IOCRReader
+        {
+            public string ReadTableRow(byte[,] pixels, Dictionary<string, byte[,]> alphabet)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         private void AssertClicksAreCorrect(IScreenObject control, TestInputDevice inputDevice)
         {
             control.Click(0, 0, 0);
@@ -91,7 +101,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         public void ClicksCorrectPixelOnCombobox()
         {
             var inputDevice = new TestInputDevice();
-            var control = new Combobox(new TestScreen(), inputDevice, 1, 3, 1, 3);
+            var control = new Combobox(new TestScreen(), inputDevice, new TestOCRReader(), 1, 3, 1, 3);
             AssertClicksAreCorrect(control, inputDevice);
         }
 
@@ -99,7 +109,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         public void ClicksCorrectPixelOnDatagrid()
         {
             var inputDevice = new TestInputDevice();
-            var control = new Datagrid(new TestScreen(), inputDevice, 1, 3, 1, 3);
+            var control = new Datagrid(new TestScreen(), inputDevice, new TestOCRReader(), 1, 3, 1, 3);
             AssertClicksAreCorrect(control, inputDevice);
         }
 
@@ -107,7 +117,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         public void ClicksCorrectPixelOnLabel()
         {
             var inputDevice = new TestInputDevice();
-            var control = new Label(new TestScreen(), inputDevice, 1, 3, 1, 3);
+            var control = new Label(new TestScreen(), inputDevice, new TestOCRReader(), 1, 3, 1, 3);
             AssertClicksAreCorrect(control, inputDevice);
         }
 
@@ -123,7 +133,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         public void ClicksCorrectPixelOnTextbox()
         {
             var inputDevice = new TestInputDevice();
-            var control = new Textbox(new TestScreen(), inputDevice, 1, 3, 1, 3);
+            var control = new Textbox(new TestScreen(), inputDevice, new TestOCRReader(), 1, 3, 1, 3);
             AssertClicksAreCorrect(control, inputDevice);
         }
 
@@ -131,7 +141,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         public void ClicksCorrectPixelOnTreeList()
         {
             var inputDevice = new TestInputDevice();
-            var control = new TreeList(new TestScreen(), inputDevice, 1, 3, 1, 3);
+            var control = new TreeList(new TestScreen(), inputDevice, new TestOCRReader(), 1, 3, 1, 3);
             AssertClicksAreCorrect(control, inputDevice);
         }
     }

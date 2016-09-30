@@ -1,24 +1,24 @@
-﻿using Aurora4xAutomation.Common;
-using Pranas;
-using System.Drawing;
+﻿using Aurora4xAutomation.IO.OCR;
 
 namespace Aurora4xAutomation.IO.UI.Controls
 {
     public class Textbox : Control
     {
+        private IOCRReader OCR { get; set; }
         public int CharacterOffset;
         public int CharacterHeight;
         public byte[][] Colors;
 
-        public Textbox(IScreenObject parent, IInputDevice inputDevice, int top, int bottom, int left, int right)
+        public Textbox(IScreenObject parent, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int left, int right)
             : base(parent, inputDevice, top, bottom, left, right)
         {
-
+            OCR = ocr;
         }
-        public Textbox(IScreen screen, IInputDevice inputDevice, int top, int bottom, int left, int right)
+
+        public Textbox(IScreen screen, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int left, int right)
             : base(screen, inputDevice, top, bottom, left, right)
         {
-
+            OCR = ocr;
         }
 
         public string Text
@@ -37,7 +37,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
 
         protected string ReadBox()
         {
-            return OCRReader.ReadTableRow(
+            return OCR.ReadTableRow(
                     Screen.GetPixelsOfColor(
                         Left,
                         Top + CharacterOffset,

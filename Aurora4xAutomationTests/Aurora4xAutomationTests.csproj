@@ -74,7 +74,9 @@
     <Compile Include="Tests\LexerTests.cs" />
     <Compile Include="Tests\ListTests.cs" />
     <Compile Include="Tests\Messages\MessageManagerTests.cs" />
-    <Compile Include="Tests\OCRTests.cs" />
+    <Compile Include="Tests\OCR\OCRIntegration.cs" />
+    <Compile Include="Tests\OCR\OCRSplitterTests.cs" />
+    <Compile Include="Tests\OCR\OCRTests.cs" />
     <Compile Include="Tests\ParserTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />
     <Compile Include="Tests\TimelineTests.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Tests\UI\ClickingTests.cs" />
     <Compile Include="Tests\UI\ControlPositioningTests.cs" />
     <Compile Include="Tests\UI\PixelTests.cs" />
+    <Compile Include="Tests\UI\TreeListTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -123,8 +123,11 @@
     <Compile Include="Events\Time.cs" />
     <Compile Include="Events\Timeline.cs" />
     <Compile Include="IO\IO.cs" />
+    <Compile Include="IO\IOCRReader.cs" />
     <Compile Include="IO\IUIMap.cs" />
-    <Compile Include="IO\OCRReader.cs" />
+    <Compile Include="IO\OCR\ISplitter.cs" />
+    <Compile Include="IO\OCR\OCRReader.cs" />
+    <Compile Include="IO\OCR\OCRSplitter.cs" />
     <Compile Include="IO\UI\IInputDevice.cs" />
     <Compile Include="IO\UI\InputDevice.cs" />
     <Compile Include="IO\UI\IScreen.cs" />
