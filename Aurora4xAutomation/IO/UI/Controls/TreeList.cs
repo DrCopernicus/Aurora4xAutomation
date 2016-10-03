@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
 
 namespace Aurora4xAutomation.IO.UI.Controls
