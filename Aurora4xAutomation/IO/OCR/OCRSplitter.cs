@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Aurora4xAutomation.IO.OCR
 {
@@ -23,6 +24,9 @@ namespace Aurora4xAutomation.IO.OCR
                 }
                 currentPosition++;
             }
+
+            if (charInProgress.Any())
+                CopyCharacterBytesToList(list, charInProgress, characterHeight);
 
             return list;
         }

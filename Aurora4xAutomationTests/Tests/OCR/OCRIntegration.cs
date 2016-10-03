@@ -84,7 +84,7 @@ namespace Aurora4xAutomationTests.Tests.OCR
 
 
         [Test]
-        public void ReadsEvenWithForcedWhitespace()
+        public void DoesNotReadForcedWhitespace()
         {
             var ocr = new OCRReader(new OCRSplitter());
             var alphabet = new Dictionary<string, byte[,]>
@@ -94,7 +94,7 @@ namespace Aurora4xAutomationTests.Tests.OCR
 
             var text = new byte[,] { { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 1, 0, 0, 0, 1, 0, 0, 0, 0 } };
 
-            Assert.AreEqual(".", ocr.ReadTableRow(text, alphabet));
+            Assert.AreEqual("", ocr.ReadTableRow(text, alphabet));
         }
 
         [Test]
