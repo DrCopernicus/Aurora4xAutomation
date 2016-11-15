@@ -1,62 +1,55 @@
 ﻿using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.Messages;
+using NSubstitute;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 
 namespace Aurora4xAutomationTests.Tests.EvaluatorTests
 {
     [TestFixture]
     public class HelpEvaluatorTests
     {
-        private class TestMessageManager : IMessageManager
-        {
-            private List<string> _messages = new List<string>();
-
-            public List<string> GetMessagesAfterId(long start, long end)
-            {
-                return _messages;
-            }
-
-            public void AddMessage(MessageType type, string message)
-            {
-                _messages.Add(message);
-            }
-
-            public long GetLastId()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        private class TestEvaluator : IEvaluator
-        {
-            public void Execute()
-            {
-                throw new NotImplementedException();
-            }
-
-            public string Help { get { return "help text"; } }
-            public string Text { get; private set; }
-            public IEvaluator Body { get; set; }
-            public IEvaluator Next { get; set; }
-            public CommandEvaluatorType GetEvaluatorType()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
         [Test]
-        public void WritesHelpMessageForTestEvaluator()
+        public void WritesHelpMessage()
         {
-            var messages = new TestMessageManager();
+            var messages = Substitute.For<IMessageManager>();
             var helpEvaluator = new HelpEvaluator("", messages);
-            helpEvaluator.Body = new TestEvaluator();
+            var evaluatorWithHelpMessage = Substitute.For<IEvaluator>();
+            evaluatorWithHelpMessage.Help.Returns("help message");
+            evaluatorWithHelpMessage.Body.Returns(a => null);
+            evaluatorWithHelpMessage.Next.Returns(a => null);
+            helpEvaluator.Body = evaluatorWithHelpMessage;
 
             helpEvaluator.Execute();
 
-            Assert.Contains("help text", messages.GetMessagesAfterId(-1,100));
+            messages.Received(1).AddMessage(MessageType.Information, "help message");
+        }
+
+        [Test]
+        public void MoreThanOneParameterFails()
+        {
+            var messages = Substitute.For<IMessageManager>();
+            var helpEvaluator = new HelpEvaluator("", messages);
+            var firstParameter = Substitute.For<IEvaluator>();
+            var secondParameter = Substitute.For<IEvaluator>();
+            firstParameter.Body.Returns(a => null);
+            firstParameter.Next.Returns(a => secondParameter);
+            secondParameter.Body.Returns(a => null);
+            secondParameter.Next.Returns(a => null);
+
+            helpEvaluator.Body = firstParameter;
+
+            Assert.Throws<Exception>(() => helpEvaluator.Execute());
+        }
+
+        [Test]
+        public void FewerThanOneParameterFails()
+        {
+            var messages = Substitute.For<IMessageManager>();
+            var helpEvaluator = new HelpEvaluator("", messages);
+
+            Assert.Throws<Exception>(() => helpEvaluator.Execute());
         }
     }
 }

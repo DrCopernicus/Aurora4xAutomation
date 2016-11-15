@@ -8,49 +8,52 @@ namespace Aurora4xAutomationTests.Tests.EvaluatorTests
     [TestFixture]
     public class EvaluatorParamaterizerTests
     {
-
         [Test]
-        public void AddsCorrectNumberOfParameters()
+        public void AddsOneParameter()
         {
-            var headEvaluator = Substitute.For<Evaluator>(Arg.Any<string>());
-            new EvaluatorParameterizer().SetParameters(headEvaluator, "first", "second", "third");
-            Assert.AreEqual(3, headEvaluator.Parameters.Count);
-        }
-
-        [Test]
-        public void AddsOnlyOneParameter()
-        {
-            var headEvaluator = Substitute.For<Evaluator>(Arg.Any<string>());
+            var headEvaluator = Substitute.For<IEvaluator>();
             new EvaluatorParameterizer().SetParameters(headEvaluator, "first");
-            Assert.AreEqual(1, headEvaluator.Parameters.Count);
+
+            headEvaluator.Received(1).Body = Arg.Any<ParameterEvaluator>();
+            Assert.AreEqual("first", headEvaluator.Body.Text);
+            Assert.AreEqual(null, headEvaluator.Body.Next);
         }
 
         [Test]
-        public void ParametersAreInOrder()
+        public void AddsTwoParameters()
         {
-            var headEvaluator = Substitute.For<Evaluator>(Arg.Any<string>());
+            var headEvaluator = Substitute.For<IEvaluator>();
+            new EvaluatorParameterizer().SetParameters(headEvaluator, "first", "second");
+
+            headEvaluator.Received(1).Body = Arg.Any<ParameterEvaluator>();
+            Assert.AreEqual("first", headEvaluator.Body.Text);
+            Assert.AreEqual("second", headEvaluator.Body.Next.Text);
+            Assert.AreEqual(null, headEvaluator.Body.Next.Next);
+        }
+
+        [Test]
+        public void AddsThreeParameters()
+        {
+            var headEvaluator = Substitute.For<IEvaluator>();
             new EvaluatorParameterizer().SetParameters(headEvaluator, "first", "second", "third");
-            Assert.AreEqual("first", headEvaluator.Parameters[0]);
-            Assert.AreEqual("second", headEvaluator.Parameters[1]);
-            Assert.AreEqual("third", headEvaluator.Parameters[2]);
-        }
 
-        [Test]
-        public void OnlyOneParameterVisible()
-        {
-            var headEvaluator = Substitute.For<Evaluator>(Arg.Any<string>());
-            new EvaluatorParameterizer().SetParameters(headEvaluator, "first");
-            Assert.AreEqual("first", headEvaluator.Parameters[0]);
+            headEvaluator.Received(1).Body = Arg.Any<ParameterEvaluator>();
+            Assert.AreEqual("first", headEvaluator.Body.Text);
+            Assert.AreEqual("second", headEvaluator.Body.Next.Text);
+            Assert.AreEqual("third", headEvaluator.Body.Next.Next.Text);
+            Assert.AreEqual(null, headEvaluator.Body.Next.Next.Next);
         }
 
         [Test]
         public void OverwritesParameters()
         {
-            var headEvaluator = Substitute.For<Evaluator>(Arg.Any<string>());
+            var headEvaluator = Substitute.For<IEvaluator>();
             new EvaluatorParameterizer().SetParameters(headEvaluator, "first");
             new EvaluatorParameterizer().SetParameters(headEvaluator, "second");
-            Assert.AreEqual(1, headEvaluator.Parameters.Count);
-            Assert.AreEqual("second", headEvaluator.Parameters[0]);
+
+            headEvaluator.Received(2).Body = Arg.Any<ParameterEvaluator>();
+            Assert.AreEqual("second", headEvaluator.Body.Text);
+            Assert.AreEqual(null, headEvaluator.Body.Next);
         }
     }
 }
