@@ -30,9 +30,12 @@ namespace Aurora4xAutomationTests.Tests.UI
         {
             private bool PopulatedSystemsExpanded { get; set; }
             private bool SolExpanded { get; set; }
+            public HijackableScreenDataRetriever HijackableScreen { private get; set; }
 
-            public TestCategoriesViewInputDevice()
+            public TestCategoriesViewInputDevice(HijackableScreenDataRetriever screenDataRetriever)
             {
+                HijackableScreen = screenDataRetriever;
+                HijackableScreen.CurrentScreen = Properties.Resources.prodpop_categories_step1;
                 PopulatedSystemsExpanded = true;
                 SolExpanded = true;
             }
@@ -47,24 +50,22 @@ namespace Aurora4xAutomationTests.Tests.UI
                     throw new Exception(string.Format("incorrectly clicked at ({0},{1})", x, y));
 
                 if (PopulatedSystemsExpanded && SolExpanded)
-                    HijackableScreen.CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_categories_step4;
+                    HijackableScreen.CurrentScreen = Properties.Resources.prodpop_categories_step4;
                 if (PopulatedSystemsExpanded && !SolExpanded)
-                    HijackableScreen.CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_categories_step3;
+                    HijackableScreen.CurrentScreen = Properties.Resources.prodpop_categories_step3;
                 if (!PopulatedSystemsExpanded)
-                    HijackableScreen.CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_categories_step2;
+                    HijackableScreen.CurrentScreen = Properties.Resources.prodpop_categories_step2;
             }
 
             public void SendKeys(string text)
             {
-                throw new NotImplementedException();
+                throw new Exception(string.Format("incorrectly sent keys: {0}", text));
             }
 
             public void PressKey(VirtualKeyCode key)
             {
-                throw new NotImplementedException();
+                throw new Exception(string.Format("incorrectly pressed key: {0}", key));
             }
-
-            public HijackableScreenDataRetriever HijackableScreen { get; set; }
 
             private bool Within(int x, int y, int left, int top, int right, int bottom)
             {
@@ -76,9 +77,12 @@ namespace Aurora4xAutomationTests.Tests.UI
         {
             private bool PopulatedSystemsExpanded { get; set; }
             private bool SolExpanded { get; set; }
+            public HijackableScreenDataRetriever HijackableScreen { private get; set; }
 
-            public TestSimpleViewInputDevice()
+            public TestSimpleViewInputDevice(HijackableScreenDataRetriever screenDataRetriever)
             {
+                HijackableScreen = screenDataRetriever;
+                HijackableScreen.CurrentScreen = Properties.Resources.prodpop_simple_step1;
                 PopulatedSystemsExpanded = true;
                 SolExpanded = true;
             }
@@ -93,11 +97,11 @@ namespace Aurora4xAutomationTests.Tests.UI
                     throw new Exception(string.Format("incorrectly clicked at ({0},{1})", x, y));
 
                 if (PopulatedSystemsExpanded && SolExpanded)
-                    HijackableScreen.CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_simple_step4;
+                    HijackableScreen.CurrentScreen = Properties.Resources.prodpop_simple_step4;
                 if (PopulatedSystemsExpanded && !SolExpanded)
-                    HijackableScreen.CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_simple_step3;
+                    HijackableScreen.CurrentScreen = Properties.Resources.prodpop_simple_step3;
                 if (!PopulatedSystemsExpanded)
-                    HijackableScreen.CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_simple_step2;
+                    HijackableScreen.CurrentScreen = Properties.Resources.prodpop_simple_step2;
             }
 
             public void SendKeys(string text)
@@ -109,8 +113,6 @@ namespace Aurora4xAutomationTests.Tests.UI
             {
                 throw new NotImplementedException();
             }
-
-            public HijackableScreenDataRetriever HijackableScreen { get; set; }
 
             private bool Within(int x, int y, int left, int top, int right, int bottom)
             {
@@ -139,7 +141,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void CorrectlyReadsEmptyTreeList()
         {
-            var screenDataRetriever = new HijackableScreenDataRetriever { CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_empty };
+            var screenDataRetriever = new HijackableScreenDataRetriever { CurrentScreen = Properties.Resources.prodpop_empty };
             var inputDevice = new TestEmptyScreenInputDevice();
             var screen = new Screen(screenDataRetriever);
 
@@ -150,8 +152,8 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void CorrectlyReadsSamplePopulatedSystemsCategoriesViewTreeList()
         {
-            var screenDataRetriever = new HijackableScreenDataRetriever { CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_categories_step1 };
-            var inputDevice = new TestCategoriesViewInputDevice {HijackableScreen = screenDataRetriever};
+            var screenDataRetriever = new HijackableScreenDataRetriever();
+            var inputDevice = new TestCategoriesViewInputDevice(screenDataRetriever);
             var screen = new Screen(screenDataRetriever);
 
             var treelist = new TreeList(screen, inputDevice, new OCRReader(new OCRSplitter()), 0, 707, 0, 340);
@@ -161,8 +163,8 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void CorrectlyReadsSamplePopulatedSystemsSimpleViewTreeList()
         {
-            var screenDataRetriever = new HijackableScreenDataRetriever { CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_simple_step1 };
-            var inputDevice = new TestSimpleViewInputDevice {HijackableScreen = screenDataRetriever};
+            var screenDataRetriever = new HijackableScreenDataRetriever();
+            var inputDevice = new TestSimpleViewInputDevice(screenDataRetriever);
             var screen = new Screen(screenDataRetriever);
 
             var treelist = new TreeList(screen, inputDevice, new OCRReader(new OCRSplitter()), 0, 707, 0, 340);

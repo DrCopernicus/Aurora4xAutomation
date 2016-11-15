@@ -39,6 +39,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Grapevine.3.1.0\lib\net40\Grapevine.dll</HintPath>
     </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.10.0.0\lib\net45\NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -58,6 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tests\ClientTests\CommandSenderTests.cs" />
     <Compile Include="Tests\ClientTests\ConnectionCreatorTests.cs" />
     <Compile Include="Tests\ClientTests\ServerMessageRetrieverTests.cs" />
@@ -102,6 +110,51 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\ScreenTests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prodpop-categories-step1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prodpop-categories-step2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prodpop-categories-step3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prodpop-categories-step4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prodpop-empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prodpop-simple-step1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prodpop-simple-step2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prodpop-simple-step3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prodpop-simple-step4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProductionWindowTreeListCategoriesStep1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProductionWindowTreeListCategoriesStep2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProductionWindowTreeListCategoriesStep3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ProductionWindowTreeListCategoriesStep4.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
