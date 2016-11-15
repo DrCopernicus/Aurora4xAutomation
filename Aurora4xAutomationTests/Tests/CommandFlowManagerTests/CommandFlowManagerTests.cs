@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using Aurora4xAutomation.Automation;
+﻿using Aurora4xAutomation.Automation;
 using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.Events;
@@ -10,6 +7,9 @@ using Aurora4xAutomation.IO.UI.Windows;
 using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Aurora4xAutomationTests.Tests.CommandFlowManagerTests
 {

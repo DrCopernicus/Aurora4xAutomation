@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Aurora4xAutomation.Command.Parser;
+﻿using Aurora4xAutomation.Command.Parser;
 using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
@@ -8,6 +6,8 @@ using Aurora4xAutomation.IO.UI.Windows;
 using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace Aurora4xAutomationTests.Tests.CommandTests
 {
