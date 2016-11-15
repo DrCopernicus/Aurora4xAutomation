@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO.UI.Display;
 using Aurora4xAutomation.Settings;
 using Button = Aurora4xAutomation.IO.UI.Controls.Button;
 

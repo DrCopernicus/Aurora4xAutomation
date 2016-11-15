@@ -5,6 +5,7 @@ using WindowsInput.Native;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.IO.UI.Controls;
+using Aurora4xAutomation.IO.UI.Display;
 using NUnit.Framework;
 
 namespace Aurora4xAutomationTests.Tests.UI

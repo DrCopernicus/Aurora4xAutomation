@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace Aurora4xAutomation.IO.UI
+namespace Aurora4xAutomation.IO.UI.Display
 {
     public interface IScreenDataRetriever
     {

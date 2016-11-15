@@ -1,4 +1,6 @@
-﻿namespace Aurora4xAutomation.IO.UI.Controls
+﻿using Aurora4xAutomation.IO.UI.Display;
+
+namespace Aurora4xAutomation.IO.UI.Controls
 {
     public class Button : Control
     {

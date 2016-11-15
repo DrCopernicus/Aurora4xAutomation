@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using Aurora4xAutomation.IO.OCR;
+using Aurora4xAutomation.IO.UI.Display;
 
 namespace Aurora4xAutomation.IO.UI.Controls
 {

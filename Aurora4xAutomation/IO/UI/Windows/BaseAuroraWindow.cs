@@ -1,4 +1,5 @@
 ﻿using System;
+using Aurora4xAutomation.IO.UI.Display;
 using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.IO.UI.Windows

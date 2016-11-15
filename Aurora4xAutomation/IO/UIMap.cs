@@ -1,5 +1,6 @@
 ﻿using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO.UI;
+using Aurora4xAutomation.IO.UI.Display;
 using Aurora4xAutomation.IO.UI.Windows;
 using Aurora4xAutomation.Settings;
 

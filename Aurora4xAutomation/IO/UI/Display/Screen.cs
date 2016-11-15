@@ -1,9 +1,8 @@
 ﻿using System.Drawing;
 using System.Linq;
 using Aurora4xAutomation.Common;
-using Pranas;
 
-namespace Aurora4xAutomation.IO.UI
+namespace Aurora4xAutomation.IO.UI.Display
 {
     public class Screen : IScreen
     {

@@ -1,6 +1,7 @@
 ﻿using Aurora4xAutomation.Common;
 using WindowsInput.Native;
 using Aurora4xAutomation.IO.OCR;
+using Aurora4xAutomation.IO.UI.Display;
 
 namespace Aurora4xAutomation.IO.UI.Controls
 {

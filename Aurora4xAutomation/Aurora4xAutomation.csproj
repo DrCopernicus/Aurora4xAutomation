@@ -130,12 +130,12 @@
     <Compile Include="IO\OCR\OCRSplitter.cs" />
     <Compile Include="IO\UI\IInputDevice.cs" />
     <Compile Include="IO\UI\InputDevice.cs" />
-    <Compile Include="IO\UI\IScreen.cs" />
-    <Compile Include="IO\UI\IScreenDataRetriever.cs" />
+    <Compile Include="IO\UI\Display\IScreen.cs" />
+    <Compile Include="IO\UI\Display\IScreenDataRetriever.cs" />
     <Compile Include="IO\UI\IScreenObject.cs" />
     <Compile Include="IO\UI\IWindowFinder.cs" />
-    <Compile Include="IO\UI\Screen.cs" />
-    <Compile Include="IO\UI\ScreenDataRetriever.cs" />
+    <Compile Include="IO\UI\Display\Screen.cs" />
+    <Compile Include="IO\UI\Display\ScreenDataRetriever.cs" />
     <Compile Include="IO\UI\ScreenObject.cs" />
     <Compile Include="IO\UI\WindowFinder.cs" />
     <Compile Include="Messages\IMessageManager.cs" />

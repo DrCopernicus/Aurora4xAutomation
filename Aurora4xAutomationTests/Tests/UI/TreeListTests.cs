@@ -1,10 +1,11 @@
-﻿using System;
-using System.Drawing;
-using WindowsInput.Native;
-using Aurora4xAutomation.IO.OCR;
+﻿using Aurora4xAutomation.IO.OCR;
 using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.IO.UI.Controls;
+using Aurora4xAutomation.IO.UI.Display;
 using NUnit.Framework;
+using System;
+using System.Drawing;
+using WindowsInput.Native;
 
 namespace Aurora4xAutomationTests.Tests.UI
 {
@@ -40,8 +41,10 @@ namespace Aurora4xAutomationTests.Tests.UI
             {
                 if (Within(x, y, 4, 4, 12, 12))
                     PopulatedSystemsExpanded = !PopulatedSystemsExpanded;
-                if (Within(x, y, 21, 20, 29, 28) && PopulatedSystemsExpanded)
+                else if (Within(x, y, 21, 20, 29, 28) && PopulatedSystemsExpanded)
                     SolExpanded = !SolExpanded;
+                else
+                    throw new Exception(string.Format("incorrectly clicked at ({0},{1})", x, y));
 
                 if (PopulatedSystemsExpanded && SolExpanded)
                     HijackableScreen.CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_categories_step4;
@@ -84,8 +87,10 @@ namespace Aurora4xAutomationTests.Tests.UI
             {
                 if (Within(x, y, 4, 4, 12, 12))
                     PopulatedSystemsExpanded = !PopulatedSystemsExpanded;
-                if (Within(x, y, 21, 20, 29, 28) && PopulatedSystemsExpanded)
+                else if (Within(x, y, 21, 20, 29, 28) && PopulatedSystemsExpanded)
                     SolExpanded = !SolExpanded;
+                else
+                    throw new Exception(string.Format("incorrectly clicked at ({0},{1})", x, y));
 
                 if (PopulatedSystemsExpanded && SolExpanded)
                     HijackableScreen.CurrentScreen = Aurora4xAutomation.Properties.Resources.prodpop_simple_step4;
@@ -117,6 +122,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         {
             public void Click(int x, int y, int wait)
             {
+                throw new Exception(string.Format("incorrectly clicked at ({0},{1})", x, y));
             }
 
             public void SendKeys(string text)

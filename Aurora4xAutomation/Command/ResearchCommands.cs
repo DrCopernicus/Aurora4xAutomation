@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Aurora4xAutomation.IO.UI;
+using Aurora4xAutomation.IO.UI.Display;
 
 namespace Aurora4xAutomation.Command
 {
