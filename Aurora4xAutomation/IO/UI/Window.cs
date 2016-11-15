@@ -45,7 +45,7 @@ namespace Aurora4xAutomation.IO.UI
                 WindowFinder.SetForegroundWindow(Handle);
                 if (!WaitActive())
                     continue;
-                Screenshot.Dirty();
+                Screen.Dirty();
                 Sleeper.Sleep(500);
                 return;
             }

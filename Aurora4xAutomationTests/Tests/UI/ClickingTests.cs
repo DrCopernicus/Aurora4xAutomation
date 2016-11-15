@@ -14,6 +14,11 @@ namespace Aurora4xAutomationTests.Tests.UI
     {
         private class TestScreen : IScreen
         {
+            public void Dirty()
+            {
+                throw new NotImplementedException();
+            }
+
             public Color GetPixel(int x, int y)
             {
                 throw new NotImplementedException();

@@ -24,6 +24,11 @@ namespace Aurora4xAutomationTests.Tests.UI
                 new []{Color.Black, Color.Black, Color.Black, Color.Black, Color.Black}
             };
 
+            public void Dirty()
+            {
+                throw new NotImplementedException();
+            }
+
             public Color GetPixel(int x, int y)
             {
                 return _screen[x][y];

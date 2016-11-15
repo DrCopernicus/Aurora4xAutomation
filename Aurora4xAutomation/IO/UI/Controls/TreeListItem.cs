@@ -46,7 +46,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                             Screen.GetPixelsOfColor(
                                 Left + Level * 17,
                                 Top + CharacterOffset,
-                                Right - Left,
+                                Right - Left - Level * 17,
                                 CharacterHeight,
                                 new [] { new byte[] {255, 255, 255} }),
                             OCRReader.Alphabet);
@@ -57,7 +57,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                             Screen.GetPixelsOfColor(
                                 Left + Level * 17,
                                 Top + CharacterOffset,
-                                Right - Left,
+                                Right - Left - Level * 17,
                                 CharacterHeight,
                                 Colors),
                             OCRReader.Alphabet);
@@ -129,8 +129,8 @@ namespace Aurora4xAutomation.IO.UI.Controls
             get
             {
                 if (GetPixel(
-                    Left + Level * 17 + 8,
-                    Top + 7).EqualsColor(0, 0, 0))
+                    Level * 17 + 8,
+                    7).EqualsColor(0, 0, 0))
                 {
                     return true;
                 }
@@ -157,7 +157,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                     if (!Collapsed)
                     {
                         Click(Level * 17 + 9, 7, 0);
-                        Screenshot.Dirty();
+                        Screen.Dirty();
                         Sleeper.Sleep(250);
                     }
                 }
@@ -166,7 +166,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                     if (Collapsed)
                     {
                         Click(Level * 17 + 9, 7, 0);
-                        Screenshot.Dirty();
+                        Screen.Dirty();
                         Sleeper.Sleep(250);
                     }
                 }

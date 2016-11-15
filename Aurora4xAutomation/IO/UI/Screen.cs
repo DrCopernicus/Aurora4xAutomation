@@ -1,27 +1,28 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Linq;
 using Aurora4xAutomation.Common;
+using Pranas;
 
 namespace Aurora4xAutomation.IO.UI
 {
     public class Screen : IScreen
     {
+        public IScreenDataRetriever ScreenDataRetriever { get; set; }
+
+        public Screen(IScreenDataRetriever screenDataRetriever)
+        {
+            ScreenDataRetriever = screenDataRetriever;
+        }
+
         public Color GetPixel(int x, int y)
         {
-            var context = NativeMethods.GetDC(IntPtr.Zero);
-            var pixel = NativeMethods.GetPixel(context, x, y);
-            NativeMethods.ReleaseDC(IntPtr.Zero, context);
-            var color = Color.FromArgb((int)(pixel & 0x000000FF),
-                         (int)(pixel & 0x0000FF00) >> 8,
-                         (int)(pixel & 0x00FF0000) >> 16);
-            return color;
+            return ScreenDataRetriever.GetPixel(x, y);
         }
 
         public byte[,] GetPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
         {
             var pixels = new byte[height, width];
-            var screen = Screenshot.Latest;
+            var screen = ScreenDataRetriever.CurrentScreen;
 
             for (var xi = 0; xi < width; xi++)
             {
@@ -38,14 +39,14 @@ namespace Aurora4xAutomation.IO.UI
 
         public bool HasPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
         {
-            var screen = Screenshot.Latest;
+            var screen = ScreenDataRetriever.CurrentScreen;
 
             for (var xi = 0; xi < width; xi++)
             {
                 for (var yi = 0; yi < height; yi++)
                 {
-                    var pix = screen.GetPixel(x + xi, y + yi);
-                    if (colors.Any(color => pix.EqualsColor(color[0], color[1], color[2])))
+                    var pixel = screen.GetPixel(x + xi, y + yi);
+                    if (colors.Any(color => pixel.EqualsColor(color[0], color[1], color[2])))
                         return true;
                 }
             }
@@ -55,19 +56,24 @@ namespace Aurora4xAutomation.IO.UI
 
         public bool OnlyHasPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
         {
-            var screen = Screenshot.Latest;
+            var screen = ScreenDataRetriever.CurrentScreen;
 
             for (var xi = 0; xi < width; xi++)
             {
                 for (var yi = 0; yi < height; yi++)
                 {
-                    var pix = screen.GetPixel(x + xi, y + yi);
-                    if (!colors.Any(color => pix.EqualsColor(color[0], color[1], color[2])))
+                    var pixel = screen.GetPixel(x + xi, y + yi);
+                    if (!colors.Any(color => pixel.EqualsColor(color[0], color[1], color[2])))
                         return false;
                 }
             }
 
             return true;
+        }
+
+        public void Dirty()
+        {
+            ScreenDataRetriever.Dirty();
         }
     }
 }

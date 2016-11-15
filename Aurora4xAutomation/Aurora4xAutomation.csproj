@@ -131,9 +131,11 @@
     <Compile Include="IO\UI\IInputDevice.cs" />
     <Compile Include="IO\UI\InputDevice.cs" />
     <Compile Include="IO\UI\IScreen.cs" />
+    <Compile Include="IO\UI\IScreenDataRetriever.cs" />
     <Compile Include="IO\UI\IScreenObject.cs" />
     <Compile Include="IO\UI\IWindowFinder.cs" />
     <Compile Include="IO\UI\Screen.cs" />
+    <Compile Include="IO\UI\ScreenDataRetriever.cs" />
     <Compile Include="IO\UI\ScreenObject.cs" />
     <Compile Include="IO\UI\WindowFinder.cs" />
     <Compile Include="Messages\IMessageManager.cs" />
@@ -141,6 +143,11 @@
     <Compile Include="Messages\MessageType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="REST\CommandResources.cs" />
     <Compile Include="REST\Resources.cs" />
     <Compile Include="REST\RESTManager.cs" />
@@ -162,7 +169,6 @@
     <Compile Include="IO\UI\Controls\Textbox.cs" />
     <Compile Include="IO\UI\IWindow.cs" />
     <Compile Include="IO\UI\Windows\CommandersWindow.cs" />
-    <Compile Include="IO\Screenshot.cs" />
     <Compile Include="IO\UI\Windows\TaskGroupsWindow.cs" />
     <Compile Include="IO\UI\Windows\SystemMapWindow.cs" />
     <Compile Include="IO\UI\Windows\EventWindow.cs" />
@@ -171,6 +177,19 @@
     <Compile Include="IO\UI\Window.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\prodpop-categories-step1.png" />
+    <None Include="Resources\prodpop-simple-step4.png" />
+    <None Include="Resources\prodpop-categories-step2.png" />
+    <None Include="Resources\prodpop-categories-step3.png" />
+    <None Include="Resources\prodpop-categories-step4.png" />
+    <None Include="Resources\prodpop-simple-step1.png" />
+    <None Include="Resources\prodpop-simple-step2.png" />
+    <None Include="Resources\prodpop-simple-step3.png" />
+    <None Include="Resources\ProductionWindowTreeListCategoriesStep1.bmp" />
+    <None Include="Resources\ProductionWindowTreeListCategoriesStep2.bmp" />
+    <None Include="Resources\ProductionWindowTreeListCategoriesStep3.bmp" />
+    <None Include="Resources\ProductionWindowTreeListCategoriesStep4.bmp" />
+    <None Include="Resources\prodpop-empty.png" />
     <Content Include="Settings\password.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -183,7 +202,12 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -40,7 +40,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
 
         protected string ReadBox()
         {
-            Screenshot.Dirty();
+            Screen.Dirty();
             if (Highlighted)
                 return OCR.ReadTableRow(
                     Screen.GetPixelsOfColor(

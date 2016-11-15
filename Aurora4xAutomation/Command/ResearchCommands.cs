@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Aurora4xAutomation.IO.UI;
 
 namespace Aurora4xAutomation.Command
 {
@@ -181,7 +182,7 @@ namespace Aurora4xAutomation.Command
             {
                 UIMap.PopulationAndProduction.CurrentResearchProject.ClickRow(0);
                 UIMap.PopulationAndProduction.AddRL.Click();
-                Screenshot.Dirty();
+                Screen.Dirty();
             }
             return true;
         }
@@ -225,6 +226,7 @@ namespace Aurora4xAutomation.Command
             //TODO
         }
 
+        private IScreen Screen { get; set; }
         private IUIMap UIMap { get; set; }
         private SettingsStore Settings { get; set; }
     }
