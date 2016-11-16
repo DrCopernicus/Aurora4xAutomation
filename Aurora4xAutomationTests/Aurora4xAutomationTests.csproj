@@ -90,6 +90,7 @@
     <Compile Include="Tests\TimelineTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\UI\ClickingTests.cs" />
+    <Compile Include="Tests\UI\Component\LabelTests.cs" />
     <Compile Include="Tests\UI\Component\RadioButtonTests.cs" />
     <Compile Include="Tests\UI\Component\ButtonTests.cs" />
     <Compile Include="Tests\UI\Component\HijackableInputDevice.cs" />
