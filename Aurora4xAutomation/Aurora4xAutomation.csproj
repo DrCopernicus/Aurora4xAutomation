@@ -75,6 +75,7 @@
     <Compile Include="Common\Exceptions\TooManyParametersException.cs" />
     <Compile Include="Common\Converters\MessageTypeConverter.cs" />
     <Compile Include="Common\Exceptions\WindowNotFoundException.cs" />
+    <Compile Include="Common\ISleeper.cs" />
     <Compile Include="Evaluators\Evaluator.cs" />
     <Compile Include="Command\Parser\CommandLexer.cs" />
     <Compile Include="Command\Parser\CommandParser.cs" />
@@ -128,6 +129,8 @@
     <Compile Include="IO\OCR\ISplitter.cs" />
     <Compile Include="IO\OCR\OCRReader.cs" />
     <Compile Include="IO\OCR\OCRSplitter.cs" />
+    <Compile Include="IO\UI\Display\IScreenshotCapturer.cs" />
+    <Compile Include="IO\UI\Display\ScreenshotCapturer.cs" />
     <Compile Include="IO\UI\IInputDevice.cs" />
     <Compile Include="IO\UI\InputDevice.cs" />
     <Compile Include="IO\UI\Display\IScreen.cs" />

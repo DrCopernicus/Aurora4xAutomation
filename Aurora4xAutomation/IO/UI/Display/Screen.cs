@@ -1,6 +1,6 @@
-﻿using System.Drawing;
+﻿using Aurora4xAutomation.Common;
+using System.Drawing;
 using System.Linq;
-using Aurora4xAutomation.Common;
 
 namespace Aurora4xAutomation.IO.UI.Display
 {
@@ -21,7 +21,7 @@ namespace Aurora4xAutomation.IO.UI.Display
         public byte[,] GetPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
         {
             var pixels = new byte[height, width];
-            var screen = ScreenDataRetriever.CurrentScreen;
+            var screen = ScreenDataRetriever.Latest;
 
             for (var xi = 0; xi < width; xi++)
             {
@@ -38,7 +38,7 @@ namespace Aurora4xAutomation.IO.UI.Display
 
         public bool HasPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
         {
-            var screen = ScreenDataRetriever.CurrentScreen;
+            var screen = ScreenDataRetriever.Latest;
 
             for (var xi = 0; xi < width; xi++)
             {
@@ -55,7 +55,7 @@ namespace Aurora4xAutomation.IO.UI.Display
 
         public bool OnlyHasPixelsOfColor(int x, int y, int width, int height, byte[][] colors)
         {
-            var screen = ScreenDataRetriever.CurrentScreen;
+            var screen = ScreenDataRetriever.Latest;
 
             for (var xi = 0; xi < width; xi++)
             {

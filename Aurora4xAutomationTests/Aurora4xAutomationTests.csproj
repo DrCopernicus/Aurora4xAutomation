@@ -90,9 +90,10 @@
     <Compile Include="Tests\TimelineTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\UI\ClickingTests.cs" />
+    <Compile Include="Tests\UI\Component\HijackableInputDevice.cs" />
     <Compile Include="Tests\UI\ControlPositioningTests.cs" />
     <Compile Include="Tests\UI\PixelTests.cs" />
-    <Compile Include="Tests\UI\TreeListTests.cs" />
+    <Compile Include="Tests\UI\Component\TreeListTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
