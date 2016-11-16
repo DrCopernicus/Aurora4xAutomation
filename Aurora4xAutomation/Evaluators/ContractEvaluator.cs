@@ -26,9 +26,9 @@ namespace Aurora4xAutomation.Evaluators
             UIMap.PopulationAndProduction.InstallationType.Text = Parameters[1];
             UIMap.PopulationAndProduction.ContractAmount.Text = Parameters[2];
             if (IsSupplyContract(Parameters[3]))
-                UIMap.PopulationAndProduction.CivilianContractSupply.Selected = true;
+                UIMap.PopulationAndProduction.CivilianContractSupply.Select();
             else
-                UIMap.PopulationAndProduction.CivilianContractDemand.Selected = true;
+                UIMap.PopulationAndProduction.CivilianContractDemand.Select();
             UIMap.PopulationAndProduction.AddCivilianContract.Click();
         }
 

@@ -90,6 +90,7 @@
     <Compile Include="Tests\TimelineTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\UI\ClickingTests.cs" />
+    <Compile Include="Tests\UI\Component\RadioButtonTests.cs" />
     <Compile Include="Tests\UI\Component\ButtonTests.cs" />
     <Compile Include="Tests\UI\Component\HijackableInputDevice.cs" />
     <Compile Include="Tests\UI\ControlPositioningTests.cs" />
@@ -167,6 +168,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\buttons_01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_civiliantab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window_civiliantab_demand.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

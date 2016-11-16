@@ -17,7 +17,7 @@ namespace Aurora4xAutomation.Command
         {
             UIMap.PopulationAndProduction.MakeActive();
             UIMap.PopulationAndProduction.SelectCivilianTab();
-            UIMap.PopulationAndProduction.PurchaseMineralOutput.Selected = true;
+            UIMap.PopulationAndProduction.PurchaseMineralOutput.Select();
             UIMap.PopulationAndProduction.SelectMiningTab();
             UIMap.PopulationAndProduction.MassDriverDestination.Text = massDriverDestination;
         }

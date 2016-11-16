@@ -219,5 +219,25 @@ namespace Aurora4xAutomationTests.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap window_civiliantab_demand {
+            get {
+                object obj = ResourceManager.GetObject("window_civiliantab_demand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap window_civiliantab_supply {
+            get {
+                object obj = ResourceManager.GetObject("window_civiliantab_supply", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

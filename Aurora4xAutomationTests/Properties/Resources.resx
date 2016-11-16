@@ -166,4 +166,10 @@
   <data name="prodpop_simple_step4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\prodpop-simple-step4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="window_civiliantab_demand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\window_civiliantab_demand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="window_civiliantab_supply" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\window_civiliantab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

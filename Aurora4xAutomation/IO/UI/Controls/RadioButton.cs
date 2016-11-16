@@ -20,21 +20,17 @@ namespace Aurora4xAutomation.IO.UI.Controls
         {
             get
             {
-                return this.GetPixel((Right - Left) / 2, (Bottom - Top) / 2).EqualsColor(0, 0, 0);
+                return GetPixel((Right - Left) / 2, (Bottom - Top) / 2).EqualsColor(0, 0, 0);
             }
-            set
-            {
-                if (value)
-                {
-                    if (!Selected)
-                        this.Click();
-                }
-                else
-                {
-                    if (Selected)
-                        this.Click();
-                }
-            }
+        }
+
+        public void Select()
+        {
+            if (Selected)
+                return;
+
+            Click();
+            Screen.Dirty();
         }
     }
 }
