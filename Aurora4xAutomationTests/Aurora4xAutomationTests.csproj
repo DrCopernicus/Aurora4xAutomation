@@ -90,6 +90,7 @@
     <Compile Include="Tests\TimelineTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\UI\ClickingTests.cs" />
+    <Compile Include="Tests\UI\Component\ButtonTests.cs" />
     <Compile Include="Tests\UI\Component\HijackableInputDevice.cs" />
     <Compile Include="Tests\UI\ControlPositioningTests.cs" />
     <Compile Include="Tests\UI\PixelTests.cs" />
@@ -140,22 +141,32 @@
     <None Include="Resources\prodpop-simple-step4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ProductionWindowTreeListCategoriesStep1.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ProductionWindowTreeListCategoriesStep2.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ProductionWindowTreeListCategoriesStep3.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ProductionWindowTreeListCategoriesStep4.bmp" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buttons_02.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_deployescorts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_fourbuttons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_oob.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_openofficerswindow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_set.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buttons_01.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,28 +4,27 @@ using Aurora4xAutomation.IO.UI.Controls;
 using Aurora4xAutomation.IO.UI.Display;
 using NSubstitute;
 using NUnit.Framework;
-using System;
 
 namespace Aurora4xAutomationTests.Tests.UI.Component
 {
     [TestFixture]
     public class TreeListTests
     {
-        private class TestEmptyViewInputDevice : HijackableInputDevice
+        private class EmptyViewInputDevice : HijackableInputDevice
         {
-            public TestEmptyViewInputDevice(HijackableScreenShotCapturer screenshot)
+            public EmptyViewInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
                 Screenshot.CurrentScreen = Properties.Resources.prodpop_empty;
             }
         }
 
-        private class TestCategoriesViewInputDevice : HijackableInputDevice
+        private class CategoriesViewInputDevice : HijackableInputDevice
         {
             private bool _populatedSystemsExpanded = true;
             private bool _solExpanded = true;
 
-            public TestCategoriesViewInputDevice(HijackableScreenShotCapturer screenshot)
+            public CategoriesViewInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
                 Screenshot.CurrentScreen = Properties.Resources.prodpop_categories_step1;
@@ -33,12 +32,12 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
 
             public override void Click(int x, int y, int wait)
             {
-                if (Within(x, y, 4, 4, 12, 12))
+                if (Within(x, y, 4, 12, 4, 12))
                     _populatedSystemsExpanded = !_populatedSystemsExpanded;
-                else if (Within(x, y, 21, 20, 29, 28) && _populatedSystemsExpanded)
+                else if (Within(x, y, 20, 28, 21, 29) && _populatedSystemsExpanded)
                     _solExpanded = !_solExpanded;
                 else
-                    throw new Exception(string.Format("incorrectly clicked at ({0},{1})", x, y));
+                    base.Click(x, y, wait);
 
                 if (_populatedSystemsExpanded && _solExpanded)
                     Screenshot.CurrentScreen = Properties.Resources.prodpop_categories_step4;
@@ -49,12 +48,12 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             }
         }
 
-        private class TestSimpleViewInputDevice : HijackableInputDevice
+        private class SimpleViewInputDevice : HijackableInputDevice
         {
             private bool _populatedSystemsExpanded = true;
             private bool _solExpanded = true;
 
-            public TestSimpleViewInputDevice(HijackableScreenShotCapturer screenshot)
+            public SimpleViewInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
                 Screenshot.CurrentScreen = Properties.Resources.prodpop_simple_step1;
@@ -62,12 +61,12 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
 
             public override void Click(int x, int y, int wait)
             {
-                if (Within(x, y, 4, 4, 12, 12))
+                if (Within(x, y, 4, 12, 4, 12))
                     _populatedSystemsExpanded = !_populatedSystemsExpanded;
-                else if (Within(x, y, 21, 20, 29, 28) && _populatedSystemsExpanded)
+                else if (Within(x, y, 20, 28, 21, 29) && _populatedSystemsExpanded)
                     _solExpanded = !_solExpanded;
                 else
-                    throw new Exception(string.Format("incorrectly clicked at ({0},{1})", x, y));
+                    base.Click(x, y, wait);
 
                 if (_populatedSystemsExpanded && _solExpanded)
                     Screenshot.CurrentScreen = Properties.Resources.prodpop_simple_step4;
@@ -82,7 +81,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
         public void CorrectlyReadsEmptyTreeList()
         {
             var screenshot = new HijackableScreenShotCapturer();
-            var inputDevice = new TestEmptyViewInputDevice(screenshot);
+            var inputDevice = new EmptyViewInputDevice(screenshot);
             var screen = new Screen(new ScreenDataRetriever(Substitute.For<ISleeper>(), screenshot));
             var ocrReader = new OCRReader(new OCRSplitter());
 
@@ -95,7 +94,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
         public void CorrectlyReadsSamplePopulatedSystemsCategoriesViewTreeList()
         {
             var screenshot = new HijackableScreenShotCapturer();
-            var inputDevice = new TestCategoriesViewInputDevice(screenshot);
+            var inputDevice = new CategoriesViewInputDevice(screenshot);
             var screen = new Screen(new ScreenDataRetriever(Substitute.For<ISleeper>(), screenshot));
             var ocrReader = new OCRReader(new OCRSplitter());
 
@@ -108,7 +107,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
         public void CorrectlyReadsSamplePopulatedSystemsSimpleViewTreeList()
         {
             var screenshot = new HijackableScreenShotCapturer();
-            var inputDevice = new TestSimpleViewInputDevice(screenshot);
+            var inputDevice = new SimpleViewInputDevice(screenshot);
             var screen = new Screen(new ScreenDataRetriever(Substitute.For<ISleeper>(), screenshot));
             var ocrReader = new OCRReader(new OCRSplitter());
 

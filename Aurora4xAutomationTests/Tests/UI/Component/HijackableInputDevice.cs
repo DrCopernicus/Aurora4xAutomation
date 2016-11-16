@@ -40,7 +40,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             throw new Exception(string.Format("Illegally pressed key: <{0}>!", key));
         }
 
-        protected bool Within(int x, int y, int left, int top, int right, int bottom)
+        protected bool Within(int x, int y, int top, int bottom, int left, int right)
         {
             return x >= left && x <= right && y >= top && y <= bottom;
         }

@@ -22,7 +22,7 @@ namespace Aurora4xAutomationTests.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Aurora4xAutomationTests.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Aurora4xAutomationTests.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Aurora4xAutomationTests.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,77 @@ namespace Aurora4xAutomationTests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prodpop_categories_step1 {
+        public static System.Drawing.Bitmap button_deployescorts {
+            get {
+                object obj = ResourceManager.GetObject("button_deployescorts", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap button_fourbuttons {
+            get {
+                object obj = ResourceManager.GetObject("button_fourbuttons", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap button_oob {
+            get {
+                object obj = ResourceManager.GetObject("button_oob", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap button_openofficerswindow {
+            get {
+                object obj = ResourceManager.GetObject("button_openofficerswindow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap button_set {
+            get {
+                object obj = ResourceManager.GetObject("button_set", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap buttons_01 {
+            get {
+                object obj = ResourceManager.GetObject("buttons_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap buttons_02 {
+            get {
+                object obj = ResourceManager.GetObject("buttons_02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap prodpop_categories_step1 {
             get {
                 object obj = ResourceManager.GetObject("prodpop_categories_step1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +143,7 @@ namespace Aurora4xAutomationTests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prodpop_categories_step2 {
+        public static System.Drawing.Bitmap prodpop_categories_step2 {
             get {
                 object obj = ResourceManager.GetObject("prodpop_categories_step2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +153,7 @@ namespace Aurora4xAutomationTests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prodpop_categories_step3 {
+        public static System.Drawing.Bitmap prodpop_categories_step3 {
             get {
                 object obj = ResourceManager.GetObject("prodpop_categories_step3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +163,7 @@ namespace Aurora4xAutomationTests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prodpop_categories_step4 {
+        public static System.Drawing.Bitmap prodpop_categories_step4 {
             get {
                 object obj = ResourceManager.GetObject("prodpop_categories_step4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +173,7 @@ namespace Aurora4xAutomationTests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prodpop_empty {
+        public static System.Drawing.Bitmap prodpop_empty {
             get {
                 object obj = ResourceManager.GetObject("prodpop_empty", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +183,7 @@ namespace Aurora4xAutomationTests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prodpop_simple_step1 {
+        public static System.Drawing.Bitmap prodpop_simple_step1 {
             get {
                 object obj = ResourceManager.GetObject("prodpop_simple_step1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +193,7 @@ namespace Aurora4xAutomationTests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prodpop_simple_step2 {
+        public static System.Drawing.Bitmap prodpop_simple_step2 {
             get {
                 object obj = ResourceManager.GetObject("prodpop_simple_step2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +203,7 @@ namespace Aurora4xAutomationTests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prodpop_simple_step3 {
+        public static System.Drawing.Bitmap prodpop_simple_step3 {
             get {
                 object obj = ResourceManager.GetObject("prodpop_simple_step3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +213,7 @@ namespace Aurora4xAutomationTests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap prodpop_simple_step4 {
+        public static System.Drawing.Bitmap prodpop_simple_step4 {
             get {
                 object obj = ResourceManager.GetObject("prodpop_simple_step4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
