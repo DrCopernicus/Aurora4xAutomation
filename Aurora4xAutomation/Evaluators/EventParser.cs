@@ -1,4 +1,5 @@
-﻿using Aurora4xAutomation.Command;
+﻿using System;
+using Aurora4xAutomation.Command;
 using Aurora4xAutomation.Common;
 using Aurora4xAutomation.IO;
 using Aurora4xAutomation.IO.DB;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Aurora4xAutomation.Events;
 
 namespace Aurora4xAutomation.Evaluators
 {
@@ -29,14 +31,14 @@ namespace Aurora4xAutomation.Evaluators
             connection.Close();
         }
 
-        public bool ParseUsingEventWindow(string time)
+        public bool ParseUsingEventWindow(Time time)
         {
             UIMap.Events.MakeActive();
             UIMap.Events.TextFileButton.Click();
             Sleeper.Sleep(1500);
             var file = Settings.EventLogLocation;
             var allEvents = File.ReadAllLines(file);
-            if (!GetLatestTime(allEvents).StartsWith(time))
+            if (!Time.Within(GetLatestTime(allEvents), time, new Time{Second = 60}))
                 return false;
             var list = GetLatestEvents(allEvents).Select(IsStopEvent).ToList();
             return list.Any(x => x);
@@ -63,9 +65,9 @@ namespace Aurora4xAutomation.Evaluators
             return list;
         }
 
-        private string GetLatestTime(string[] strs)
+        private Time GetLatestTime(string[] strs)
         {
-            return strs.Last().Split(',').First();
+            return new Time(strs.Last().Split(',').First());
         }
 
         private bool IsStopEvent(string str)

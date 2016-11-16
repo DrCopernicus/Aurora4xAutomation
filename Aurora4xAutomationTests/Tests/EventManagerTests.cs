@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.Events;
 using Aurora4xAutomation.IO;
-using Aurora4xAutomation.IO.UI.Windows;
 using Aurora4xAutomation.Messages;
 using Aurora4xAutomation.Settings;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Aurora4xAutomationTests.Tests
@@ -15,111 +14,14 @@ namespace Aurora4xAutomationTests.Tests
     [TestFixture]
     public class EventManagerTests
     {
-        private class EmptyUIMap : IUIMap
-        {
-            public BaseAuroraWindow BaseAuroraWindow { get; private set; }
-            public EventWindow Events { get; private set; }
-            public CommandersWindow Leaders { get; private set; }
-            public SystemMapWindow SystemMap { get; private set; }
-            public TaskGroupsWindow TaskGroups { get; private set; }
-            public PopulationAndProductionWindow PopulationAndProduction { get; private set; }
-            public Time GetTime()
-            {
-                return new Time();
-            }
-        }
-
-        private class MessageManagerDouble : IMessageManager
-        {
-            public List<string> GetMessagesAfterId(long start, long end)
-            {
-                return _messages;
-            }
-
-            public void AddMessage(MessageType type, string message)
-            {
-                _messages.Add(message);
-            }
-
-            public long GetLastId()
-            {
-                throw new System.NotImplementedException();
-            }
-
-            private List<string> _messages = new List<string>();
-        }
-
-        private class MessageWriterEvaluator : MessageEvaluator
-        {
-            public MessageWriterEvaluator(string text, IMessageManager messages)
-                : base(text, messages)
-            {
-            }
-
-            protected override void Evaluate()
-            {
-                Messages.AddMessage(MessageType.Information, "test message");
-            }
-
-            public override string Help
-            {
-                get { throw new System.NotImplementedException(); }
-            }
-        }
-
-        private class ThrowEvaluator : Evaluator
-        {
-            public ThrowEvaluator(string text)
-                : base(text)
-            {
-            }
-
-            protected override void Evaluate()
-            {
-                throw new Exception();
-            }
-
-            public override string Help
-            {
-                get { throw new System.NotImplementedException(); }
-            }
-        }
-
-        private class SettingsStoreDouble : ISettingsStore
-        {
-            public bool Stopped { get { return true; } set {} }
-            public bool AutoTurnsOn { get { return false; } set {} }
-            public string DatabaseLocation { get; private set; }
-            public string DatabasePassword { get; private set; }
-            public string EventLogLocation { get; private set; }
-            public int RaceId { get; set; }
-            public Dictionary<string, string> Research { get; set; }
-            public Dictionary<string, Dictionary<string, string>> ResearchFocuses { get; private set; }
-            public int GameId { get; set; }
-            public IncrementLength Increment { get; set; }
-            public string GameName { get; private set; }
-        }
-
-        private class LoggerDouble : ILogger
-        {
-            public void Error(Exception e)
-            {
-                ErrorsInLog++;
-            }
-
-            public void Write(string message)
-            {
-            }
-
-            public int ErrorsInLog { get; set; }
-        }
-
         [Test]
         public void DoesNotCrashWhenStoppedWithoutBeingPreviouslyStarted()
         {
-            var messages = new MessageManagerDouble();
-            var settings = new SettingsStoreDouble();
-            var eventManager = new EventManager(new EmptyUIMap(), settings, messages);
+            var messages = Substitute.For<IMessageManager>();
+            var settings = Substitute.For<ISettingsStore>();
+            var uimap = Substitute.For<IUIMap>();
+            uimap.GetTime().Returns(new Time());
+            var eventManager = new EventManager(uimap, settings, messages);
             
             Assert.DoesNotThrow(() => eventManager.Stop());
         }
@@ -127,47 +29,55 @@ namespace Aurora4xAutomationTests.Tests
         [Test]
         public void ProcessEventsOnTimelineWithoutControlLoop()
         {
-            var messages = new MessageManagerDouble();
-            var settings = new SettingsStoreDouble();
-            var eventManager = new EventManager(new EmptyUIMap(), settings, messages);
+            var messages = Substitute.For<IMessageManager>();
+            var settings = Substitute.For<ISettingsStore>();
+            var uimap = Substitute.For<IUIMap>();
+            uimap.GetTime().Returns(new Time());
+            var eventManager = new EventManager(uimap, settings, messages);
 
-            eventManager.AddEvent(new MessageWriterEvaluator("", messages));
+            var evaluator = Substitute.For<IEvaluator>();
+            eventManager.AddEvent(evaluator);
 
-            Assert.AreEqual(0, messages.GetMessagesAfterId(-1, 100).Count);
-
+            evaluator.Received(0).Execute();
             eventManager.ActOnActiveTimelineEntries();
-
-            Assert.Contains("test message", messages.GetMessagesAfterId(-1, 100));
+            evaluator.Received(1).Execute();
         }
         
         [Test]
         public void ProcessEventsOnTimelineWithControlLoop()
         {
-            var messages = new MessageManagerDouble();
-            var settings = new SettingsStoreDouble();
-            var eventManager = new EventManager(new EmptyUIMap(), settings, messages);
+            var messages = Substitute.For<IMessageManager>();
+            var settings = Substitute.For<ISettingsStore>();
+            settings.DatabasePassword.Returns(x => null);
+            var uimap = Substitute.For<IUIMap>();
+            uimap.GetTime().Returns(new Time());
+            var eventManager = new EventManager(uimap, settings, messages);
 
-            eventManager.AddEvent(new MessageWriterEvaluator("", messages));
+            var evaluator = Substitute.For<IEvaluator>();
+            eventManager.AddEvent(evaluator);
 
-            Assert.AreEqual(0, messages.GetMessagesAfterId(-1, 100).Count);
+            evaluator.Received(0).Execute();
 
-            eventManager.Begin(new LoggerDouble());
-            
+            var logger = Substitute.For<ILogger>();
+            eventManager.Begin(logger);
             Thread.Sleep(2000);
-
             eventManager.Stop();
 
-            Assert.Contains("test message", messages.GetMessagesAfterId(-1, 100));
+            evaluator.Received(1).Execute();
         }
 
         [Test]
         public void ExceptionsCanPercolateFromEvaluatorsToEventManager()
         {
-            var messages = new MessageManagerDouble();
-            var settings = new SettingsStoreDouble();
-            var eventManager = new EventManager(new EmptyUIMap(), settings, messages);
+            var messages = Substitute.For<IMessageManager>();
+            var settings = Substitute.For<ISettingsStore>();
+            var uimap = Substitute.For<IUIMap>();
+            uimap.GetTime().Returns(new Time());
+            var eventManager = new EventManager(uimap, settings, messages);
 
-            eventManager.AddEvent(new ThrowEvaluator(""));
+            var evaluator = Substitute.For<IEvaluator>();
+            evaluator.When(x => x.Execute()).Do(x => { throw new Exception(); });
+            eventManager.AddEvent(evaluator);
 
             Assert.Throws<Exception>(() => eventManager.ActOnActiveTimelineEntries());
         }
@@ -175,19 +85,22 @@ namespace Aurora4xAutomationTests.Tests
         [Test]
         public void ExceptionsAreContainedInEventManagerControlLoop()
         {
-            var messages = new MessageManagerDouble();
-            var settings = new SettingsStoreDouble();
-            var eventManager = new EventManager(new EmptyUIMap(), settings, messages);
+            var messages = Substitute.For<IMessageManager>();
+            var settings = Substitute.For<ISettingsStore>();
+            var uimap = Substitute.For<IUIMap>();
+            uimap.GetTime().Returns(new Time());
+            var eventManager = new EventManager(uimap, settings, messages);
 
-            eventManager.AddEvent(new ThrowEvaluator(""));
-            
-            var handler = new LoggerDouble();
+            var evaluator = Substitute.For<IEvaluator>();
+            evaluator.When(x => x.Execute()).Do(x => { throw new Exception(); });
+            eventManager.AddEvent(evaluator);
 
-            eventManager.Begin(handler);
+            var logger = Substitute.For<ILogger>();
+            eventManager.Begin(logger);
             Thread.Sleep(2000);
             eventManager.Stop();
 
-            Assert.AreEqual(1, handler.ErrorsInLog);
+            logger.Received(1).Error(Arg.Any<Exception>());
         }
     }
 }

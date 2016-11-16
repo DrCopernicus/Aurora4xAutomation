@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.Messages;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace Aurora4xAutomationTests.Tests.EvaluatorTests
@@ -10,72 +11,52 @@ namespace Aurora4xAutomationTests.Tests.EvaluatorTests
     [TestFixture]
     public class LogEvaluatorTests
     {
-        private class MessageManagerDouble : IMessageManager
-        {
-            private readonly List<string> _messages = new List<string>();
-
-            public List<string> GetMessagesAfterId(long start, long end)
-            {
-                return _messages;
-            }
-
-            public void AddMessage(MessageType type, string message)
-            {
-                _messages.Add(message);
-            }
-
-            public long GetLastId()
-            {
-                throw new NotImplementedException();
-            }
-        }
-
         [Test]
         public void WritesDebugMessages()
         {
-            var messages = new MessageManagerDouble();
+            var messages = Substitute.For<IMessageManager>();
             var log = new LogEvaluator("log", messages);
             new EvaluatorParameterizer().SetParameters(log, MessageType.Debug, "debug message");
 
             log.Execute();
 
-            Assert.AreEqual(1, messages.GetMessagesAfterId(-1, 100).Count);
+            messages.Received(1).AddMessage(MessageType.Debug, "debug message");
         }
 
         [Test]
         public void WritesInfoMessages()
         {
-            var messages = new MessageManagerDouble();
+            var messages = Substitute.For<IMessageManager>();
             var log = new LogEvaluator("log", messages);
             new EvaluatorParameterizer().SetParameters(log, MessageType.Information, "information message");
 
             log.Execute();
 
-            Assert.AreEqual(1, messages.GetMessagesAfterId(-1, 100).Count);
+            messages.Received(1).AddMessage(MessageType.Information, "information message");
         }
 
         [Test]
         public void WritesWarningMessages()
         {
-            var messages = new MessageManagerDouble();
+            var messages = Substitute.For<IMessageManager>();
             var log = new LogEvaluator("log", messages);
             new EvaluatorParameterizer().SetParameters(log, MessageType.Warning, "warning message");
 
             log.Execute();
 
-            Assert.AreEqual(1, messages.GetMessagesAfterId(-1, 100).Count);
+            messages.Received(1).AddMessage(MessageType.Warning, "warning message");
         }
 
         [Test]
         public void WritesErrorMessages()
         {
-            var messages = new MessageManagerDouble();
+            var messages = Substitute.For<IMessageManager>();
             var log = new LogEvaluator("log", messages);
             new EvaluatorParameterizer().SetParameters(log, MessageType.Error, "error message");
 
             log.Execute();
 
-            Assert.AreEqual(1, messages.GetMessagesAfterId(-1, 100).Count);
+            messages.Received(1).AddMessage(MessageType.Error, "error message");
         }
     }
 }

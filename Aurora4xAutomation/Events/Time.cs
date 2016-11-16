@@ -208,5 +208,10 @@ namespace Aurora4xAutomation.Events
         {
             return this == (Time) obj;
         }
+
+        public static bool Within(Time left, Time right, Time difference)
+        {
+            return left + difference >= right && right + difference >= left;
+        }
     }
 }

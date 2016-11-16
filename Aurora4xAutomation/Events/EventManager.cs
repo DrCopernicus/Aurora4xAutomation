@@ -100,7 +100,7 @@ namespace Aurora4xAutomation.Events
             log.Execute();
 
             if (Settings.DatabasePassword == null)
-                new EventParser(UIMap, Settings).ParseUsingEventWindow(UIMap.SystemMap.GetTime());
+                new EventParser(UIMap, Settings).ParseUsingEventWindow(UIMap.GetTime());
             else
                 new EventParser(UIMap, Settings).ParseUsingDatabase();
         }
