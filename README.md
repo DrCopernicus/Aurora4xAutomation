@@ -5,7 +5,7 @@ Originally built in response to the "Shipping company xyz just made freighter 78
 
 Can access the database, but you'll need the password. No, I will not give you the password.
 
-This software actively clicks on the screen, moves around windows, and does all sorts of other crazy stuff. You will need to run it in adminstrator mode. You may or may not need to play using the Aurora wrapper. You will need to have your selected game open (it won't figure that out for you, yet). I'm sure theres a million other environment specific issues you can run into. I like to run Aurora in a virtual machine as a server, and then access it from a client on the host machine.
+This software actively clicks on the screen, moves around windows, and does all sorts of other crazy stuff. You will need to run it in adminstrator mode. You may or may not need to play using the Aurora wrapper. You will need to have your selected game open (it won't figure that out for you, yet). I'm sure theres a million other environment specific issues you can run into. I like to run Aurora in a virtual machine with the server, and then run the client on my host machine.
 
 ## Roadmap
 
