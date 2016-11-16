@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Aurora4xAutomation.IO.OCR;
+﻿using Aurora4xAutomation.IO.OCR;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Aurora4xAutomationTests.Tests.OCR
 {
     [TestFixture]
-    public class OCRIntegration
+    public class OCRByteArrayTests
     {
         [Test]
         public void ReadsOneCharacter()

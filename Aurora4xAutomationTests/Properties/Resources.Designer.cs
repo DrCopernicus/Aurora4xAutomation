@@ -133,6 +133,96 @@ namespace Aurora4xAutomationTests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap ocr_blackwhitenoise {
+            get {
+                object obj = ResourceManager.GetObject("ocr_blackwhitenoise", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ocr_CivilianMiningColonies {
+            get {
+                object obj = ResourceManager.GetObject("ocr_CivilianMiningColonies", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ocr_Demand {
+            get {
+                object obj = ResourceManager.GetObject("ocr_Demand", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ocr_InstallationType {
+            get {
+                object obj = ResourceManager.GetObject("ocr_InstallationType", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ocr_ManageShipyards {
+            get {
+                object obj = ResourceManager.GetObject("ocr_ManageShipyards", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ocr_MannedMines {
+            get {
+                object obj = ResourceManager.GetObject("ocr_MannedMines", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ocr_ones {
+            get {
+                object obj = ResourceManager.GetObject("ocr_ones", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ocr_onesclean {
+            get {
+                object obj = ResourceManager.GetObject("ocr_onesclean", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ocr_TerraformingInstallations {
+            get {
+                object obj = ResourceManager.GetObject("ocr_TerraformingInstallations", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap prodpop_categories_step1 {
             get {
                 object obj = ResourceManager.GetObject("prodpop_categories_step1", resourceCulture);

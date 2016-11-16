@@ -100,7 +100,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
 
             var treelist = new TreeList(screen, inputDevice, ocrReader, 0, 707, 0, 340);
 
-            Assert.AreEqual("+PopulatedSstems\n+AutomatedMiningColonies\n+CivilianMiningColonies\n+ListeningPosts\n+ArcheologicalDigs\n+TerraformingSites\n+OtherColonies\n", treelist.Text);
+            Assert.AreEqual("+PopulatedSystems\n+AutomatedMiningColonies\n+CivilianMiningColonies\n+ListeningPosts\n+ArcheologicalDigs\n+TerraformingSites\n+OtherColonies\n", treelist.Text);
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
 
             var treelist = new TreeList(screen, inputDevice, ocrReader, 0, 707, 0, 340);
 
-            Assert.AreEqual("+PopulatedSstems\n +Sol(500m)\n  +Earth-Human(Capital):500m\n", treelist.Text);
+            Assert.AreEqual("+PopulatedSystems\n +Sol(500m)\n  +Earth-Human(Capital):500m\n", treelist.Text);
         }
     }
 }

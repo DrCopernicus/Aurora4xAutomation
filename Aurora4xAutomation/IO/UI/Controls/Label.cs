@@ -13,7 +13,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
         public Label(IScreenObject parent, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int left, int right)
             : base(parent, inputDevice, top, bottom, left, right)
         {
-            CharacterHeight = 9;
+            CharacterHeight = 11;
             CharacterOffset = 0;
             Colors = new[] { new byte[] { 0, 0, 0 } };
             OCR = ocr;
@@ -22,7 +22,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
         public Label(IScreen screen, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int left, int right)
             : base(screen, inputDevice, top, bottom, left, right)
         {
-            CharacterHeight = 9;
+            CharacterHeight = 11;
             CharacterOffset = 0;
             Colors = new[] { new byte[] { 0, 0, 0 } };
             OCR = ocr;

@@ -172,4 +172,31 @@
   <data name="window_civiliantab_supply" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\window_civiliantab.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ocr_blackwhitenoise" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ocr_blackwhitenoise.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ocr_CivilianMiningColonies" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ocr_CivilianMiningColonies.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ocr_Demand" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ocr_Demand.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ocr_InstallationType" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ocr_InstallationType.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ocr_ManageShipyards" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ocr_ManageShipyards.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ocr_MannedMines" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ocr_MannedMines.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ocr_ones" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ocr_ones.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ocr_onesclean" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ocr_onesclean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ocr_TerraformingInstallations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ocr_TerraformingInstallations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

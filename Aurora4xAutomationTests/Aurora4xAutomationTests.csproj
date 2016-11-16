@@ -82,9 +82,9 @@
     <Compile Include="Tests\LexerTests.cs" />
     <Compile Include="Tests\ListTests.cs" />
     <Compile Include="Tests\Messages\MessageManagerTests.cs" />
-    <Compile Include="Tests\OCR\OCRIntegration.cs" />
+    <Compile Include="Tests\OCR\OCRByteArrayTests.cs" />
     <Compile Include="Tests\OCR\OCRSplitterTests.cs" />
-    <Compile Include="Tests\OCR\OCRTests.cs" />
+    <Compile Include="Tests\OCR\OCRBitmapTests.cs" />
     <Compile Include="Tests\ParserTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />
     <Compile Include="Tests\TimelineTests.cs" />
@@ -113,7 +113,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Tests\ScreenTests\" />
+    <None Include="Resources\ocr_blackwhitenoise.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\prodpop-categories-step1.png" />
@@ -175,6 +175,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\window_civiliantab_demand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ocr_ones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tests\ScreenTests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ocr_onesclean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ocr_Demand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ocr_MannedMines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ocr_CivilianMiningColonies.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ocr_InstallationType.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ocr_ManageShipyards.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ocr_TerraformingInstallations.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

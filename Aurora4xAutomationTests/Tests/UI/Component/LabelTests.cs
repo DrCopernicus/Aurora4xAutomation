@@ -28,7 +28,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             var ocrReader = new OCRReader(new OCRSplitter());
 
             var label = new Label(screen, inputDevice, ocrReader, 183, 193, 412, 488);
-            Assert.AreEqual("InstallationType", label.Text);
+            Assert.AreEqual("lnstallationType", label.Text);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             var ocrReader = new OCRReader(new OCRSplitter());
 
             var label = new Label(screen, inputDevice, ocrReader, 183, 200, 412, 488);
-            Assert.AreEqual("InstallationType", label.Text);
+            Assert.AreEqual("lnstallationType", label.Text);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             var ocrReader = new OCRReader(new OCRSplitter());
 
             var label = new Label(screen, inputDevice, ocrReader, 183, 193, 406, 495);
-            Assert.AreEqual("InstallationType", label.Text);
+            Assert.AreEqual("lnstallationType", label.Text);
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             var ocrReader = new OCRReader(new OCRSplitter());
 
             var label = new Label(screen, inputDevice, ocrReader, 183, 200, 406, 495);
-            Assert.AreEqual("InstallationType", label.Text);
+            Assert.AreEqual("lnstallationType", label.Text);
         }
     }
 }

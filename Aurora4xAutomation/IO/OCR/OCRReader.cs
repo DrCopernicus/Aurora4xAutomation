@@ -293,6 +293,17 @@ namespace Aurora4xAutomation.IO.OCR
                            "xxxx \n" +
                            "x    \n" +
                            "x    ")},
+            {"py", MakeChar("          \n" +
+                            "          \n" +
+                            "          \n" +
+                            "xxxx  x  x\n" +
+                            "x   x x  x\n" +
+                            "x   x x  x\n" +
+                            "x   x x  x\n" +
+                            "x   x  xx \n" +
+                            "xxxx   x  \n" +
+                            "x      x  \n" +
+                            "x    xx   ")},
             {"q", MakeChar("     \n" +
                            "     \n" +
                            "     \n" +
@@ -381,17 +392,17 @@ namespace Aurora4xAutomation.IO.OCR
                            "x  x\n" +
                            "    \n" +
                            "    ")},
-            {"y", MakeChar("    \n" +
-                           "    \n" +
-                           "    \n" +
-                           "x  x\n" +
-                           "x  x\n" +
-                           "x  x\n" +
-                           "x  x\n" +
-                           " xx \n" +
-                           " x  \n" +
-                           " x  \n" +
-                           "x   ")},
+            {"y", MakeChar("     \n" +
+                           "     \n" +
+                           "     \n" +
+                           " x  x\n" +
+                           " x  x\n" +
+                           " x  x\n" +
+                           " x  x\n" +
+                           "  xx \n" +
+                           "  x  \n" +
+                           "  x  \n" +
+                           "xx   ")},
             {"ly", MakeChar("x     \n" +
                             "x     \n" +
                             "x     \n" +
