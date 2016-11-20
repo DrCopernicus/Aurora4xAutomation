@@ -1,93 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using WindowsInput.Native;
-using Aurora4xAutomation.IO;
+﻿using Aurora4xAutomation.IO;
 using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.IO.UI.Controls;
 using Aurora4xAutomation.IO.UI.Display;
+using NSubstitute;
 using NUnit.Framework;
+using System.Drawing;
+using WindowsInput.Native;
 
 namespace Aurora4xAutomationTests.Tests.UI
 {
     [TestFixture]
     public class ControlPositioningTests
     {
-        private class WindowDouble : IScreenObject
+        private IScreenObject GetWindow()
         {
-            public void PressKeys(string text)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public IScreen Screen { get; private set; }
-            public IInputDevice InputDevice { get; private set; }
-
-            public Color GetPixel(int x, int y)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public void Click()
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public void Click(int x, int y, int wait)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public void PressKey(VirtualKeyCode key)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public int Top { get; private set; }
-            public int Bottom { get; private set; }
-            public int Left { get; private set; }
-            public int Right { get; private set; }
-
-            public WindowDouble(int top, int bottom, int left, int right)
-            {
-                Top = top;
-                Bottom = bottom;
-                Left = left;
-                Right = right;
-            }
-        }
-
-        private class TestInputDevice : IInputDevice
-        {
-            public void Click(int x, int y, int wait)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public void SendKeys(string text)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public void PressKey(VirtualKeyCode key)
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        private class TestOCRReader : IOCRReader
-        {
-            public string ReadTableRow(byte[,] pixels, Dictionary<string, byte[,]> alphabet)
-            {
-                throw new NotImplementedException();
-            }
+            var window = Substitute.For<IScreenObject>();
+            window.Top.Returns(10);
+            window.Bottom.Returns(110);
+            window.Left.Returns(10);
+            window.Right.Returns(110);
+            return window;
         }
 
         [Test]
         public void TestGenericControlCorrectLocation()
         {
-            var window = new WindowDouble(10, 110, 10, 110);
-            var control = new Control(window, new TestInputDevice(), 10, 30, 10, 50);
+            var control = new Control(GetWindow(), Substitute.For<IInputDevice>(), 10, 30, 10, 50);
 
             Assert.AreEqual(20, control.Top);
             Assert.AreEqual(40, control.Bottom);
@@ -98,8 +36,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void TestButtonCorrectLocation()
         {
-            var window = new WindowDouble(10, 110, 10, 110);
-            var control = new Button(window, new TestInputDevice(), 20, 40, 20, 60);
+            var control = new Button(GetWindow(), Substitute.For<IInputDevice>(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
@@ -110,8 +47,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void TestComboboxCorrectLocation()
         {
-            var window = new WindowDouble(10, 110, 10, 110);
-            var control = new Combobox(window, new TestInputDevice(), new TestOCRReader(), 20, 40, 20, 60);
+            var control = new Combobox(GetWindow(), Substitute.For<IInputDevice>(), Substitute.For<IOCRReader>(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
@@ -122,8 +58,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void TestDataGridCorrectLocation()
         {
-            var window = new WindowDouble(10, 110, 10, 110);
-            var control = new Datagrid(window, new TestInputDevice(), new TestOCRReader(), 20, 40, 20, 60);
+            var control = new Datagrid(GetWindow(), Substitute.For<IInputDevice>(), Substitute.For<IOCRReader>(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
@@ -134,8 +69,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void TestLabelCorrectLocation()
         {
-            var window = new WindowDouble(10, 110, 10, 110);
-            var control = new Label(window, new TestInputDevice(), new TestOCRReader(), 20, 40, 20, 60);
+            var control = new Label(GetWindow(), Substitute.For<IInputDevice>(), Substitute.For<IOCRReader>(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
@@ -146,8 +80,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void TestRadioButtonCorrectLocation()
         {
-            var window = new WindowDouble(10, 110, 10, 110);
-            var control = new RadioButton(window, new TestInputDevice(), 20, 40, 20, 60);
+            var control = new RadioButton(GetWindow(), Substitute.For<IInputDevice>(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
@@ -158,8 +91,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void TestTextboxCorrectLocation()
         {
-            var window = new WindowDouble(10, 110, 10, 110);
-            var control = new Textbox(window, new TestInputDevice(), new TestOCRReader(), 20, 40, 20, 60);
+            var control = new Textbox(GetWindow(), Substitute.For<IInputDevice>(), Substitute.For<IOCRReader>(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
@@ -170,8 +102,7 @@ namespace Aurora4xAutomationTests.Tests.UI
         [Test]
         public void TestTreeListCorrectLocation()
         {
-            var window = new WindowDouble(10, 110, 10, 110);
-            var control = new TreeList(window, new TestInputDevice(), new TestOCRReader(), 20, 40, 20, 60);
+            var control = new TreeList(GetWindow(), Substitute.For<IInputDevice>(), Substitute.For<IOCRReader>(), 20, 40, 20, 60);
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);
