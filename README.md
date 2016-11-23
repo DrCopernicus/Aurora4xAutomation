@@ -9,7 +9,6 @@ This software actively clicks on the screen, moves around windows, and does all 
 
 ## Roadmap
 
-* Clean up current UI component tests, preferably making a scripting system so I can script which screen image shows up next.
 * Integration test cases for the rest of the UI components.
 * Use what I learned from the above to implement NSubstitute schenanigans on all my other test cases.
 * Hopefully use the aforementioned scripting system to test the evaluators.
