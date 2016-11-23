@@ -3,7 +3,7 @@ using Aurora4xAutomation.Evaluators.Factories;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Aurora4xAutomationTests.Tests.EvaluatorTests
+namespace Aurora4xAutomationTests.Tests.EvaluatorTests.Factories
 {
     [TestFixture]
     public class EvaluatorParamaterizerTests

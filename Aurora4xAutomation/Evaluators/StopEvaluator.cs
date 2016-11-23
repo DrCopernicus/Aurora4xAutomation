@@ -1,6 +1,4 @@
-﻿using System;
-using Aurora4xAutomation.Common;
-using Aurora4xAutomation.Common.Exceptions;
+﻿using Aurora4xAutomation.Common.Exceptions;
 using Aurora4xAutomation.Settings;
 
 namespace Aurora4xAutomation.Evaluators
@@ -15,14 +13,14 @@ namespace Aurora4xAutomation.Evaluators
         protected override void Evaluate()
         {
             if (Parameters.Count != 0)
-                throw new TooManyParametersException(0, Parameters.Count, Text);
+                throw new WrongParameterCountException(0, Parameters.Count, Text);
 
             Settings.Stopped = true;
         }
 
         public override string Help
         {
-            get { throw new NotImplementedException(); }
+            get { return "stop: Stops the advancement of turns. Identical to \"adv go\"."; }
         }
     }
 }

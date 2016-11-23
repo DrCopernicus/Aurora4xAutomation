@@ -51,5 +51,14 @@ namespace Aurora4xAutomationTests.Tests.EvaluatorTests
 
             Assert.Throws<Exception>(() => helpEvaluator.Execute());
         }
+
+        [Test]
+        public void HasHelpText()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                var x = new HelpEvaluator("", Substitute.For<IMessageManager>()).Help;
+            });
+        }
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Aurora4xAutomation.Evaluators.Factories;
+﻿using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.Messages;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Aurora4xAutomationTests.Tests.EvaluatorTests
+namespace Aurora4xAutomationTests.Tests.EvaluatorTests.Message
 {
     [TestFixture]
     public class LogEvaluatorTests
@@ -57,6 +55,15 @@ namespace Aurora4xAutomationTests.Tests.EvaluatorTests
             log.Execute();
 
             messages.Received(1).AddMessage(MessageType.Error, "error message");
+        }
+
+        [Test]
+        public void HasHelpText()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                var x = new LogEvaluator("", Substitute.For<IMessageManager>()).Help;
+            });
         }
     }
 }

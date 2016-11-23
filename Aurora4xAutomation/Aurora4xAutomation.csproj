@@ -72,7 +72,7 @@
   <ItemGroup>
     <Compile Include="Automation\CommandFlowManager.cs" />
     <Compile Include="Common\Args.cs" />
-    <Compile Include="Common\Exceptions\TooManyParametersException.cs" />
+    <Compile Include="Common\Exceptions\WrongParameterCountException.cs" />
     <Compile Include="Common\Converters\MessageTypeConverter.cs" />
     <Compile Include="Common\Exceptions\WindowNotFoundException.cs" />
     <Compile Include="Common\ISleeper.cs" />

@@ -21,7 +21,7 @@ namespace Aurora4xAutomation.Evaluators.Message
 
         public override string Help
         {
-            get { throw new NotImplementedException(); }
+            get { return "print <message>: Adds <message> with the \"info\" tag."; }
         }
     }
 }

@@ -2,33 +2,18 @@
 using Aurora4xAutomation.Evaluators;
 using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.Settings;
+using NSubstitute;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace Aurora4xAutomationTests.Tests.EvaluatorTests
 {
     [TestFixture]
     public class StopEvaluatorTests
     {
-        private class TestSettingsStore : ISettingsStore
-        {
-            public bool Stopped { get; set; }
-            public bool AutoTurnsOn { get; set; }
-            public string DatabaseLocation { get; private set; }
-            public string DatabasePassword { get; private set; }
-            public string EventLogLocation { get; private set; }
-            public int RaceId { get; set; }
-            public Dictionary<string, string> Research { get; set; }
-            public Dictionary<string, Dictionary<string, string>> ResearchFocuses { get; private set; }
-            public int GameId { get; set; }
-            public IncrementLength Increment { get; set; }
-            public string GameName { get; private set; }
-        }
-
         [Test]
         public void SetsTheStoppedFlagToTrue()
         {
-            var settings = new TestSettingsStore();
+            var settings = Substitute.For<ISettingsStore>();
             settings.Stopped = false;
             var evaluator = new StopEvaluator("evaluator", settings);
 
@@ -40,7 +25,7 @@ namespace Aurora4xAutomationTests.Tests.EvaluatorTests
         [Test]
         public void KeepsTheStoppedFlagAsTrue()
         {
-            var settings = new TestSettingsStore();
+            var settings = Substitute.For<ISettingsStore>();
             settings.Stopped = true;
             var evaluator = new StopEvaluator("evaluator", settings);
 
@@ -52,12 +37,21 @@ namespace Aurora4xAutomationTests.Tests.EvaluatorTests
         [Test]
         public void ThrowsIfAnyParameters()
         {
-            var settings = new TestSettingsStore();
+            var settings = Substitute.For<ISettingsStore>();
             settings.Stopped = true;
             var evaluator = new StopEvaluator("evaluator", settings);
             new EvaluatorParameterizer().SetParameters(evaluator, true);
             
-            Assert.Throws<TooManyParametersException>(() => evaluator.Execute());
+            Assert.Throws<WrongParameterCountException>(() => evaluator.Execute());
+        }
+
+        [Test]
+        public void HasHelpText()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                var x = new StopEvaluator("", Substitute.For<ISettingsStore>()).Help;
+            });
         }
     }
 }

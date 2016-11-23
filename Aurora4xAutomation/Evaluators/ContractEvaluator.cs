@@ -1,9 +1,8 @@
 ﻿using Aurora4xAutomation.Command;
-using Aurora4xAutomation.Common;
+using Aurora4xAutomation.Common.Exceptions;
 using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.IO;
 using System;
-using Aurora4xAutomation.Common.Exceptions;
 
 namespace Aurora4xAutomation.Evaluators
 {
@@ -23,8 +22,8 @@ namespace Aurora4xAutomation.Evaluators
             new OpenCommands(UIMap).SelectColony(Parameters[0]);
             UIMap.PopulationAndProduction.MakeActive();
             UIMap.PopulationAndProduction.SelectCivilianTab();
-            UIMap.PopulationAndProduction.InstallationType.Text = Parameters[1];
-            UIMap.PopulationAndProduction.ContractAmount.Text = Parameters[2];
+            UIMap.PopulationAndProduction.ContractAmount.Text = Parameters[1];
+            UIMap.PopulationAndProduction.InstallationType.Text = Parameters[2];
             if (IsSupplyContract(Parameters[3]))
                 UIMap.PopulationAndProduction.CivilianContractSupply.Select();
             else
@@ -44,16 +43,23 @@ namespace Aurora4xAutomation.Evaluators
             return parameter == "s" || parameter == "supply";
         }
 
-        public static ContractEvaluator SupplyContract(IUIMap uiMap, string population, string installation, int amount, bool supply)
+        public static ContractEvaluator SupplyContract(IUIMap uiMap, string population, string installation, int amount)
         {
             var evaluator = new ContractEvaluator("contract", uiMap);
-            new EvaluatorParameterizer().SetParameters(evaluator, population, installation, amount, supply);
+            new EvaluatorParameterizer().SetParameters(evaluator, population, amount, installation, true);
+            return evaluator;
+        }
+
+        public static ContractEvaluator DemandContract(IUIMap uiMap, string population, string installation, int amount)
+        {
+            var evaluator = new ContractEvaluator("contract", uiMap);
+            new EvaluatorParameterizer().SetParameters(evaluator, population, amount, installation, false);
             return evaluator;
         }
 
         public override string Help
         {
-            get { throw new NotImplementedException(); }
+            get { return "contract <colony> <amount> <installation> (s|d|supply|demand|true|false): Create a supply or demand contract on <colony> for <amount> units of <installation>."; }
         }
     }
 }

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using Aurora4xAutomation.Evaluators.Factories;
 using Aurora4xAutomation.Evaluators.Message;
 using Aurora4xAutomation.Messages;
+using NSubstitute;
 using NUnit.Framework;
 
-namespace Aurora4xAutomationTests.Tests.EvaluatorTests
+namespace Aurora4xAutomationTests.Tests.EvaluatorTests.Message
 {
     [TestFixture]
     public class PrintEvaluatorTests
@@ -43,5 +44,13 @@ namespace Aurora4xAutomationTests.Tests.EvaluatorTests
             Assert.AreEqual("parameter", messages.GetMessagesAfterId(-1, 100)[0]);
         }
 
+        [Test]
+        public void HasHelpText()
+        {
+            Assert.DoesNotThrow(() =>
+            {
+                var x = new PrintEvaluator("", Substitute.For<IMessageManager>()).Help;
+            });
+        }
     }
 }

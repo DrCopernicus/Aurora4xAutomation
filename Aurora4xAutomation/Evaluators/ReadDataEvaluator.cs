@@ -1,5 +1,4 @@
 ﻿using Aurora4xAutomation.Command;
-using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Common.Exceptions;
 using Aurora4xAutomation.IO;
 

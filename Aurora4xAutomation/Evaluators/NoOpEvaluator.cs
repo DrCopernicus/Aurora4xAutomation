@@ -14,7 +14,7 @@
 
         public override string Help
         {
-            get { return "noop: does nothing."; }
+            get { return "noop: Does nothing."; }
         }
     }
 }

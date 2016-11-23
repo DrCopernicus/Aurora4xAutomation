@@ -1,6 +1,5 @@
-﻿using System;
-using Aurora4xAutomation.Evaluators.Factories;
-using Aurora4xAutomation.IO;
+﻿using Aurora4xAutomation.IO;
+using System;
 
 namespace Aurora4xAutomation.Evaluators
 {
@@ -17,11 +16,8 @@ namespace Aurora4xAutomation.Evaluators
                 throw new Exception(string.Format("Expected 4 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            var supplyContract = new ContractEvaluator("move", UIMap);
-            new EvaluatorParameterizer().SetParameters(supplyContract, Parameters[0], Parameters[2], Parameters[3], true);
-
-            var demandContract = new ContractEvaluator("move", UIMap);
-            new EvaluatorParameterizer().SetParameters(demandContract, Parameters[1], Parameters[2], Parameters[3], false);
+            var supplyContract = ContractEvaluator.SupplyContract(UIMap, Parameters[0], Parameters[3], Convert.ToInt32(Parameters[2]));
+            var demandContract = ContractEvaluator.DemandContract(UIMap, Parameters[1], Parameters[3], Convert.ToInt32(Parameters[2]));
 
             supplyContract.Execute();
             demandContract.Execute();
@@ -29,7 +25,7 @@ namespace Aurora4xAutomation.Evaluators
 
         public override string Help
         {
-            get { throw new NotImplementedException(); }
+            get { return "move <from colony> <to colony> <amount> <installation>: Creates a supply contract on <from colony> and a demand contract on <to colony> for <amount> units of <installation>."; }
         }
     }
 }
