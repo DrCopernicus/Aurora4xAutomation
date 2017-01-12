@@ -66,6 +66,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ScriptFramework\AcceptableInputs\AcceptableClick.cs" />
+    <Compile Include="ScriptFramework\AcceptableInputs\AcceptableKeys.cs" />
+    <Compile Include="ScriptFramework\ScriptedInputs\IScriptedInput.cs" />
+    <Compile Include="ScriptFramework\AcceptableInputs\IAcceptableInput.cs" />
+    <Compile Include="ScriptFramework\ScriptableState.cs" />
+    <Compile Include="ScriptFramework\ScriptedInputs\ScriptedClick.cs" />
+    <Compile Include="ScriptFramework\ScriptedInputs\ScriptedKeys.cs" />
     <Compile Include="Tests\ClientTests\CommandSenderTests.cs" />
     <Compile Include="Tests\ClientTests\ConnectionCreatorTests.cs" />
     <Compile Include="Tests\ClientTests\ServerMessageRetrieverTests.cs" />
@@ -91,13 +98,16 @@
     <Compile Include="Tests\OCR\OCRBitmapTests.cs" />
     <Compile Include="Tests\ParserTests.cs" />
     <Compile Include="Tests\Sandbox.cs" />
+    <Compile Include="Tests\ScriptFrameworkTests\AcceptableClickTests.cs" />
+    <Compile Include="Tests\ScriptFrameworkTests\AcceptableKeysTests.cs" />
+    <Compile Include="Tests\ScriptFrameworkTests\ScriptableStateTests.cs" />
     <Compile Include="Tests\TimelineTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
     <Compile Include="Tests\UI\ClickingTests.cs" />
     <Compile Include="Tests\UI\Component\LabelTests.cs" />
     <Compile Include="Tests\UI\Component\RadioButtonTests.cs" />
     <Compile Include="Tests\UI\Component\ButtonTests.cs" />
-    <Compile Include="Tests\UI\Component\HijackableInputDevice.cs" />
+    <Compile Include="ScriptFramework\HijackableInputDevice.cs" />
     <Compile Include="Tests\UI\ControlPositioningTests.cs" />
     <Compile Include="Tests\UI\PixelTests.cs" />
     <Compile Include="Tests\UI\Component\TreeListTests.cs" />

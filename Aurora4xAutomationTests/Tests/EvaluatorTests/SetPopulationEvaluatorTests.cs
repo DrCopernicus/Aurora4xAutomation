@@ -9,6 +9,12 @@ namespace Aurora4xAutomationTests.Tests.EvaluatorTests
     public class SetPopulationEvaluatorTests
     {
         [Test]
+        public void SetsMiningDestination()
+        {
+            
+        }
+
+        [Test]
         public void HasHelpText()
         {
             Assert.DoesNotThrow(() =>

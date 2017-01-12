@@ -1,10 +1,11 @@
 ﻿using Aurora4xAutomation.IO.UI;
 using Aurora4xAutomation.IO.UI.Display;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using WindowsInput.Native;
 
-namespace Aurora4xAutomationTests.Tests.UI.Component
+namespace Aurora4xAutomationTests.ScriptFramework
 {
     public class HijackableScreenShotCapturer : IScreenshotCapturer
     {
@@ -19,10 +20,12 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
     public abstract class HijackableInputDevice : IInputDevice
     {
         protected HijackableScreenShotCapturer Screenshot { get; private set; }
+        protected List<ScriptableState> States { get; private set; }
 
         protected HijackableInputDevice(HijackableScreenShotCapturer screenshot)
         {
             Screenshot = screenshot;
+            States = new List<ScriptableState>();
         }
 
         public virtual void Click(int x, int y, int wait)
