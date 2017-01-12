@@ -15,7 +15,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             public EmptyViewInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
-                Screenshot.CurrentScreen = Properties.Resources.prodpop_empty;
+                SetScreen(Properties.Resources.prodpop_empty);
             }
         }
 
@@ -27,7 +27,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             public CategoriesViewInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
-                Screenshot.CurrentScreen = Properties.Resources.prodpop_categories_step1;
+                SetScreen(Properties.Resources.prodpop_categories_step1);
             }
 
             public override void Click(int x, int y, int wait)
@@ -40,11 +40,11 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
                     base.Click(x, y, wait);
 
                 if (_populatedSystemsExpanded && _solExpanded)
-                    Screenshot.CurrentScreen = Properties.Resources.prodpop_categories_step4;
+                    SetScreen(Properties.Resources.prodpop_categories_step4);
                 if (_populatedSystemsExpanded && !_solExpanded)
-                    Screenshot.CurrentScreen = Properties.Resources.prodpop_categories_step3;
+                    SetScreen(Properties.Resources.prodpop_categories_step3);
                 if (!_populatedSystemsExpanded)
-                    Screenshot.CurrentScreen = Properties.Resources.prodpop_categories_step2;
+                    SetScreen(Properties.Resources.prodpop_categories_step2);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             public SimpleViewInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
-                Screenshot.CurrentScreen = Properties.Resources.prodpop_simple_step1;
+                SetScreen(Properties.Resources.prodpop_simple_step1);
             }
 
             public override void Click(int x, int y, int wait)
@@ -69,11 +69,11 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
                     base.Click(x, y, wait);
 
                 if (_populatedSystemsExpanded && _solExpanded)
-                    Screenshot.CurrentScreen = Properties.Resources.prodpop_simple_step4;
+                    SetScreen(Properties.Resources.prodpop_simple_step4);
                 if (_populatedSystemsExpanded && !_solExpanded)
-                    Screenshot.CurrentScreen = Properties.Resources.prodpop_simple_step3;
+                    SetScreen(Properties.Resources.prodpop_simple_step3);
                 if (!_populatedSystemsExpanded)
-                    Screenshot.CurrentScreen = Properties.Resources.prodpop_simple_step2;
+                    SetScreen(Properties.Resources.prodpop_simple_step2);
             }
         }
 

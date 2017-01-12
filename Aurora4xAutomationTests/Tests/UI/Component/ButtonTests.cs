@@ -14,13 +14,15 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             public SetButtonInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
-                Screenshot.CurrentScreen = Properties.Resources.button_set;
+                SetScreen(Properties.Resources.button_set);
             }
 
             public override void Click(int x, int y, int wait)
             {
-                if (!Within(x, y, 0, 24, 0, 39))
-                    base.Click(x, y, wait);
+                if (Within(x, y, 0, 24, 0, 39))
+                    return;
+
+                base.Click(x, y, wait);
             }
         }
 
@@ -29,13 +31,15 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             public DeployEscortsButtonInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
-                Screenshot.CurrentScreen = Properties.Resources.button_deployescorts;
+                SetScreen(Properties.Resources.button_deployescorts);
             }
 
             public override void Click(int x, int y, int wait)
             {
-                if (!Within(x, y, 7, 31, 13, 93))
-                    base.Click(x, y, wait);
+                if (Within(x, y, 7, 31, 13, 93))
+                    return;
+
+                base.Click(x, y, wait);
             }
         }
 
@@ -44,13 +48,15 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             public FourButtonInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
-                Screenshot.CurrentScreen = Properties.Resources.button_fourbuttons;
+                SetScreen(Properties.Resources.button_fourbuttons);
             }
 
             public override void Click(int x, int y, int wait)
             {
-                if (!Within(x, y, 0, 24, 88, 168))
-                    base.Click(x, y, wait);
+                if (Within(x, y, 0, 24, 88, 168))
+                    return;
+
+                base.Click(x, y, wait);
             }
         }
 
@@ -59,13 +65,15 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             public ProductionWindowInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
-                Screenshot.CurrentScreen = Properties.Resources.buttons_01;
+                SetScreen(Properties.Resources.buttons_01);
             }
 
             public override void Click(int x, int y, int wait)
             {
-                if (!Within(x, y, 874, 915, 419, 491))
-                    base.Click(x, y, wait);
+                if (Within(x, y, 874, 915, 419, 491))
+                    return;
+
+                base.Click(x, y, wait);
             }
         }
 
@@ -74,13 +82,15 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             public TaskGroupWindowInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
-                Screenshot.CurrentScreen = Properties.Resources.buttons_01;
+                SetScreen(Properties.Resources.buttons_01);
             }
 
             public override void Click(int x, int y, int wait)
             {
-                if (!Within(x, y, 906, 930, 211, 291))
-                    base.Click(x, y, wait);
+                if (Within(x, y, 906, 930, 211, 291))
+                    return;
+
+                base.Click(x, y, wait);
             }
         }
 

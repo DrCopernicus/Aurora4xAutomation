@@ -44,5 +44,10 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
         {
             return x >= left && x <= right && y >= top && y <= bottom;
         }
+
+        protected void SetScreen(Bitmap screen)
+        {
+            Screenshot.CurrentScreen = screen;
+        }
     }
 }

@@ -19,9 +19,9 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
                 _supplySelected = supplySelected;
 
                 if (supplySelected)
-                    Screenshot.CurrentScreen = Properties.Resources.window_civiliantab_supply;
+                    SetScreen(Properties.Resources.window_civiliantab_supply);
                 else
-                    Screenshot.CurrentScreen = Properties.Resources.window_civiliantab_demand;
+                    SetScreen(Properties.Resources.window_civiliantab_demand);
             }
 
             public override void Click(int x, int y, int wait)
@@ -34,9 +34,9 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
                     base.Click(x, y, wait);
 
                 if (_supplySelected)
-                    Screenshot.CurrentScreen = Properties.Resources.window_civiliantab_supply;
+                    SetScreen(Properties.Resources.window_civiliantab_supply);
                 else
-                    Screenshot.CurrentScreen = Properties.Resources.window_civiliantab_demand;
+                    SetScreen(Properties.Resources.window_civiliantab_demand);
             }
         }
 

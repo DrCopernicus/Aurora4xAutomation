@@ -15,7 +15,7 @@ namespace Aurora4xAutomationTests.Tests.UI.Component
             public CivilianTabInputDevice(HijackableScreenShotCapturer screenshot)
                 : base(screenshot)
             {
-                Screenshot.CurrentScreen = Properties.Resources.window_civiliantab_supply;
+                SetScreen(Properties.Resources.window_civiliantab_supply);
             }
         }
 
