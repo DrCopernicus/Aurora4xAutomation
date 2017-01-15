@@ -73,7 +73,10 @@
     <Compile Include="ScriptFramework\ScriptableState.cs" />
     <Compile Include="ScriptFramework\ScriptedInputs\ScriptedClick.cs" />
     <Compile Include="ScriptFramework\ScriptedInputs\ScriptedKeys.cs" />
+    <Compile Include="Tests\ClientTests\ClientConsoleTests.cs" />
+    <Compile Include="Tests\ClientTests\ClientTerminalTests.cs" />
     <Compile Include="Tests\ClientTests\ConnectionCreatorTests.cs" />
+    <Compile Include="Tests\ClientTests\InputListenerTests.cs" />
     <Compile Include="Tests\ClientTests\ServerMessageRetrieverTests.cs" />
     <Compile Include="Tests\CommandFlowManagerTests\CommandFlowManagerTests.cs" />
     <Compile Include="Tests\CommandTests\ParsePrintEvaluator.cs" />

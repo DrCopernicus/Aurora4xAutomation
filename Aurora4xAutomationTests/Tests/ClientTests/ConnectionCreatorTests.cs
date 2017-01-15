@@ -1,7 +1,7 @@
-﻿using Aurora4xAutomationClient.ClientUI;
-using Aurora4xAutomationClient.ClientUI.Client;
-using Aurora4xAutomationClient.ClientUI.Console;
+﻿using Aurora4xAutomationClient.ClientUI.Client;
+using Aurora4xAutomationClient.ClientUI.Terminal;
 using NUnit.Framework;
+using System;
 
 namespace Aurora4xAutomationTests.Tests.ClientTests
 {
@@ -20,9 +20,49 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
                 throw new System.NotImplementedException();
             }
 
+            public int ReadCharacter()
+            {
+                throw new System.NotImplementedException();
+            }
+
             public string ReadLine()
             {
                 return _server;
+            }
+
+            public void WriteCurrentLine()
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public void ClearCurrentLine()
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public void AppendCurrentLine(string message)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public void Backspace()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Backspace(object sender, EventArgs e)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void SetCurrentLine(string message)
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public string GetCurrentLine()
+            {
+                throw new System.NotImplementedException();
             }
 
             public void Write(string message)

@@ -1,6 +1,6 @@
-﻿namespace Aurora4xAutomationClient.ClientUI.Console
+﻿namespace Aurora4xAutomationClient.ClientUI.Terminal
 {
-    public interface IConsole
+    public interface IConsoleWriter
     {
         int Read();
         string ReadLine();

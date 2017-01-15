@@ -1,4 +1,4 @@
-﻿using Aurora4xAutomationClient.ClientUI.Console;
+﻿using Aurora4xAutomationClient.ClientUI.Terminal;
 using Grapevine.Client;
 
 namespace Aurora4xAutomationClient.ClientUI.Client
@@ -14,10 +14,11 @@ namespace Aurora4xAutomationClient.ClientUI.Client
 
         public RESTClient CreateClient()
         {
-            _console.WriteLine("Please specify the server to connect to (example: http://192.168.1.2:1234):");
-            var server = _console.ReadLine();
-            var client = new RESTClient(server);
-            return client;
+//            _console.WriteLine("Please specify the server to connect to (example: http://192.168.1.2:1234):");
+//            var server = _console.ReadLine();
+//            var client = new RESTClient(server);
+//            return client;
+            return null;
         }
     }
 }
