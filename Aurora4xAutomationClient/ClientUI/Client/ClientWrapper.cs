@@ -1,7 +1,7 @@
 ﻿using Aurora4xAutomation.Common;
 using Grapevine.Client;
 
-namespace Aurora4xAutomationClient.ClientUI
+namespace Aurora4xAutomationClient.ClientUI.Client
 {
     public class ClientWrapper : IClientWrapper
     {

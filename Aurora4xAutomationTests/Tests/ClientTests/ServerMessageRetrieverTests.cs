@@ -3,6 +3,7 @@ using Aurora4xAutomationClient.ClientUI;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using Aurora4xAutomationClient.ClientUI.Client;
 
 namespace Aurora4xAutomationTests.Tests.ClientTests
 {

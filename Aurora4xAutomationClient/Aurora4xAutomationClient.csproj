@@ -48,12 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientUI\ClientWrapper.cs" />
-    <Compile Include="ClientUI\CommandSender.cs" />
-    <Compile Include="ClientUI\ConnectionCreator.cs" />
-    <Compile Include="ClientUI\IClientWrapper.cs" />
-    <Compile Include="ClientUI\IConsole.cs" />
-    <Compile Include="ClientUI\ServerMessageRetriever.cs" />
+    <Compile Include="ClientUI\Console\ClientConsole.cs" />
+    <Compile Include="ClientUI\Client\ClientWrapper.cs" />
+    <Compile Include="ClientUI\Client\ConnectionCreator.cs" />
+    <Compile Include="ClientUI\Client\IClientWrapper.cs" />
+    <Compile Include="ClientUI\Console\IConsole.cs" />
+    <Compile Include="ClientUI\Client\ServerMessageRetriever.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

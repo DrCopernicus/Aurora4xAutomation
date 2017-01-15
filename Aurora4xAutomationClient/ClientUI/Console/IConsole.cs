@@ -1,4 +1,4 @@
-﻿namespace Aurora4xAutomationClient.ClientUI
+﻿namespace Aurora4xAutomationClient.ClientUI.Console
 {
     public interface IConsole
     {
