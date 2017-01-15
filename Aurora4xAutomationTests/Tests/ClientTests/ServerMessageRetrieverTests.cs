@@ -3,8 +3,6 @@ using Aurora4xAutomationClient.ClientUI.Client;
 using Aurora4xAutomationClient.ClientUI.Listeners;
 using NSubstitute;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
 
 namespace Aurora4xAutomationTests.Tests.ClientTests
 {
