@@ -1,18 +1,16 @@
-﻿using Aurora4xAutomationClient.ClientUI.Terminal;
-using Aurora4xAutomationClient.Common.EArgs;
+﻿using Aurora4xAutomationClient.Common.EArgs;
 using System;
+using Aurora4xAutomationClient.ClientUI.Client;
 
 namespace Aurora4xAutomationClient.ClientUI.Listeners
 {
     public class ServerMessageListener : IInputListener
     {
-        private IConsole _console;
-
-        public event EventHandler<TerminalEventArgs> ReceivedText;
-
-        public ServerMessageListener(IConsole console)
+        private ServerMessageRetriever _retriever;
+        
+        public ServerMessageListener(IClientWrapper client)
         {
-            _console = console;
+            _retriever = new ServerMessageRetriever(client);
         }
 
         public void BeginListening()

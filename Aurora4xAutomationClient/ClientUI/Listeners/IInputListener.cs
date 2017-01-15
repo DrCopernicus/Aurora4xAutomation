@@ -5,7 +5,6 @@ namespace Aurora4xAutomationClient.ClientUI.Listeners
 {
     public interface IInputListener
     {
-        event EventHandler<TerminalEventArgs> ReceivedText;
         void BeginListening();
     }
 }

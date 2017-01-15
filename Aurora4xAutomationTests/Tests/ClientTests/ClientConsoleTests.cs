@@ -1,6 +1,5 @@
 ﻿using Aurora4xAutomationClient.ClientUI;
 using Aurora4xAutomationClient.ClientUI.Terminal;
-using Aurora4xAutomationClient.Common.EArgs;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -15,9 +14,9 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
             var terminal = Substitute.For<ITerminal>();
             var writer = Substitute.For<IConsoleWriter>();
             var console = new ClientConsole(terminal, writer);
-            console.WriteToCurrentLine(this, new TerminalEventArgs { Message = "a" });
+            console.WriteToCurrentLine("a");
 
-            terminal.Received(1).AppendToCurrentLine("a");
+            terminal.Received(1).AppendToCurrentLine('a');
         }
 
         [Test]
@@ -26,7 +25,7 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
             var terminal = Substitute.For<ITerminal>();
             var writer = Substitute.For<IConsoleWriter>();
             var console = new ClientConsole(terminal, writer);
-            console.WriteToBuffer(this, new TerminalEventArgs { Message = "a" });
+            console.WriteToBuffer("a");
 
             terminal.Received(1).WriteLine("a", Arg.Any<TerminalColor>());
         }
@@ -37,7 +36,7 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
             var terminal = Substitute.For<ITerminal>();
             var writer = Substitute.For<IConsoleWriter>();
             var console = new ClientConsole(terminal, writer);
-            console.WriteToCurrentLine(this, new TerminalEventArgs { Message = "\b" });
+            console.WriteToCurrentLine("\b");
 
             terminal.Received(1).Backspace();
         }
@@ -48,9 +47,9 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
             var terminal = Substitute.For<ITerminal>();
             var writer = Substitute.For<IConsoleWriter>();
             var console = new ClientConsole(terminal, writer);
-            console.WriteToCurrentLine(this, new TerminalEventArgs { Message = "hello" });
+            console.WriteToCurrentLine("hello");
 
-            terminal.Received(5).AppendToCurrentLine(Arg.Any<string>());
+            terminal.Received(5).AppendToCurrentLine(Arg.Any<char>());
         }
 
         [Test]
@@ -59,9 +58,9 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
             var terminal = Substitute.For<ITerminal>();
             var writer = Substitute.For<IConsoleWriter>();
             var console = new ClientConsole(terminal, writer);
-            console.WriteToCurrentLine(this, new TerminalEventArgs { Message = "ha\belloo\b" });
+            console.WriteToCurrentLine("ha\belloo\b");
 
-            terminal.Received(7).AppendToCurrentLine(Arg.Any<string>());
+            terminal.Received(7).AppendToCurrentLine(Arg.Any<char>());
             terminal.Received(2).Backspace();
         }
 

@@ -5,11 +5,11 @@ namespace Aurora4xAutomationClient.ClientUI.Client
 {
     public class ClientWrapper : IClientWrapper
     {
-        private readonly RESTClient _client;
+        private RESTClient _client;
 
-        public ClientWrapper(RESTClient client)
+        public void InitializeConnection()
         {
-            _client = client;
+            
         }
 
         public string SendRequest(string uri, Args args = null)

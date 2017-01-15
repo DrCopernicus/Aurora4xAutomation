@@ -1,6 +1,4 @@
-﻿using Aurora4xAutomationClient.Common.EArgs;
-
-namespace Aurora4xAutomationClient.ClientUI.Terminal
+﻿namespace Aurora4xAutomationClient.ClientUI.Terminal
 {
     public class ClientConsole : IConsole
     {
@@ -13,9 +11,9 @@ namespace Aurora4xAutomationClient.ClientUI.Terminal
             _writer = writer;
         }
 
-        public void WriteToCurrentLine(object sender, TerminalEventArgs e)
+        public void WriteToCurrentLine(string message)
         {
-            foreach (var character in e.Message)
+            foreach (var character in message)
             {
                 switch (character)
                 {
@@ -23,15 +21,25 @@ namespace Aurora4xAutomationClient.ClientUI.Terminal
                         _terminal.Backspace();
                         break;
                     default:
-                        _terminal.AppendToCurrentLine(e.Message);
+                        _terminal.AppendToCurrentLine(character);
                         break;
                 }
             }
         }
 
-        public void WriteToBuffer(object sender, TerminalEventArgs e)
+        public void WriteToBuffer(string message)
         {
-            _terminal.WriteLine(e.Message, TerminalColor.Default);
+            _terminal.WriteLine(message, TerminalColor.Default);
+        }
+
+        public string ReadLine()
+        {
+            return _writer.ReadLine();
+        }
+
+        public int ReadCharacter()
+        {
+            return _writer.Read();
         }
     }
 }

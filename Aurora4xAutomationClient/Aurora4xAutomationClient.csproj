@@ -58,7 +58,6 @@
     <Compile Include="ClientUI\Client\ClientWrapper.cs" />
     <Compile Include="ClientUI\Client\ConnectionCreator.cs" />
     <Compile Include="ClientUI\Client\IClientWrapper.cs" />
-    <Compile Include="ClientUI\Terminal\ConsoleInputListener.cs" />
     <Compile Include="ClientUI\Terminal\ConsoleWriter.cs" />
     <Compile Include="ClientUI\Terminal\IConsole.cs" />
     <Compile Include="ClientUI\Listeners\ServerMessageRetriever.cs" />

@@ -25,6 +25,16 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
                 throw new System.NotImplementedException();
             }
 
+            public void WriteToCurrentLine(string message)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void WriteToBuffer(string message)
+            {
+                throw new NotImplementedException();
+            }
+
             public string ReadLine()
             {
                 return _server;

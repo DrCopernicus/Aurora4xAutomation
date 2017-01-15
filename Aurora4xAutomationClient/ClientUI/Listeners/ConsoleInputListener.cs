@@ -1,7 +1,4 @@
 ﻿using Aurora4xAutomationClient.ClientUI.Terminal;
-using Aurora4xAutomationClient.Common;
-using Aurora4xAutomationClient.Common.EArgs;
-using System;
 
 namespace Aurora4xAutomationClient.ClientUI.Listeners
 {
@@ -9,8 +6,6 @@ namespace Aurora4xAutomationClient.ClientUI.Listeners
     {
         private IConsole _console;
 
-        public event EventHandler<TerminalEventArgs> ReceivedText;
-        
         public ConsoleInputListener(IConsole console)
         {
             _console = console;
@@ -20,8 +15,8 @@ namespace Aurora4xAutomationClient.ClientUI.Listeners
         {
             while (true)
             {
-                var c = Console.Read();
-                ReceivedText.Raise(this, new TerminalEventArgs {Message = c + ""});
+                var c = _console.ReadCharacter();
+                _console.WriteToCurrentLine((char)c + "");
             }
         }
     }
