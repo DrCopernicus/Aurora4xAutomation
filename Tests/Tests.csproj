@@ -120,9 +120,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aurora4xAutomationClient\Aurora4xAutomationClient.csproj">
+    <ProjectReference Include="..\Client\Client.csproj">
       <Project>{134E7331-0C96-428D-8FE9-022FEFF1D996}</Project>
-      <Name>Aurora4xAutomationClient</Name>
+      <Name>Client</Name>
     </ProjectReference>
     <ProjectReference Include="..\Server\Server.csproj">
       <Project>{F08B2DE2-6197-4321-AB8D-6F018F548DC6}</Project>

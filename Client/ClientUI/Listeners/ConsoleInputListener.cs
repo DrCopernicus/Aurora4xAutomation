@@ -1,6 +1,6 @@
-﻿using Aurora4xAutomationClient.ClientUI.Terminal;
+﻿using Client.ClientUI.Terminal;
 
-namespace Aurora4xAutomationClient.ClientUI.Listeners
+namespace Client.ClientUI.Listeners
 {
     public class ConsoleInputListener : IInputListener
     {

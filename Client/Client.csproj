@@ -7,8 +7,8 @@
     <ProjectGuid>{134E7331-0C96-428D-8FE9-022FEFF1D996}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Aurora4xAutomationClient</RootNamespace>
-    <AssemblyName>Aurora4xAutomationClient</AssemblyName>
+    <RootNamespace>Client</RootNamespace>
+    <AssemblyName>Client</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

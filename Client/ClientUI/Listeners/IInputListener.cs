@@ -1,4 +1,4 @@
-﻿namespace Aurora4xAutomationClient.ClientUI.Listeners
+﻿namespace Client.ClientUI.Listeners
 {
     public interface IInputListener
     {

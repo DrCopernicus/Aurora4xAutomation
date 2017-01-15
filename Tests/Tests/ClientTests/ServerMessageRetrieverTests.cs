@@ -1,5 +1,5 @@
-﻿using Aurora4xAutomationClient.ClientUI.Client;
-using Aurora4xAutomationClient.ClientUI.Listeners;
+﻿using Client.ClientUI.Client;
+using Client.ClientUI.Listeners;
 using NSubstitute;
 using NUnit.Framework;
 using Server.Common;

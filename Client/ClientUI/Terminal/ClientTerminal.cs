@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aurora4xAutomationClient.ClientUI.Terminal
+namespace Client.ClientUI.Terminal
 {
     public class ClientTerminal : ITerminal
     {

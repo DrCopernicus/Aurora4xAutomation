@@ -1,10 +1,9 @@
-﻿using Aurora4xAutomationClient.ClientUI;
-using Aurora4xAutomationClient.ClientUI.Client;
-using Aurora4xAutomationClient.ClientUI.Listeners;
-using Aurora4xAutomationClient.ClientUI.Terminal;
-using System.Threading;
+﻿using System.Threading;
+using Client.ClientUI.Client;
+using Client.ClientUI.Listeners;
+using Client.ClientUI.Terminal;
 
-namespace Aurora4xAutomationClient
+namespace Client
 {
     public class Program
     {

@@ -1,7 +1,7 @@
 ﻿
-using Aurora4xAutomationClient.ClientUI.Client;
+using Client.ClientUI.Client;
 
-namespace Aurora4xAutomationClient.ClientUI.Terminal
+namespace Client.ClientUI.Terminal
 {
     public class ClientConsole : IConsole
     {

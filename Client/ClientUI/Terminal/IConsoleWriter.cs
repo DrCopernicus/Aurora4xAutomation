@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aurora4xAutomationClient.ClientUI.Terminal
+namespace Client.ClientUI.Terminal
 {
     public interface IConsoleWriter
     {

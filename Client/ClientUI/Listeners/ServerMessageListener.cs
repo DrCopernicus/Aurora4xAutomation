@@ -1,8 +1,8 @@
-﻿using Aurora4xAutomationClient.ClientUI.Client;
-using Aurora4xAutomationClient.ClientUI.Terminal;
-using System.Threading;
+﻿using System.Threading;
+using Client.ClientUI.Client;
+using Client.ClientUI.Terminal;
 
-namespace Aurora4xAutomationClient.ClientUI.Listeners
+namespace Client.ClientUI.Listeners
 {
     public class ServerMessageListener : IInputListener
     {

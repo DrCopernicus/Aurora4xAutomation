@@ -1,5 +1,5 @@
 ﻿using System;
-using Aurora4xAutomationClient.ClientUI.Terminal;
+using Client.ClientUI.Terminal;
 using NSubstitute;
 using NUnit.Framework;
 

@@ -1,6 +1,6 @@
 ﻿using Server.Common;
 
-namespace Aurora4xAutomationClient.ClientUI.Client
+namespace Client.ClientUI.Client
 {
     public interface IClientWrapper
     {

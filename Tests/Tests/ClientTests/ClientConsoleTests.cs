@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Aurora4xAutomationClient.ClientUI.Client;
-using Aurora4xAutomationClient.ClientUI.Terminal;
+using Client.ClientUI.Client;
+using Client.ClientUI.Terminal;
 using NSubstitute;
 using NUnit.Framework;
 

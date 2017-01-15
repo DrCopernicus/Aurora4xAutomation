@@ -1,7 +1,4 @@
-﻿using System;
-using Grapevine.Client;
-
-namespace Aurora4xAutomationClient.ClientUI.Client
+﻿namespace Client.ClientUI.Client
 {
     public class ClientRequester
     {

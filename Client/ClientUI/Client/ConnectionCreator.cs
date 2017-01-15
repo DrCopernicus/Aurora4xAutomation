@@ -1,7 +1,7 @@
-﻿using Aurora4xAutomationClient.ClientUI.Terminal;
+﻿using Client.ClientUI.Terminal;
 using Grapevine.Client;
 
-namespace Aurora4xAutomationClient.ClientUI.Client
+namespace Client.ClientUI.Client
 {
     public class ConnectionCreator
     {

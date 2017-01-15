@@ -1,10 +1,10 @@
-﻿using Aurora4xAutomationClient.ClientUI.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Client.ClientUI.Client;
 using Server.Common;
 
-namespace Aurora4xAutomationClient.ClientUI.Listeners
+namespace Client.ClientUI.Listeners
 {
     public class ServerMessageRetriever
     {
