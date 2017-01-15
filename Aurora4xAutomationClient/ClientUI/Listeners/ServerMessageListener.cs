@@ -22,7 +22,7 @@ namespace Aurora4xAutomationClient.ClientUI.Listeners
                 var messages = _retriever.GetNewMessages();
 
                 foreach (var message in messages)
-                    _console.WriteToCurrentLine(message);
+                    _console.WriteToBuffer(message);
 
                 Thread.Sleep(1000);
             }

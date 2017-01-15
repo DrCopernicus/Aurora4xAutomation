@@ -15,7 +15,6 @@ namespace Aurora4xAutomationClient.ClientUI.Terminal
             _writer = writer;
             _client = client;
 
-            _terminal.AppendToCurrentLine("$> ");
             RewriteConsole();
         }
 
@@ -30,8 +29,8 @@ namespace Aurora4xAutomationClient.ClientUI.Terminal
                         _writer.Write(" \b");
                         break;
                     case '\n':
+                        _client.Request(_terminal.GetCurrentLine());
                         _terminal.WriteCurrentLine();
-
                         RewriteConsole();
                         break;
                     default:

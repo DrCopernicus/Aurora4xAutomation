@@ -1,4 +1,5 @@
 ﻿using Aurora4xAutomation.Common;
+using Aurora4xAutomationClient.ClientUI.Terminal;
 using Grapevine.Client;
 
 namespace Aurora4xAutomationClient.ClientUI.Client
@@ -7,18 +8,19 @@ namespace Aurora4xAutomationClient.ClientUI.Client
     {
         private RESTClient _client;
 
-        public void InitializeConnection()
+        public void InitializeConnection(IConsole console)
         {
-            
+            var connectionCreator = new ConnectionCreator(console);
+            _client = connectionCreator.CreateClient();
         }
 
         public string GetMessages(string uri, Args args = null)
         {
-            var request = new RESTRequest("/messages");
+            var request = new RESTRequest(uri);
 
             if (args != null)
                 foreach (var arg in args)
-                    request.AddQuery(arg.Key, (string) arg.Value);
+                    request.AddQuery(arg.Key, arg.Value + "");
 
             return _client.Execute(request).Content;
         }

@@ -1,4 +1,8 @@
-﻿using System.Threading;
+﻿using Aurora4xAutomationClient.ClientUI;
+using Aurora4xAutomationClient.ClientUI.Client;
+using Aurora4xAutomationClient.ClientUI.Listeners;
+using Aurora4xAutomationClient.ClientUI.Terminal;
+using System.Threading;
 
 namespace Aurora4xAutomationClient
 {
@@ -11,9 +15,19 @@ namespace Aurora4xAutomationClient
 
         public Program()
         {
-//            var client = InitializeClient();
-//            new Thread(() => BeginUpdater(client)).Start();
-//            ReadInput(client);
+            var client = new ClientWrapper();
+
+            var writer = new ConsoleWriter();
+            var terminal = new ClientTerminal();
+            var console = new ClientConsole(terminal, writer, client);
+
+            client.InitializeConnection(console);
+
+            var inputListener = new ConsoleInputListener(console);
+            var serverListener = new ServerMessageListener(client, console);
+
+            new Thread(() => inputListener.BeginListening()).Start();
+            new Thread(() => serverListener.BeginListening()).Start();
         }
     }
 }
