@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Aurora4xAutomation.Events;
 using NUnit.Framework;
+using Server.Events;
 
 namespace Aurora4xAutomationTests.Tests
 {

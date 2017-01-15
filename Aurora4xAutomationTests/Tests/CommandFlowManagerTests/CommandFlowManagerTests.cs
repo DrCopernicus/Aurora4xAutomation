@@ -1,11 +1,11 @@
-﻿using Aurora4xAutomation.Automation;
-using Aurora4xAutomation.Evaluators.Message;
-using Aurora4xAutomation.Events;
-using Aurora4xAutomation.IO;
-using Aurora4xAutomation.Messages;
-using Aurora4xAutomation.Settings;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
+using Server.Automation;
+using Server.Evaluators.Message;
+using Server.Events;
+using Server.IO;
+using Server.Messages;
+using Server.Settings;
 
 namespace Aurora4xAutomationTests.Tests.CommandFlowManagerTests
 {

@@ -1,9 +1,9 @@
-﻿using Aurora4xAutomation.Common.Exceptions;
-using Aurora4xAutomation.Evaluators;
-using Aurora4xAutomation.Evaluators.Factories;
-using Aurora4xAutomation.Settings;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
+using Server.Common.Exceptions;
+using Server.Evaluators;
+using Server.Evaluators.Factories;
+using Server.Settings;
 
 namespace Aurora4xAutomationTests.Tests.EvaluatorTests
 {

@@ -1,6 +1,6 @@
-﻿using Aurora4xAutomation.IO.OCR;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
+using Server.IO.OCR;
 
 namespace Aurora4xAutomationTests.Tests.OCR
 {

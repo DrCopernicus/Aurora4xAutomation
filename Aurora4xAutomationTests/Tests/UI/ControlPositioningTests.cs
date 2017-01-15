@@ -1,11 +1,8 @@
-﻿using Aurora4xAutomation.IO;
-using Aurora4xAutomation.IO.UI;
-using Aurora4xAutomation.IO.UI.Controls;
-using Aurora4xAutomation.IO.UI.Display;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
-using System.Drawing;
-using WindowsInput.Native;
+using Server.IO;
+using Server.IO.UI;
+using Server.IO.UI.Controls;
 
 namespace Aurora4xAutomationTests.Tests.UI
 {

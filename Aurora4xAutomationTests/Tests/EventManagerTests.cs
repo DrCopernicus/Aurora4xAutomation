@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading;
-using Aurora4xAutomation.Evaluators;
-using Aurora4xAutomation.Evaluators.Message;
-using Aurora4xAutomation.Events;
-using Aurora4xAutomation.IO;
-using Aurora4xAutomation.Messages;
-using Aurora4xAutomation.Settings;
 using NSubstitute;
 using NUnit.Framework;
+using Server.Evaluators;
+using Server.Events;
+using Server.IO;
+using Server.Messages;
+using Server.Settings;
 
 namespace Aurora4xAutomationTests.Tests
 {

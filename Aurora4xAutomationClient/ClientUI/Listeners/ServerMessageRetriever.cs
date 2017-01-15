@@ -1,8 +1,8 @@
-﻿using Aurora4xAutomation.Common;
-using Aurora4xAutomationClient.ClientUI.Client;
+﻿using Aurora4xAutomationClient.ClientUI.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Server.Common;
 
 namespace Aurora4xAutomationClient.ClientUI.Listeners
 {

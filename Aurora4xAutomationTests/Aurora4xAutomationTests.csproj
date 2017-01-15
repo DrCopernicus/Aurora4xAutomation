@@ -124,9 +124,9 @@
       <Project>{134E7331-0C96-428D-8FE9-022FEFF1D996}</Project>
       <Name>Aurora4xAutomationClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Aurora4xAutomation\Aurora4xAutomation.csproj">
+    <ProjectReference Include="..\Server\Server.csproj">
       <Project>{F08B2DE2-6197-4321-AB8D-6F018F548DC6}</Project>
-      <Name>Aurora4xAutomation</Name>
+      <Name>Server</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

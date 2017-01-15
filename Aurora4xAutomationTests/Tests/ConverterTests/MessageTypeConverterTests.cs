@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
-using Aurora4xAutomation.Common.Converters;
-using Aurora4xAutomation.Messages;
 using NUnit.Framework;
+using Server.Common.Converters;
+using Server.Messages;
 
 namespace Aurora4xAutomationTests.Tests.ConverterTests
 {

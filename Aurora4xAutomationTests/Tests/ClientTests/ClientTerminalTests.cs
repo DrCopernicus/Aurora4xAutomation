@@ -1,5 +1,4 @@
-﻿using Aurora4xAutomationClient.ClientUI;
-using Aurora4xAutomationClient.ClientUI.Terminal;
+﻿using Aurora4xAutomationClient.ClientUI.Terminal;
 using NUnit.Framework;
 
 namespace Aurora4xAutomationTests.Tests.ClientTests

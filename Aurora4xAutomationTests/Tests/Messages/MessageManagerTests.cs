@@ -1,5 +1,5 @@
-﻿using Aurora4xAutomation.Messages;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using Server.Messages;
 
 namespace Aurora4xAutomationTests.Tests.Messages
 {

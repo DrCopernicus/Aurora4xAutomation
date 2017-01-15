@@ -1,5 +1,5 @@
-﻿using Aurora4xAutomation.Common;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using Server.Common;
 
 namespace Aurora4xAutomationTests.Tests
 {

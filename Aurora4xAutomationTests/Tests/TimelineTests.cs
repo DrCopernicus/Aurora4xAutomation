@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
-using Aurora4xAutomation.Evaluators;
-using Aurora4xAutomation.Events;
 using NUnit.Framework;
+using Server.Evaluators;
+using Server.Events;
 
 namespace Aurora4xAutomationTests.Tests
 {

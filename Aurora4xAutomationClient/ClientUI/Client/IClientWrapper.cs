@@ -1,4 +1,4 @@
-﻿using Aurora4xAutomation.Common;
+﻿using Server.Common;
 
 namespace Aurora4xAutomationClient.ClientUI.Client
 {

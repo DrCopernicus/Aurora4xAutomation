@@ -1,11 +1,11 @@
-﻿using Aurora4xAutomation.Command.Parser;
-using Aurora4xAutomation.Events;
-using Aurora4xAutomation.IO;
-using Aurora4xAutomation.Messages;
-using Aurora4xAutomation.Settings;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
 using NSubstitute;
+using Server.Command.Parser;
+using Server.Events;
+using Server.IO;
+using Server.Messages;
+using Server.Settings;
 
 namespace Aurora4xAutomationTests.Tests
 {

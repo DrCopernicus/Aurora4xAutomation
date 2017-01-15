@@ -1,7 +1,7 @@
-﻿using Aurora4xAutomation.Evaluators;
-using Aurora4xAutomation.IO;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
+using Server.Evaluators;
+using Server.IO;
 
 namespace Aurora4xAutomationTests.Tests.EvaluatorTests
 {

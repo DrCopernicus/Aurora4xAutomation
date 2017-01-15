@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Aurora4xAutomation.Evaluators.Factories;
-using Aurora4xAutomation.Evaluators.Message;
-using Aurora4xAutomation.Messages;
 using NSubstitute;
 using NUnit.Framework;
+using Server.Evaluators.Factories;
+using Server.Evaluators.Message;
+using Server.Messages;
 
 namespace Aurora4xAutomationTests.Tests.EvaluatorTests.Message
 {

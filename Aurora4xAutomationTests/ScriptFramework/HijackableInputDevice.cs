@@ -1,9 +1,9 @@
-﻿using Aurora4xAutomation.IO.UI;
-using Aurora4xAutomation.IO.UI.Display;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using WindowsInput.Native;
+using Server.IO.UI;
+using Server.IO.UI.Display;
 
 namespace Aurora4xAutomationTests.ScriptFramework
 {

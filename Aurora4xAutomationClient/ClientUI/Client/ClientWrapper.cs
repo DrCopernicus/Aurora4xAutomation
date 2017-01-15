@@ -1,6 +1,6 @@
-﻿using Aurora4xAutomation.Common;
-using Aurora4xAutomationClient.ClientUI.Terminal;
+﻿using Aurora4xAutomationClient.ClientUI.Terminal;
 using Grapevine.Client;
+using Server.Common;
 
 namespace Aurora4xAutomationClient.ClientUI.Client
 {
