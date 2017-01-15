@@ -21,7 +21,7 @@ namespace Aurora4xAutomationClient.ClientUI.Listeners
             var endId = GetLastMessageId();
             _lastFoundId = endId;
 
-            var response = _clientWrapper.SendRequest("/messages", new Args {{"after", startId}, {"upto", endId}});
+            var response = _clientWrapper.GetMessages("/messages", new Args {{"after", startId}, {"upto", endId}});
 
             if (string.IsNullOrEmpty(response))
                 return new List<string>();
@@ -30,7 +30,7 @@ namespace Aurora4xAutomationClient.ClientUI.Listeners
 
         private long GetLastMessageId()
         {
-            var response = _clientWrapper.SendRequest("/lastmessage");
+            var response = _clientWrapper.GetMessages("/lastmessage");
 
             return Convert.ToInt64(response);
         }

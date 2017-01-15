@@ -4,6 +4,8 @@ namespace Aurora4xAutomationClient.ClientUI.Terminal
 {
     public class ConsoleWriter : IConsoleWriter
     {
+        private readonly object _writeToConsoleLock = new object();
+
         public int Read()
         {
             return Console.Read();
@@ -16,12 +18,23 @@ namespace Aurora4xAutomationClient.ClientUI.Terminal
 
         public void Write(string message)
         {
-            Console.Write(message);
+            lock (_writeToConsoleLock)
+            {
+                Console.Write(message);
+            }
         }
 
         public void WriteLine(string message)
         {
-            Console.WriteLine(message);
+            lock (_writeToConsoleLock)
+            {
+                Console.WriteLine(message);
+            }
+        }
+
+        public void Clear()
+        {
+            Console.Clear();
         }
     }
 }

@@ -4,6 +4,7 @@ namespace Aurora4xAutomationClient.ClientUI.Client
 {
     public interface IClientWrapper
     {
-        string SendRequest(string uri, Args args = null);
+        string GetMessages(string uri, Args args = null);
+        string Request(string command);
     }
 }

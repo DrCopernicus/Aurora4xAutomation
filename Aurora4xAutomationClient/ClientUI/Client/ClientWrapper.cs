@@ -12,7 +12,7 @@ namespace Aurora4xAutomationClient.ClientUI.Client
             
         }
 
-        public string SendRequest(string uri, Args args = null)
+        public string GetMessages(string uri, Args args = null)
         {
             var request = new RESTRequest("/messages");
 
@@ -21,6 +21,13 @@ namespace Aurora4xAutomationClient.ClientUI.Client
                     request.AddQuery(arg.Key, (string) arg.Value);
 
             return _client.Execute(request).Content;
+        }
+
+        public string Request(string command)
+        {
+            var res = new RESTRequest("/command");
+            res.AddQuery("q", command);
+            return _client.Execute(res).Content;
         }
     }
 }

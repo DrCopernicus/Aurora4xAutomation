@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientUI\ClientTerminal.cs" />
+    <Compile Include="ClientUI\Client\ClientRequester.cs" />
     <Compile Include="ClientUI\ITerminal.cs" />
     <Compile Include="ClientUI\Listeners\ConsoleInputListener.cs" />
     <Compile Include="ClientUI\Listeners\IInputListener.cs" />
