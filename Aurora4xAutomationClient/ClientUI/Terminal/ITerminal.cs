@@ -1,7 +1,6 @@
-﻿using Aurora4xAutomationClient.ClientUI.Terminal;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Aurora4xAutomationClient.ClientUI
+namespace Aurora4xAutomationClient.ClientUI.Terminal
 {
     public interface ITerminal
     {
