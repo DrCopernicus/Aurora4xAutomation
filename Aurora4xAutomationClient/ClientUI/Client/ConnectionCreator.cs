@@ -10,7 +10,6 @@ namespace Aurora4xAutomationClient.ClientUI.Client
         public ConnectionCreator(IConsole console)
         {
             _console = console;
-            CreateClient();
         }
 
         public RESTClient CreateClient()

@@ -20,6 +20,9 @@
                     case '\b':
                         _terminal.Backspace();
                         break;
+                    case '\n':
+                        _terminal.WriteCurrentLine();
+                        break;
                     default:
                         _terminal.AppendToCurrentLine(character);
                         break;

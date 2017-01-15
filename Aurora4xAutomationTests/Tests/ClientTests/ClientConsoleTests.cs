@@ -64,5 +64,28 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
             terminal.Received(2).Backspace();
         }
 
+        [Test]
+        public void PushesCurrentLineIntoBufferOnNewline()
+        {
+            var terminal = Substitute.For<ITerminal>();
+            var writer = Substitute.For<IConsoleWriter>();
+            var console = new ClientConsole(terminal, writer);
+            console.WriteToCurrentLine("\n");
+
+            terminal.Received(1).WriteCurrentLine();
+        }
+
+        [Test]
+        public void DoesNotModifyTerminalOutputWhenNormalCharactersTyped()
+        {
+            var terminal = Substitute.For<ITerminal>();
+            var writer = Substitute.For<IConsoleWriter>();
+            var console = new ClientConsole(terminal, writer);
+            console.WriteToCurrentLine("h");
+
+            writer.Received(0).Write(Arg.Any<string>());
+            writer.Received(0).WriteLine(Arg.Any<string>());
+        }
+
     }
 }
