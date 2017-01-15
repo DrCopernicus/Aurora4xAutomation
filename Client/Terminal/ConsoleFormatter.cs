@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Client.ClientUI.Terminal
+namespace Client.Terminal
 {
     public class ConsoleFormatter : IConsoleFormatter
     {

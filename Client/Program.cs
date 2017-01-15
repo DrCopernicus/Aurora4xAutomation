@@ -1,7 +1,7 @@
 ﻿using System.Threading;
-using Client.ClientUI.Client;
-using Client.ClientUI.Listeners;
-using Client.ClientUI.Terminal;
+using Client.Listeners;
+using Client.REST;
+using Client.Terminal;
 
 namespace Client
 {

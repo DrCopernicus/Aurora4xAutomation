@@ -1,4 +1,4 @@
-﻿using Client.ClientUI.Terminal;
+﻿using Client.Terminal;
 using NUnit.Framework;
 
 namespace Tests.Tests.ClientTests

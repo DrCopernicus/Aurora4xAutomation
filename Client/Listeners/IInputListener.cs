@@ -1,4 +1,4 @@
-﻿namespace Client.ClientUI.Listeners
+﻿namespace Client.Listeners
 {
     public interface IInputListener
     {

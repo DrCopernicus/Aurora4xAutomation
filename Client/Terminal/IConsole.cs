@@ -1,4 +1,4 @@
-﻿namespace Client.ClientUI.Terminal
+﻿namespace Client.Terminal
 {
     public interface IConsole
     {

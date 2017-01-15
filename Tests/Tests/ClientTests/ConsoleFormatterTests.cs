@@ -1,5 +1,5 @@
 ﻿using System;
-using Client.ClientUI.Terminal;
+using Client.Terminal;
 using NSubstitute;
 using NUnit.Framework;
 

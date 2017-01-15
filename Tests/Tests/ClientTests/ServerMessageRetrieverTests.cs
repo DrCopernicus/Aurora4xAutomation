@@ -1,5 +1,5 @@
-﻿using Client.ClientUI.Client;
-using Client.ClientUI.Listeners;
+﻿using Client.Listeners;
+using Client.REST;
 using NSubstitute;
 using NUnit.Framework;
 using Server.Common;

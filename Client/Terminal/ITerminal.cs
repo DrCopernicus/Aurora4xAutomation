@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Client.ClientUI.Terminal
+namespace Client.Terminal
 {
     public interface ITerminal
     {

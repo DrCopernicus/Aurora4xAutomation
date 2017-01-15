@@ -1,7 +1,7 @@
 ﻿
-using Client.ClientUI.Client;
+using Client.REST;
 
-namespace Client.ClientUI.Terminal
+namespace Client.Terminal
 {
     public class ClientConsole : IConsole
     {

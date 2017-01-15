@@ -1,8 +1,8 @@
-﻿using Client.ClientUI.Terminal;
+﻿using Client.Terminal;
 using Grapevine.Client;
 using Server.Common;
 
-namespace Client.ClientUI.Client
+namespace Client.REST
 {
     public class ClientWrapper : IClientWrapper
     {

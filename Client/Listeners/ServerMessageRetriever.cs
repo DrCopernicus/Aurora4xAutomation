@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Client.ClientUI.Client;
+using Client.REST;
 using Server.Common;
 
-namespace Client.ClientUI.Listeners
+namespace Client.Listeners
 {
     public class ServerMessageRetriever
     {

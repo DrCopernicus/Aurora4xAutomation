@@ -1,6 +1,6 @@
 ﻿using Server.Common;
 
-namespace Client.ClientUI.Client
+namespace Client.REST
 {
     public interface IClientWrapper
     {

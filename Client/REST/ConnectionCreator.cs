@@ -1,7 +1,7 @@
-﻿using Client.ClientUI.Terminal;
+﻿using Client.Terminal;
 using Grapevine.Client;
 
-namespace Client.ClientUI.Client
+namespace Client.REST
 {
     public class ConnectionCreator
     {
