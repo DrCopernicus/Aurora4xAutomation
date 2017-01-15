@@ -2,12 +2,18 @@
 {
     public struct TerminalMessage
     {
-        public TerminalColor Color;
+        public TerminalStyle Style;
         public string Message;
+
+        public TerminalMessage(string message, TerminalStyle style = TerminalStyle.Default)
+        {
+            Style = style;
+            Message = message;
+        }
     }
 
-    public enum TerminalColor
+    public enum TerminalStyle
     {
-        Default, Error, Warning
+        Default, Error, Warning, Command
     }
 }

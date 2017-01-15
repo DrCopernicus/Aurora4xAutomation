@@ -36,5 +36,10 @@ namespace Aurora4xAutomationClient.ClientUI.Terminal
         {
             Console.Clear();
         }
+
+        public void ChangeColor(ConsoleColor color)
+        {
+            Console.ForegroundColor = color;
+        }
     }
 }

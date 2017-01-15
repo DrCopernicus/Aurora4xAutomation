@@ -15,9 +15,9 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         {
             var terminal = Substitute.For<ITerminal>();
             terminal.GetBuffer().Returns(new List<TerminalMessage>());
-            var writer = Substitute.For<IConsoleWriter>();
+            var formatter = Substitute.For<IConsoleFormatter>();
             var client = Substitute.For<IClientWrapper>();
-            var console = new ClientConsole(terminal, writer, client);
+            var console = new ClientConsole(terminal, formatter, client);
             console.WriteToCurrentLine("a");
 
             terminal.Received(1).AppendToCurrentLine('a');
@@ -28,12 +28,12 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         {
             var terminal = Substitute.For<ITerminal>();
             terminal.GetBuffer().Returns(new List<TerminalMessage>());
-            var writer = Substitute.For<IConsoleWriter>();
+            var formatter = Substitute.For<IConsoleFormatter>();
             var client = Substitute.For<IClientWrapper>();
-            var console = new ClientConsole(terminal, writer, client);
+            var console = new ClientConsole(terminal, formatter, client);
             console.WriteToBuffer("a");
 
-            terminal.Received(1).WriteLine("a", Arg.Any<TerminalColor>());
+            terminal.Received(1).WriteLine("a", Arg.Any<TerminalStyle>());
         }
 
         [Test]
@@ -41,9 +41,9 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         {
             var terminal = Substitute.For<ITerminal>();
             terminal.GetBuffer().Returns(new List<TerminalMessage>());
-            var writer = Substitute.For<IConsoleWriter>();
+            var formatter = Substitute.For<IConsoleFormatter>();
             var client = Substitute.For<IClientWrapper>();
-            var console = new ClientConsole(terminal, writer, client);
+            var console = new ClientConsole(terminal, formatter, client);
             console.WriteToCurrentLine("\b");
 
             terminal.Received(1).Backspace();
@@ -54,9 +54,9 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         {
             var terminal = Substitute.For<ITerminal>();
             terminal.GetBuffer().Returns(new List<TerminalMessage>());
-            var writer = Substitute.For<IConsoleWriter>();
+            var formatter = Substitute.For<IConsoleFormatter>();
             var client = Substitute.For<IClientWrapper>();
-            var console = new ClientConsole(terminal, writer, client);
+            var console = new ClientConsole(terminal, formatter, client);
             console.WriteToCurrentLine("hello");
 
             terminal.Received(5).AppendToCurrentLine(Arg.Any<char>());
@@ -67,9 +67,9 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         {
             var terminal = Substitute.For<ITerminal>();
             terminal.GetBuffer().Returns(new List<TerminalMessage>());
-            var writer = Substitute.For<IConsoleWriter>();
+            var formatter = Substitute.For<IConsoleFormatter>();
             var client = Substitute.For<IClientWrapper>();
-            var console = new ClientConsole(terminal, writer, client);
+            var console = new ClientConsole(terminal, formatter, client);
             console.WriteToCurrentLine("ha\belloo\b");
 
             terminal.Received(7).AppendToCurrentLine(Arg.Any<char>());
@@ -81,12 +81,12 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         {
             var terminal = Substitute.For<ITerminal>();
             terminal.GetBuffer().Returns(new List<TerminalMessage>());
-            var writer = Substitute.For<IConsoleWriter>();
+            var formatter = Substitute.For<IConsoleFormatter>();
             var client = Substitute.For<IClientWrapper>();
-            var console = new ClientConsole(terminal, writer, client);
+            var console = new ClientConsole(terminal, formatter, client);
             console.WriteToCurrentLine("\n");
 
-            terminal.Received(1).WriteCurrentLine();
+            terminal.Received(1).WriteCurrentLine(TerminalStyle.Command);
         }
 
         [Test]
@@ -94,16 +94,16 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         {
             var terminal = Substitute.For<ITerminal>();
             terminal.GetBuffer().Returns(new List<TerminalMessage>());
-            var writer = Substitute.For<IConsoleWriter>();
+            var formatter = Substitute.For<IConsoleFormatter>();
             var client = Substitute.For<IClientWrapper>();
-            var console = new ClientConsole(terminal, writer, client);
+            var console = new ClientConsole(terminal, formatter, client);
 
-            writer.ClearReceivedCalls();
+            formatter.ClearReceivedCalls();
 
             console.WriteToCurrentLine("h");
 
-            writer.Received(0).Write(Arg.Any<string>());
-            writer.Received(0).WriteLine(Arg.Any<string>());
+            formatter.Received(0).WriteLine(Arg.Any<TerminalMessage>());
+            formatter.Received(0).Backspace();
         }
 
         [Test]
@@ -111,12 +111,12 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         {
             var terminal = Substitute.For<ITerminal>();
             terminal.GetBuffer().Returns(new List<TerminalMessage>());
-            var writer = Substitute.For<IConsoleWriter>();
+            var formatter = Substitute.For<IConsoleFormatter>();
             var client = Substitute.For<IClientWrapper>();
-            var console = new ClientConsole(terminal, writer, client);
+            var console = new ClientConsole(terminal, formatter, client);
             console.WriteToCurrentLine("h\b");
 
-            writer.Received(1).Write(" \b");
+            formatter.Received(1).Backspace();
         }
     }
 }

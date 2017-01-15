@@ -1,4 +1,6 @@
-﻿namespace Aurora4xAutomationClient.ClientUI.Terminal
+﻿using System;
+
+namespace Aurora4xAutomationClient.ClientUI.Terminal
 {
     public interface IConsoleWriter
     {
@@ -7,5 +9,6 @@
         void Write(string message);
         void WriteLine(string message);
         void Clear();
+        void ChangeColor(ConsoleColor color);
     }
 }

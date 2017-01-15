@@ -14,9 +14,9 @@ namespace Aurora4xAutomationClient.ClientUI
             _currentLine = "";
         }
 
-        public void WriteLine(string message, TerminalColor color = TerminalColor.Default)
+        public void WriteLine(string message, TerminalStyle style = TerminalStyle.Default)
         {
-            _buffer.Add(new TerminalMessage {Message = message, Color = color});
+            _buffer.Add(new TerminalMessage {Message = message, Style = style});
         }
 
         public List<TerminalMessage> GetBuffer()
@@ -39,9 +39,9 @@ namespace Aurora4xAutomationClient.ClientUI
             _currentLine += character;
         }
 
-        public void WriteCurrentLine()
+        public void WriteCurrentLine(TerminalStyle style)
         {
-            _buffer.Add(new TerminalMessage {Message = _currentLine, Color = TerminalColor.Default});
+            _buffer.Add(new TerminalMessage {Message = _currentLine, Style = style});
             _currentLine = "";
         }
 

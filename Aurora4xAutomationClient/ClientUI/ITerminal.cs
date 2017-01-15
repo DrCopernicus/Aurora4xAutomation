@@ -5,12 +5,12 @@ namespace Aurora4xAutomationClient.ClientUI
 {
     public interface ITerminal
     {
-        void WriteLine(string message, TerminalColor color);
+        void WriteLine(string message, TerminalStyle style);
         List<TerminalMessage> GetBuffer();
         string GetCurrentLine();
         void AppendToCurrentLine(string message);
         void AppendToCurrentLine(char character);
-        void WriteCurrentLine();
+        void WriteCurrentLine(TerminalStyle style);
         void Backspace();
     }
 }

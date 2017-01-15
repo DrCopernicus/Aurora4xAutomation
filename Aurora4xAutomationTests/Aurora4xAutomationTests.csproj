@@ -76,6 +76,7 @@
     <Compile Include="Tests\ClientTests\ClientConsoleTests.cs" />
     <Compile Include="Tests\ClientTests\ClientTerminalTests.cs" />
     <Compile Include="Tests\ClientTests\ConnectionCreatorTests.cs" />
+    <Compile Include="Tests\ClientTests\ConsoleFormatterTests.cs" />
     <Compile Include="Tests\ClientTests\InputListenerTests.cs" />
     <Compile Include="Tests\ClientTests\ServerMessageRetrieverTests.cs" />
     <Compile Include="Tests\CommandFlowManagerTests\CommandFlowManagerTests.cs" />

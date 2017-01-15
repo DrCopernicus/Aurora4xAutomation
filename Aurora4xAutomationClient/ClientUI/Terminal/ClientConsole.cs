@@ -5,14 +5,14 @@ namespace Aurora4xAutomationClient.ClientUI.Terminal
 {
     public class ClientConsole : IConsole
     {
-        private IConsoleWriter _writer;
+        private IConsoleFormatter _formatter;
         private ITerminal _terminal;
         private IClientWrapper _client;
 
-        public ClientConsole(ITerminal terminal, IConsoleWriter writer, IClientWrapper client)
+        public ClientConsole(ITerminal terminal, IConsoleFormatter formatter, IClientWrapper client)
         {
             _terminal = terminal;
-            _writer = writer;
+            _formatter = formatter;
             _client = client;
 
             RewriteConsole();
@@ -26,11 +26,11 @@ namespace Aurora4xAutomationClient.ClientUI.Terminal
                 {
                     case '\b':
                         _terminal.Backspace();
-                        _writer.Write(" \b");
+                        _formatter.Backspace();
                         break;
                     case '\n':
                         _client.Request(_terminal.GetCurrentLine());
-                        _terminal.WriteCurrentLine();
+                        _terminal.WriteCurrentLine(TerminalStyle.Command);
                         RewriteConsole();
                         break;
                     default:
@@ -42,29 +42,23 @@ namespace Aurora4xAutomationClient.ClientUI.Terminal
 
         public void WriteToBuffer(string message)
         {
-            _terminal.WriteLine(message, TerminalColor.Default);
+            _terminal.WriteLine(message, TerminalStyle.Default);
             RewriteConsole();
         }
 
         public string ReadLine()
         {
-            return _writer.ReadLine();
+            return _formatter.ReadLine();
         }
 
         public int ReadCharacter()
         {
-            return _writer.Read();
+            return _formatter.Read();
         }
 
         private void RewriteConsole()
         {
-            _writer.Clear();
-
-            foreach (var message in _terminal.GetBuffer())
-                _writer.WriteLine(message.Message);
-
-            _writer.Write("$> ");
-            _writer.Write(_terminal.GetCurrentLine());
+            _formatter.RewriteConsole(_terminal);
         }
     }
 }

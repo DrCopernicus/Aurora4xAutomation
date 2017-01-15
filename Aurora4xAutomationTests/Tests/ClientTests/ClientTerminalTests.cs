@@ -1,4 +1,5 @@
 ﻿using Aurora4xAutomationClient.ClientUI;
+using Aurora4xAutomationClient.ClientUI.Terminal;
 using NUnit.Framework;
 
 namespace Aurora4xAutomationTests.Tests.ClientTests
@@ -86,10 +87,22 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         {
             var terminal = new ClientTerminal();
             terminal.AppendToCurrentLine("hello");
-            terminal.WriteCurrentLine();
+            terminal.WriteCurrentLine(TerminalStyle.Default);
 
             Assert.AreEqual(1, terminal.GetBuffer().Count);
             Assert.AreEqual("hello", terminal.GetBuffer()[0].Message);
+        }
+
+        [Test]
+        public void WritesCurrentLineIntoBufferWithCommandStyle()
+        {
+            var terminal = new ClientTerminal();
+            terminal.AppendToCurrentLine("hello");
+            terminal.WriteCurrentLine(TerminalStyle.Command);
+
+            Assert.AreEqual(1, terminal.GetBuffer().Count);
+            Assert.AreEqual("hello", terminal.GetBuffer()[0].Message);
+            Assert.AreEqual(TerminalStyle.Command, terminal.GetBuffer()[0].Style);
         }
 
         [Test]
@@ -97,7 +110,7 @@ namespace Aurora4xAutomationTests.Tests.ClientTests
         {
             var terminal = new ClientTerminal();
             terminal.AppendToCurrentLine("hello");
-            terminal.WriteCurrentLine();
+            terminal.WriteCurrentLine(TerminalStyle.Default);
 
             Assert.AreEqual("", terminal.GetCurrentLine());
         }

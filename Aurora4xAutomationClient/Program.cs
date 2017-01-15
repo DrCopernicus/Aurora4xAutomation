@@ -17,9 +17,9 @@ namespace Aurora4xAutomationClient
         {
             var client = new ClientWrapper();
 
-            var writer = new ConsoleWriter();
+            var formatter = new ConsoleFormatter(new ConsoleWriter());
             var terminal = new ClientTerminal();
-            var console = new ClientConsole(terminal, writer, client);
+            var console = new ClientConsole(terminal, formatter, client);
 
             client.InitializeConnection(console);
 
