@@ -63,8 +63,6 @@
     <Compile Include="ClientUI\Listeners\ServerMessageRetriever.cs" />
     <Compile Include="ClientUI\Terminal\IConsoleWriter.cs" />
     <Compile Include="ClientUI\Terminal\TerminalMessage.cs" />
-    <Compile Include="Common\EArgs\TerminalEventArgs.cs" />
-    <Compile Include="Common\EventTools.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

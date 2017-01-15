@@ -1,6 +1,4 @@
-﻿using Aurora4xAutomationClient.Common.EArgs;
-using System;
-using Aurora4xAutomationClient.ClientUI.Client;
+﻿using Aurora4xAutomationClient.ClientUI.Client;
 
 namespace Aurora4xAutomationClient.ClientUI.Listeners
 {
