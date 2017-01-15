@@ -1,8 +1,8 @@
 ﻿using Aurora4xAutomation.Common;
 using Aurora4xAutomation.Common.Exceptions;
+using Aurora4xAutomation.IO.UI.Display;
 using Aurora4xAutomation.Settings;
 using System;
-using Aurora4xAutomation.IO.UI.Display;
 
 namespace Aurora4xAutomation.IO.UI
 {
@@ -15,6 +15,7 @@ namespace Aurora4xAutomation.IO.UI
             Settings = settings;
             Screen = screen;
             InputDevice = inputDevice;
+            WindowFinder = windowFinder;
 
             IntPtr handle;
 
@@ -47,7 +48,7 @@ namespace Aurora4xAutomation.IO.UI
                 if (!WaitActive())
                     continue;
                 Screen.Dirty();
-                Sleeper.Sleep(500);
+                StaticSleeper.Sleep(500);
                 return;
             }
             throw new Exception("Window never opened!");
@@ -57,7 +58,7 @@ namespace Aurora4xAutomation.IO.UI
         {
             while (times > 0 && WindowFinder.GetForegroundWindow() != Handle)
             {
-                Sleeper.Sleep(ms);
+                StaticSleeper.Sleep(ms);
                 times--;
             }
             return times > 0;

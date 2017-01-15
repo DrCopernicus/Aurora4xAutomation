@@ -2,9 +2,9 @@
 
 namespace Aurora4xAutomation.Common
 {
-    public static class Sleeper
+    public class Sleeper : ISleeper
     {
-        public static void Sleep(int ms)
+        public void Sleep(int ms)
         {
             Task.Delay(ms).Wait();
         }

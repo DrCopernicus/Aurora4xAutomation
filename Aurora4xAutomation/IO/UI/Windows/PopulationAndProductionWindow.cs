@@ -304,7 +304,7 @@ namespace Aurora4xAutomation.IO.UI.Windows
         protected override void OpenIfNotFound()
         {
             new BaseAuroraWindow(Screen, WindowFinder, InputDevice, Settings).MakeActive();
-            Sleeper.Sleep(1000);
+            StaticSleeper.Sleep(1000);
             SendKeys.SendWait("{F2}");
         }
     }

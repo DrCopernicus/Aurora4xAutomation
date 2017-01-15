@@ -76,6 +76,7 @@
     <Compile Include="Common\Converters\MessageTypeConverter.cs" />
     <Compile Include="Common\Exceptions\WindowNotFoundException.cs" />
     <Compile Include="Common\ISleeper.cs" />
+    <Compile Include="Common\Sleeper.cs" />
     <Compile Include="Evaluators\Evaluator.cs" />
     <Compile Include="Command\Parser\CommandLexer.cs" />
     <Compile Include="Command\Parser\CommandParser.cs" />
@@ -114,7 +115,7 @@
     <Compile Include="Events\Logger.cs" />
     <Compile Include="Events\ILogger.cs" />
     <Compile Include="IO\DB\QueryExecutor.cs" />
-    <Compile Include="Common\Sleeper.cs" />
+    <Compile Include="Common\StaticSleeper.cs" />
     <Compile Include="Common\StringExtensions.cs" />
     <Compile Include="Common\TableExtensions.cs" />
     <Compile Include="Evaluators\EventParser.cs" />

@@ -34,8 +34,11 @@ namespace Aurora4xAutomationClient
             while (true)
             {
                 var character = Console.ReadKey();
-                _currentInput += character.KeyChar;
-                if (character.Key == ConsoleKey.Enter)
+                if (character.Key == ConsoleKey.Backspace)
+                {
+                    _currentInput = _currentInput.Substring(0, _currentInput.Length - 1);
+                }
+                else if (character.Key == ConsoleKey.Enter)
                 {
                     lock (_writeToConsoleLock)
                     {
@@ -46,6 +49,10 @@ namespace Aurora4xAutomationClient
                         Console.Write("$> ");
                         _currentInput = "";
                     }
+                }
+                else
+                {
+                    _currentInput += character.KeyChar;
                 }
             }
         }

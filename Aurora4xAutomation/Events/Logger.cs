@@ -4,11 +4,11 @@ namespace Aurora4xAutomation.Events
 {
     public class Logger : ILogger
     {
-        public void Error(Exception e)
+        public void Error(string message, string stackTrace)
         {
             var previousColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("{0}", e.Message);
+            Console.WriteLine("{0}\n{1}", message, stackTrace);
             Console.ForegroundColor = previousColor;
         }
 

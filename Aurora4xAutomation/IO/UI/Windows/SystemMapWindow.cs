@@ -1,7 +1,8 @@
-﻿using Aurora4xAutomation.Common;
+﻿using System;
+using Aurora4xAutomation.Common;
+using Aurora4xAutomation.IO.UI.Display;
 using Aurora4xAutomation.Settings;
 using System.Windows.Forms;
-using Aurora4xAutomation.IO.UI.Display;
 
 namespace Aurora4xAutomation.IO.UI.Windows
 {
@@ -15,57 +16,57 @@ namespace Aurora4xAutomation.IO.UI.Windows
 
         public void ClickIncrement5SecondsButton()
         {
-            this.Click(329, 110);
+            Click(329, 110);
         }
 
         public void ClickIncrement30SecondsButton()
         {
-            this.Click(409, 110);
+            Click(409, 110);
         }
 
         public void ClickIncrement2MinutesButton()
         {
-            this.Click(488, 110);
+            Click(488, 110);
         }
 
         public void ClickIncrement5MinutesButton()
         {
-            this.Click(568, 110);
+            Click(568, 110);
         }
 
         public void ClickIncrement20MinutesButton()
         {
-            this.Click(647, 110);
+            Click(647, 110);
         }
 
         public void ClickIncrement1HoursButton()
         {
-            this.Click(730, 110);
+            Click(730, 110);
         }
 
         public void ClickIncrement3HoursButton()
         {
-            this.Click(808, 110);
+            Click(808, 110);
         }
 
         public void ClickIncrement8HoursButton()
         {
-            this.Click(889, 110);
+            Click(889, 110);
         }
 
         public void ClickIncrement1DayButton()
         {
-            this.Click(969, 110);
+            Click(969, 110);
         }
 
         public void ClickIncrement5DaysButton()
         {
-            this.Click(1052, 110);
+            Click(1052, 110);
         }
 
         public void ClickIncrement30DaysButton()
         {
-            this.Click(1130, 110);
+            Click(1130, 110);
         }
 
         public string GetTime()
@@ -76,7 +77,7 @@ namespace Aurora4xAutomation.IO.UI.Windows
         protected override void OpenIfNotFound()
         {
             new BaseAuroraWindow(Screen, WindowFinder, InputDevice, Settings).MakeActive();
-            Sleeper.Sleep(1000);
+            StaticSleeper.Sleep(1000);
             SendKeys.SendWait("{F3}");
         }
     }

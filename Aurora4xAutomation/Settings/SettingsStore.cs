@@ -70,7 +70,7 @@ namespace Aurora4xAutomation.Settings
 
         public string GameName
         {
-            get { return "AutomatedAuroraGame"; }
+            get { return "New Game Name"; }
         }
 
         private string _databasePassword;

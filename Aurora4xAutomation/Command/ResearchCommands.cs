@@ -53,7 +53,7 @@ namespace Aurora4xAutomation.Command
             UIMap.PopulationAndProduction.SelectResearchTab();
 
             UIMap.PopulationAndProduction.SetShowMatchingScientistsOnly(true);
-            Sleeper.Sleep(500);
+            StaticSleeper.Sleep(500);
 
             if (int.Parse(UIMap.PopulationAndProduction.AvailableLabs.Text) != 0)
             {
@@ -61,35 +61,35 @@ namespace Aurora4xAutomation.Command
                 var research = new List<string[]>();
 
                 UIMap.PopulationAndProduction.SelectBiology();
-                Sleeper.Sleep(500);
+                StaticSleeper.Sleep(500);
                 research.AddRange(UIMap.PopulationAndProduction.ResearchTable.GetTable().Select((x, index) => new[] { x[0], x[1], "bg", ""+index }));
                 scientists.AddRange(UIMap.PopulationAndProduction.AvailableScientistsTable.GetTable().Select(x => new[] { x[0], "bg" }));
                 UIMap.PopulationAndProduction.SelectConstruction();
-                Sleeper.Sleep(500);
+                StaticSleeper.Sleep(500);
                 research.AddRange(UIMap.PopulationAndProduction.ResearchTable.GetTable().Select((x, index) => new[] { x[0], x[1], "cp", "" + index }));
                 scientists.AddRange(UIMap.PopulationAndProduction.AvailableScientistsTable.GetTable().Select(x => new[] { x[0], "cp" }));
                 UIMap.PopulationAndProduction.SelectDefensive();
-                Sleeper.Sleep(500);
+                StaticSleeper.Sleep(500);
                 research.AddRange(UIMap.PopulationAndProduction.ResearchTable.GetTable().Select((x, index) => new[] { x[0], x[1], "ds", "" + index }));
                 scientists.AddRange(UIMap.PopulationAndProduction.AvailableScientistsTable.GetTable().Select(x => new[] { x[0], "ds" }));
                 UIMap.PopulationAndProduction.SelectEnergy();
-                Sleeper.Sleep(500);
+                StaticSleeper.Sleep(500);
                 research.AddRange(UIMap.PopulationAndProduction.ResearchTable.GetTable().Select((x, index) => new[] { x[0], x[1], "ew", "" + index }));
                 scientists.AddRange(UIMap.PopulationAndProduction.AvailableScientistsTable.GetTable().Select(x => new[] { x[0], "ew" }));
                 UIMap.PopulationAndProduction.SelectLogistics();
-                Sleeper.Sleep(500);
+                StaticSleeper.Sleep(500);
                 research.AddRange(UIMap.PopulationAndProduction.ResearchTable.GetTable().Select((x, index) => new[] { x[0], x[1], "lg", "" + index }));
                 scientists.AddRange(UIMap.PopulationAndProduction.AvailableScientistsTable.GetTable().Select(x => new[] { x[0], "lg" }));
                 UIMap.PopulationAndProduction.SelectMissiles();
-                Sleeper.Sleep(500);
+                StaticSleeper.Sleep(500);
                 research.AddRange(UIMap.PopulationAndProduction.ResearchTable.GetTable().Select((x, index) => new[] { x[0], x[1], "mk", "" + index }));
                 scientists.AddRange(UIMap.PopulationAndProduction.AvailableScientistsTable.GetTable().Select(x => new[] { x[0], "mk" }));
                 UIMap.PopulationAndProduction.SelectPower();
-                Sleeper.Sleep(500);
+                StaticSleeper.Sleep(500);
                 research.AddRange(UIMap.PopulationAndProduction.ResearchTable.GetTable().Select((x, index) => new[] { x[0], x[1], "pp", "" + index }));
                 scientists.AddRange(UIMap.PopulationAndProduction.AvailableScientistsTable.GetTable().Select(x => new[] { x[0], "pp" }));
                 UIMap.PopulationAndProduction.SelectSensors();
-                Sleeper.Sleep(500);
+                StaticSleeper.Sleep(500);
                 research.AddRange(UIMap.PopulationAndProduction.ResearchTable.GetTable().Select((x, index) => new[] { x[0], x[1], "sf", "" + index }));
                 scientists.AddRange(UIMap.PopulationAndProduction.AvailableScientistsTable.GetTable().Select(x => new[] { x[0], "sf" }));
 
@@ -137,7 +137,7 @@ namespace Aurora4xAutomation.Command
                     if (searchFor.Key.SimilarTo(searchAgainst[0]) && searchFor.Value == searchAgainst[2])
                     {
                         UIMap.PopulationAndProduction.SelectResearchByCategory(searchFor.Value);
-                        Sleeper.Sleep(500);
+                        StaticSleeper.Sleep(500);
                         var res = UIMap.PopulationAndProduction.ResearchTable.GetTable();
 
                         for (int i = 0; i < res.Count; i++)
@@ -190,7 +190,7 @@ namespace Aurora4xAutomation.Command
 
         private void BalanceResearch(object sender, EventArgs e)
         {
-            Sleeper.Sleep(500);
+            StaticSleeper.Sleep(500);
             var labs = UIMap.PopulationAndProduction.CurrentResearchProject.GetTable()[0][2];
             var occupied = int.Parse(labs.Split('/')[0]);
             if (occupied >= 2)

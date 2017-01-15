@@ -8,9 +8,13 @@ namespace Aurora4xAutomation.IO
 {
     public class UIMap : IUIMap
     {
-        public UIMap(ISettingsStore settings)
+        public UIMap(ISettingsStore settings, IWindowFinder windowFinder, IOCRReader ocr, IInputDevice input, IScreen screen)
         {
             Settings = settings;
+            WindowFinder = windowFinder;
+            OCR = ocr;
+            InputDevice = input;
+            Screen = screen;
         }
 
         public ISettingsStore Settings { get; set; }

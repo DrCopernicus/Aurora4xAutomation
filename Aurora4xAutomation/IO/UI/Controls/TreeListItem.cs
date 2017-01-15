@@ -159,7 +159,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                     {
                         Click(Level * 17 + 9, 7, 0);
                         Screen.Dirty();
-                        Sleeper.Sleep(250);
+                        StaticSleeper.Sleep(250);
                     }
                 }
                 else
@@ -168,7 +168,7 @@ namespace Aurora4xAutomation.IO.UI.Controls
                     {
                         Click(Level * 17 + 9, 7, 0);
                         Screen.Dirty();
-                        Sleeper.Sleep(250);
+                        StaticSleeper.Sleep(250);
                     }
                 }
             }

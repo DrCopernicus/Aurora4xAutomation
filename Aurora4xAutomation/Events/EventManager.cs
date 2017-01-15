@@ -46,8 +46,8 @@ namespace Aurora4xAutomation.Events
                         e.Cancel = true;
                         break;
                     }
-                    CompleteOneRound();
-                    Sleeper.Sleep(1000);
+                    CompleteOneRound(handler);
+                    StaticSleeper.Sleep(1000);
                 }
             };
 
@@ -56,13 +56,13 @@ namespace Aurora4xAutomation.Events
                 handler.Write("Stopping event manager.");
 
                 if (e.Error != null)
-                    handler.Error(e.Error);
+                    handler.Error(e.Error.Message, e.Error.StackTrace);
             };
 
             _worker.RunWorkerAsync();
         }
 
-        private void CompleteOneRound()
+        private void CompleteOneRound(ILogger handler)
         {
             ActOnActiveTimelineEntries();
 

@@ -35,7 +35,7 @@ namespace Aurora4xAutomation.Evaluators
         {
             UIMap.Events.MakeActive();
             UIMap.Events.TextFileButton.Click();
-            Sleeper.Sleep(1500);
+            StaticSleeper.Sleep(1500);
             var file = Settings.EventLogLocation;
             var allEvents = File.ReadAllLines(file);
             if (!Time.Within(GetLatestTime(allEvents), time, new Time{Second = 60}))

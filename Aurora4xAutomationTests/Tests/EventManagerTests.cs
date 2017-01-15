@@ -100,7 +100,7 @@ namespace Aurora4xAutomationTests.Tests
             Thread.Sleep(2000);
             eventManager.Stop();
 
-            logger.Received(1).Error(Arg.Any<Exception>());
+            logger.Received(1).Error(Arg.Any<string>(), Arg.Any<string>());
         }
     }
 }
