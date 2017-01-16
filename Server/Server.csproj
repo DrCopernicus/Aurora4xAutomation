@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automation\CommandFlowManager.cs" />
+    <Compile Include="Command\Parser\Sanitizer.cs" />
     <Compile Include="Common\Args.cs" />
     <Compile Include="Common\Exceptions\WrongParameterCountException.cs" />
     <Compile Include="Common\Converters\MessageTypeConverter.cs" />
@@ -82,7 +83,10 @@
     <Compile Include="Command\Parser\CommandParser.cs" />
     <Compile Include="Command\Parser\CommandToken.cs" />
     <Compile Include="Evaluators\BuildInstallationEvaluator.cs" />
+    <Compile Include="Command\Parser\EvaluatorRegistry.cs" />
     <Compile Include="Evaluators\Factories\EvaluatorParameterizer.cs" />
+    <Compile Include="Evaluators\Message\ErrorEvaluator.cs" />
+    <Compile Include="Evaluators\Message\ListEvaluator.cs" />
     <Compile Include="Evaluators\Message\LogEvaluator.cs" />
     <Compile Include="Evaluators\Message\MessageEvaluator.cs" />
     <Compile Include="Evaluators\NoOpEvaluator.cs" />

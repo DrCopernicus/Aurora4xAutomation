@@ -1,5 +1,5 @@
-﻿using System;
-using Server.Messages;
+﻿using Server.Messages;
+using System;
 
 namespace Server.Evaluators.Message
 {

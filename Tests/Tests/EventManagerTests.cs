@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
 using Server.Evaluators;
 using Server.Events;
 using Server.IO;
 using Server.Messages;
 using Server.Settings;
+using System;
+using System.Threading;
 
 namespace Tests.Tests
 {
@@ -66,7 +66,7 @@ namespace Tests.Tests
         }
 
         [Test]
-        public void ExceptionsCanPercolateFromEvaluatorsToEventManager()
+        public void ExceptionsCannotPercolateFromEvaluatorsToEventManager()
         {
             var messages = Substitute.For<IMessageManager>();
             var settings = Substitute.For<ISettingsStore>();
@@ -78,7 +78,7 @@ namespace Tests.Tests
             evaluator.When(x => x.Execute()).Do(x => { throw new Exception(); });
             eventManager.AddEvent(evaluator);
 
-            Assert.Throws<Exception>(() => eventManager.ActOnActiveTimelineEntries());
+            Assert.DoesNotThrow(() => eventManager.ActOnActiveTimelineEntries());
         }
 
         [Test]

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using Grapevine;
+﻿using Grapevine;
 using Grapevine.Server;
 using Server.Events;
+using System;
+using System.Linq;
+using System.Net;
 
 namespace Server.REST
 {
@@ -23,8 +23,6 @@ namespace Server.REST
         [RESTRoute(Method = HttpMethod.GET, PathInfo = @"^/allmessages$")]
         public void HandleAllMessageRequests(HttpListenerContext context)
         {
-            new Logger().Write("[REST] All messages");
-
             var messages = RESTManager.CommandFlowManager.GetMessages(-1);
             if (messages.Any())
                 SendTextResponse(context, string.Join("\n", messages));
@@ -37,9 +35,7 @@ namespace Server.REST
         {
             var afterId = Convert.ToInt64(context.Request.QueryString["after"]);
             var uptoId = Convert.ToInt64(context.Request.QueryString["upto"]);
-
-            new Logger().Write(string.Format("[REST] Messages from <{0}> to <{1}>", afterId, uptoId));
-
+            
             var messages = RESTManager.CommandFlowManager.GetMessages(afterId, uptoId);
             if (messages.Any())
                 SendTextResponse(context, string.Join("\n", messages));
@@ -50,8 +46,6 @@ namespace Server.REST
         [RESTRoute(Method = HttpMethod.GET, PathInfo = @"^/lastmessage")]
         public void HandleLastMessageRequests(HttpListenerContext context)
         {
-            new Logger().Write("[REST] Last message ID");
-
             SendTextResponse(context, RESTManager.CommandFlowManager.GetLastMessageId().ToString());
         }
     }

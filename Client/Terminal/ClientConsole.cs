@@ -1,5 +1,6 @@
 ﻿
 using Client.REST;
+using Server.Command.Parser;
 
 namespace Client.Terminal
 {
@@ -8,12 +9,14 @@ namespace Client.Terminal
         private IConsoleFormatter _formatter;
         private ITerminal _terminal;
         private IClientWrapper _client;
+        private Sanitizer _sanitizer;
 
         public ClientConsole(ITerminal terminal, IConsoleFormatter formatter, IClientWrapper client)
         {
             _terminal = terminal;
             _formatter = formatter;
             _client = client;
+            _sanitizer = new Sanitizer();
 
             RewriteConsole();
         }
@@ -29,7 +32,7 @@ namespace Client.Terminal
                         _formatter.Backspace();
                         break;
                     case '\n':
-                        _client.Request(_terminal.GetCurrentLine());
+                        _client.Request(_sanitizer.Sanitize(_terminal.GetCurrentLine()));
                         _terminal.WriteCurrentLine(TerminalStyle.Command);
                         RewriteConsole();
                         break;

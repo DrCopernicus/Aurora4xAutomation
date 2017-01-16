@@ -18,7 +18,7 @@ namespace Server.Automation
             _auroraUI = uiMap;
             _messages = messageManager;
             _eventManager = eventManager;
-            _commandParser = new CommandParser(_auroraUI, _settings, _messages, _eventManager);
+            _commandParser = new CommandParser(_auroraUI, _settings, _messages, _eventManager, _logger);
 
             RESTManager.CommandFlowManager = this;
         }

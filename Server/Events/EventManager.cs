@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Linq;
-using Server.Command;
+﻿using Server.Command;
 using Server.Common;
 using Server.Evaluators;
 using Server.Evaluators.Factories;
@@ -8,6 +6,9 @@ using Server.Evaluators.Message;
 using Server.IO;
 using Server.Messages;
 using Server.Settings;
+using System;
+using System.ComponentModel;
+using System.Linq;
 
 namespace Server.Events
 {
@@ -90,7 +91,16 @@ namespace Server.Events
         {
             IEvaluator ev;
             while ((ev = _timeline.PopNextActiveEvent(UIMap.GetTime())) != null)
-                ev.Execute();
+            {
+                try
+                {
+                    ev.Execute();
+                }
+                catch (Exception e)
+                {
+                    ErrorEvaluator.Error(e.Message, e.StackTrace, Messages).Execute();
+                }
+            }
         }
 
         private void ParseAuroraEventLog()

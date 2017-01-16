@@ -1,10 +1,9 @@
-﻿using System;
-using Server.Evaluators;
-using Server.Evaluators.Message;
+﻿using Server.Evaluators;
 using Server.Events;
 using Server.IO;
 using Server.Messages;
 using Server.Settings;
+using System;
 
 namespace Server.Command.Parser
 {
@@ -16,12 +15,14 @@ namespace Server.Command.Parser
             Settings = settings;
             Messages = messages;
             EventManager = eventManager;
+            Registry = new EvaluatorRegistry(uiMap, settings, messages, eventManager);
         }
 
         private IUIMap UIMap { get; set; }
         private ISettingsStore Settings { get; set; }
         private IMessageManager Messages { get; set; }
         private IEventManager EventManager { get; set; }
+        private EvaluatorRegistry Registry { get; set; }
 
         private void SkipSpaces(ref string command)
         {
@@ -201,32 +202,7 @@ namespace Server.Command.Parser
         {
             try
             {
-                switch (text.ToLower())
-                {
-                    case "adv":
-                        return new AdvanceEvaluator(text, Settings);
-                    case "build-installation":
-                        return new BuildInstallationEvaluator(text, UIMap);
-                    case "contract":
-                        return new ContractEvaluator(text, UIMap);
-                    case "help":
-                        return new HelpEvaluator(text, Messages);
-                    case "move":
-                        return new MoveEvaluator(text, UIMap);
-                    case "open":
-                        return new OpenWindowEvaluator(text, UIMap);
-                    case "print":
-                        return new PrintEvaluator(text, Messages);
-                    case "read":
-                        return new ReadDataEvaluator(text, UIMap);
-                    case "set-pop":
-                        return new SetPopulationEvaluator(text, UIMap);
-                    case "open-pop":
-                        return new OpenPopulationEvaluator(text, UIMap);
-                    case "stop":
-                        return new StopEvaluator(text, Settings);
-                }
-                throw new Exception(string.Format("Did not recognize command {0}.", text));
+                return Registry.ParseCommand(text);
             }
             catch (Exception e)
             {

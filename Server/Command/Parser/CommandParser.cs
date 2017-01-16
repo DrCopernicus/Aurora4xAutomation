@@ -1,21 +1,30 @@
-﻿using System;
-using Server.Evaluators;
+﻿using Server.Evaluators;
 using Server.Evaluators.Factories;
 using Server.Evaluators.Message;
 using Server.Events;
 using Server.IO;
 using Server.Messages;
 using Server.Settings;
+using System;
 
 namespace Server.Command.Parser
 {
     public class CommandParser
     {
-        public CommandParser(IUIMap uiMap, ISettingsStore settings, IMessageManager messages, IEventManager eventManager)
+        private Sanitizer Sanitizer { get; set; }
+        private ILogger Logger { get; set; }
+        private IUIMap UIMap { get; set; }
+        private CommandLexer Lexer { get; set; }
+        private IMessageManager Messages { get; set; }
+        private ISettingsStore Settings { get; set; }
+
+        public CommandParser(IUIMap uiMap, ISettingsStore settings, IMessageManager messages, IEventManager eventManager, ILogger logger)
         {
             UIMap = uiMap;
             Settings = settings;
             Messages = messages;
+            Logger = logger;
+            Sanitizer = new Sanitizer();
             Lexer = new CommandLexer(UIMap, Settings, Messages, eventManager);
         }
 
@@ -23,12 +32,12 @@ namespace Server.Command.Parser
         {
             try
             {
-                return Lexer.Lex(choice);
+                return Lexer.Lex(Sanitizer.Sanitize(choice));
             }
             catch (Exception e)
             {
                 var log = new LogEvaluator("log", Messages);
-                new EvaluatorParameterizer().SetParameters(log, e.Message);
+                new EvaluatorParameterizer().SetParameters(log, "error", e.Message);
                 return log;
             }
         }
@@ -125,10 +134,5 @@ namespace Server.Command.Parser
                     return IncrementLength.FiveDay;
             }
         }
-
-        private IUIMap UIMap { get; set; }
-        private CommandLexer Lexer { get; set; }
-        private IMessageManager Messages { get; set; }
-        private ISettingsStore Settings { get; set; }
     }
 }

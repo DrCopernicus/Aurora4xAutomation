@@ -81,6 +81,7 @@
     <Compile Include="Tests\ClientTests\ServerMessageRetrieverTests.cs" />
     <Compile Include="Tests\CommandFlowManagerTests\CommandFlowManagerTests.cs" />
     <Compile Include="Tests\CommandTests\ParsePrintEvaluator.cs" />
+    <Compile Include="Tests\CommandTests\SanitizerTests.cs" />
     <Compile Include="Tests\ConverterTests\MessageTypeConverterTests.cs" />
     <Compile Include="Tests\CSharpTests.cs" />
     <Compile Include="Tests\EvaluatorTests\ContractEvaluatorTests.cs" />
