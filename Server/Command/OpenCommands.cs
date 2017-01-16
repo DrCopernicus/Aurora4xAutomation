@@ -12,42 +12,6 @@ namespace Server.Command
             UIMap = uiMap;
         }
 
-        public void OpenResearchCategory(string category)
-        {
-            var output = "";
-
-            UIMap.PopulationAndProduction.MakeActive();
-            UIMap.PopulationAndProduction.SelectResearchTab();
-            output += "Available Labs: " + UIMap.PopulationAndProduction.AvailableLabs.Text + "\n\n";
-            if (category == "all")
-            {
-                UIMap.PopulationAndProduction.SelectBiology();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectConstruction();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectDefensive();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectEnergy();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectLogistics();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectMissiles();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectPower();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectSensors();
-                output += ReadResearchTables();
-            }
-            else
-            {
-                UIMap.PopulationAndProduction.SelectResearchByCategory(category);
-                output += ReadResearchTables();
-            }
-
-            //new MessageCommands(Settings).PrintFeedback(output);
-            throw new NotImplementedException();
-        }
-
         public void SelectColony(string colony)
         {
             UIMap.PopulationAndProduction.MakeActive();
@@ -61,15 +25,7 @@ namespace Server.Command
             throw new NotImplementedException();
         }
 
-        private string ReadResearchTables()
-        {
-            var output = "";
-            UIMap.PopulationAndProduction.SetShowMatchingScientistsOnly(true);
-            Thread.Sleep(250);
-            output += UIMap.PopulationAndProduction.ResearchTable.GetText();
-            output += UIMap.PopulationAndProduction.AvailableScientistsTable.GetText();
-            return output;
-        }
+        
 
         private IUIMap UIMap { get; set; }
     }

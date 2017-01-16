@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Server.Common.Exceptions;
 using Server.Evaluators;
-using Server.Evaluators.Factories;
+using Server.Evaluators.Helpers;
 using Server.Settings;
 
 namespace Tests.Tests.EvaluatorTests

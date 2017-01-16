@@ -1,5 +1,7 @@
 ﻿using Server.Evaluators;
+using Server.Evaluators.Leaders;
 using Server.Evaluators.Message;
+using Server.Evaluators.Research;
 using Server.Events;
 using Server.IO;
 using Server.Messages;
@@ -32,6 +34,8 @@ namespace Server.Command.Parser
 
         private void InitializeCommands()
         {
+            Register("list", () => new ListEvaluator("list", Messages, this));
+
             Register("adv", () => new AdvanceEvaluator("adv", Settings));
             Register("build-installation", () => new BuildInstallationEvaluator("build-installation", UIMap));
             Register("contract", () => new ContractEvaluator("contract", UIMap));
@@ -39,11 +43,11 @@ namespace Server.Command.Parser
             Register("move", () => new MoveEvaluator("move", UIMap));
             Register("open", () => new OpenWindowEvaluator("open", UIMap));
             Register("print", () => new PrintEvaluator("print", Messages));
-            Register("read", () => new ReadDataEvaluator("read", UIMap));
             Register("set-pop", () => new SetPopulationEvaluator("set-pop", UIMap));
             Register("open-pop", () => new OpenPopulationEvaluator("open-pop", UIMap));
             Register("stop", () => new StopEvaluator("stop", Settings));
-            Register("list", () => new ListEvaluator("list", Messages, this));
+            Register("autoleader", () => new AutoLeaderEvaluator("autoleader", UIMap));
+            Register("show-research", () => new ShowResearchEvaluator("show-research", UIMap, Messages));
         }
 
         private void Register(string name, Func<IEvaluator> constructor)

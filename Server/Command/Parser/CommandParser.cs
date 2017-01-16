@@ -1,11 +1,11 @@
 ﻿using Server.Evaluators;
-using Server.Evaluators.Factories;
 using Server.Evaluators.Message;
 using Server.Events;
 using Server.IO;
 using Server.Messages;
 using Server.Settings;
 using System;
+using Server.Evaluators.Helpers;
 
 namespace Server.Command.Parser
 {
@@ -64,18 +64,6 @@ namespace Server.Command.Parser
 //            else if (choice.Matches("^b(uild)? inst(allation)? [a-z0-9\\-]+ [a-z]+ [0-9]+$"))
 //            {
 //                new InfrastructureCommands(UIMap).BuildInstallation(choice.Split(' ')[2], choice.Split(' ')[3], choice.Split(' ')[4]);
-//            }
-//
-//            else if (choice.Matches("^auto assign(ment(s)?)? on$"))
-//            {
-//                UIMap.Leaders.MakeActive();
-//                UIMap.Leaders.SetAutomatedAssignments(true);
-//            }
-//
-//            else if (choice.Matches("^auto assign(ment(s)?)? off$"))
-//            {
-//                UIMap.Leaders.MakeActive();
-//                UIMap.Leaders.SetAutomatedAssignments(false);
 //            }
 //
 //            else if (choice.Matches("^auto research focus [a-z]+$"))

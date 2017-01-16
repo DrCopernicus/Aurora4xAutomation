@@ -1,7 +1,7 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using Server.Evaluators;
-using Server.Evaluators.Factories;
+using Server.Evaluators.Helpers;
 
 namespace Tests.Tests.EvaluatorTests.Factories
 {

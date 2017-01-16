@@ -1,9 +1,9 @@
-﻿using System.Windows.Forms;
-using WindowsInput.Native;
-using Server.Common;
+﻿using Server.Common;
 using Server.IO.UI.Controls;
 using Server.IO.UI.Display;
 using Server.Settings;
+using System.Windows.Forms;
+using WindowsInput.Native;
 using Button = Server.IO.UI.Controls.Button;
 using Label = Server.IO.UI.Controls.Label;
 using RadioButton = Server.IO.UI.Controls.RadioButton;
@@ -224,6 +224,7 @@ namespace Server.IO.UI.Windows
             {
                 this.Click(744, 368);
             }
+            StaticSleeper.Sleep(250);
         }
 
         public void SelectNthResearch(int number)

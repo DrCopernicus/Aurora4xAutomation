@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Server.Evaluators.Factories
+namespace Server.Evaluators.Helpers
 {
     public class EvaluatorParameterizer
     {
