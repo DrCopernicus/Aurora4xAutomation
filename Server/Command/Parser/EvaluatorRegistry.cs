@@ -2,6 +2,7 @@
 using Server.Evaluators.Leaders;
 using Server.Evaluators.Message;
 using Server.Evaluators.Research;
+using Server.Evaluators.Settings;
 using Server.Events;
 using Server.IO;
 using Server.Messages;
@@ -48,6 +49,8 @@ namespace Server.Command.Parser
             Register("stop", () => new StopEvaluator("stop", Settings));
             Register("autoleader", () => new AutoLeaderEvaluator("autoleader", UIMap));
             Register("show-research", () => new ShowResearchEvaluator("show-research", UIMap, Messages));
+
+            Register("set-offset", () => new UIOffsetEvaluator("set-offset", Settings));
         }
 
         private void Register(string name, Func<IEvaluator> constructor)

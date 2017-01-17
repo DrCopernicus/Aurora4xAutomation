@@ -133,6 +133,46 @@ namespace Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap datagrid_researchTable {
+            get {
+                object obj = ResourceManager.GetObject("datagrid_researchTable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap datagrid_researchTableActual {
+            get {
+                object obj = ResourceManager.GetObject("datagrid_researchTableActual", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap datagrid_researchTableInWindow {
+            get {
+                object obj = ResourceManager.GetObject("datagrid_researchTableInWindow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap datagrid_researchTableInWindowOnScreen {
+            get {
+                object obj = ResourceManager.GetObject("datagrid_researchTableInWindowOnScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap ocr_blackwhitenoise {
             get {
                 object obj = ResourceManager.GetObject("ocr_blackwhitenoise", resourceCulture);

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Server.Common;
+﻿using Server.Common;
+using System.Collections.Generic;
 
 namespace Server.Settings
 {
@@ -71,6 +71,20 @@ namespace Server.Settings
         public string GameName
         {
             get { return "New Game Name"; }
+        }
+
+        private int _horizontalOffset = 0;
+        public int HorizontalWindowOffset
+        {
+            get { return _horizontalOffset; }
+            set { _horizontalOffset = value; }
+        }
+
+        private int _verticalOffset = 0;
+        public int VerticalWindowOffset
+        {
+            get { return _verticalOffset; }
+            set { _verticalOffset = value; }
         }
 
         private string _databasePassword;

@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using Server.Common;
+﻿using Server.Common;
 using Server.IO.OCR;
 using Server.IO.UI.Display;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Server.IO.UI.Controls
 {
@@ -13,16 +14,18 @@ namespace Server.IO.UI.Controls
         public int TopOfCharactersOffset { get; set; }
         public PrintSettings Settings;
 
-        public Datagrid(IScreenObject parent, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int left, int right)
-            : base(parent, inputDevice, top, bottom, left, right)
+        public Datagrid(IScreenObject parent, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int[] columns)
+            : base(parent, inputDevice, top, bottom, columns.First(), columns.Last())
         {
             OCR = ocr;
+            Columns = columns;
         }
 
-        public Datagrid(IScreen screen, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int left, int right)
-            : base(screen, inputDevice, top, bottom, left, right)
+        public Datagrid(IScreen screen, IInputDevice inputDevice, IOCRReader ocr, int top, int bottom, int[] columns)
+            : base(screen, inputDevice, top, bottom, columns.First(), columns.Last())
         {
             OCR = ocr;
+            Columns = columns;
         }
 
         private List<string[]> ReadDataTable(int[] columns, int top, int bottom, int lineHeight, int topOfCharactersOffset)
@@ -30,14 +33,14 @@ namespace Server.IO.UI.Controls
             var table = new List<string[]>();
             var currentRowY = top;
 
-            while (currentRowY <= bottom + lineHeight)
+            while (currentRowY + lineHeight - 1 <= bottom)
             {
                 var data = new string[columns.Length - 1];
-                for (int i = 0; i < columns.Length - 1; i++)
+                for (var i = 0; i < columns.Length - 1; i++)
                 {
                     data[i] = OCR.ReadTableRow(
                         Screen.GetPixelsOfColor(
-                            columns[i],
+                            GetColumnStartX(i),
                             currentRowY + topOfCharactersOffset,
                             columns[i + 1] - columns[i],
                             lineHeight - topOfCharactersOffset - 1,
@@ -65,6 +68,11 @@ namespace Server.IO.UI.Controls
         public void ClickRow(int row)
         {
             Click((Right - Left) / 2, row * LineHeight + LineHeight/2);
+        }
+
+        private int GetColumnStartX(int index)
+        {
+            return Columns[index] + Left - Columns[0];
         }
     }
 }

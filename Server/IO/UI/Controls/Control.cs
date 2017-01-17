@@ -7,21 +7,23 @@ namespace Server.IO.UI.Controls
         public Control(IScreen screen, IInputDevice inputDevice, int top, int bottom, int left, int right)
         {
             Screen = screen;
+            Parent = screen;
             InputDevice = inputDevice;
-            Top = top;
-            Bottom = bottom;
-            Left = left;
-            Right = right;
+            _relativeTop = top;
+            _relativeBottom = bottom;
+            _relativeLeft = left;
+            _relativeRight = right;
         }
 
         public Control(IScreenObject parent, IInputDevice inputDevice, int top, int bottom, int left, int right)
         {
             Screen = parent.Screen;
+            Parent = parent;
             InputDevice = inputDevice;
-            Top = parent.Top + top;
-            Bottom = parent.Top + bottom;
-            Left = parent.Left + left;
-            Right = parent.Left + right;
+            _relativeTop = top;
+            _relativeBottom = bottom;
+            _relativeLeft = left;
+            _relativeRight = right;
         }
     }
 }

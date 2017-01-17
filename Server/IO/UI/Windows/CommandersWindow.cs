@@ -1,8 +1,8 @@
-﻿using System.Windows.Forms;
-using Server.Common;
+﻿using Server.Common;
 using Server.IO.UI.Controls;
 using Server.IO.UI.Display;
 using Server.Settings;
+using System.Windows.Forms;
 
 namespace Server.IO.UI.Windows
 {

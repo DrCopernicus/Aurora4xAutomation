@@ -23,7 +23,7 @@ namespace Server.Evaluators.Research
         private string ReadResearchTables()
         {
             var output = "";
-            UIMap.PopulationAndProduction.SetShowMatchingScientistsOnly(true);
+            UIMap.PopulationAndProduction.MatchingScientistsOnly.Select();
             output += UIMap.PopulationAndProduction.ResearchTable.GetText();
             output += UIMap.PopulationAndProduction.AvailableScientistsTable.GetText();
             return output;

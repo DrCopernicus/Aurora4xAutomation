@@ -1,8 +1,8 @@
-﻿using System;
-using Server.Common;
+﻿using Server.Common;
 using Server.Common.Exceptions;
 using Server.IO.UI.Display;
 using Server.Settings;
+using System;
 
 namespace Server.IO.UI
 {
@@ -12,6 +12,7 @@ namespace Server.IO.UI
 
         protected Window(string title, IScreen screen, IWindowFinder windowFinder, IInputDevice inputDevice, ISettingsStore settings)
         {
+            Parent = screen;
             Settings = settings;
             Screen = screen;
             InputDevice = inputDevice;
@@ -31,11 +32,12 @@ namespace Server.IO.UI
 
             var dimensions = windowFinder.GetDimensions(handle);
 
+            _relativeLeft = dimensions.Left;
+            _relativeRight = dimensions.Right;
+            _relativeBottom = dimensions.Bottom;
+            _relativeTop = dimensions.Top;
+
             Handle = handle;
-            Left = dimensions.Left;
-            Right = dimensions.Right;
-            Top = dimensions.Top;
-            Bottom = dimensions.Bottom;
         }
 
         protected abstract void OpenIfNotFound();
@@ -71,5 +73,10 @@ namespace Server.IO.UI
 
         protected ISettingsStore Settings { get; set; }
         protected IWindowFinder WindowFinder { get; set; }
+        
+        public override int Top { get { return Parent.Top + _relativeTop + Settings.VerticalWindowOffset; } }
+        public override int Bottom { get { return Parent.Top + _relativeBottom + Settings.VerticalWindowOffset; } }
+        public override int Left { get { return Parent.Left + _relativeLeft + Settings.HorizontalWindowOffset; } }
+        public override int Right { get { return Parent.Left + _relativeRight + Settings.HorizontalWindowOffset; } }
     }
 }

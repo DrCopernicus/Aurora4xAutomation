@@ -1,10 +1,10 @@
-﻿using System.Drawing;
+﻿using Server.IO.UI.Display;
+using System.Drawing;
 using WindowsInput.Native;
-using Server.IO.UI.Display;
 
 namespace Server.IO.UI
 {
-    public interface IScreenObject
+    public interface IScreenObject : IPositionable
     {
         Color GetPixel(int x, int y);
 
@@ -16,9 +16,5 @@ namespace Server.IO.UI
 
         IScreen Screen { get; }
         IInputDevice InputDevice { get; }
-        int Top { get; }
-        int Bottom { get; }
-        int Left { get; }
-        int Right { get; }
     }
 }

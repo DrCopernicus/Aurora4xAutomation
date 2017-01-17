@@ -28,5 +28,17 @@ namespace Server.Evaluators.Helpers
             if (!allowableStrings.Contains(actual))
                 throw new Exception(string.Format("Unexpected parameter: <{0}> not valid! Must be one of: {1}.", actual, string.Join(", ", allowableStrings)));
         }
+
+        public static int ReadInt(string actual)
+        {
+            try
+            {
+                return int.Parse(actual);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(string.Format("Unexpected parameter: parsing <{0}> threw an exception! {1}\n{2}.", actual, e.Message, e.StackTrace));
+            }
+        }
     }
 }

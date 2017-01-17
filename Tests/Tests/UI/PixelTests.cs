@@ -82,7 +82,7 @@ namespace Tests.Tests.UI
         [Test]
         public void PointsOnDatagridAreCorrectColors()
         {
-            var datagrid = new Datagrid(GetMultiColoredScreen(), Substitute.For<IInputDevice>(), Substitute.For<IOCRReader>(), 1, 3, 1, 3);
+            var datagrid = new Datagrid(GetMultiColoredScreen(), Substitute.For<IInputDevice>(), Substitute.For<IOCRReader>(), 1, 3, new [] {1, 3});
             AssertPixelsOnControlAreCorrect(datagrid);
             AssertGettingOutOfBoundsPixelsThrows(datagrid);
         }

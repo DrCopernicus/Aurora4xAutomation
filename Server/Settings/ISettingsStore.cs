@@ -15,5 +15,7 @@ namespace Server.Settings
         int GameId { get; set; }
         IncrementLength Increment { get; set; }
         string GameName { get; }
+        int HorizontalWindowOffset { get; set; }
+        int VerticalWindowOffset { get; set; }
     }
 }

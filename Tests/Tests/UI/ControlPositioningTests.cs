@@ -55,7 +55,7 @@ namespace Tests.Tests.UI
         [Test]
         public void TestDataGridCorrectLocation()
         {
-            var control = new Datagrid(GetWindow(), Substitute.For<IInputDevice>(), Substitute.For<IOCRReader>(), 20, 40, 20, 60);
+            var control = new Datagrid(GetWindow(), Substitute.For<IInputDevice>(), Substitute.For<IOCRReader>(), 20, 40, new []{20, 60});
 
             Assert.AreEqual(30, control.Top);
             Assert.AreEqual(50, control.Bottom);

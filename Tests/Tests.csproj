@@ -77,7 +77,6 @@
     <Compile Include="Tests\ClientTests\ClientTerminalTests.cs" />
     <Compile Include="Tests\ClientTests\ConnectionCreatorTests.cs" />
     <Compile Include="Tests\ClientTests\ConsoleFormatterTests.cs" />
-    <Compile Include="Tests\ClientTests\InputListenerTests.cs" />
     <Compile Include="Tests\ClientTests\ServerMessageRetrieverTests.cs" />
     <Compile Include="Tests\CommandFlowManagerTests\CommandFlowManagerTests.cs" />
     <Compile Include="Tests\CommandTests\ParsePrintEvaluator.cs" />
@@ -106,7 +105,10 @@
     <Compile Include="Tests\ScriptFrameworkTests\ScriptableStateTests.cs" />
     <Compile Include="Tests\TimelineTests.cs" />
     <Compile Include="Tests\TimeTests.cs" />
+    <Compile Include="Tests\UI\ChangingWindowOffsetTests.cs" />
+    <Compile Include="Tests\UI\ClickingInWindowTests.cs" />
     <Compile Include="Tests\UI\ClickingTests.cs" />
+    <Compile Include="Tests\UI\Component\DataGridTests.cs" />
     <Compile Include="Tests\UI\Component\LabelTests.cs" />
     <Compile Include="Tests\UI\Component\RadioButtonTests.cs" />
     <Compile Include="Tests\UI\Component\ButtonTests.cs" />
@@ -219,6 +221,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ocr_TerraformingInstallations.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\datagrid_researchTable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\datagrid_researchTableInWindow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\datagrid_researchTableActual.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\datagrid_researchTableInWindowOnScreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

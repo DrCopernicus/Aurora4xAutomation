@@ -58,7 +58,7 @@ namespace Tests.Tests.UI
         public void ClicksCorrectPixelOnDatagrid()
         {
             var inputDevice = Substitute.For<IInputDevice>();
-            var control = new Datagrid(Substitute.For<IScreen>(), inputDevice, Substitute.For<IOCRReader>(), 1, 3, 1, 3);
+            var control = new Datagrid(Substitute.For<IScreen>(), inputDevice, Substitute.For<IOCRReader>(), 1, 3, new []{1, 3});
             AssertClicksAreCorrect(control, inputDevice);
         }
 

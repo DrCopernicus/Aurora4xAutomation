@@ -1,6 +1,6 @@
-﻿using System.Drawing;
+﻿using Server.Common;
+using System.Drawing;
 using System.Linq;
-using Server.Common;
 
 namespace Server.IO.UI.Display
 {
@@ -74,5 +74,10 @@ namespace Server.IO.UI.Display
         {
             ScreenDataRetriever.Dirty();
         }
+
+        public int Top { get { return 0; } }
+        public int Bottom { get { return 0; } }
+        public int Left { get { return 0; } }
+        public int Right { get { return 0; } }
     }
 }

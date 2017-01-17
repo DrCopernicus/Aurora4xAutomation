@@ -15,23 +15,20 @@ namespace Server.IO.UI.Windows
         public PopulationAndProductionWindow(IScreen screen, IWindowFinder windowFinder, IInputDevice inputDevice, IOCRReader ocr, ISettingsStore settings)
             : base("Population and Production", screen, windowFinder, inputDevice, settings)
         {
-            ResearchTable = new Datagrid(this, inputDevice, ocr, left: 406, right: 776, top: 406, bottom: 613)
+            ResearchTable = new Datagrid(this, inputDevice, ocr, 406, 613, new [] { 406, 687, 754, 776 })
             {
-                Columns = new[] {406, 687, 754},
                 LineHeight = 16,
                 TopOfCharactersOffset = 3,
                 Settings = PrintSettings.NewResearchTable
             };
-            AvailableScientistsTable = new Datagrid(this, inputDevice, ocr, left: 790, right: 1184, top: 406, bottom: 613)
+            AvailableScientistsTable = new Datagrid(this, inputDevice, ocr, 406, 613, new[] { 790, 909, 1056, 1184 })
             {
-                Columns = new[] {790, 909, 1056},
                 LineHeight = 16,
                 TopOfCharactersOffset = 3,
                 Settings = PrintSettings.AvailableScientistTable
             };
-            ConstructionOptions = new Datagrid(this, inputDevice, ocr, left: 398, right: 599, top: 245, bottom: 669)
+            ConstructionOptions = new Datagrid(this, inputDevice, ocr, 245, 669, new []{ 398, 599 })
             {
-                Columns = new[] {398, 599},
                 LineHeight = 16,
                 TopOfCharactersOffset = 3
             };
@@ -88,15 +85,15 @@ namespace Server.IO.UI.Windows
                 CharacterHeight = 11,
                 Colors = new[] {new byte[] {0, 0, 0}}
             };
-            CurrentResearchProject = new Datagrid(this, inputDevice, ocr, left: 399, right: 1158, top: 193, bottom: 289)
+            CurrentResearchProject = new Datagrid(this, inputDevice, ocr, 193, 289, new[] { 399, 632, 799, 859, 929, 999, 1132, 1158 })
             {
-                Columns = new[] {399, 632, 799, 859, 929, 999, 1132, 1158},
                 LineHeight = 16,
                 TopOfCharactersOffset = 3
             };
             RemoveRL = new Button(this, inputDevice, left: 683, right: 763, top: 299, bottom: 323);
             AddRL = new Button(this, inputDevice, left: 587, right: 667, top: 299, bottom: 323);
             NumberOfLabs = new Label(this, inputDevice, ocr, left: 515, right: 541, top: 140, bottom: 148);
+            MatchingScientistsOnly = new RadioButton(this, inputDevice, left: 740, right: 750, top: 362, bottom: 372 );
         }
 
         private bool IsSummaryTabRowOnTop()
@@ -126,6 +123,7 @@ namespace Server.IO.UI.Windows
         public Button RemoveRL { get; set; }
         public Button AddRL { get; set; }
         public Label NumberOfLabs { get; set; }
+        public RadioButton MatchingScientistsOnly { get; set; }
 
         #endregion
 
@@ -215,16 +213,6 @@ namespace Server.IO.UI.Windows
         {
             DropDownNewResearchProject();
             this.Click(524, 475);
-        }
-
-        public void SetShowMatchingScientistsOnly(bool toggle)
-        {
-            if ((this.GetPixel(744, 368).EqualsColor(0, 0, 0) && !toggle)
-                || this.GetPixel(744, 368).EqualsColor(255, 255, 255) && toggle)
-            {
-                this.Click(744, 368);
-            }
-            StaticSleeper.Sleep(250);
         }
 
         public void SelectNthResearch(int number)

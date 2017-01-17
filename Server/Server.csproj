@@ -97,6 +97,7 @@
     <Compile Include="Evaluators\IEvaluator.cs" />
     <Compile Include="Evaluators\Research\ShowResearchEvaluator.cs" />
     <Compile Include="Evaluators\SetPopulationEvaluator.cs" />
+    <Compile Include="Evaluators\Settings\UIOffsetEvaluator.cs" />
     <Compile Include="Evaluators\StopEvaluator.cs" />
     <Compile Include="Evaluators\Message\PrintEvaluator.cs" />
     <Compile Include="Evaluators\OpenPopulationEvaluator.cs" />
@@ -136,12 +137,14 @@
     <Compile Include="IO\OCR\ISplitter.cs" />
     <Compile Include="IO\OCR\OCRReader.cs" />
     <Compile Include="IO\OCR\OCRSplitter.cs" />
+    <Compile Include="IO\UI\Controls\CheckBox.cs" />
     <Compile Include="IO\UI\Display\IScreenshotCapturer.cs" />
     <Compile Include="IO\UI\Display\ScreenshotCapturer.cs" />
     <Compile Include="IO\UI\IInputDevice.cs" />
     <Compile Include="IO\UI\InputDevice.cs" />
     <Compile Include="IO\UI\Display\IScreen.cs" />
     <Compile Include="IO\UI\Display\IScreenDataRetriever.cs" />
+    <Compile Include="IO\UI\IPositionable.cs" />
     <Compile Include="IO\UI\IScreenObject.cs" />
     <Compile Include="IO\UI\IWindowFinder.cs" />
     <Compile Include="IO\UI\Display\Screen.cs" />

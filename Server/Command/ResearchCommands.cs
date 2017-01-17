@@ -25,7 +25,7 @@ namespace Server.Command
             UIMap.PopulationAndProduction.SelectResearchTab();
             UIMap.PopulationAndProduction.SelectResearchByCategory(category);
 
-            UIMap.PopulationAndProduction.SetShowMatchingScientistsOnly(true);
+            UIMap.PopulationAndProduction.MatchingScientistsOnly.Select();
             Thread.Sleep(500);
             UIMap.PopulationAndProduction.SelectNthResearch(researchNum);
             UIMap.PopulationAndProduction.SelectNthScientist(scientistNum);
@@ -51,7 +51,7 @@ namespace Server.Command
             UIMap.PopulationAndProduction.MakeActive();
             UIMap.PopulationAndProduction.SelectResearchTab();
 
-            UIMap.PopulationAndProduction.SetShowMatchingScientistsOnly(true);
+            UIMap.PopulationAndProduction.MatchingScientistsOnly.Select();
             StaticSleeper.Sleep(500);
 
             if (int.Parse(UIMap.PopulationAndProduction.AvailableLabs.Text) != 0)

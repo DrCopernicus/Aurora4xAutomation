@@ -2,7 +2,7 @@
 
 namespace Server.IO.UI.Display
 {
-    public interface IScreen
+    public interface IScreen : IPositionable
     {
         void Dirty();
         Color GetPixel(int x, int y);

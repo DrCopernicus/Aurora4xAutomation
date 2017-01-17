@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Server.IO.UI.Display;
+using System;
 using System.Drawing;
 using WindowsInput.Native;
-using Server.IO.UI.Display;
 
 namespace Server.IO.UI
 {
@@ -27,6 +27,7 @@ namespace Server.IO.UI
             Click((Right - Left) / 2, (Bottom - Top) / 2);
         }
 
+        public IPositionable Parent { get; protected set; }
         public IScreen Screen { get; protected set; }
         public IInputDevice InputDevice { get; protected set; }
 
@@ -43,9 +44,14 @@ namespace Server.IO.UI
             return Screen.GetPixel(Left + x, Top + y);
         }
 
-        public int Top { get; protected set; }
-        public int Bottom { get; protected set; }
-        public int Left { get; protected set; }
-        public int Right { get; protected set; }
+        public virtual int Top { get { return Parent.Top + _relativeTop; } }
+        public virtual int Bottom { get { return Parent.Top + _relativeBottom; } }
+        public virtual int Left { get { return Parent.Left + _relativeLeft; } }
+        public virtual int Right { get { return Parent.Left + _relativeRight; } }
+
+        protected int _relativeTop;
+        protected int _relativeBottom;
+        protected int _relativeLeft;
+        protected int _relativeRight;
     }
 }
