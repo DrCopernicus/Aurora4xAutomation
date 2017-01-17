@@ -96,6 +96,7 @@
     <Compile Include="Evaluators\AdvanceEvaluator.cs" />
     <Compile Include="Evaluators\IEvaluator.cs" />
     <Compile Include="Evaluators\Research\ShowResearchEvaluator.cs" />
+    <Compile Include="Evaluators\Research\StartResearchEvaluator.cs" />
     <Compile Include="Evaluators\SetPopulationEvaluator.cs" />
     <Compile Include="Evaluators\Settings\UIOffsetEvaluator.cs" />
     <Compile Include="Evaluators\StopEvaluator.cs" />

@@ -40,5 +40,20 @@ namespace Server.Evaluators.Helpers
                 throw new Exception(string.Format("Unexpected parameter: parsing <{0}> threw an exception! {1}\n{2}.", actual, e.Message, e.StackTrace));
             }
         }
+
+        public static int ReadPositiveInt(string actual)
+        {
+            try
+            {
+                var parsed = ReadInt(actual);
+                if (parsed <= 0)
+                    throw new Exception(string.Format("Unexpected parameter: <{0}> not valid! Must be a positive integer (greater than zero).", actual));
+                return parsed;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(string.Format("Unexpected parameter: parsing <{0}> threw an exception! {1}\n{2}.", actual, e.Message, e.StackTrace));
+            }
+        }
     }
 }

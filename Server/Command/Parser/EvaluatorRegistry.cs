@@ -48,7 +48,9 @@ namespace Server.Command.Parser
             Register("open-pop", () => new OpenPopulationEvaluator("open-pop", UIMap));
             Register("stop", () => new StopEvaluator("stop", Settings));
             Register("autoleader", () => new AutoLeaderEvaluator("autoleader", UIMap));
+
             Register("show-research", () => new ShowResearchEvaluator("show-research", UIMap, Messages));
+            Register("research", () => new StartResearchEvaluator("research", UIMap, Messages));
 
             Register("set-offset", () => new UIOffsetEvaluator("set-offset", Settings));
         }

@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using MoreLinq;
 using Server.Common;
 using Server.IO;
 using Server.IO.UI.Display;
 using Server.Settings;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Server.Command
 {
@@ -19,31 +18,11 @@ namespace Server.Command
             Settings = settings;
         }
 
-        public void ResearchTechCommand(string category, int researchNum, int scientistNum, int labsNum)
-        {
-            UIMap.PopulationAndProduction.MakeActive();
-            UIMap.PopulationAndProduction.SelectResearchTab();
-            UIMap.PopulationAndProduction.SelectResearchByCategory(category);
-
-            UIMap.PopulationAndProduction.MatchingScientistsOnly.Select();
-            Thread.Sleep(500);
-            UIMap.PopulationAndProduction.SelectNthResearch(researchNum);
-            UIMap.PopulationAndProduction.SelectNthScientist(scientistNum);
-            if (labsNum != -1)
-                UIMap.PopulationAndProduction.SetAllocatedLabs(labsNum + "");
-            UIMap.PopulationAndProduction.CreateResearch();
-        }
-
         public void FocusResearch(string category)
         {
             Settings.Research.Clear();
             foreach (var ban in Settings.ResearchFocuses[category])
                 Settings.Research.Add(ban.Key, ban.Value);
-        }
-
-        public void BanResearch(string topic)
-        {
-            throw new NotImplementedException();
         }
 
         public void AutoResearch(object sender, EventArgs e)
@@ -115,7 +94,7 @@ namespace Server.Command
                 if (firstScientist == null)
                     continue;
 
-                ResearchTechCommand(res[2], int.Parse(res[3]), 0, -1);
+                //ResearchTechCommand(res[2], int.Parse(res[3]), 0, -1);
                 return true;
             }
 
@@ -143,7 +122,7 @@ namespace Server.Command
                         {
                             if (res[i][0] == searchAgainst[0])
                             {
-                                ResearchTechCommand(searchFor.Value, i, 0, -1);
+                                //ResearchTechCommand(searchFor.Value, i, 0, -1);
                                 //new MessageCommands(Settings).PrintFeedback(string.Format("[AutoResearch] Successfully selected research {0}.", searchFor.Key));
                                 if (totalScientists > 1)
                                     throw new NotImplementedException();
@@ -171,7 +150,7 @@ namespace Server.Command
 
             var cheapestResearch = researchInCategory.MinBy(x => int.Parse(x[1].Split('/')[0]));
 
-            ResearchTechCommand(cheapestResearch[2], int.Parse(cheapestResearch[3]), 0, -1);
+            //ResearchTechCommand(cheapestResearch[2], int.Parse(cheapestResearch[3]), 0, -1);
 
             return true;
         }
