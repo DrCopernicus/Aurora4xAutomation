@@ -50,7 +50,7 @@ namespace Server.Command.Parser
             Register("autoleader", () => new AutoLeaderEvaluator("autoleader", UIMap));
 
             Register("show-research", () => new ShowResearchEvaluator("show-research", UIMap, Messages));
-            Register("research", () => new StartResearchEvaluator("research", UIMap, Messages));
+            Register("start-research", () => new StartResearchEvaluator("start-research", UIMap, Messages));
 
             Register("set-offset", () => new UIOffsetEvaluator("set-offset", Settings));
         }
