@@ -2,6 +2,7 @@
 using Server.IO.UI.Controls;
 using Server.IO.UI.Display;
 using Server.Settings;
+using System;
 using System.Windows.Forms;
 using WindowsInput.Native;
 using Button = Server.IO.UI.Controls.Button;
@@ -96,6 +97,7 @@ namespace Server.IO.UI.Windows
             MatchingScientistsOnly = new RadioButton(this, inputDevice, left: 740, right: 750, top: 362, bottom: 372 );
         }
 
+        [Obsolete]
         private bool IsSummaryTabRowOnTop()
         {
             return GetPixel(405, 120).EqualsColor(0, 0, 0);
@@ -130,10 +132,12 @@ namespace Server.IO.UI.Windows
         public void Dirty()
         {
             Populations.Dirty();
+            ResearchTable.Dirty();
         }
 
         #region Research
 
+        [Obsolete]
         public void SelectResearchTab()
         {
             if (IsSummaryTabRowOnTop())
@@ -142,11 +146,13 @@ namespace Server.IO.UI.Windows
                 this.Click(1152, 122);
         }
 
+        [Obsolete]
         private void DropDownNewResearchProject()
         {
             this.Click(617, 365);
         }
 
+        [Obsolete]
         public void SelectResearchByCategory(string name)
         {
             if (name == "bio" || name == "bg")
@@ -165,66 +171,80 @@ namespace Server.IO.UI.Windows
                 SelectPower();
             else if (name == "sen" || name == "sf")
                 SelectSensors();
+
+            StaticSleeper.Sleep(1000);
+            Dirty();
         }
 
+        [Obsolete]
         public void SelectBiology()
         {
             DropDownNewResearchProject();
             this.Click(524, 383);
         }
 
+        [Obsolete]
         public void SelectConstruction()
         {
             DropDownNewResearchProject();
             this.Click(524, 397);
         }
 
+        [Obsolete]
         public void SelectDefensive()
         {
             DropDownNewResearchProject();
             this.Click(524, 411);
         }
 
+        [Obsolete]
         public void SelectEnergy()
         {
             DropDownNewResearchProject();
             this.Click(524, 423);
         }
 
+        [Obsolete]
         public void SelectLogistics()
         {
             DropDownNewResearchProject();
             this.Click(524, 435);
         }
 
+        [Obsolete]
         public void SelectMissiles()
         {
             DropDownNewResearchProject();
             this.Click(524, 447);
         }
 
+        [Obsolete]
         public void SelectPower()
         {
             DropDownNewResearchProject();
             this.Click(524, 461);
         }
 
+        [Obsolete]
         public void SelectSensors()
         {
             DropDownNewResearchProject();
             this.Click(524, 475);
         }
 
+        [Obsolete]
         public void SelectNthResearch(int number)
         {
             this.Click(467, 413 + number * 16);
         }
 
+        [Obsolete]
         public void SelectNthScientist(int number)
         {
             this.Click(986, 413 + number * 16);
         }
 
+        [Obsolete]
         public void SetAllocatedLabs(string labsNum)
         {
             this.Click(907, 364);
@@ -232,6 +252,7 @@ namespace Server.IO.UI.Windows
             this.PressKeys(labsNum);
         }
 
+        [Obsolete]
         public void CreateResearch()
         {
             this.Click(440, 635);
@@ -242,6 +263,7 @@ namespace Server.IO.UI.Windows
 
         #region Manage Shipyards
 
+        [Obsolete]
         public void SelectManageShipyards()
         {
             if (IsSummaryTabRowOnTop())
@@ -250,11 +272,13 @@ namespace Server.IO.UI.Windows
                 this.Click(869, 122);
         }
 
+        [Obsolete]
         public void SelectNthShipyard(int shipyardNumber)
         {
             this.Click(504, 196 + (shipyardNumber - 1) * 16);
         }
 
+        [Obsolete]
         public void AddShipyardTask()
         {
             this.Click(442, 821);
@@ -264,6 +288,7 @@ namespace Server.IO.UI.Windows
 
         #region Tabs
 
+        [Obsolete]
         public void SelectIndustry()
         {
             if (IsSummaryTabRowOnTop())
@@ -272,6 +297,7 @@ namespace Server.IO.UI.Windows
                 this.Click(589, 122);
         }
 
+        [Obsolete]
         public void SelectCivilianTab()
         {
             if (IsSummaryTabRowOnTop())
@@ -280,6 +306,7 @@ namespace Server.IO.UI.Windows
                 this.Click(740, 100);
         }
 
+        [Obsolete]
         public void SelectMiningTab()
         {
             if (IsSummaryTabRowOnTop())

@@ -74,5 +74,10 @@ namespace Server.IO.UI.Controls
         {
             return Columns[index] + Left - Columns[0];
         }
+
+        public void Dirty()
+        {
+            Screen.Dirty();
+        }
     }
 }
