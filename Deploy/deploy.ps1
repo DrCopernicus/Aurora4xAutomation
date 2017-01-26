@@ -1,7 +1,9 @@
 ﻿$ScriptDir = Split-Path $MyInvocation.MyCommand.Path -Parent
 
-$ServerDestination = "$ScriptDir\Aurora4xAutomation\Server"
-$ClientDestination = "$ScriptDir\Aurora4xAutomation\Client"
+$ServerDestination = "$ScriptDir\Server"
+$ClientDestination = "$ScriptDir\Client"
+
+$Version = Read-Host "Target version"
 
 # requires Powershell 3 and .NET 4.5
 function ZipFiles( $destinationPath, $sourcePath )
@@ -13,8 +15,10 @@ function ZipFiles( $destinationPath, $sourcePath )
 }
 
 # Clean last release
-Remove-Item "$ScriptDir\Aurora4xAutomation" -Recurse -ErrorAction Ignore
-Remove-Item "$ScriptDir\Aurora4xAutomation.zip" -ErrorAction Ignore
+Remove-Item "$ServerDestination" -Recurse -ErrorAction Ignore
+Remove-Item "$ClientDestination" -Recurse -ErrorAction Ignore
+Remove-Item "$ServerDestination-*.zip" -ErrorAction Ignore
+Remove-Item "$ClientDestination-*.zip" -ErrorAction Ignore
 
 # Make server release folder
 Copy-Item "$ScriptDir\..\Server\bin\Release" "$ServerDestination" -Recurse -ErrorAction Ignore
@@ -23,6 +27,8 @@ Remove-Item "$ServerDestination\*.vshost.exe"
 Remove-Item "$ServerDestination\*.vshost.exe.config"
 Remove-Item "$ServerDestination\*.vshost.exe.manifest"
 
+ZipFiles "$ServerDestination-$Version.zip" "$ServerDestination"
+
 # Make client release folder
 Copy-Item "$ScriptDir\..\Client\bin\Release" "$ClientDestination" -Recurse -ErrorAction Ignore
 Remove-Item "$ClientDestination\*.pdb"
@@ -30,5 +36,5 @@ Remove-Item "$ClientDestination\*.vshost.exe"
 Remove-Item "$ClientDestination\*.vshost.exe.config"
 Remove-Item "$ClientDestination\*.vshost.exe.manifest"
 
-ZipFiles "$ScriptDir\Aurora4xAutomation.zip" "$ScriptDir\Aurora4xAutomation"
+ZipFiles "$ClientDestination-$Version.zip" "$ClientDestination"
 
