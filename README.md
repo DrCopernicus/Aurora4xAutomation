@@ -18,8 +18,8 @@ This software actively clicks on the screen, moves around windows, and does all 
 * Run Server.exe in the extracted Server folder under administrator mode.
 * If the server machine and client machine are two separate machines, then ensure the server is correctly portforwarded.
 * Test the connection to the server in a web browser by typing the server's address and port number into the URL bar. The server is on port `1234` by default.
-** For example, if your server's address is `192.168.1.2`, then type `http://192.168.1.2:1234/`
-** You should receive the following response: `Server is online!`.
+ * For example, if your server's address is `192.168.1.2`, then type `http://192.168.1.2:1234/`
+ * You should receive the following response: `Server is online!`.
 * Run Client.exe on the client machine.
 * Follow the prompts given by the client.
 * Type `list` and press enter to receive a list of all commands supported by the server.
