@@ -132,7 +132,6 @@
     <Compile Include="Events\EventManager.cs" />
     <Compile Include="Events\Time.cs" />
     <Compile Include="Events\Timeline.cs" />
-    <Compile Include="IO\IO.cs" />
     <Compile Include="IO\IOCRReader.cs" />
     <Compile Include="IO\IUIMap.cs" />
     <Compile Include="IO\OCR\ISplitter.cs" />
