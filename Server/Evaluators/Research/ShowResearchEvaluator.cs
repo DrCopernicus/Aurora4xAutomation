@@ -46,22 +46,11 @@ namespace Server.Evaluators.Research
 
             if (Parameters[0] == "all")
             {
-                UIMap.PopulationAndProduction.SelectBiology();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectConstruction();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectDefensive();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectEnergy();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectLogistics();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectMissiles();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectPower();
-                output += ReadResearchTables();
-                UIMap.PopulationAndProduction.SelectSensors();
-                output += ReadResearchTables();
+                foreach (var cat in _categories)
+                {
+                    UIMap.PopulationAndProduction.SelectResearchByCategory(cat);
+                    output += ReadResearchTables();
+                }
             }
             else
             {
