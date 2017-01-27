@@ -1,8 +1,8 @@
 ﻿using Client.Listeners;
 using Client.REST;
+using Common;
 using NSubstitute;
 using NUnit.Framework;
-using Server.Common;
 
 namespace Tests.Tests.ClientTests
 {

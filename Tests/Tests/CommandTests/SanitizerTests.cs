@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Common;
+using NUnit.Framework;
 using Server.Command.Parser;
 
 namespace Tests.Tests.CommandTests

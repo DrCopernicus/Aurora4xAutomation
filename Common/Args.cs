@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Server.Common
+namespace Common
 {
     public class Args : Dictionary<string, object>
     {

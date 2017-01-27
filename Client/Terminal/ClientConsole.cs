@@ -1,6 +1,5 @@
-﻿
-using Client.REST;
-using Server.Command.Parser;
+﻿using Client.REST;
+using Common;
 
 namespace Client.Terminal
 {

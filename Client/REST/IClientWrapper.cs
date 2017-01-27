@@ -1,4 +1,4 @@
-﻿using Server.Common;
+﻿using Common;
 
 namespace Client.REST
 {

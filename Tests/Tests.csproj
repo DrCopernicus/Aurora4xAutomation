@@ -126,6 +126,10 @@
       <Project>{134E7331-0C96-428D-8FE9-022FEFF1D996}</Project>
       <Name>Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0F0B6827-E5DC-43E9-BDFE-8AB6387C154B}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Server\Server.csproj">
       <Project>{F08B2DE2-6197-4321-AB8D-6F018F548DC6}</Project>
       <Name>Server</Name>

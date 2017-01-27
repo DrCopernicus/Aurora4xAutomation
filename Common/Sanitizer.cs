@@ -1,4 +1,4 @@
-﻿namespace Server.Command.Parser
+﻿namespace Common
 {
     public class Sanitizer
     {

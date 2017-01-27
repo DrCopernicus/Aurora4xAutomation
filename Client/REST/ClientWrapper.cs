@@ -1,6 +1,6 @@
 ﻿using Client.Terminal;
+using Common;
 using Grapevine.Client;
-using Server.Common;
 
 namespace Client.REST
 {

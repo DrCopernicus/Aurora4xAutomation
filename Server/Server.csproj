@@ -71,8 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automation\CommandFlowManager.cs" />
-    <Compile Include="Command\Parser\Sanitizer.cs" />
-    <Compile Include="Common\Args.cs" />
     <Compile Include="Common\Exceptions\WrongParameterCountException.cs" />
     <Compile Include="Common\Converters\MessageTypeConverter.cs" />
     <Compile Include="Common\Exceptions\WindowNotFoundException.cs" />
@@ -196,6 +194,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{0F0B6827-E5DC-43E9-BDFE-8AB6387C154B}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
