@@ -1,9 +1,12 @@
-﻿$ScriptDir = Split-Path $MyInvocation.MyCommand.Path -Parent
+﻿Param(
+    [Parameter(Mandatory=$true)]
+    [String]$Version
+)
+
+$ScriptDir = Split-Path $MyInvocation.MyCommand.Path -Parent
 
 $ServerDestination = "$ScriptDir\Server"
 $ClientDestination = "$ScriptDir\Client"
-
-$Version = Read-Host "Target version"
 
 # requires Powershell 3 and .NET 4.5
 function ZipFiles( $destinationPath, $sourcePath )

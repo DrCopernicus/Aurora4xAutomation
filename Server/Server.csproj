@@ -76,6 +76,7 @@
     <Compile Include="Common\Exceptions\WindowNotFoundException.cs" />
     <Compile Include="Common\ISleeper.cs" />
     <Compile Include="Common\Sleeper.cs" />
+    <Compile Include="Evaluators\AdvanceEvaluator.cs" />
     <Compile Include="Evaluators\Evaluator.cs" />
     <Compile Include="Command\Parser\CommandLexer.cs" />
     <Compile Include="Command\Parser\CommandParser.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Evaluators\Message\MessageEvaluator.cs" />
     <Compile Include="Evaluators\NoOpEvaluator.cs" />
     <Compile Include="Evaluators\Message\HelpEvaluator.cs" />
-    <Compile Include="Evaluators\AdvanceEvaluator.cs" />
     <Compile Include="Evaluators\IEvaluator.cs" />
     <Compile Include="Evaluators\Research\ShowResearchEvaluator.cs" />
     <Compile Include="Evaluators\Research\StartResearchEvaluator.cs" />
@@ -200,6 +200,9 @@
       <Project>{0F0B6827-E5DC-43E9-BDFE-8AB6387C154B}</Project>
       <Name>Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Evaluators\Time\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
