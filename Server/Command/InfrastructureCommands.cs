@@ -24,7 +24,8 @@ namespace Server.Command
 
         public void BuildInstallation(string population, string installationName, string installationNumber)
         {
-            new OpenCommands(UIMap).SelectColony(population);
+            UIMap.PopulationAndProduction.MakeActive();
+            UIMap.PopulationAndProduction.Populations.Select(population);
             UIMap.PopulationAndProduction.SelectIndustry();
             switch (installationName)
             {

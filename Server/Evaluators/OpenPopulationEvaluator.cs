@@ -17,7 +17,8 @@ namespace Server.Evaluators
                 throw new Exception(string.Format("Expected 1 parameter, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            new OpenCommands(UIMap).SelectColony(Parameters[0]);
+            UIMap.PopulationAndProduction.MakeActive();
+            UIMap.PopulationAndProduction.Populations.Select(Parameters[0]);
         }
 
         public override string Help

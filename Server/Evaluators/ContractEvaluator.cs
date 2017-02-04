@@ -1,8 +1,7 @@
-﻿using System;
-using Server.Command;
-using Server.Common.Exceptions;
+﻿using Server.Common.Exceptions;
 using Server.Evaluators.Helpers;
 using Server.IO;
+using System;
 
 namespace Server.Evaluators
 {
@@ -19,7 +18,8 @@ namespace Server.Evaluators
                 throw new Exception(string.Format("Expected 4 parameters, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            new OpenCommands(UIMap).SelectColony(Parameters[0]);
+            UIMap.PopulationAndProduction.MakeActive();
+            UIMap.PopulationAndProduction.Populations.Select(Parameters[0]);
             UIMap.PopulationAndProduction.MakeActive();
             UIMap.PopulationAndProduction.SelectCivilianTab();
             UIMap.PopulationAndProduction.ContractAmount.Text = Parameters[1];
