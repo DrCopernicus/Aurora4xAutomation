@@ -87,7 +87,6 @@
     <Compile Include="Tests\EvaluatorTests\Factories\EvaluatorParamaterizerTests.cs" />
     <Compile Include="Tests\EvaluatorTests\HelpEvaluatorTests.cs" />
     <Compile Include="Tests\EvaluatorTests\MoveEvaluatorTests.cs" />
-    <Compile Include="Tests\EvaluatorTests\SetPopulationEvaluatorTests.cs" />
     <Compile Include="Tests\EvaluatorTests\StopEvaluatorTests.cs" />
     <Compile Include="Tests\EvaluatorTests\Message\LogEvaluatorTests.cs" />
     <Compile Include="Tests\EvaluatorTests\Message\PrintEvaluatorTests.cs" />
@@ -202,9 +201,7 @@
   <ItemGroup>
     <None Include="Resources\ocr_ones.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tests\ScreenTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\ocr_onesclean.png" />
   </ItemGroup>
