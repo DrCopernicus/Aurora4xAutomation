@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Server.Settings;
 
-namespace Server.Evaluators
+namespace Server.Evaluators.TimeEvaluators
 {
     public class AdvanceEvaluator : SettingsEvaluator
     {
