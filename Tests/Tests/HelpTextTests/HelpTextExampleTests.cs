@@ -5,7 +5,7 @@ using System;
 namespace Tests.Tests.HelpTextTests
 {
     [TestFixture]
-    public class ValidHelpTextExampleTests
+    public class HelpTextExampleTests
     {
         [Test]
         public void CannotCreateHelpTextExampleWithoutAnEffect()
@@ -34,10 +34,10 @@ namespace Tests.Tests.HelpTextTests
         [Test]
         public void CreatesHelpTextExampleWithOneReferencedParameter()
         {
-            var example = new HelpTextExample("destroy", "<planetary body>", "Destroys any planetary body {0}.");
+            var example = new HelpTextExample("destroy", "<planetary body>", "Destroys a given {0}.");
 
             Assert.AreEqual("destroy <planetary body>", example.Invokation);
-            Assert.AreEqual("Destroys any planetary body <planetary body>.", example.Effect);
+            Assert.AreEqual("Destroys a given <planetary body>.", example.Effect);
         }
     }
 }

@@ -5,7 +5,7 @@ using System;
 namespace Tests.Tests.HelpTextTests
 {
     [TestFixture]
-    public class ValidHelpTextTests
+    public class HelpTextTests
     {
         [Test]
         public void CannotCreateHelpTextExampleWithoutDescription()

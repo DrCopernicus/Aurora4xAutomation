@@ -91,8 +91,8 @@
     <Compile Include="Tests\EvaluatorTests\Message\LogEvaluatorTests.cs" />
     <Compile Include="Tests\EvaluatorTests\Message\PrintEvaluatorTests.cs" />
     <Compile Include="Tests\EventManagerTests.cs" />
-    <Compile Include="Tests\HelpTextTests\ValidHelpTextExampleTests.cs" />
-    <Compile Include="Tests\HelpTextTests\ValidHelpTextTests.cs" />
+    <Compile Include="Tests\HelpTextTests\HelpTextExampleTests.cs" />
+    <Compile Include="Tests\HelpTextTests\HelpTextTests.cs" />
     <Compile Include="Tests\LexerTests.cs" />
     <Compile Include="Tests\ListTests.cs" />
     <Compile Include="Tests\Messages\MessageManagerTests.cs" />
