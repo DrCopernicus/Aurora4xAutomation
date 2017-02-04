@@ -76,6 +76,8 @@
     <Compile Include="Common\Exceptions\WindowNotFoundException.cs" />
     <Compile Include="Common\ISleeper.cs" />
     <Compile Include="Common\Sleeper.cs" />
+    <Compile Include="Evaluators\Helpers\HelpText.cs" />
+    <Compile Include="Evaluators\Helpers\HelpTextExample.cs" />
     <Compile Include="Evaluators\TimeEvaluators\AdvanceEvaluator.cs" />
     <Compile Include="Evaluators\Evaluator.cs" />
     <Compile Include="Command\Parser\CommandLexer.cs" />
