@@ -1,9 +1,10 @@
-﻿using System;
-using NSubstitute;
+﻿using NSubstitute;
 using NUnit.Framework;
 using Server.Evaluators;
+using Server.Evaluators.Helpers;
 using Server.Evaluators.Message;
 using Server.Messages;
+using System;
 
 namespace Tests.Tests.EvaluatorTests
 {
@@ -16,14 +17,14 @@ namespace Tests.Tests.EvaluatorTests
             var messages = Substitute.For<IMessageManager>();
             var helpEvaluator = new HelpEvaluator("", messages);
             var evaluatorWithHelpMessage = Substitute.For<IEvaluator>();
-            evaluatorWithHelpMessage.Help.Returns("help message");
+            evaluatorWithHelpMessage.Help.Returns(new HelpText("", ""));
             evaluatorWithHelpMessage.Body.Returns(a => null);
             evaluatorWithHelpMessage.Next.Returns(a => null);
             helpEvaluator.Body = evaluatorWithHelpMessage;
 
             helpEvaluator.Execute();
 
-            messages.Received(1).AddMessage(MessageType.Information, "help message");
+            messages.Received(1).AddMessage(MessageType.Information, Arg.Any<string>());
         }
 
         [Test]

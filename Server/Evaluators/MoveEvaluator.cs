@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Server.Evaluators.Helpers;
 using Server.IO;
+using System;
 
 namespace Server.Evaluators
 {
@@ -23,9 +24,10 @@ namespace Server.Evaluators
             demandContract.Execute();
         }
 
-        public override string Help
+        public override HelpText Help
         {
-            get { return "move <from colony> <to colony> <amount> <installation>: Creates a supply contract on <from colony> and a demand contract on <to colony> for <amount> units of <installation>."; }
+            get { return new HelpText("move", "")
+                .AddRow("<from colony>", "<to colony>", "<amount>", "<installation>", "Creates a supply contract on {0} and a demand contract on {1} for {2} units of {3}."); }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using Server.Common.Converters;
+using Server.Evaluators.Helpers;
 using Server.Messages;
 
 namespace Server.Evaluators.Message
@@ -19,9 +20,10 @@ namespace Server.Evaluators.Message
             Messages.AddMessage(MessageTypeConverter.ToType(Parameters[0]), Parameters[1]);
         }
 
-        public override string Help
+        public override HelpText Help
         {
-            get { return "log <type> <message>: Adds <message> with the tag <type>."; }
+            get { return new HelpText("log", "")
+                .AddRow("<type>", "<message>", "Adds {1} with the tag {0}."); }
         }
     }
 }

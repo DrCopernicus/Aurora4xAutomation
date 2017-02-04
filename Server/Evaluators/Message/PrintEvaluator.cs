@@ -1,4 +1,5 @@
-﻿using Server.Messages;
+﻿using Server.Evaluators.Helpers;
+using Server.Messages;
 using System;
 
 namespace Server.Evaluators.Message
@@ -19,9 +20,10 @@ namespace Server.Evaluators.Message
             Messages.AddMessage(MessageType.Information, Parameters[0]);
         }
 
-        public override string Help
+        public override HelpText Help
         {
-            get { return "print <message>: Adds <message> with the \"info\" tag."; }
+            get { return new HelpText("print", "")
+                .AddRow("<message>", "Adds {0} with the \"info\" tag."); }
         }
     }
 }

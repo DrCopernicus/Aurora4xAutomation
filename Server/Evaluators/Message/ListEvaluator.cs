@@ -1,6 +1,7 @@
 ﻿using Server.Command.Parser;
 using Server.Messages;
 using System;
+using Server.Evaluators.Helpers;
 
 namespace Server.Evaluators.Message
 {
@@ -24,7 +25,7 @@ namespace Server.Evaluators.Message
                     Parameters.Count, Text));
         }
 
-        public override string Help
+        public override HelpText Help
         {
             get { throw new System.NotImplementedException(); }
         }

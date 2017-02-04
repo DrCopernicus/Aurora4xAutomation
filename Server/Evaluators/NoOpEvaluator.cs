@@ -1,4 +1,6 @@
-﻿namespace Server.Evaluators
+﻿using Server.Evaluators.Helpers;
+
+namespace Server.Evaluators
 {
     public class NoOpEvaluator : Evaluator
     {
@@ -12,9 +14,10 @@
 
         }
 
-        public override string Help
+        public override HelpText Help
         {
-            get { return "noop: Does nothing."; }
+            get { return new HelpText("noop", "")
+                .AddRow("Does nothing."); }
         }
     }
 }

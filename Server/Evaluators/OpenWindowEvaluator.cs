@@ -1,4 +1,5 @@
 ﻿using Server.Common.Exceptions;
+using Server.Evaluators.Helpers;
 using Server.IO;
 
 namespace Server.Evaluators
@@ -31,7 +32,7 @@ namespace Server.Evaluators
             }
         }
 
-        public override string Help
+        public override HelpText Help
         {
             get { throw new System.NotImplementedException(); }
         }

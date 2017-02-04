@@ -1,8 +1,9 @@
-﻿using System;
-using System.Threading;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Server.Evaluators;
+using Server.Evaluators.Helpers;
 using Server.Events;
+using System;
+using System.Threading;
 
 namespace Tests.Tests
 {
@@ -13,21 +14,21 @@ namespace Tests.Tests
         {
             public EvaluatorDouble() : base("default") { }
             protected override void Evaluate() { throw new NotImplementedException(); }
-            public override string Help { get { throw new NotImplementedException(); } }
+            public override HelpText Help { get { throw new NotImplementedException(); } }
         }
 
         private class EvaluatorDoubleTwo : Evaluator
         {
             public EvaluatorDoubleTwo() : base("default") { }
             protected override void Evaluate() { throw new NotImplementedException(); }
-            public override string Help { get { throw new NotImplementedException(); } }
+            public override HelpText Help { get { throw new NotImplementedException(); } }
         }
 
         private class EvaluatorDoubleThree : Evaluator
         {
             public EvaluatorDoubleThree() : base("default") { }
             protected override void Evaluate() { throw new NotImplementedException(); }
-            public override string Help { get { throw new NotImplementedException(); } }
+            public override HelpText Help { get { throw new NotImplementedException(); } }
         }
         
         [Test]

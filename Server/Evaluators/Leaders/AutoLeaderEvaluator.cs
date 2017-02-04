@@ -20,7 +20,7 @@ namespace Server.Evaluators.Leaders
             UIMap.Leaders.SetAutomatedAssignments(ParameterTextParser.ReadBoolean(Parameters[0]));
         }
 
-        public override string Help
+        public override HelpText Help
         {
             get { throw new System.NotImplementedException(); }
         }

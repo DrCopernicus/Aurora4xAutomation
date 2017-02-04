@@ -1,6 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using Server.Evaluators.Helpers;
 using Server.Events;
 using Server.IO;
+using System.Text.RegularExpressions;
 
 namespace Server.Evaluators
 {
@@ -30,9 +32,9 @@ namespace Server.Evaluators
             }
         }
 
-        public override string Help
+        public override HelpText Help
         {
-            get { throw new System.NotImplementedException(); }
+            get { throw new NotImplementedException(); }
         }
 
         private Time TimeFromText

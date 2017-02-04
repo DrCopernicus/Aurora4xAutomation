@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Server.Evaluators.Helpers;
 using Server.Settings;
 
 namespace Server.Evaluators.TimeEvaluators
@@ -60,16 +61,23 @@ namespace Server.Evaluators.TimeEvaluators
             {"30d", IncrementLength.ThirtyDay}
         };
 
-        public override string Help
+        public override HelpText Help
         {
-            get { return "adv go: Allows the program to advance turns. If auto-turns are on, will automatically advance turns until blocked." +
-                         "Otherwise if auto-turns are off, will only advance once.\n" +
-                         "adv stop: Blocks the program from advancing turns until turns are allowed again (for example, by calling \"adv go\").\n" +
-                         "adv on: Puts the program into the auto-turn on state, which automatically advances turns by the specified increment length" +
-                         "(default five days), and will only be stopped when blocked (for example, by calling \"adv stop\").\n" +
-                         "adv off: Puts the program into the auto-turn off state, which will only advance turns when put back into" +
-                         "the auto-turn on state (for example, by calling \"adv on\").\n" +
-                         "adv (5s|30s|2m|5m|20m|1h|3h|8h|1d|5d|30d): Specifies the turn increment length."; }
+            get
+            {
+                return new HelpText("adv", "")
+                    .AddRow("go", "Allows the program to advance turns. If auto-turns are on, will automatically " +
+                                  "advance turns until blocked. Otherwise if auto-turns are off, will only advance " +
+                                  "once.")
+                    .AddRow("stop", "Blocks the program from advancing turns until turns are allowed again (for " +
+                                    "example, by calling \"adv go\").")
+                    .AddRow("on", "Puts the program into the auto-turn on state, which automatically advances turns by " +
+                                  "the specified increment length (default five days), and will only be stopped when " +
+                                  "blocked (for example, by calling \"adv stop\").")
+                    .AddRow("off", "Puts the program into the auto-turn off state, which will only advance turns when " +
+                                   "put back into the auto-turn on state (for example, by calling \"adv on\").")
+                    .AddRow("<increment>", "Specifies the turn {0} length. Can be (5s|30s|2m|5m|20m|1h|3h|8h|1d|5d|30d).");
+            }
         }
     }
 }

@@ -57,9 +57,10 @@ namespace Server.Evaluators
             return evaluator;
         }
 
-        public override string Help
+        public override HelpText Help
         {
-            get { return "contract <colony> <amount> <installation> (s|d|supply|demand|true|false): Create a supply or demand contract on <colony> for <amount> units of <installation>."; }
+            get { return new HelpText("contract,", "")
+                .AddRow("<colony>", "<amount>", "<installation>", "<type>", "Create a {3} contract on {0} for {1} units of {2}. {3} can be one of (s|d|supply|demand|true|false)."); }
         }
     }
 }

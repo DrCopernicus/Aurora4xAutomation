@@ -25,9 +25,10 @@ namespace Server.Evaluators.Settings
                 Settings.HorizontalWindowOffset = offset;
         }
 
-        public override string Help
+        public override HelpText Help
         {
-            get { return "set-offset <direction> <amount>: Sets the window offset in <direction> to <amount>. Useful for when controls are not being found correctly."; }
+            get { return new HelpText("set-offset", "")
+                .AddRow("<direction>", "<amount>", "Sets the window offset in {0} to {1}. Useful for when controls are not being found correctly."); }
         }
     }
 }

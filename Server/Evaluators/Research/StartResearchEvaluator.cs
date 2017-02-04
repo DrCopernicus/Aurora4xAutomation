@@ -43,7 +43,7 @@ namespace Server.Evaluators.Research
             UIMap.PopulationAndProduction.CreateResearch();
         }
 
-        public override string Help
+        public override HelpText Help
         {
             get { throw new System.NotImplementedException(); }
         }

@@ -19,9 +19,10 @@ namespace Server.Evaluators.Message
             Messages.AddMessage(MessageType.Error, Parameters[0]);
         }
 
-        public override string Help
+        public override HelpText Help
         {
-            get { return "error <message>: Adds <message> with the \"error\" tag."; }
+            get { return new HelpText("error", "")
+                .AddRow("<message>", "Adds {0} with the \"error\" tag."); }
         }
 
         public static ErrorEvaluator Error(string message, string stackTrace, IMessageManager messageManager)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Server.Common;
+using Server.Evaluators.Helpers;
 
 namespace Server.Evaluators
 {
@@ -30,7 +31,7 @@ namespace Server.Evaluators
 
         }
 
-        public override string Help
+        public override HelpText Help
         {
             get { throw new NotImplementedException(); }
         }

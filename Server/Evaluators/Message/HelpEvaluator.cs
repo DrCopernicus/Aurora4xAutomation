@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Server.Evaluators.Helpers;
 using Server.Messages;
+using System;
 
 namespace Server.Evaluators.Message
 {
@@ -21,12 +22,13 @@ namespace Server.Evaluators.Message
                 throw new Exception(string.Format("Expected 1 parameter, got {0} in function name {1}.",
                     Parameters.Count, Text));
 
-            Messages.AddMessage(MessageType.Information, Body.Help);
+            Messages.AddMessage(MessageType.Information, Body.Help.ToFormattedString());
         }
 
-        public override string Help
+        public override HelpText Help
         {
-            get { return "help <command>: Returns the help message for <command>."; }
+            get { return new HelpText("help", "")
+                .AddRow("<command>", "Returns the help message for {0}."); }
         }
     }
 }

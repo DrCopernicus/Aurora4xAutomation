@@ -1,5 +1,6 @@
 ﻿using System;
 using Server.Command;
+using Server.Evaluators.Helpers;
 using Server.IO;
 
 namespace Server.Evaluators
@@ -21,7 +22,7 @@ namespace Server.Evaluators
             UIMap.PopulationAndProduction.Populations.Select(Parameters[0]);
         }
 
-        public override string Help
+        public override HelpText Help
         {
             get { throw new NotImplementedException(); }
         }

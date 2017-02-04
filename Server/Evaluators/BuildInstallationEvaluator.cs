@@ -1,5 +1,6 @@
-﻿using System;
+﻿using Server.Evaluators.Helpers;
 using Server.IO;
+using System;
 
 namespace Server.Evaluators
 {
@@ -48,7 +49,7 @@ namespace Server.Evaluators
             UIMap.PopulationAndProduction.CreateIndustrialProject.Click();
         }
 
-        public override string Help
+        public override HelpText Help
         {
             get { throw new NotImplementedException(); }
         }

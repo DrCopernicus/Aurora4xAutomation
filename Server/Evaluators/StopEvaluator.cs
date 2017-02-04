@@ -1,4 +1,5 @@
 ﻿using Server.Common.Exceptions;
+using Server.Evaluators.Helpers;
 using Server.Settings;
 
 namespace Server.Evaluators
@@ -18,9 +19,10 @@ namespace Server.Evaluators
             Settings.Stopped = true;
         }
 
-        public override string Help
+        public override HelpText Help
         {
-            get { return "stop: Stops the advancement of turns. Identical to \"adv go\"."; }
+            get { return new HelpText("stop", "")
+                .AddRow("Stops the advancement of turns. Identical to \"adv stop\"."); }
         }
     }
 }

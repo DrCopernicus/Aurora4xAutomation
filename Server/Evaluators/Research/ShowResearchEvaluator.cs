@@ -61,7 +61,7 @@ namespace Server.Evaluators.Research
             Messages.AddMessage(MessageType.Information, output);
         }
 
-        public override string Help
+        public override HelpText Help
         {
             get { throw new System.NotImplementedException(); }
         }

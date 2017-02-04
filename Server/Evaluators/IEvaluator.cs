@@ -1,9 +1,11 @@
-﻿namespace Server.Evaluators
+﻿using Server.Evaluators.Helpers;
+
+namespace Server.Evaluators
 {
     public interface IEvaluator
     {
         void Execute();
-        string Help { get; }
+        HelpText Help { get; }
 
         string Text { get; }
         IEvaluator Body { get; set; }

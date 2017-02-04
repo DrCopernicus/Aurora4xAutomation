@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Server.Evaluators.Helpers;
 
 namespace Server.Evaluators
 {
@@ -37,7 +38,7 @@ namespace Server.Evaluators
                 Next.Execute();
         }
 
-        public abstract string Help { get; }
+        public abstract HelpText Help { get; }
 
         private List<string> _parameters;
 
