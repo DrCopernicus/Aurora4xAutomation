@@ -1,4 +1,5 @@
 ﻿using Server.Common;
+using System;
 using System.Collections.Generic;
 
 namespace Server.Settings
@@ -87,14 +88,20 @@ namespace Server.Settings
             set { _verticalOffset = value; }
         }
 
+        private bool _checkedDatabasePassword;
         private string _databasePassword;
 
         public string DatabasePassword
         {
             get
             {
-                if (_databasePassword == null && FileReader.SettingsFileExists("password.txt"))
-                    _databasePassword = FileReader.ReadSettingsFile("password.txt")["DatabasePassword"];
+                if (_checkedDatabasePassword)
+                    return _databasePassword;
+
+                if (FileReader.SettingsFileExists("password.txt"))
+                    _databasePassword = FileReader.ReadSettingsFile("password.txt")["Database Password"];
+                _checkedDatabasePassword = true;
+                Console.WriteLine("password:" + _databasePassword);
                 return _databasePassword;
             }
         }

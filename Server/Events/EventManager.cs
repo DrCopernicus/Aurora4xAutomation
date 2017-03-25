@@ -1,24 +1,27 @@
 ﻿using Server.Command;
 using Server.Common;
 using Server.Evaluators;
+using Server.Evaluators.Helpers;
 using Server.Evaluators.Message;
 using Server.IO;
+using Server.IO.DB;
 using Server.Messages;
 using Server.Settings;
 using System;
 using System.ComponentModel;
 using System.Linq;
-using Server.Evaluators.Helpers;
 
 namespace Server.Events
 {
     public class EventManager : IEventManager
     {
-        public EventManager(IUIMap uiMap, ISettingsStore settings, IMessageManager messages)
+        public EventManager(IUIMap uiMap, ISettingsStore settings, IMessageManager messages, IAuroraDB db, IQueryExecutor executor)
         {
             UIMap = uiMap;
             Settings = settings;
             Messages = messages;
+            Database = db;
+            Executor = executor;
         }
 
         public void AddEvent(IEvaluator evaluator, Time time = null)
@@ -103,21 +106,23 @@ namespace Server.Events
             }
         }
 
-        private void ParseAuroraEventLog()
+        public void ParseAuroraEventLog()
         {
             var log = new LogEvaluator("log", Messages);
             new EvaluatorParameterizer().SetParameters(log, MessageType.Debug, "Parsing event log.");
             log.Execute();
 
             if (Settings.DatabasePassword == null)
-                new EventParser(UIMap, Settings).ParseUsingEventWindow(UIMap.GetTime());
+                new EventParser(UIMap, Settings, Database, Executor).ParseUsingEventWindow(UIMap.GetTime());
             else
-                new EventParser(UIMap, Settings).ParseUsingDatabase();
+                new EventParser(UIMap, Settings, Database, Executor).ParseUsingDatabase();
         }
 
         private IUIMap UIMap { get; set; }
         private ISettingsStore Settings { get; set; }
         private IMessageManager Messages { get; set; }
+        private IAuroraDB Database { get; set; }
+        private IQueryExecutor Executor { get; set; }
         private readonly Timeline _timeline = new Timeline();
         private BackgroundWorker _worker;
     }

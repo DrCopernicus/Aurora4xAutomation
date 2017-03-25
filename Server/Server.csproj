@@ -121,6 +121,8 @@
     <Compile Include="Events\IEventManager.cs" />
     <Compile Include="Events\Logger.cs" />
     <Compile Include="Events\ILogger.cs" />
+    <Compile Include="IO\DB\IAuroraDB.cs" />
+    <Compile Include="IO\DB\IQueryExecutor.cs" />
     <Compile Include="IO\DB\QueryExecutor.cs" />
     <Compile Include="Common\StaticSleeper.cs" />
     <Compile Include="Common\StringExtensions.cs" />

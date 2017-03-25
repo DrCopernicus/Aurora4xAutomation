@@ -1,29 +1,31 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
-using Server.Common;
+﻿using Server.Common;
 using Server.Events;
 using Server.IO;
 using Server.IO.DB;
 using Server.Settings;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Server.Evaluators
 {
     public class EventParser
     {
-        public EventParser(IUIMap uiMap, ISettingsStore settings)
+        public EventParser(IUIMap uiMap, ISettingsStore settings, IAuroraDB db, IQueryExecutor executor)
         {
             UIMap = uiMap;
             Settings = settings;
+            Database = db;
+            Executor = executor;
         }
 
         public void ParseUsingDatabase()
         {
-            var connection = QueryExecutor.GetConnection(Settings.DatabaseLocation, Settings.DatabasePassword);
+            var connection = Executor.GetConnection(Settings.DatabaseLocation, Settings.DatabasePassword);
             connection.Open();
-            var time = AuroraDatabase.GetTime(Settings, connection);
-            var recentEvents = AuroraDatabase.GetRecentEvents(Settings, Settings.RaceId, time, connection);
+            var time = Database.GetTime(Settings, connection);
+            var recentEvents = Database.GetRecentEvents(Settings, Settings.RaceId, time, connection);
             foreach (var ev in recentEvents)
                 IsStopEvent(ev.Text);
             connection.Close();
@@ -303,5 +305,7 @@ namespace Server.Evaluators
 
         private IUIMap UIMap { get; set; }
         private ISettingsStore Settings { get; set; }
+        private IAuroraDB Database { get; set; }
+        private IQueryExecutor Executor { get; set; }
     }
 }

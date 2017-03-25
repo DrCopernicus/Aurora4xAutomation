@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Server.Evaluators;
 using Server.Events;
 using Server.IO;
+using Server.IO.DB;
 using Server.Messages;
 using Server.Settings;
 using System;
@@ -20,7 +21,9 @@ namespace Tests.Tests
             var settings = Substitute.For<ISettingsStore>();
             var uimap = Substitute.For<IUIMap>();
             uimap.GetTime().Returns(new Time());
-            var eventManager = new EventManager(uimap, settings, messages);
+            var db = Substitute.For<IAuroraDB>();
+            var executor = Substitute.For<IQueryExecutor>();
+            var eventManager = new EventManager(uimap, settings, messages, db, executor);
             
             Assert.DoesNotThrow(() => eventManager.Stop());
         }
@@ -32,7 +35,9 @@ namespace Tests.Tests
             var settings = Substitute.For<ISettingsStore>();
             var uimap = Substitute.For<IUIMap>();
             uimap.GetTime().Returns(new Time());
-            var eventManager = new EventManager(uimap, settings, messages);
+            var db = Substitute.For<IAuroraDB>();
+            var executor = Substitute.For<IQueryExecutor>();
+            var eventManager = new EventManager(uimap, settings, messages, db, executor);
 
             var evaluator = Substitute.For<IEvaluator>();
             eventManager.AddEvent(evaluator);
@@ -50,7 +55,9 @@ namespace Tests.Tests
             settings.DatabasePassword.Returns(x => null);
             var uimap = Substitute.For<IUIMap>();
             uimap.GetTime().Returns(new Time());
-            var eventManager = new EventManager(uimap, settings, messages);
+            var db = Substitute.For<IAuroraDB>();
+            var executor = Substitute.For<IQueryExecutor>();
+            var eventManager = new EventManager(uimap, settings, messages, db, executor);
 
             var evaluator = Substitute.For<IEvaluator>();
             eventManager.AddEvent(evaluator);
@@ -72,7 +79,9 @@ namespace Tests.Tests
             var settings = Substitute.For<ISettingsStore>();
             var uimap = Substitute.For<IUIMap>();
             uimap.GetTime().Returns(new Time());
-            var eventManager = new EventManager(uimap, settings, messages);
+            var db = Substitute.For<IAuroraDB>();
+            var executor = Substitute.For<IQueryExecutor>();
+            var eventManager = new EventManager(uimap, settings, messages, db, executor);
 
             var evaluator = Substitute.For<IEvaluator>();
             evaluator.When(x => x.Execute()).Do(x => { throw new Exception(); });
@@ -88,7 +97,9 @@ namespace Tests.Tests
             var settings = Substitute.For<ISettingsStore>();
             var uimap = Substitute.For<IUIMap>();
             uimap.GetTime().Returns(new Time());
-            var eventManager = new EventManager(uimap, settings, messages);
+            var db = Substitute.For<IAuroraDB>();
+            var executor = Substitute.For<IQueryExecutor>();
+            var eventManager = new EventManager(uimap, settings, messages, db, executor);
 
             var evaluator = Substitute.For<IEvaluator>();
             evaluator.When(x => x.Execute()).Do(x => { throw new Exception(); });

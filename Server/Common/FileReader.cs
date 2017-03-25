@@ -17,7 +17,8 @@ namespace Server.Common
             foreach (var line in lines)
             {
                 var split = line.Split(new [] {'\t'}, StringSplitOptions.RemoveEmptyEntries);
-                dict.Add(split[1], split[0]);
+                if (!dict.ContainsKey(split[1]))
+                    dict.Add(split[1], split[0]);
             }
 
             return dict;
@@ -26,7 +27,7 @@ namespace Server.Common
         public static bool SettingsFileExists(string path)
         {
             string cd = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            return File.Exists(Path.Combine(cd, path));
+            return File.Exists(Path.Combine(cd, @"Settings\" + path));
         }
     }
 }
